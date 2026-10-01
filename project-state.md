@@ -4,9 +4,9 @@
 
 ## 1. Active Context & Current Task
 * **Current Phase**: Phase 2 — Global Layouts & Primitives
-* **Current Task**: **Task 2.1 — Build the Global Navbar** (Pending execution)
-* **Status**: Awaiting developer confirmation to proceed.
-* **Next Immediate Step**: Build the 65px sticky Navbar component matching `docs/DESIGN.md` specs (transparent on dark hero, ivory on light sections, Fragment Mono links, Yellow "Enroll" pill).
+* **Current Task**: **Task 2.2 — Build the Global Footer** (Pending execution)
+* **Status**: Task 2.1 (Navbar) completed; awaiting developer confirmation to proceed with Task 2.2.
+* **Next Immediate Step**: Build the editorial Global Footer component matching `docs/DESIGN.md` specs (Workshop Ivory `#f2efe9`, 1px Drafting Line `#e6e3dd` top border, Kathmandu location details, phone, legal links, IIP Foundation attribution).
 
 ## 2. Logic & Function Map
 *(This section maps where core logic, state, and functions reside to prevent redundant reading)*
@@ -19,13 +19,15 @@
 ### Libs & Clients
 * **Prisma Client (`src/lib/prisma.ts`)**: Singleton initialization of Prisma client for Next.js SSR/API routes.
 * **Supabase Client (`src/lib/supabase.ts`)**: Initializes standard client and service-role client for direct BaaS queries/storage.
+* **Utilities (`src/lib/utils.ts`)**: `cn()` utility combining `clsx` and `tailwind-merge`.
 
-### Components (To Be Built)
-* *Global Navbar*: To be implemented in `src/components/layout/...`
-* *Global Footer*: To be implemented in `src/components/layout/...`
-* *GSAP Registry*: To be implemented in `src/components/animations/...`
+### Components & Layout
+* **Global Navbar (`src/components/layout/navbar.tsx`)**: 65px sticky bar with scroll-aware dual modes (transparent over dark hero, Workshop Ivory with Drafting Line border on light sections). Includes Fragment Mono uppercase links, Yellow "Enroll" pill, and accessible full-screen mobile menu drawer with body-scroll locking.
+* **Global Footer (`src/components/layout/footer.tsx`)**: *(Pending Task 2.2)*.
+* **GSAP Registry (`src/components/animations/...`)**: *(Pending Task 2.3)*.
 
 ## 3. Recent Changes Log
+* **[2026-10-01]**: Completed Task 2.1 — Built and integrated `Navbar` in `src/components/layout/navbar.tsx` and `src/app/layout.tsx`. Installed `lucide-react`. Verified clean production build.
 * **[2026-10-01]**: Rewrote `project-state.md` to function as a strict Logic Map and Active Context tracker.
 * **[2026-10-01]**: Verified successful production build (`npm run build`).
 * **[2026-10-01]**: Created `src/lib/prisma.ts` and `src/lib/supabase.ts`.

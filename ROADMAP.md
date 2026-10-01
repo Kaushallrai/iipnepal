@@ -9,10 +9,10 @@ This document outlines the step-by-step implementation tasks. The Agent must com
 - [x] **Task 1.4:** Initialize Prisma (`prisma init`), write the `schema.prisma` for Courses and Portfolio, and connect to Supabase. (Skill: `prisma-expert`)
 
 ## Phase 2: Global Layouts & Primitives
-- [ ] **Task 2.1:** Build the Global Navbar.
-  - [ ] Scaffold structure.
-  - [ ] Apply `taste` styling.
-  - [ ] Apply `impeccable` rules (ensure mobile accessibility).
+- [x] **Task 2.1:** Build the Global Navbar.
+  - [x] Scaffold structure.
+  - [x] Apply `taste` styling.
+  - [x] Apply `impeccable` rules (ensure mobile accessibility).
 - [ ] **Task 2.2:** Build the Global Footer.
 - [ ] **Task 2.3:** Initialize GSAP provider/registry for Next.js App Router. (Skill: `antigravity-design-expert`)
 

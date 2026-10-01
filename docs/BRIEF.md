@@ -1,10 +1,9 @@
-Absolutely. Based on everything we discussed about the IIP redesign, here is a consolidated project report you can use as the **single source of truth** for the website.
- 
+
 # IIP Website Redesign — Project Report
  
 ## 1. Project Overview
  
-The project is a **complete redesign of the IIP (Indian Institute of Photography Nepal) website**.
+The project is a **complete redesign of the IIP (Indian Institute of Photography Nepal) website (https://www.iipnepal.com/).**.
  
 The goal is not to simply reproduce the existing website. The new website should present IIP as a **modern, professional photography education institute**, with a much cleaner visual identity, better information architecture, stronger presentation of courses and student work, and a smoother path toward enrollment.
  

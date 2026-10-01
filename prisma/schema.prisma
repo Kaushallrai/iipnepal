@@ -1,0 +1,100 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum LeadStatus {
+  PENDING
+  CONTACTED
+  ENROLLED
+  ARCHIVED
+}
+
+enum MessageStatus {
+  UNREAD
+  READ
+  ARCHIVED
+}
+
+model Course {
+  id           String           @id @default(cuid())
+  slug         String           @unique
+  title        String
+  tagline      String?
+  description  String
+  curriculum   Json?
+  duration     String           // e.g. "3 Months", "6 Months", "Weekend"
+  level        String           // e.g. "Beginner", "Advanced", "Professional"
+  courseType   String           // e.g. "Foundation", "Diploma", "Workshop"
+  coverImage   String?
+  featured     Boolean          @default(false)
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  portfolioItems  PortfolioItem[]
+  enrollmentLeads EnrollmentLead[]
+
+  @@index([slug])
+  @@map("courses")
+}
+
+model PortfolioItem {
+  id               String    @id @default(cuid())
+  slug             String    @unique
+  title            String
+  photographerName String
+  description      String
+  coverImage       String
+  galleryImages    String[]  @default([])
+  featured         Boolean   @default(false)
+  year             Int?
+  
+  courseId         String?
+  course           Course?   @relation(fields: [courseId], references: [id], onDelete: SetNull)
+
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@index([slug])
+  @@index([courseId])
+  @@map("portfolio_items")
+}
+
+model EnrollmentLead {
+  id           String      @id @default(cuid())
+  studentName  String
+  email        String
+  phone        String
+  message      String?
+  status       LeadStatus  @default(PENDING)
+  
+  courseId     String?
+  course       Course?     @relation(fields: [courseId], references: [id], onDelete: SetNull)
+
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  @@index([courseId])
+  @@index([email])
+  @@map("enrollment_leads")
+}
+
+model ContactMessage {
+  id        String         @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String
+  status    MessageStatus  @default(UNREAD)
+
+  createdAt DateTime       @default(now())
+
+  @@index([email])
+  @@map("contact_messages")
+}

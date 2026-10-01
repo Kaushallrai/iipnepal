@@ -35,17 +35,26 @@ The redesign MUST preserve and prioritize 100% of the authentic, original conten
 ## 6. Creative Giants Design System & Editorial Rules (MANDATORY per docs/DESIGN.md)
 The visual architecture is directly modeled after **Creative Giants** (`https://www.creativegiants.art/`) while honoring the authentic IIP Nepal identity:
 * **Primary Reference Site**: Always consult `https://www.creativegiants.art/` for layout hierarchy, rhythm, typography contrast, and editorial discipline.
+* **100dvh Hero Sizing & Entrance Timeline**: Sized to `h-[calc(100dvh-72px)] sm:h-[calc(100dvh-80px)]` so the entire hero (header + colossal poster wordmark `IIP NEPAL` + full-bleed documentary photo band + technical annotation strip) fits 100% within the viewport height without causing page scrollbar overflow. Animated with Creative Giants' signature GSAP clipPath entrance sequence (`clipPath: "inset(0% 0% 100% 0%)"` on the top wordmark, fading in the headline, `clipPath: "inset(100% 0% 0% 0%)"` on the image band, and staggered overlay items).
 * **Display Poster Wordmark**: Use colossal, condensed architectural poster lettering (`Bebas Neue` / `var(--font-poster)`) for `IIP NEPAL` spanning edge-to-edge across the screen on cream paper before the first photograph, and again at the very bottom of the deep black footer.
 * **Architectural Swiss Grid**: Subtle 5-column vertical hairline rules (`rgba(0,0,0,0.04)`) spanning down the page, providing architectural structure.
 * **Typography**: Bebas Neue (`font-poster`) for colossal poster wordmarks. Switzer / Inter single-family for editorial copy: weight 300 (`font-light`) for display and headlines (20px and above) with aggressive tight tracking (`-0.02em` to `-0.04em`), weight 400 for body, labels, buttons, and form text. **Never bold a heading (no weight 500+).**
+* **Why IIP / Vision & Mission**: Manifesto statement and 3 metrics row (`13+`, `5,000+`, `100%`) with Lucide line icons and drawing hairline border. No 4 numbered pillar cards.
+* **Creative Giants Pinned Horizontal Parallax Projects Section (`section_projects-scroll theme-dark`)**:
+  - Full-width Deep Black (`#0a0a0a`) section showcasing Student Work & Fieldwork / Portfolio & Student Projects.
+  - Desktop (`(min-width: 991px)`): Pinned horizontal scroll container via GSAP ScrollTrigger (`pin: true`, `pinSpacing: true`, `scrub: 1.2`, `anticipatePin: 1`). Slides translate across `x: -scrollWidth`. Each slide features Creative Giants' 3-column layout with multi-speed parallax:
+    - Left column (`projects-scroll_content-left`): Eyebrow (`PROJECT 01`), display headline, photographer credit (`xPercent: -18`, `scrub: 3`).
+    - Middle column (`projects-scroll_content-middle`): Sharp documentary photo frame with authentic Nepal imagery (`xPercent: -45`, `scrub: 3`).
+    - Right column (`projects-scroll_content-right`): Underlined category tags, narrative summary, and "Explore Project ↗" CTA (`xPercent: -75`, `scrub: 3`).
+  - Bottom Fixed Progress Bar & Counter: 1px hairline progress track with active indicator width (`0% -> 100%`), number counter (`01 / 04`), and "All Projects" pill button.
+  - Tablet / Mobile Fallback (`< 991px`): Horizontal touch snap carousel on `#0a0a0a` deep black background with circular chevron navigation controls (`←` `→`).
 * **Border Radii**:
   - `0px` radius (`rounded-none`) for all cards, photographs, frames, inputs, and editorial containers. Sharp, clean, print-like edges.
   - `1440px` radius (`rounded-full`) reserved strictly for interactive elements (buttons, pills, tags, menu triggers, carousel controls).
 * **Generous Button Padding**: Buttons must never feel cramped. Use generous padding (`px-7 py-3.5` or `px-8 py-4`, min-height 48px–52px).
 * **Zero Drop Shadows**: No drop shadows anywhere. Elevation and structure come purely from whitespace, color tint, scale, and 1px hairline dividers (`#e3e0d6`).
 * **No Duplicate Photos**: Never use the same photograph in the same section or page. Every course and portfolio showcase must have a unique, authentic documentary photograph.
-* **Inverted Dark Feature (Creative Giants Project 01 Pattern)**: Use high-impact Deep Black (`#0a0a0a`) sections for flagship diplomas with underlined tags and full-bleed documentary imagery to create rhythmic contrast with the cream paper.
-* **Mobile & Tablet Swiper / Snap Carousels**: Implement smooth horizontal touch swipe/snap carousels (`flex overflow-x-auto snap-x snap-mandatory gap-6 pb-4 scrollbar-none lg:grid lg:overflow-visible`) with circular outline chevron navigation buttons (`←` `→`).
+* **No Standalone Flagship Feature**: The standalone FlagshipFeatureSection is removed; flagship emphasis is integrated cleanly within the curriculum and deep black parallax portfolio sections.
 * **Creative Giants Deep Black Editorial Footer**: Deep black (`#0a0a0a`) canvas with full-width link list rows with right-up arrows (`HOME ↗`, `COURSES ↗`, etc.) separated by 1px hairlines, contact info, "Enroll Now" and "Contact Us" pill buttons, and the colossal `IIP NEPAL` display wordmark running edge-to-edge across the bottom.
 * **No Eyebrow Clichés**: Do NOT put a pill badge / capsule eyebrow above every section header. Use a quiet 12px all-caps Graphite text line or omit entirely. Strong headlines stand on their own.
 

@@ -1,11 +1,17 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { ScrollReveal } from "@/components/animations/scroll-reveal";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { ORIGINAL_PORTFOLIO_ITEMS, PortfolioItem } from "@/lib/portfolio-data";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 interface PortfolioTeaserProps {
   items?: PortfolioItem[];
@@ -14,154 +20,425 @@ interface PortfolioTeaserProps {
 export function PortfolioTeaserSection({ items }: PortfolioTeaserProps) {
   const portfolioList =
     items && items.length > 0 ? items : ORIGINAL_PORTFOLIO_ITEMS;
-  const carouselRef = useRef<HTMLDivElement>(null);
 
-  const scrollCarousel = (direction: "left" | "right") => {
-    if (carouselRef.current) {
-      const scrollAmount = carouselRef.current.clientWidth * 0.85;
-      carouselRef.current.scrollBy({
+  const sectionRef = useRef<HTMLElement>(null);
+  const scrollContentRef = useRef<HTMLDivElement>(null);
+  const progressBarRef = useRef<HTMLDivElement>(null);
+  const counterRef = useRef<HTMLSpanElement>(null);
+  const mobileCarouselRef = useRef<HTMLDivElement>(null);
+
+  const [activeMobileIndex, setActiveMobileIndex] = useState(0);
+
+  useGSAP(
+    () => {
+      const scrollContainer = sectionRef.current;
+      const scrollContent = scrollContentRef.current;
+      const progressBar = progressBarRef.current;
+      const counterEl = counterRef.current;
+
+      if (!scrollContainer || !scrollContent) return;
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 991px)", () => {
+        const getScrollWidth = () =>
+          scrollContent.scrollWidth - window.innerWidth;
+
+        // Main horizontal scroll animation with pinned container
+        const horizontalScroll = gsap.to(scrollContent, {
+          x: () => -getScrollWidth(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: scrollContainer,
+            start: "top top",
+            end: () => `+=${getScrollWidth()}`,
+            pin: true,
+            pinSpacing: true,
+            scrub: 1.2,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        // Bottom progress bar indicator
+        if (progressBar) {
+          gsap.to(progressBar, {
+            width: "100%",
+            ease: "none",
+            scrollTrigger: {
+              trigger: scrollContainer,
+              start: "top top",
+              end: () => `+=${getScrollWidth()}`,
+              scrub: 1,
+            },
+          });
+        }
+
+        // Project items
+        const projectItems =
+          scrollContent.querySelectorAll<HTMLElement>(".projects-scroll_content");
+
+        // Sync active slide counter
+        projectItems.forEach((item, index) => {
+          ScrollTrigger.create({
+            trigger: item,
+            start: "left 50%",
+            end: "right 50%",
+            horizontal: true,
+            containerAnimation: horizontalScroll,
+            onEnter: () => {
+              if (counterEl) counterEl.textContent = `0${index + 1}`;
+            },
+            onEnterBack: () => {
+              if (counterEl) counterEl.textContent = `0${index + 1}`;
+            },
+          });
+        });
+
+        // Creative Giants Multi-Speed Parallax on Children Elements
+        projectItems.forEach((item) => {
+          const leftChild = item.querySelector(".projects-scroll_content-left");
+          const middleChild = item.querySelector(
+            ".projects-scroll_content-middle"
+          );
+          const rightChild = item.querySelector(
+            ".projects-scroll_content-right"
+          );
+
+          if (leftChild) {
+            gsap.to(leftChild, {
+              xPercent: -18,
+              ease: "none",
+              scrollTrigger: {
+                containerAnimation: horizontalScroll,
+                trigger: item,
+                start: "left right",
+                end: "left left",
+                scrub: 3,
+              },
+            });
+          }
+
+          if (middleChild) {
+            gsap.to(middleChild, {
+              xPercent: -45,
+              ease: "none",
+              scrollTrigger: {
+                containerAnimation: horizontalScroll,
+                trigger: item,
+                start: "left right",
+                end: "left left",
+                scrub: 3,
+              },
+            });
+          }
+
+          if (rightChild) {
+            gsap.to(rightChild, {
+              xPercent: -75,
+              ease: "none",
+              scrollTrigger: {
+                containerAnimation: horizontalScroll,
+                trigger: item,
+                start: "left right",
+                end: "left left",
+                scrub: 3,
+              },
+            });
+          }
+        });
+
+        ScrollTrigger.refresh();
+
+        return () => {
+          gsap.set(scrollContent, { x: 0 });
+        };
+      });
+    },
+    { scope: sectionRef, dependencies: [portfolioList] }
+  );
+
+  // Mobile Carousel Scroll Handler
+  const scrollMobile = (direction: "left" | "right") => {
+    if (mobileCarouselRef.current) {
+      const scrollAmount = mobileCarouselRef.current.clientWidth * 0.88;
+      mobileCarouselRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",
       });
+      const newIdx =
+        direction === "left"
+          ? Math.max(0, activeMobileIndex - 1)
+          : Math.min(portfolioList.length - 1, activeMobileIndex + 1);
+      setActiveMobileIndex(newIdx);
     }
   };
 
   return (
     <section
-      aria-label="Student Work & Portfolio"
-      className="w-full bg-[var(--color-bone-white)] py-24 sm:py-32 lg:py-40 border-b border-[var(--color-hairline)]"
+      ref={sectionRef}
+      aria-label="Student Work & Fieldwork Portfolio"
+      className="section_projects-scroll theme-dark relative w-full bg-[#0a0a0a] text-white border-b border-white/10"
     >
-      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14 sm:mb-18 lg:mb-20">
-          <div>
-            <ScrollReveal yOffset={14} duration={0.5}>
-              <span className="font-mono text-[12px] uppercase tracking-[0.25em] text-[var(--color-graphite)] block mb-3">
-                Student Work & Fieldwork
-              </span>
-            </ScrollReveal>
+      {/* ========================================================================= */}
+      {/* DESKTOP VIEWPORT: Creative Giants Pinned Horizontal Parallax Scroll (>= 991px) */}
+      {/* ========================================================================= */}
+      <div className="hidden lg:block relative w-full h-screen min-h-[700px] max-h-[1080px] overflow-hidden">
+        {/* Horizontal Moving Content Component */}
+        <div
+          ref={scrollContentRef}
+          className="projects-scroll_compnent flex flex-row items-center h-full w-max pl-16 xl:pl-24 pr-28 select-none"
+        >
+          {/* Slide 0: Section Manifesto & Editorial Intro */}
+          <div className="w-[420px] xl:w-[480px] shrink-0 mr-16 xl:mr-24 flex flex-col justify-center gap-6 border-r border-white/10 pr-12">
+            <span className="font-mono text-[12px] uppercase tracking-[0.25em] text-[#888888] block">
+              STUDENT WORK & FIELDWORK // 2025–2026
+            </span>
 
-            <ScrollReveal delay={0.08} yOffset={16} duration={0.6}>
-              <h2 className="font-sans font-light text-[var(--color-ink-black)] text-[30px] sm:text-[38px] lg:text-[54px] leading-[1.05] tracking-[-0.023em]">
-                Portfolio & Student Projects
-              </h2>
-            </ScrollReveal>
-          </div>
+            <h2 className="font-sans font-light text-[44px] xl:text-[54px] leading-[1.05] tracking-[-0.03em] text-white">
+              Portfolio & Student Projects
+            </h2>
 
-          <div className="flex items-center gap-4 self-start sm:self-end">
-            {/* Tablet/Mobile Carousel Controls */}
-            <div className="flex lg:hidden items-center gap-2">
-              <button
-                type="button"
-                onClick={() => scrollCarousel("left")}
-                aria-label="Previous portfolio photos"
-                className="w-9 h-9 rounded-full border border-[var(--color-ash)] hover:border-[var(--color-ink-black)] flex items-center justify-center text-[var(--color-ink-black)] transition-colors"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                type="button"
-                onClick={() => scrollCarousel("right")}
-                aria-label="Next portfolio photos"
-                className="w-9 h-9 rounded-full border border-[var(--color-ash)] hover:border-[var(--color-ink-black)] flex items-center justify-center text-[var(--color-ink-black)] transition-colors"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
+            <p className="font-sans font-light text-[15px] xl:text-[16px] text-[#a3a3a3] leading-relaxed">
+              Curated documentary fieldwork, street assignments, and cultural heritage studies created by IIP Nepal students and alumni under direct master mentorship in Kathmandu and across the Himalayas.
+            </p>
 
-            <ScrollReveal delay={0.16} yOffset={12} duration={0.5}>
+            <div className="pt-2">
               <Link
                 href="/portfolio"
-                className="inline-flex items-center gap-2 font-sans font-normal text-[15px] text-[var(--color-ink-black)] group transition-colors pb-1"
+                className="inline-flex items-center gap-2.5 font-mono text-[12px] uppercase tracking-[0.2em] text-[var(--color-iip-yellow)] hover:text-white transition-colors group"
               >
-                <span className="group-hover:border-b-2 group-hover:border-[var(--color-iip-yellow)] transition-all">
-                  View full portfolio
-                </span>
-                <ArrowRight
-                  className="w-4 h-4 transition-transform group-hover:translate-x-1 text-[var(--color-ink-black)]"
-                  aria-hidden="true"
-                />
+                <span>Browse Complete Archive</span>
+                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
-            </ScrollReveal>
+            </div>
           </div>
-        </div>
 
-        {/* Mobile & Tablet: Horizontal Touch Snap Carousel / Desktop: Editorial Grid */}
-        <div
-          ref={carouselRef}
-          className="flex lg:grid lg:grid-cols-12 gap-8 lg:gap-12 overflow-x-auto lg:overflow-x-visible snap-x snap-mandatory pb-6 scrollbar-none"
-        >
+          {/* Project Items: Creative Giants 3-Column Parallax Slides */}
           {portfolioList.map((item, index) => {
-            const colSpan =
-              index === 0
-                ? "lg:col-span-7"
-                : index === 1
-                ? "lg:col-span-5"
-                : index === 2
-                ? "lg:col-span-5"
-                : "lg:col-span-7";
-
-            const aspectClass =
-              index === 0
-                ? "aspect-[16/10]"
-                : index === 1
-                ? "aspect-[4/3]"
-                : index === 2
-                ? "aspect-[4/3]"
-                : "aspect-[16/10]";
+            const projectNumber = `0${index + 1}`;
 
             return (
               <div
                 key={item.id}
-                className={`${colSpan} min-w-[280px] sm:min-w-[340px] md:min-w-[400px] lg:min-w-0 snap-start flex-shrink-0 lg:flex-shrink`}
+                className="projects-scroll_content relative shrink-0 w-[960px] xl:w-[1140px] 2xl:w-[1240px] h-[80%] max-h-[640px] grid grid-cols-12 items-center gap-6 xl:gap-10 mr-24 xl:mr-36"
               >
-                <ScrollReveal delay={index * 0.08} yOffset={20} duration={0.6}>
+                {/* 1. Left Column: Eyebrow + Large Title + Photographer (Parallax xPercent: -18) */}
+                <div className="projects-scroll_content-left col-span-4 flex flex-col justify-center gap-4 z-20 pointer-events-auto">
+                  <div className="header-wrap flex flex-col gap-3">
+                    <span className="font-mono text-[12px] uppercase tracking-[0.25em] text-[#888888]">
+                      PROJECT {projectNumber}
+                    </span>
+
+                    <h3 className="heading-style-h1 font-sans font-light text-[38px] xl:text-[48px] 2xl:text-[56px] leading-[1.02] tracking-[-0.035em] text-white">
+                      {item.title}
+                    </h3>
+
+                    <div className="flex flex-col gap-1 font-mono text-[11px] uppercase tracking-[0.2em] text-[#888888] pt-2">
+                      <span className="text-white/80">{item.photographer}</span>
+                      <span>{item.year} · {item.location}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2. Middle Column: Sharp Documentary Photo Frame (Parallax xPercent: -45) */}
+                <div className="projects-scroll_content-middle col-span-5 flex items-center justify-center relative z-10">
                   <Link
                     href={`/portfolio/${item.slug}`}
-                    className="group block focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-iip-yellow)]"
+                    className="projects-scroll_link-wrap block w-full group overflow-hidden border border-white/15 bg-black"
                   >
-                    {/* Sharp 0px Image Frame — No AI bento curves or fake shadows */}
-                    <div
-                      className={`relative ${aspectClass} w-full overflow-hidden bg-black/5 border border-[var(--color-hairline)]`}
-                    >
+                    <div className="relative aspect-[4/3] xl:aspect-[16/11] w-full overflow-hidden">
                       <Image
                         src={item.coverImage}
-                        alt={`${item.title} by ${item.photographer}`}
+                        alt={`${item.title} photographed by ${item.photographer}`}
                         fill
-                        sizes="(max-width: 768px) 85vw, 60vw"
-                        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-103"
+                        sizes="(max-width: 1440px) 500px, 600px"
+                        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-104"
                       />
-                      {/* Floating Category Pill */}
-                      <div className="absolute top-4 left-4 px-3 py-1 bg-black/80 text-white font-mono text-[10.5px] uppercase tracking-[0.2em]">
-                        {item.category}
-                      </div>
-                    </div>
-
-                    {/* Metadata & Title */}
-                    <div className="mt-4 flex flex-col gap-1.5">
-                      <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-graphite)]">
-                        <span>{item.photographer}</span>
-                        <span>{item.year} · {item.location}</span>
-                      </div>
-
-                      <h3 className="font-sans font-light text-[20px] sm:text-[22px] leading-snug tracking-[-0.018em] text-[var(--color-ink-black)] group-hover:underline underline-offset-4 decoration-[var(--color-iip-yellow)] decoration-2">
-                        {item.title}
-                      </h3>
-
-                      <p className="font-sans text-[14px] leading-[1.65] text-[var(--color-graphite)] line-clamp-2">
-                        {item.summary}
-                      </p>
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
                     </div>
                   </Link>
-                </ScrollReveal>
+                </div>
+
+                {/* 3. Right Column: Underlined Tags + Summary + CTA (Parallax xPercent: -75) */}
+                <div className="projects-scroll_content-right col-span-3 flex flex-col justify-end gap-6 z-20 pl-4 xl:pl-8 pointer-events-auto">
+                  <div className="projects-scroll_tag-wrap flex flex-wrap gap-2.5">
+                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/80 border-b border-white/30 pb-0.5">
+                      {item.category}
+                    </span>
+                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#888888] border-b border-white/20 pb-0.5">
+                      {item.course.includes("Pro") ? "MENTOR-LED" : "PRACTICAL"}
+                    </span>
+                  </div>
+
+                  <p className="font-sans font-light text-[14.5px] xl:text-[15.5px] leading-[1.65] text-[#a3a3a3]">
+                    {item.summary}
+                  </p>
+
+                  <div>
+                    <Link
+                      href={`/portfolio/${item.slug}`}
+                      className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.2em] text-white hover:text-[var(--color-iip-yellow)] group transition-colors"
+                    >
+                      <span className="border-b border-white/40 group-hover:border-[var(--color-iip-yellow)] pb-0.5 transition-colors">
+                        Explore Project
+                      </span>
+                      <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </Link>
+                  </div>
+                </div>
               </div>
             );
           })}
         </div>
 
-        {/* Mobile Swipe Hint */}
-        <div className="flex lg:hidden items-center justify-center gap-2 pt-4 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-ash)]">
-          <span>← Swipe horizontally to browse portfolio work →</span>
+        {/* Creative Giants Fixed Bottom Bar: Hairline Progress + Number Pagination + CTA */}
+        <div className="projects-scroll_progress-grid absolute bottom-0 left-0 right-0 z-30 px-12 xl:px-20 pb-6 pointer-events-none">
+          <div className="projects-scroll_progress flex flex-col gap-4">
+            {/* 1px Hairline Progress Track */}
+            <div className="projects-scroll_progress-bar-wrap w-full h-[1px] bg-white/15 relative overflow-hidden">
+              <div
+                ref={progressBarRef}
+                className="projects-scroll_progress-bar absolute top-0 left-0 h-full w-0 bg-[var(--color-iip-yellow)]"
+              />
+            </div>
+
+            {/* Bottom Counter & Link */}
+            <div className="projects-scroll_progress-pagination flex items-center justify-between pointer-events-auto">
+              <div className="pagaination-count font-mono text-[12px] uppercase tracking-[0.25em] text-[#888888] flex items-center gap-2">
+                <span ref={counterRef} className="number-counter text-white font-medium">
+                  01
+                </span>
+                <span>/</span>
+                <span className="number-count">
+                  0{portfolioList.length}
+                </span>
+                <span className="hidden xl:inline ml-3 text-white/40">
+                  // USE SCROLL TO EXPLORE
+                </span>
+              </div>
+
+              <Link
+                href="/portfolio"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-[1440px] border border-white/25 hover:border-white text-white font-mono text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all"
+              >
+                <span>All Projects</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* TABLET & MOBILE VIEWPORT: Editorial Dark Touch Carousel (< 991px) */}
+      {/* ========================================================================= */}
+      <div className="block lg:hidden py-16 sm:py-24 px-6 sm:px-10">
+        {/* Header Lockup */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
+          <div>
+            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#888888] block mb-2.5">
+              STUDENT WORK & FIELDWORK
+            </span>
+            <h2 className="font-sans font-light text-[30px] sm:text-[40px] leading-[1.08] tracking-[-0.03em] text-white">
+              Portfolio & Student Projects
+            </h2>
+          </div>
+
+          {/* Carousel Arrows */}
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => scrollMobile("left")}
+              aria-label="Previous project"
+              className="w-10 h-10 rounded-full border border-white/20 hover:border-white flex items-center justify-center text-white transition-colors"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollMobile("right")}
+              aria-label="Next project"
+              className="w-10 h-10 rounded-full border border-white/20 hover:border-white flex items-center justify-center text-white transition-colors"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* Horizontal Touch Snap Carousel */}
+        <div
+          ref={mobileCarouselRef}
+          className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 scrollbar-none"
+        >
+          {portfolioList.map((item, index) => {
+            const projectNumber = `0${index + 1}`;
+
+            return (
+              <div
+                key={item.id}
+                className="min-w-[280px] sm:min-w-[380px] snap-start shrink-0 flex flex-col gap-4 border border-white/10 p-5 bg-[#121212]"
+              >
+                {/* Image Frame */}
+                <Link
+                  href={`/portfolio/${item.slug}`}
+                  className="block relative aspect-[4/3] w-full overflow-hidden border border-white/10"
+                >
+                  <Image
+                    src={item.coverImage}
+                    alt={`${item.title} by ${item.photographer}`}
+                    fill
+                    sizes="(max-width: 768px) 85vw, 400px"
+                    className="object-cover"
+                  />
+                  <div className="absolute top-3 left-3 px-2.5 py-1 bg-black/85 text-white font-mono text-[10px] uppercase tracking-[0.2em]">
+                    PROJECT {projectNumber}
+                  </div>
+                </Link>
+
+                {/* Details */}
+                <div className="flex flex-col gap-2 pt-1">
+                  <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#888888]">
+                    <span>{item.category}</span>
+                    <span>{item.year}</span>
+                  </div>
+
+                  <Link href={`/portfolio/${item.slug}`} className="group">
+                    <h3 className="font-sans font-light text-[22px] leading-snug tracking-[-0.02em] text-white group-hover:text-[var(--color-iip-yellow)] transition-colors">
+                      {item.title}
+                    </h3>
+                  </Link>
+
+                  <p className="font-sans text-[13.5px] leading-relaxed text-[#a3a3a3] line-clamp-3">
+                    {item.summary}
+                  </p>
+
+                  <div className="flex items-center justify-between pt-2 border-t border-white/10 font-mono text-[11px] text-[#888888]">
+                    <span>{item.photographer}</span>
+                    <Link
+                      href={`/portfolio/${item.slug}`}
+                      className="text-[var(--color-iip-yellow)] flex items-center gap-1 uppercase tracking-[0.18em]"
+                    >
+                      <span>Explore</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Mobile Counter and All Projects Link */}
+        <div className="flex items-center justify-between pt-4 border-t border-white/10 font-mono text-[11px] uppercase tracking-[0.2em] text-[#888888]">
+          <span>{portfolioList.length} Projects Total</span>
+          <Link
+            href="/portfolio"
+            className="text-white hover:text-[var(--color-iip-yellow)] flex items-center gap-1.5 transition-colors"
+          >
+            <span>View Full Archive</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
       </div>
     </section>

@@ -3,7 +3,7 @@
 This document outlines the step-by-step implementation tasks. The Agent must complete these in order, applying the Skill Pipeline (Foundation -> Taste -> Critique -> Animate) for every UI task.
 
 ## Phase 1: Project Initialization & Architecture
-- [ ] **Task 1.1:** Initialize Next.js (App Router) project with TypeScript and Tailwind CSS.
+- [x] **Task 1.1:** Initialize Next.js (App Router) project with TypeScript and Tailwind CSS.
 - [ ] **Task 1.2:** Configure `globals.css` with the CSS Variables defined in `docs/DESIGN.md`. (Skill: `taste`)
 - [ ] **Task 1.3:** Configure custom fonts (`Geist` and `Fragment Mono`) in Next.js layout.
 - [ ] **Task 1.4:** Initialize Prisma (`prisma init`), write the `schema.prisma` for Courses and Portfolio, and connect to Supabase. (Skill: `prisma-expert`)

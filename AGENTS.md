@@ -12,8 +12,9 @@ You are an expert Frontend Engineer and Creative Developer acting as the primary
 ## 3. Hierarchy of Truth (Conflict Resolution)
 When using multiple skills, conflicts may arise. You MUST follow this strict hierarchy of truth (1 is highest priority):
 1. **`docs/DESIGN.md`**: This is the absolute truth for visuals. If a skill suggests a color or font not in this document, **ignore the skill** and use the `DESIGN.md` tokens.
-2. **`impeccable` (Critique)**: If a layout fails accessibility or contrast checks, `impeccable` overrules it. You must fix the layout.
-3. **Motion Separation**: **Never mix GSAP and Framer Motion on the same element.** Use `emil-kowalski` strictly for hover states/buttons. Use `antigravity-design-expert` strictly for full-page scroll reveals.
+2. **`docs/BRIEF.md`**: The definitive blueprint for page routes, content structure, navigation rules, and brand objectives based on the legacy IIP Nepal site (`https://www.iipnepal.com/`).
+3. **`impeccable` (Critique)**: If a layout fails accessibility or contrast checks, `impeccable` overrules it. You must fix the layout.
+4. **Motion Separation**: **Never mix GSAP and Framer Motion on the same element.** Use `emil-kowalski` strictly for hover states/buttons. Use `antigravity-design-expert` strictly for full-page scroll reveals.
 
 ## 4. Autonomous Skill Execution Workflow (CRITICAL)
 Whenever you are tasked with building a new UI component, follow this strict pipeline:
@@ -23,18 +24,26 @@ Whenever you are tasked with building a new UI component, follow this strict pip
 4. **Auto-Polish**: Once critique passes, refine the UI to clean up spacing and ensure an editorial feel.
 5. **Auto-Animate**: Apply the **Emil Kowalski** rules for micro-interactions, and `antigravity-design-expert` for GSAP.
 
-## 5. MCP (Model Context Protocol) Usage
+## 5. Content Strategy & Gap Filling (MANDATORY)
+The legacy IIP Nepal website (`https://www.iipnepal.com/`) and `docs/BRIEF.md` outline the institute's mission, courses, and pages, but lack comprehensive course modules, full syllabus outlines, detailed differentiators, and rich narrative copy.
+* **Proactive Content Writing**: You MUST write and synthesize complete, authentic, high-caliber editorial content to fill every information gap. Do NOT use `lorem ipsum`, vague placeholder text (`[Insert text here]`), or block yourself waiting for copy.
+* **Photography Education Tone**: Keep the copy rooted in genuine photography education—manual exposure mastery, studio strobe lighting, documentary field work, darkroom chemistry, visual storytelling, and Kathmandu-based mentorship.
+* **Structured Details**: Flesh out rich curricula for courses (learning outcomes, weekly structures, gear requirements, mentor review sessions), clear FAQ items, realistic portfolio student projects, and authentic institute background details (Jyoti Bhawan, Kanti Path, Kathmandu).
+
+## 6. MCP (Model Context Protocol) Usage
 You have access to powerful MCP servers. You must use them proactively:
 * **Context7 (`context7`)**: If you are unsure about the latest Next.js App Router syntax, Prisma methods, or GSAP 3 imports, you MUST use Context7 to query the official documentation before writing hallucinated code.
 * **Supabase (`supabase`)**: Use this to execute SQL and verify the database schema matches your Prisma models.
 * **Playwright (`playwright`)**: Use this to take visual screenshots of components after you build them to ensure they match the `DESIGN.md` aesthetics.
 
-## 6. Progress Tracking & Git Version Control (GitHub MCP)
+## 7. Progress Tracking & Git Version Control (GitHub MCP)
 * **Check off tasks:** Update `ROADMAP.md` to check off tasks ONLY after the component has passed the `/critique` and `/animate` phases.
 * **Auto-Commit:** Immediately after checking off a task in the Roadmap, you MUST use the **GitHub MCP** (or local `git` commands) to stage, commit, and push the code. You are responsible for creating branches and opening Pull Requests for major features.
 
-## 7. Core Context Files
+## 8. Core Context Files
 Whenever you build or start a project, consult:
+* **`docs/BRIEF.md`**: Master redesign report, route hierarchy, and legacy website context (`https://www.iipnepal.com/`). You MUST read this before building any page.
+* **`docs/DESIGN.md`**: Visual tokens, color hexes, typography scales, surfaces, and UI components.
 * **`docs/INSTALL.md`**: Strict rules and CLI commands for installing dependencies.
 * **`docs/ARCHITECTURE.md`**: Routing and database schema.
 * **`docs/PRD.md` & `docs/MVP.md`**: Scope limitations.

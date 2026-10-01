@@ -13,7 +13,7 @@ This document outlines the step-by-step implementation tasks. The Agent must com
   - [x] Scaffold structure.
   - [x] Apply `taste` styling.
   - [x] Apply `impeccable` rules (ensure mobile accessibility).
-- [ ] **Task 2.2:** Build the Global Footer.
+- [x] **Task 2.2:** Build the Global Footer.
 - [ ] **Task 2.3:** Initialize GSAP provider/registry for Next.js App Router. (Skill: `antigravity-design-expert`)
 
 ## Phase 3: Home Page Implementation

@@ -4,9 +4,9 @@
 
 ## 1. Active Context & Current Task
 * **Current Phase**: Phase 2 — Global Layouts & Primitives
-* **Current Task**: **Task 2.2 — Build the Global Footer** (Pending execution)
-* **Status**: Task 2.1 (Navbar) completed; awaiting developer confirmation to proceed with Task 2.2.
-* **Next Immediate Step**: Build the editorial Global Footer component matching `docs/DESIGN.md` specs (Workshop Ivory `#f2efe9`, 1px Drafting Line `#e6e3dd` top border, Kathmandu location details, phone, legal links, IIP Foundation attribution).
+* **Current Task**: **Task 2.3 — Initialize GSAP Provider/Registry** (Pending execution)
+* **Status**: Task 2.2 (Global Footer) completed; awaiting developer confirmation to proceed with Task 2.3.
+* **Next Immediate Step**: Configure GSAP with `@gsap/react` and `ScrollTrigger` in Next.js App Router for macro scroll reveals, respecting prefers-reduced-motion and keeping motion cleanly separated from Framer micro-interactions.
 
 ## 2. Logic & Function Map
 *(This section maps where core logic, state, and functions reside to prevent redundant reading)*
@@ -23,11 +23,12 @@
 
 ### Components & Layout
 * **Global Navbar (`src/components/layout/navbar.tsx`)**: 65px sticky bar with scroll-aware dual modes (transparent over dark hero, Workshop Ivory with Drafting Line border on light sections). Includes Fragment Mono uppercase links, Yellow "Enroll" pill, and accessible full-screen mobile menu drawer with body-scroll locking.
-* **Global Footer (`src/components/layout/footer.tsx`)**: *(Pending Task 2.2)*.
+* **Global Footer (`src/components/layout/footer.tsx`)**: 1px Drafting Line bordered editorial footer on Workshop Ivory `#f2efe9`. Contains Jyoti Bhawan Kathmandu campus address, telephone, opening hours, curriculum links, legal links, and IIP Foundation attribution.
 * **GSAP Registry (`src/components/animations/...`)**: *(Pending Task 2.3)*.
 
 ## 3. Recent Changes Log
-* **[2026-10-01]**: Completed Task 2.1 — Built and integrated `Navbar` in `src/components/layout/navbar.tsx` and `src/app/layout.tsx`. Installed `lucide-react`. Verified clean production build.
+* **[2026-10-01]**: Completed Task 2.2 — Built and integrated `Footer` in `src/components/layout/footer.tsx` and `src/app/layout.tsx`. Verified build.
+* **[2026-10-01]**: Completed Task 2.1 — Built and integrated responsive `Navbar` in `src/components/layout/navbar.tsx` and `src/app/layout.tsx`. Installed `lucide-react`. Verified clean production build.
 * **[2026-10-01]**: Rewrote `project-state.md` to function as a strict Logic Map and Active Context tracker.
 * **[2026-10-01]**: Verified successful production build (`npm run build`).
 * **[2026-10-01]**: Created `src/lib/prisma.ts` and `src/lib/supabase.ts`.

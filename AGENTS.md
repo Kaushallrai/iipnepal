@@ -24,11 +24,11 @@ Whenever you are tasked with building a new UI component, follow this strict pip
 4. **Auto-Polish**: Once critique passes, refine the UI to clean up spacing and ensure an editorial feel.
 5. **Auto-Animate**: Apply the **Emil Kowalski** rules for micro-interactions, and `antigravity-design-expert` for GSAP.
 
-## 5. Content Strategy & Original Content Preservation (MANDATORY)
-The redesign MUST preserve and prioritize the authentic, original content from the legacy IIP Nepal website (`https://www.iipnepal.com/`).
-* **Preserve Original Content**: Always use the original headings, mission statements, institutional text, actual course offerings, and team/contact details (e.g., regional partner led by IIP alumnus Additya Shrestha, mentors Jhaggu Roka & Kishor Shrestha, short-term courses, weekend workshops, and diploma programs). Do NOT replace the real original website text with arbitrary or made-up slogans.
-* **Gap Filling Only When Missing**: You may only add additional content and editorial depth where information is genuinely missing (e.g. detailed week-by-week syllabus breakdowns, specific technical gear checklists, extended FAQs).
-* **Zero Generic Fillers**: Never use `lorem ipsum` or generic placeholder brackets. Keep any supplemental copy strictly grounded in genuine photography education and Kathmandu-based mentorship.
+## 5. Strict Original Content Preservation & Verbatim Integrity (MANDATORY)
+The redesign MUST preserve and prioritize 100% of the authentic, original content from the legacy IIP Nepal website (`https://www.iipnepal.com/`).
+* **100% Verbatim Original Copy**: You MUST keep all original text, titles, headings, course names, descriptions, pricing/fees, mission statements, quotes, testimonials, admissions text, phone numbers, addresses, and mentor names from `https://www.iipnepal.com/` EXACTLY as they appear on the legacy site. Do NOT rephrase, rewrite, paraphrase, summarize, or alter the original wording.
+* **Add Additional Content ONLY If Missing**: You may only add supplemental/additional content where information is genuinely missing on the legacy site (such as student portfolio stories where the legacy site only had a placeholder, or interactive UI elements needed for modern navigation/enrollment forms).
+* **Zero Rewriting**: Any added content must complement and support the original text without replacing, deleting, or altering any original sentence. The original website copy is the canonical source of truth.
 
 ## 6. Anti-Slop Design & Balanced Spacing System (MANDATORY)
 Follow `.agents/skills/taste/SKILL.md` and `.agents/skills/impeccable/SKILL.md` to prevent generic "AI-built" aesthetics:

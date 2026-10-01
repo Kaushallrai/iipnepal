@@ -24,7 +24,8 @@ This document outlines the step-by-step implementation tasks. The Agent must com
   - [x] Apply `emil-kowalski` rules to add subtle load-in animations.
 - [x] **Task 3.2: Why IIP Section.**
 - [x] **Task 3.3: Course Previews Grid.** (Requires database fetch)
-- [ ] **Task 3.4: Portfolio Teaser.** Implement masonry layout.
+- [x] **Task 3.4: Portfolio Teaser.** Implement masonry layout with authentic student photography.
+- [x] **Task 3.5: Admissions & Closing CTA.** Implement authentic 7-step admissions workflow and verbatim closing CTA band.
 
 ## Phase 4: Dynamic Routes & Data (Courses & Portfolio)
 - [ ] **Task 4.1:** Build `/courses` directory page. Fetch from Prisma.

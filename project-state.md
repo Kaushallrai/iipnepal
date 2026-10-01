@@ -3,11 +3,16 @@
 > **Agent Instruction**: This is the LIVE state file. It tracks the logic architecture and the active context. It must be updated at the end of every task or custom developer change to reflect the current reality of the codebase.
 
 ## 1. Active Context & Current Task
-* **Current Phase**: Phase 3 — Home Page Implementation
-* **Current Task**: **Task 3.4 — Portfolio Teaser (Masonry Layout)** (Pending execution)
-* **Status**: Task 3.3 polished with anti-slop editorial design. All 5 authentic courses showcased in a balanced 2+3 editorial grid. New authentic Kathmandu cafe documentary photograph installed. Awaiting developer confirmation to proceed with Task 3.4.
-
-## 2. Anti-Slop & Editorial Spacing Standards (`AGENTS.md` Rule 6)
+* **Current Phase**: Phase 4 — Dynamic Routes & Data (`/courses`, `/courses/[slug]`, `/portfolio`, `/portfolio/[slug]`)
+* **Mandatory Directive**: **STRICT ORIGINAL CONTENT PRESERVATION (100% Verbatim)** — Retain all original text, titles, headings, course names, descriptions, fees, mission statements, and faculty mentors from `https://www.iipnepal.com/`. Do NOT rewrite or paraphrase original content. ONLY add additional content if something is genuinely missing.
+* **Status**: Phase 3 complete. Homepage fully assembled and visually verified via Playwright:
+  1. `HeroSection`: Verbatim title, original regional partnership copy with Additya Shrestha, phone +977 9802364760, Yellow & Glass action pills.
+  2. `WhyIipSection`: Verbatim vision statement, official introductory description, and authentic 4 course/mentor pillars.
+  3. `CoursesPreviewSection`: Balanced 2+3 editorial grid presenting all 5 authentic courses with verbatim descriptions, fee tiers, and discount labels.
+  4. `PortfolioTeaserSection`: Editorial masonry showcase of authentic student documentary fieldwork from Asan Chowk, Annapurna, Patan, and Bhaktapur.
+  5. `AdmissionsProcessSection`: Verbatim 7-step admissions process and manifesto from legacy `/about` and `/reach`.
+  6. `ClosingCtaSection`: Verbatim closing call-to-action on Charcoal Ink `#1f1915`.
+* **Next Task**: **Task 4.1 — Build `/courses` directory page** using the authentic courses dataset and Prisma data layer.
 * **Unified Container**: All sections share `max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12`.
 * **Proportional Gestalt Rhythm**:
   - Tight proximity between titles and descriptions (`gap-2` to `gap-3`).
@@ -48,6 +53,7 @@
 * **Scroll Reveal (`src/components/animations/scroll-reveal.tsx`)**: Reusable wrapper for editorial staggered scroll reveals (Y-axis translation + opacity fade, 0.4s–0.6s).
 
 ## 4. Recent Changes Log
+* **[2026-10-01]**: Verbatim Original Content Realignment & Phase 3 Completion — Enforced strict original content policy in `AGENTS.md` and `project-state.md`. Extracted 100% authentic course descriptions, fees, discount pricing, curricula, prerequisites, and FAQs from `https://www.iipnepal.com/course/*` into `src/lib/courses-data.ts`. Updated `HeroSection` and `WhyIipSection` with exact original headings, mission statement, regional partnership text, and faculty details. Built `PortfolioTeaserSection` with authentic Nepal documentary assets, `AdmissionsProcessSection` with authentic 7-step process, and `ClosingCtaSection`. Validated via clean build and Playwright full-page screenshot.
 * **[2026-10-01]**: Anti-Slop Design & Spacing Overhaul — Removed eyebrow capsule clichés, unified container to `max-w-[1280px] px-6 sm:px-8 lg:px-12`, applied proportional Gestalt spacing (`py-18 to py-24`), restructured the 5 courses into a balanced 2+3 editorial grid, and generated a new high-taste Kathmandu cafe documentary photograph for the Online Mobile Photography course. Updated `AGENTS.md` and `project-state.md`.
 * **[2026-10-01]**: Completed Task 3.3 — Generated authentic course photography assets, created `src/lib/courses-data.ts`, built `CoursesPreviewSection` in `src/components/home/courses-preview-section.tsx`, mounted on Home page, and verified build.
 * **[2026-10-01]**: Content Realignment — Extracted full original content from `https://www.iipnepal.com/`. Updated `AGENTS.md` to enforce strict original content preservation. Updated `HeroSection`, `WhyIipSection`, and `Footer` with exact original headings, mission, team, and course titles.

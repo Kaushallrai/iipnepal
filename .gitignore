@@ -29,3 +29,4 @@ yarn-error.log*
 # IDE / Editor directories
 .vscode/
 .idea/
+.playwright-mcp/

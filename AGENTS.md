@@ -30,17 +30,27 @@ The redesign MUST preserve and prioritize the authentic, original content from t
 * **Gap Filling Only When Missing**: You may only add additional content and editorial depth where information is genuinely missing (e.g. detailed week-by-week syllabus breakdowns, specific technical gear checklists, extended FAQs).
 * **Zero Generic Fillers**: Never use `lorem ipsum` or generic placeholder brackets. Keep any supplemental copy strictly grounded in genuine photography education and Kathmandu-based mentorship.
 
-## 6. MCP (Model Context Protocol) Usage
+## 6. Anti-Slop Design & Balanced Spacing System (MANDATORY)
+Follow `.agents/skills/taste/SKILL.md` and `.agents/skills/impeccable/SKILL.md` to prevent generic "AI-built" aesthetics:
+* **No Eyebrow Clichés**: Do NOT put a pill badge / capsule eyebrow above every section header. Eyebrows should be used sparingly (max 1 per 3 sections). Strong headlines stand on their own.
+* **Balanced Gestalt Spacing**:
+  - Consistent layout container: `max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12`.
+  - Section vertical rhythm: `py-20 lg:py-24` with disciplined margin scales.
+  - Proportional hierarchy: tight proximity between titles and descriptions (`gap-2` to `gap-3`), clear breathing room between sections (`mb-12` to `mb-16`), and harmonious card padding (`p-5` with `rounded-[16px]`).
+* **Editorial Composition Over Repetitive Bento Boxes**: Avoid monotonous identical cards with orphaned items. For multi-item showcases like the 5 courses, use an intentional editorial composition (e.g. 2 flagship mentor-led diplomas on row 1, 3 modular courses on row 2).
+* **Genuine Editorial Photography**: Use documentary-style, authentic Kathmandu photography with real students and mentors. Never use stock-look photos with giant devices or fake setups.
+
+## 7. MCP (Model Context Protocol) Usage
 You have access to powerful MCP servers. You must use them proactively:
 * **Context7 (`context7`)**: If you are unsure about the latest Next.js App Router syntax, Prisma methods, or GSAP 3 imports, you MUST use Context7 to query the official documentation before writing hallucinated code.
 * **Supabase (`supabase`)**: Use this to execute SQL and verify the database schema matches your Prisma models.
 * **Playwright (`playwright`)**: Use this to take visual screenshots of components after you build them to ensure they match the `DESIGN.md` aesthetics.
 
-## 7. Progress Tracking & Git Version Control (GitHub MCP)
+## 8. Progress Tracking & Git Version Control (GitHub MCP)
 * **Check off tasks:** Update `ROADMAP.md` to check off tasks ONLY after the component has passed the `/critique` and `/animate` phases.
 * **Auto-Commit:** Immediately after checking off a task in the Roadmap, you MUST use the **GitHub MCP** (or local `git` commands) to stage, commit, and push the code. You are responsible for creating branches and opening Pull Requests for major features.
 
-## 8. Core Context Files
+## 9. Core Context Files
 Whenever you build or start a project, consult:
 * **`docs/BRIEF.md`**: Master redesign report, route hierarchy, and legacy website context (`https://www.iipnepal.com/`). You MUST read this before building any page.
 * **`docs/DESIGN.md`**: Visual tokens, color hexes, typography scales, surfaces, and UI components.

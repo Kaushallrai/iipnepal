@@ -45,55 +45,54 @@ export function WhyIipSection() {
   return (
     <section
       aria-label="About IIP Nepal & Mission"
-      className="w-full bg-[var(--color-workshop-ivory)] py-24 sm:py-32 lg:py-40 border-b border-[var(--color-drafting-line)]"
+      className="w-full bg-[var(--color-workshop-ivory)] py-18 sm:py-20 lg:py-24 border-b border-[var(--color-drafting-line)]"
     >
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14 lg:px-20 xl:px-24">
-        {/* Section Header: Eyebrow + Original Vision & Mission */}
-        <div className="max-w-3xl mb-16 sm:mb-20">
-          <ScrollReveal yOffset={16} duration={0.5}>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[1440px] border border-[var(--color-drafting-line)] bg-white/70 mb-6 text-[11px] font-mono uppercase tracking-[0.3px] text-[var(--color-faded-graphite)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-charcoal-ink)]" aria-hidden="true" />
-              About IIP Nepal · Vision & Mission
-            </div>
+      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12">
+        {/* Section Header: Vision Statement as Primary Display */}
+        <div className="max-w-3xl mb-14 sm:mb-16">
+          <ScrollReveal yOffset={14} duration={0.5}>
+            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[var(--color-faded-graphite)] block mb-3">
+              Vision & Institute Mission
+            </span>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.1} yOffset={18} duration={0.6}>
-            <h2 className="font-sans font-medium text-[var(--color-charcoal-ink)] text-[28px] sm:text-[34px] lg:text-[42px] leading-[1.12] tracking-[-1.2px] text-balance">
+          <ScrollReveal delay={0.08} yOffset={16} duration={0.6}>
+            <h2 className="font-sans font-medium text-[var(--color-charcoal-ink)] text-[24px] sm:text-[30px] lg:text-[34px] leading-[1.18] tracking-[-0.8px] text-balance">
               “To emerge as an Institute of National Importance, guiding and inculcating knowledge in learners from world over to become artists, thinkers, and leaders.”
             </h2>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.2} yOffset={16} duration={0.6}>
-            <p className="font-sans text-[15px] sm:text-[16px] leading-relaxed text-[var(--color-quiet-graphite)] max-w-2xl mt-5">
+          <ScrollReveal delay={0.16} yOffset={14} duration={0.6}>
+            <p className="font-sans text-[15px] leading-relaxed text-[var(--color-quiet-graphite)] max-w-2xl mt-4">
               IIP Nepal offers short-term courses, weekend workshops, and diploma programs, designed to develop both creative and technical photography skills at our Kathmandu Centre.
             </p>
           </ScrollReveal>
         </div>
 
-        {/* 4-Column Grid Reflecting IIP Nepal's Actual Course Pathways */}
-        <ScrollReveal yOffset={20} duration={0.6} stagger={0.1}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 lg:gap-x-12 xl:gap-x-16 gap-y-12 sm:gap-y-16">
+        {/* 4-Column Grid with Harmonious Gestalt Proportions */}
+        <ScrollReveal yOffset={18} duration={0.6} stagger={0.08}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10 sm:gap-y-12">
             {PILLARS.map((item) => {
               const Icon = item.icon;
               return (
-                <div key={item.number} className="flex flex-col gap-4 group">
+                <div key={item.number} className="flex flex-col gap-3 group">
                   {/* Top metadata line with icon and mono index */}
-                  <div className="flex items-center justify-between pb-3 border-b border-[var(--color-drafting-line)]/70">
-                    <div className="w-9 h-9 rounded-full bg-white/80 border border-[var(--color-drafting-line)] flex items-center justify-center text-[var(--color-charcoal-ink)] group-hover:bg-[var(--color-iip-yellow)] transition-colors duration-200">
-                      <Icon className="w-4 h-4 text-[var(--color-charcoal-ink)]" aria-hidden="true" />
+                  <div className="flex items-center justify-between pb-3 border-b border-[var(--color-drafting-line)]">
+                    <div className="w-8 h-8 rounded-full bg-white border border-[var(--color-drafting-line)] flex items-center justify-center text-[var(--color-charcoal-ink)] group-hover:bg-[var(--color-iip-yellow)] transition-colors duration-200">
+                      <Icon className="w-3.5 h-3.5 text-[var(--color-charcoal-ink)]" aria-hidden="true" />
                     </div>
-                    <span className="font-mono text-[12px] text-[var(--color-faded-graphite)] tracking-[0.2em]">
+                    <span className="font-mono text-[11px] text-[var(--color-faded-graphite)] tracking-[0.15em]">
                       {item.number}
                     </span>
                   </div>
 
                   {/* Heading */}
-                  <h3 className="font-sans font-medium text-[19px] sm:text-[21px] leading-tight tracking-[-0.4px] text-[var(--color-charcoal-ink)]">
+                  <h3 className="font-sans font-medium text-[18px] leading-snug tracking-[-0.3px] text-[var(--color-charcoal-ink)] mt-1">
                     {item.title}
                   </h3>
 
                   {/* Body copy */}
-                  <p className="font-sans text-[15px] leading-relaxed text-[var(--color-quiet-graphite)]">
+                  <p className="font-sans text-[14px] leading-relaxed text-[var(--color-quiet-graphite)]">
                     {item.description}
                   </p>
                 </div>

@@ -25,15 +25,9 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Monitor scroll for switching hero transparency to solid ivory
   useEffect(() => {
     const handleScroll = () => {
-      // Threshold at 50px
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 40);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -41,7 +35,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -53,31 +46,27 @@ export function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
 
-  // Determine navbar surface mode:
-  // When at the very top of home page (over dark documentary hero), use dark/transparent theme.
-  // Otherwise, use Workshop Ivory surface with Drafting Line divider.
   const isDarkHeroMode = isHome && !scrolled;
 
   return (
     <>
       <header
         className={cn(
-          "sticky top-0 z-40 w-full h-[70px] transition-colors duration-300 backdrop-blur-md",
+          "sticky top-0 z-40 w-full h-[65px] transition-colors duration-250 backdrop-blur-md",
           isDarkHeroMode
-            ? "bg-[#1f1915]/60 border-b border-white/10 text-[var(--color-paper-white)]"
+            ? "bg-[#1f1915]/70 border-b border-white/10 text-[var(--color-paper-white)]"
             : "bg-[var(--color-workshop-ivory)]/95 border-b border-[var(--color-drafting-line)] text-[var(--color-charcoal-ink)]"
         )}
       >
-        <div className="max-w-[1440px] h-full mx-auto px-6 sm:px-10 md:px-14 lg:px-20 xl:px-24 flex items-center justify-between">
+        <div className="max-w-[1280px] h-full mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
           {/* Logo / Brand Mark */}
           <Link
             href="/"
-            className="flex items-center gap-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-iip-yellow)] rounded-sm"
+            className="flex items-center gap-2 group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-iip-yellow)]"
             aria-label="IIP Nepal Homepage"
           >
             <div className="flex flex-col">
@@ -86,7 +75,7 @@ export function Navbar() {
               </span>
               <span
                 className={cn(
-                  "font-mono text-[9px] uppercase tracking-[0.2em] leading-tight transition-colors",
+                  "font-mono text-[9px] uppercase tracking-[0.2em] leading-tight transition-colors mt-0.5",
                   isDarkHeroMode ? "text-white/60" : "text-[var(--color-quiet-graphite)]"
                 )}
               >
@@ -98,7 +87,7 @@ export function Navbar() {
           {/* Desktop Nav Items */}
           <nav
             aria-label="Primary Navigation"
-            className="hidden md:flex items-center gap-7 lg:gap-9"
+            className="hidden md:flex items-center gap-7 lg:gap-8"
           >
             {NAV_ITEMS.map((item) => {
               const isActive =
@@ -112,7 +101,7 @@ export function Navbar() {
                   href={item.href}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "font-mono text-[11px] uppercase tracking-[0.3px] transition-all relative py-1 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-iip-yellow)]",
+                    "font-mono text-[11px] uppercase tracking-[0.3px] transition-colors relative py-1 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-iip-yellow)]",
                     isDarkHeroMode
                       ? isActive
                         ? "text-[var(--color-paper-white)] font-medium"
@@ -134,7 +123,7 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Right Actions: Login + Enroll Pill */}
+          {/* Right Actions: Login + Register Pill */}
           <div className="hidden md:flex items-center gap-5">
             <Link
               href="/login"
@@ -148,12 +137,11 @@ export function Navbar() {
               Login
             </Link>
 
-            {/* Primary Yellow Pill Action */}
             <Link
               href="/enroll"
-              className="inline-flex items-center justify-center bg-[var(--color-iip-yellow)] text-[var(--color-charcoal-ink)] hover:bg-[#f5bc14] active:scale-[0.98] transition-all duration-150 font-sans font-medium text-[14px] leading-none py-3 px-5 rounded-[1440px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-charcoal-ink)] focus-visible:ring-offset-2"
+              className="inline-flex items-center justify-center bg-[var(--color-iip-yellow)] text-[var(--color-charcoal-ink)] hover:bg-[#f5bc14] active:scale-[0.98] transition-all duration-150 font-sans font-medium text-[14px] leading-none py-2.5 px-5 rounded-[1440px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-charcoal-ink)]"
             >
-              Enroll
+              Register
             </Link>
           </div>
 
@@ -163,7 +151,7 @@ export function Navbar() {
               href="/enroll"
               className="inline-flex items-center justify-center bg-[var(--color-iip-yellow)] text-[var(--color-charcoal-ink)] font-sans font-medium text-[13px] leading-none py-2 px-3.5 rounded-[1440px]"
             >
-              Enroll
+              Register
             </Link>
 
             <button
@@ -188,7 +176,7 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Full-Screen Overlay Navigation */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div
           role="dialog"
@@ -196,12 +184,11 @@ export function Navbar() {
           aria-label="Mobile Navigation"
           className="fixed inset-0 top-[65px] z-50 bg-[var(--color-workshop-ivory)] flex flex-col justify-between p-6 sm:p-8 animate-in fade-in duration-200 md:hidden"
         >
-          {/* Mobile Nav Links */}
-          <div className="flex flex-col gap-6 pt-4">
+          <div className="flex flex-col gap-6 pt-2">
             <span className="font-mono text-[11px] uppercase tracking-[0.3px] text-[var(--color-faded-graphite)]">
               Navigation Menu
             </span>
-            <nav className="flex flex-col gap-4">
+            <nav className="flex flex-col gap-3">
               {NAV_ITEMS.map((item, idx) => {
                 const isActive =
                   item.href === "/"
@@ -243,7 +230,6 @@ export function Navbar() {
             </nav>
           </div>
 
-          {/* Mobile Footer Area inside Drawer */}
           <div className="flex flex-col gap-4 pt-6 border-t border-[var(--color-drafting-line)]">
             <div className="flex items-center justify-between text-[11px] font-mono uppercase text-[var(--color-quiet-graphite)]">
               <span>Student Portal</span>
@@ -259,12 +245,12 @@ export function Navbar() {
             <Link
               href="/enroll"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full inline-flex items-center justify-center bg-[var(--color-iip-yellow)] text-[var(--color-charcoal-ink)] hover:bg-[#f5bc14] font-sans font-medium text-base py-3.5 px-6 rounded-[1440px] transition-colors"
+              className="w-full inline-flex items-center justify-center bg-[var(--color-iip-yellow)] text-[var(--color-charcoal-ink)] hover:bg-[#f5bc14] font-sans font-medium text-base py-3 px-6 rounded-[1440px] transition-colors"
             >
-              Enroll at IIP →
+              Register at IIP →
             </Link>
 
-            <p className="font-mono text-[10px] text-[var(--color-faded-graphite)] text-center pt-2">
+            <p className="font-mono text-[10px] text-[var(--color-faded-graphite)] text-center pt-1">
               Jyoti Bhawan, Kanti Path, Kathmandu · +977 9802364760
             </p>
           </div>

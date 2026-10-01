@@ -46,30 +46,30 @@ export function CoursesPreviewSection({ courses }: CoursesPreviewProps) {
       className="w-full bg-[var(--color-bone-white)] py-24 sm:py-32 lg:py-40 border-b border-[var(--color-hairline)]"
     >
       <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14 sm:mb-18 lg:mb-20">
+        {/* Section Header with Creative Giants Arrow Controls */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 sm:mb-16">
           <div>
             <ScrollReveal yOffset={14} duration={0.5}>
               <span className="font-mono text-[12px] uppercase tracking-[0.25em] text-[var(--color-graphite)] block mb-3">
-                Curriculum · 5 Core Programs
+                CURRICULUM // 5 CORE PROGRAMS
               </span>
             </ScrollReveal>
 
             <ScrollReveal delay={0.08} yOffset={16} duration={0.6}>
-              <h2 className="font-sans font-light text-[var(--color-ink-black)] text-[30px] sm:text-[38px] lg:text-[54px] leading-[1.05] tracking-[-0.023em]">
+              <h2 className="font-sans font-light text-[var(--color-ink-black)] text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.05] tracking-[-0.03em]">
                 Courses Available at Kathmandu Centre
               </h2>
             </ScrollReveal>
           </div>
 
           <div className="flex items-center gap-4 self-start sm:self-end">
-            {/* Tablet/Mobile Carousel Controls */}
-            <div className="flex lg:hidden items-center gap-2">
+            {/* Creative Giants Circular Outline Arrow Controls */}
+            <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={() => scrollCarousel("left")}
                 aria-label="Previous courses"
-                className="w-9 h-9 rounded-full border border-[var(--color-ash)] hover:border-[var(--color-ink-black)] flex items-center justify-center text-[var(--color-ink-black)] transition-colors"
+                className="w-10 h-10 rounded-full border border-[var(--color-ash)] hover:border-[var(--color-ink-black)] flex items-center justify-center text-[var(--color-ink-black)] transition-colors"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
@@ -77,7 +77,7 @@ export function CoursesPreviewSection({ courses }: CoursesPreviewProps) {
                 type="button"
                 onClick={() => scrollCarousel("right")}
                 aria-label="Next courses"
-                className="w-9 h-9 rounded-full border border-[var(--color-ash)] hover:border-[var(--color-ink-black)] flex items-center justify-center text-[var(--color-ink-black)] transition-colors"
+                className="w-10 h-10 rounded-full border border-[var(--color-ash)] hover:border-[var(--color-ink-black)] flex items-center justify-center text-[var(--color-ink-black)] transition-colors"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -86,23 +86,23 @@ export function CoursesPreviewSection({ courses }: CoursesPreviewProps) {
             <ScrollReveal delay={0.16} yOffset={12} duration={0.5}>
               <Link
                 href="/courses"
-                className="inline-flex items-center gap-2 font-sans font-normal text-[15px] text-[var(--color-ink-black)] group transition-colors pb-1"
+                className="hidden sm:inline-flex items-center gap-2 font-sans font-normal text-[15px] text-[var(--color-ink-black)] group transition-colors pb-1"
               >
                 <span className="group-hover:border-b-2 group-hover:border-[var(--color-iip-yellow)] transition-all">
-                  Explore all course syllabi
+                  Explore all syllabi
                 </span>
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 text-[var(--color-ink-black)]" aria-hidden="true" />
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </Link>
             </ScrollReveal>
           </div>
         </div>
 
-        {/* Category Filter Pills (Editorial interactive selection) */}
-        <div className="flex items-center gap-2 mb-10 overflow-x-auto pb-2 scrollbar-none">
+        {/* Category Filter Pills (Creative Giants Tag Pill Style) */}
+        <div className="flex items-center gap-2.5 mb-10 overflow-x-auto pb-2 scrollbar-none">
           <button
             type="button"
             onClick={() => setActiveTab("all")}
-            className={`font-mono text-[12px] uppercase tracking-[0.15em] py-2 px-5 rounded-[1440px] transition-all whitespace-nowrap ${
+            className={`font-mono text-[12px] uppercase tracking-[0.18em] py-2 px-5 rounded-[1440px] transition-all whitespace-nowrap ${
               activeTab === "all"
                 ? "bg-[var(--color-ink-black)] text-[var(--color-bone-white)]"
                 : "border border-[var(--color-ash)] text-[var(--color-ink-black)] hover:border-[var(--color-ink-black)]"
@@ -113,7 +113,7 @@ export function CoursesPreviewSection({ courses }: CoursesPreviewProps) {
           <button
             type="button"
             onClick={() => setActiveTab("diploma")}
-            className={`font-mono text-[12px] uppercase tracking-[0.15em] py-2 px-5 rounded-[1440px] transition-all whitespace-nowrap ${
+            className={`font-mono text-[12px] uppercase tracking-[0.18em] py-2 px-5 rounded-[1440px] transition-all whitespace-nowrap ${
               activeTab === "diploma"
                 ? "bg-[var(--color-ink-black)] text-[var(--color-bone-white)]"
                 : "border border-[var(--color-ash)] text-[var(--color-ink-black)] hover:border-[var(--color-ink-black)]"
@@ -124,7 +124,7 @@ export function CoursesPreviewSection({ courses }: CoursesPreviewProps) {
           <button
             type="button"
             onClick={() => setActiveTab("modular")}
-            className={`font-mono text-[12px] uppercase tracking-[0.15em] py-2 px-5 rounded-[1440px] transition-all whitespace-nowrap ${
+            className={`font-mono text-[12px] uppercase tracking-[0.18em] py-2 px-5 rounded-[1440px] transition-all whitespace-nowrap ${
               activeTab === "modular"
                 ? "bg-[var(--color-ink-black)] text-[var(--color-bone-white)]"
                 : "border border-[var(--color-ash)] text-[var(--color-ink-black)] hover:border-[var(--color-ink-black)]"
@@ -140,8 +140,7 @@ export function CoursesPreviewSection({ courses }: CoursesPreviewProps) {
           className="flex lg:grid lg:grid-cols-12 gap-8 lg:gap-12 overflow-x-auto lg:overflow-x-visible snap-x snap-mandatory pb-6 scrollbar-none"
         >
           {displayedCourses.map((course, index) => {
-            const isFlagship = course.slug.includes("pro-level") || course.courseType.includes("Mentor-Led");
-            // Grid column span for desktop: 2 flagships take 6 cols each; 3 modular take 4 cols each
+            const isChromatic = index === 0; // Signature Creative Giants single chromatic card per row
             const colSpan =
               activeTab === "all"
                 ? index < 2
@@ -154,10 +153,14 @@ export function CoursesPreviewSection({ courses }: CoursesPreviewProps) {
             return (
               <div
                 key={course.id}
-                className={`${colSpan} min-w-[290px] sm:min-w-[340px] md:min-w-[380px] lg:min-w-0 snap-start flex-shrink-0 lg:flex-shrink flex flex-col justify-between group`}
+                className={`${colSpan} min-w-[290px] sm:min-w-[340px] md:min-w-[380px] lg:min-w-0 snap-start flex-shrink-0 lg:flex-shrink flex flex-col justify-between group ${
+                  isChromatic && activeTab === "all"
+                    ? "bg-[var(--color-mint-wash)]/40 p-6 sm:p-7 border border-[var(--color-forest-teal)]/30"
+                    : ""
+                }`}
               >
                 <div>
-                  {/* Sharp 0px Image Frame — No AI bento curves or fake shadows */}
+                  {/* Sharp 0px Image Frame */}
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-black/5 mb-5 border border-[var(--color-hairline)]">
                     <Image
                       src={course.coverImage}
@@ -166,12 +169,12 @@ export function CoursesPreviewSection({ courses }: CoursesPreviewProps) {
                       sizes="(max-width: 768px) 85vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-103"
                     />
-                    <div className="absolute top-3 right-3 px-3 py-1 bg-black/80 text-white font-mono text-[10.5px] uppercase tracking-[0.2em]">
+                    <div className="absolute top-3 right-3 px-3 py-1 bg-black/85 text-white font-mono text-[10.5px] uppercase tracking-[0.2em]">
                       {course.duration}
                     </div>
                   </div>
 
-                  {/* 12px All-Caps Context Eyebrow */}
+                  {/* 11px All-Caps Context Eyebrow */}
                   <span className="font-mono text-[11.5px] uppercase tracking-[0.2em] text-[var(--color-graphite)] block mb-2">
                     {course.courseType}
                   </span>
@@ -181,7 +184,7 @@ export function CoursesPreviewSection({ courses }: CoursesPreviewProps) {
                     {course.title}
                   </h3>
 
-                  {/* 14px Graphite Description, 3-line clamp */}
+                  {/* 14px Graphite Description */}
                   <p className="font-sans text-[14.5px] leading-[1.65] text-[var(--color-graphite)] line-clamp-3 mb-6">
                     {course.description}
                   </p>
@@ -219,7 +222,7 @@ export function CoursesPreviewSection({ courses }: CoursesPreviewProps) {
 
                     <Link
                       href="/enroll"
-                      className="hidden sm:inline-flex font-sans font-normal text-[12.5px] py-1.5 px-3.5 rounded-[1440px] bg-[var(--color-iip-yellow)] text-[var(--color-ink-black)] hover:bg-[#f5bc14] transition-colors"
+                      className="inline-flex font-sans font-normal text-[13px] py-2 px-4 rounded-[1440px] bg-[var(--color-iip-yellow)] text-[var(--color-ink-black)] hover:bg-[#f5bc14] transition-colors"
                     >
                       Enroll
                     </Link>

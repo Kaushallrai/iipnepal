@@ -1,13 +1,18 @@
-# IIP Nepal — Style Reference
-> An oversized editorial poster on cream paper, printed with documentary photography. One enormous light-weight headline, one full-bleed photograph, one quiet line of meta text, and a single yellow Enroll pill.
+# IIP Nepal — Style Reference (Based on https://www.creativegiants.art)
+> An oversized editorial poster on cream paper, directly modeled after the architecture of [Creative Giants](https://www.creativegiants.art/). One enormous condensed poster wordmark, one full-bleed photographic band with overlay, architectural hairline grid guidelines, inverted dark flagship showcases, and a deep black editorial footer with a colossal bottom wordmark.
 
-**Theme:** light
+**Theme:** light · **Primary Reference Site:** [https://www.creativegiants.art](https://www.creativegiants.art/)
 
-This document merges two sources: the IIP Nepal brand requirements (yellow / black / white identity, photography-school subject matter, Enroll as the single primary CTA) and the **Creative Giants** design language (warm paper canvas, weight-300 poster typography, sharp-cornered editorial surfaces, pill controls, rationed color, whitespace as the main structural tool). Where the two conflicted, IIP's brand and conversion needs win on color and CTA; Creative Giants wins on type, shape, surface, and layout.
-
-The yellow hex `#ffc61a` is a placeholder and should be swapped for the exact yellow from the IIP logo.
-
-IIP Nepal reads like an art-book spread rendered in code. The canvas is a warm off-white; display type is so large it functions as a poster rather than a heading, set in a light weight with aggressively tight tracking so the words feel chiseled. Photography is the design unit: full-bleed, sharp-cornered, never masked. Chrome recedes. Color arrives in small, rationed hits — pastel card tints and hairline accents — while IIP Yellow is reserved for the one action that matters: **Enroll**.
+This document defines the visual system for IIP Nepal by directly adapting the award-winning layout, typography, surface progression, and component patterns of **Creative Giants** (`https://www.creativegiants.art/`) while honoring the authentic IIP Nepal identity and original content:
+1. **Top Chrome**: A whisper-weight header directly on the Bone White (`#fffef7`) canvas with zero heavy background. Circular camera mark + all-caps tracking microtype on the left (`PHOTOGRAPHY EDUCATION // KATHMANDU CENTRE · EST. 2011`), desktop nav links, and pill actions on the right (Yellow Pill "Enroll" + Black Pill "Menu").
+2. **Display Poster Wordmark**: A colossal, sculptural headline (`IIP NEPAL`) rendered in condensed architectural poster lettering (`Bebas Neue` / `--font-poster`) spanning edge-to-edge across the screen at poster scale on the cream paper before the first photograph.
+3. **Hero Image Band**: Full-bleed edge-to-edge documentary photography directly under the poster headline, with bottom-left location tag (`KATHMANDU, NEPAL // EST. 2011`), statement headline (`Welcome to the IIP Centre Nepal!`), narrative, and dual generous action pills (`Enroll Online` and `Explore Courses`).
+4. **Architectural Grid Guidelines**: Subtle 5-column vertical 1px hairline rules (`rgba(0,0,0,0.04)`) spanning down the page, providing Swiss architectural discipline.
+5. **"What We Do" / Manifesto Section**: A 12px all-caps eyebrow (`WHAT WE DO // VISION & MISSION`), an oversized 44px–48px Switzer weight-300 light statement, supporting narrative, a 3-metric statistics grid (`13+`, `5,000+`, `100%`) with 1px-stroke line icons, and 4 program pillars.
+6. **Flagship Diploma Feature (Inverted Field — Creative Giants Project 01 Pattern)**: A high-impact Deep Black (`#0a0a0a`) section featuring `FLAGSHIP PROGRAMME // 01`, `1-Year Professional Diploma in Photography`, underlined tags (`STUDIO LIGHTING`, `DARKROOM DISCIPLINE`, `STREET DOCUMENTARY`, `EXHIBITION CURATION`), full-width documentary imagery, and dual action pills (`Enroll in Diploma` & `View Syllabus →`).
+7. **Curriculum & Courses Grid with Chromatic Cards**: 3-column sharp 0px card layout, circular outline arrow controls (`←` `→`), category filter pills, horizontal touch snap carousel for mobile/tablet, and signature pastel card surfaces (`#a5ebd6` Mint Wash, `#ffacea` Candy Pink, `#a5c8eb` Powder Blue) for intentional color ruptures.
+8. **Student Portfolio Showcase**: Free-ratio sharp frames with 4 verified distinct Nepal documentary photographs, category tags, photographer credit, and circular arrow touch snap carousel for mobile/tablet.
+9. **Closing CTA & Deep Black Editorial Footer**: Deep black (`#0a0a0a`) closing canvas with verbatim closing CTA ("Ready to Start Your Photography Journey?"), generous pill buttons ("Enroll Now" and "Contact Us"), followed by full-width editorial link list rows with right-up arrows (`HOME ↗`, `COURSES ↗`, `PORTFOLIO ↗`, `ABOUT IIP ↗`, `ENROLL ONLINE ↗`, `CONTACT US ↗`), contact coordinates, and culminating in the colossal `IIP NEPAL` display poster wordmark stretching edge-to-edge across the bottom in muted stone/white.
 
 ---
 

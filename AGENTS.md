@@ -32,17 +32,21 @@ The redesign MUST preserve and prioritize 100% of the authentic, original conten
 * **Add Additional Content ONLY If Missing**: You may only add supplemental/additional content where information is genuinely missing on the legacy site.
 * **Zero Rewriting**: The original website copy is the canonical source of truth.
 
-## 6. Anti-Slop Design System & Editorial Rules (MANDATORY per docs/DESIGN.md)
-Follow `docs/DESIGN.md` and `.agents/skills/taste/SKILL.md` to ensure a world-class editorial aesthetic:
-* **Typography**: Switzer / Inter single-family. Weight 300 (`font-light`) for display and headlines (20px and above) with aggressive tight tracking (`-0.02em` to `-0.04em`). Weight 400 for body, labels, buttons, and form text. **Never bold a heading (no weight 500+).**
+## 6. Creative Giants Design System & Editorial Rules (MANDATORY per docs/DESIGN.md)
+The visual architecture is directly modeled after **Creative Giants** (`https://www.creativegiants.art/`) while honoring the authentic IIP Nepal identity:
+* **Primary Reference Site**: Always consult `https://www.creativegiants.art/` for layout hierarchy, rhythm, typography contrast, and editorial discipline.
+* **Display Poster Wordmark**: Use colossal, condensed architectural poster lettering (`Bebas Neue` / `var(--font-poster)`) for `IIP NEPAL` spanning edge-to-edge across the screen on cream paper before the first photograph, and again at the very bottom of the deep black footer.
+* **Architectural Swiss Grid**: Subtle 5-column vertical hairline rules (`rgba(0,0,0,0.04)`) spanning down the page, providing architectural structure.
+* **Typography**: Bebas Neue (`font-poster`) for colossal poster wordmarks. Switzer / Inter single-family for editorial copy: weight 300 (`font-light`) for display and headlines (20px and above) with aggressive tight tracking (`-0.02em` to `-0.04em`), weight 400 for body, labels, buttons, and form text. **Never bold a heading (no weight 500+).**
 * **Border Radii**:
   - `0px` radius (`rounded-none`) for all cards, photographs, frames, inputs, and editorial containers. Sharp, clean, print-like edges.
   - `1440px` radius (`rounded-full`) reserved strictly for interactive elements (buttons, pills, tags, menu triggers, carousel controls).
 * **Generous Button Padding**: Buttons must never feel cramped. Use generous padding (`px-7 py-3.5` or `px-8 py-4`, min-height 48px–52px).
 * **Zero Drop Shadows**: No drop shadows anywhere. Elevation and structure come purely from whitespace, color tint, scale, and 1px hairline dividers (`#e3e0d6`).
 * **No Duplicate Photos**: Never use the same photograph in the same section or page. Every course and portfolio showcase must have a unique, authentic documentary photograph.
-* **Mobile & Tablet Swiper / Snap Carousels**: Rather than forcing tablet and mobile users to scroll through endless vertically stacked cards, implement smooth horizontal touch swipe/snap carousels (`flex overflow-x-auto snap-x snap-mandatory gap-6 pb-4 scrollbar-none lg:grid lg:overflow-visible`) with clean arrow/dot navigation.
-* **Decluttered Editorial Footer**: Keep the footer serene, spacious, and uncluttered on Bone White with a 1px hairline divider. Remove duplicate widgets, redundant lists, and clutter.
+* **Inverted Dark Feature (Creative Giants Project 01 Pattern)**: Use high-impact Deep Black (`#0a0a0a`) sections for flagship diplomas with underlined tags and full-bleed documentary imagery to create rhythmic contrast with the cream paper.
+* **Mobile & Tablet Swiper / Snap Carousels**: Implement smooth horizontal touch swipe/snap carousels (`flex overflow-x-auto snap-x snap-mandatory gap-6 pb-4 scrollbar-none lg:grid lg:overflow-visible`) with circular outline chevron navigation buttons (`←` `→`).
+* **Creative Giants Deep Black Editorial Footer**: Deep black (`#0a0a0a`) canvas with full-width link list rows with right-up arrows (`HOME ↗`, `COURSES ↗`, etc.) separated by 1px hairlines, contact info, "Enroll Now" and "Contact Us" pill buttons, and the colossal `IIP NEPAL` display wordmark running edge-to-edge across the bottom.
 * **No Eyebrow Clichés**: Do NOT put a pill badge / capsule eyebrow above every section header. Use a quiet 12px all-caps Graphite text line or omit entirely. Strong headlines stand on their own.
 
 ## 7. MCP (Model Context Protocol) Usage

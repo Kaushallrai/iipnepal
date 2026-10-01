@@ -1,5 +1,6 @@
 import { HeroSection } from "@/components/home/hero-section";
 import { WhyIipSection } from "@/components/home/why-iip-section";
+import { FlagshipFeatureSection } from "@/components/home/flagship-feature-section";
 import { CoursesPreviewSection } from "@/components/home/courses-preview-section";
 import { PortfolioTeaserSection } from "@/components/home/portfolio-teaser-section";
 import { AdmissionsProcessSection } from "@/components/home/admissions-process-section";
@@ -11,6 +12,7 @@ export default function Home() {
       <HeroSection />
       <WhyIipSection />
       <CoursesPreviewSection />
+      <FlagshipFeatureSection />
       <PortfolioTeaserSection />
       <AdmissionsProcessSection />
       <ClosingCtaSection />

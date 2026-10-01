@@ -152,6 +152,7 @@
   /* Typography */
   --font-switzer: var(--font-switzer), 'Switzer', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-sans: var(--font-switzer), 'Switzer', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-poster: var(--font-poster), 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
   --font-mono: var(--font-fragment-mono), 'IBM Plex Mono', monospace;
 
   /* Typography — Scale */
@@ -182,4 +183,12 @@ body {
   color: var(--color-ink-black);
   font-family: var(--font-switzer);
   min-height: 100dvh;
+}
+
+.font-poster {
+  font-family: var(--font-poster), "Bebas Neue", Impact, sans-serif;
+}
+
+.font-switzer {
+  font-family: var(--font-switzer), "Switzer", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }

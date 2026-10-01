@@ -8,7 +8,7 @@ export function ClosingCtaSection() {
   return (
     <section
       aria-label="Call to Action"
-      className="w-full bg-[var(--color-navy-ink)] text-[var(--color-bone-white)] py-28 sm:py-36 lg:py-44 relative overflow-hidden"
+      className="w-full bg-[#0a0a0a] text-[var(--color-bone-white)] py-24 sm:py-32 lg:py-40 border-t border-white/10 relative overflow-hidden"
     >
       <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12 text-center flex flex-col items-center">
         {/* Subtle technical mono tag */}

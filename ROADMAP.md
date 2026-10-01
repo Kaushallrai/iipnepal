@@ -17,11 +17,11 @@ This document outlines the step-by-step implementation tasks. The Agent must com
 - [x] **Task 2.3:** Initialize GSAP provider/registry for Next.js App Router. (Skill: `antigravity-design-expert`)
 
 ## Phase 3: Home Page Implementation
-- [ ] **Task 3.1: Hero Section.**
-  - [ ] Scaffold structure.
-  - [ ] Apply large `Geist` typography (`taste`).
-  - [ ] Apply `impeccable` rules to ensure editorial feel.
-  - [ ] Apply `emil-kowalski` rules to add subtle load-in animations.
+- [x] **Task 3.1: Hero Section.**
+  - [x] Scaffold structure.
+  - [x] Apply large `Geist` typography (`taste`).
+  - [x] Apply `impeccable` rules to ensure editorial feel.
+  - [x] Apply `emil-kowalski` rules to add subtle load-in animations.
 - [ ] **Task 3.2: Why IIP Section.**
 - [ ] **Task 3.3: Course Previews Grid.** (Requires database fetch)
 - [ ] **Task 3.4: Portfolio Teaser.** Implement masonry layout.

@@ -23,7 +23,7 @@ This document outlines the step-by-step implementation tasks. The Agent must com
   - [x] Apply `impeccable` rules to ensure editorial feel.
   - [x] Apply `emil-kowalski` rules to add subtle load-in animations.
 - [x] **Task 3.2: Why IIP Section.**
-- [ ] **Task 3.3: Course Previews Grid.** (Requires database fetch)
+- [x] **Task 3.3: Course Previews Grid.** (Requires database fetch)
 - [ ] **Task 3.4: Portfolio Teaser.** Implement masonry layout.
 
 ## Phase 4: Dynamic Routes & Data (Courses & Portfolio)

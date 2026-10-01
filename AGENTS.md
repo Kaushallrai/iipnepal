@@ -24,21 +24,26 @@ Whenever you are tasked with building a new UI component, follow this strict pip
 4. **Auto-Polish**: Once critique passes, refine the UI to clean up spacing and ensure an editorial feel.
 5. **Auto-Animate**: Apply the **Emil Kowalski** rules for micro-interactions, and `antigravity-design-expert` for GSAP.
 
-## 5. Strict Original Content Preservation & Verbatim Integrity (MANDATORY)
+## 5. Strict Original Content Preservation & Nomenclature (MANDATORY)
 The redesign MUST preserve and prioritize 100% of the authentic, original content from the legacy IIP Nepal website (`https://www.iipnepal.com/`).
-* **100% Verbatim Original Copy**: You MUST keep all original text, titles, headings, course names, descriptions, pricing/fees, mission statements, quotes, testimonials, admissions text, phone numbers, addresses, and mentor names from `https://www.iipnepal.com/` EXACTLY as they appear on the legacy site. Do NOT rephrase, rewrite, paraphrase, summarize, or alter the original wording.
-* **Add Additional Content ONLY If Missing**: You may only add supplemental/additional content where information is genuinely missing on the legacy site (such as student portfolio stories where the legacy site only had a placeholder, or interactive UI elements needed for modern navigation/enrollment forms).
-* **Zero Rewriting**: Any added content must complement and support the original text without replacing, deleting, or altering any original sentence. The original website copy is the canonical source of truth.
+* **100% Verbatim Original Copy**: You MUST keep all original text, titles, headings, course names, descriptions, pricing/fees, mission statements, quotes, testimonials, admissions text, addresses, and mentor names from `https://www.iipnepal.com/` EXACTLY as they appear on the legacy site. Do NOT rephrase, rewrite, paraphrase, summarize, or alter the original wording.
+* **Enroll Over Register**: Always use "Enroll", "Enroll Now", "Enrollment", and "Enroll Online". Never use "Register" or "Registration" on action buttons, links, or navigation.
+* **Contact Us Over Phone Numbers on Buttons**: On action buttons and primary CTAs, use "Contact Us" (linking to `/contact`) rather than printing raw phone numbers inside button capsules. Keep phone numbers as clear, accessible text links.
+* **Add Additional Content ONLY If Missing**: You may only add supplemental/additional content where information is genuinely missing on the legacy site.
+* **Zero Rewriting**: The original website copy is the canonical source of truth.
 
-## 6. Anti-Slop Design & Balanced Spacing System (MANDATORY)
-Follow `.agents/skills/taste/SKILL.md` and `.agents/skills/impeccable/SKILL.md` to prevent generic "AI-built" aesthetics:
-* **No Eyebrow Clichés**: Do NOT put a pill badge / capsule eyebrow above every section header. Eyebrows should be used sparingly (max 1 per 3 sections). Strong headlines stand on their own.
-* **Balanced Gestalt Spacing**:
-  - Consistent layout container: `max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12`.
-  - Section vertical rhythm: `py-20 lg:py-24` with disciplined margin scales.
-  - Proportional hierarchy: tight proximity between titles and descriptions (`gap-2` to `gap-3`), clear breathing room between sections (`mb-12` to `mb-16`), and harmonious card padding (`p-5` with `rounded-[16px]`).
-* **Editorial Composition Over Repetitive Bento Boxes**: Avoid monotonous identical cards with orphaned items. For multi-item showcases like the 5 courses, use an intentional editorial composition (e.g. 2 flagship mentor-led diplomas on row 1, 3 modular courses on row 2).
-* **Genuine Editorial Photography**: Use documentary-style, authentic Kathmandu photography with real students and mentors. Never use stock-look photos with giant devices or fake setups.
+## 6. Anti-Slop Design System & Editorial Rules (MANDATORY per docs/DESIGN.md)
+Follow `docs/DESIGN.md` and `.agents/skills/taste/SKILL.md` to ensure a world-class editorial aesthetic:
+* **Typography**: Switzer / Inter single-family. Weight 300 (`font-light`) for display and headlines (20px and above) with aggressive tight tracking (`-0.02em` to `-0.04em`). Weight 400 for body, labels, buttons, and form text. **Never bold a heading (no weight 500+).**
+* **Border Radii**:
+  - `0px` radius (`rounded-none`) for all cards, photographs, frames, inputs, and editorial containers. Sharp, clean, print-like edges.
+  - `1440px` radius (`rounded-full`) reserved strictly for interactive elements (buttons, pills, tags, menu triggers, carousel controls).
+* **Generous Button Padding**: Buttons must never feel cramped. Use generous padding (`px-7 py-3.5` or `px-8 py-4`, min-height 48px–52px).
+* **Zero Drop Shadows**: No drop shadows anywhere. Elevation and structure come purely from whitespace, color tint, scale, and 1px hairline dividers (`#e3e0d6`).
+* **No Duplicate Photos**: Never use the same photograph in the same section or page. Every course and portfolio showcase must have a unique, authentic documentary photograph.
+* **Mobile & Tablet Swiper / Snap Carousels**: Rather than forcing tablet and mobile users to scroll through endless vertically stacked cards, implement smooth horizontal touch swipe/snap carousels (`flex overflow-x-auto snap-x snap-mandatory gap-6 pb-4 scrollbar-none lg:grid lg:overflow-visible`) with clean arrow/dot navigation.
+* **Decluttered Editorial Footer**: Keep the footer serene, spacious, and uncluttered on Bone White with a 1px hairline divider. Remove duplicate widgets, redundant lists, and clutter.
+* **No Eyebrow Clichés**: Do NOT put a pill badge / capsule eyebrow above every section header. Use a quiet 12px all-caps Graphite text line or omit entirely. Strong headlines stand on their own.
 
 ## 7. MCP (Model Context Protocol) Usage
 You have access to powerful MCP servers. You must use them proactively:
@@ -58,3 +63,13 @@ Whenever you build or start a project, consult:
 * **`docs/ARCHITECTURE.md`**: Routing and database schema.
 * **`docs/PRD.md` & `docs/MVP.md`**: Scope limitations.
 * **`docs/AGENT_SKILLS.md`**: A list of all available commands and skills.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

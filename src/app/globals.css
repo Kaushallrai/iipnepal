@@ -1,194 +1,185 @@
 @import "tailwindcss";
 
 :root {
-  /* Colors */
-  --color-charcoal-ink: #1f1915;
-  --color-workshop-ivory: #f2efe9;
-  --color-paper-white: #fffdf6;
-  --color-studio-white: #ffffff;
-  --color-soft-paper: #f7f5f1;
-  --color-drafting-line: #e6e3dd;
-  --color-quiet-graphite: #6b6661;
-  --color-faded-graphite: #8d8883;
+  /* Colors from DESIGN.md */
+  --color-bone-white: #fffef7;
+  --color-ink-black: #000000;
+  --color-graphite: #666666;
+  --color-ash: #aaaaaa;
+  --color-hairline: #e3e0d6;
   --color-iip-yellow: #ffc61a;
+  --color-navy-ink: #101731;
+  --color-powder-blue: #a5c8eb;
+  --color-mint-wash: #a5ebd6;
+  --color-candy-pink: #ffacea;
+  --color-magenta-bloom: #8a0467;
+  --color-forest-teal: #03624c;
+  --color-charcoal-scale: #4d4c4a;
+
+  /* Aliases for backwards compatibility */
+  --color-workshop-ivory: var(--color-bone-white);
+  --color-paper-white: var(--color-bone-white);
+  --color-studio-white: #ffffff;
+  --color-soft-paper: var(--color-bone-white);
+  --color-drafting-line: var(--color-hairline);
+  --color-charcoal-ink: var(--color-ink-black);
+  --color-quiet-graphite: var(--color-graphite);
+  --color-faded-graphite: var(--color-ash);
 
   /* Typography — Font Families */
-  --font-geist: 'Geist', Arial, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-fragment-mono: 'Fragment Mono', 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-switzer: var(--font-switzer), 'Switzer', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: var(--font-switzer);
+  --font-fragment-mono: var(--font-fragment-mono), 'IBM Plex Mono', monospace;
+  --font-mono: var(--font-fragment-mono);
 
   /* Typography — Scale (desktop) */
-  --text-nav: 11px;
-  --leading-nav: 1.5;
-  --tracking-nav: 0.3px;
-  --text-label: 11px;
-  --leading-label: 1.5;
-  --tracking-label: 0.3px;
-  --text-body-small: 14px;
-  --leading-body-small: 1.6;
+  --text-caption: 12px;
+  --leading-caption: 1.43;
+  --tracking-caption: 0.04em;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --tracking-body-sm: -0.018em;
   --text-body: 16px;
-  --leading-body: 1.6;
-  --tracking-body: 0px;
-  --text-button-label: 16px;
-  --leading-button-label: 1.5;
-  --tracking-button-label: 0.496px;
-  --text-card-title: 24px;
-  --leading-card-title: 1.2;
-  --tracking-card-title: -0.5px;
-  --text-section-title: 40px;
-  --leading-section-title: 1.12;
-  --tracking-section-title: -1.2px;
-  --text-page-title: 72px;
-  --leading-page-title: 1.0;
-  --tracking-page-title: -3px;
-  --text-display: 120px;
-  --leading-display: 0.93;
-  --tracking-display: -8.04px;
+  --leading-body: 1.5;
+  --tracking-body: -0.018em;
+  --text-subheading: 20px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: -0.018em;
+  --text-heading-sm: 34px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.02em;
+  --text-heading: 54px;
+  --leading-heading: 1;
+  --tracking-heading: -0.023em;
+  --text-display: 84px;
+  --leading-display: 1;
+  --tracking-display: -0.04em;
 
   /* Typography — Weights */
+  --font-weight-light: 300;
   --font-weight-regular: 400;
-  --font-weight-medium: 500;
 
   /* Spacing */
-  --spacing-unit: 4px;
-  --spacing-4: 4px;
+  --spacing-unit: 8px;
   --spacing-8: 8px;
-  --spacing-12: 12px;
   --spacing-16: 16px;
-  --spacing-20: 20px;
   --spacing-24: 24px;
   --spacing-32: 32px;
-  --spacing-40: 40px;
   --spacing-48: 48px;
   --spacing-64: 64px;
   --spacing-80: 80px;
-  --spacing-96: 96px;
-  --spacing-120: 120px;
+  --spacing-112: 112px;
 
   /* Layout */
-  --container-max: 1280px;
-  --nav-height: 65px;
-  --section-gap: 40px;
-  --card-padding: 12px;
+  --nav-height: 64px;
+  --section-gap: 64px;
+  --card-padding: 24px;
   --element-gap: 8px;
+  --page-padding: 32px;
 
   /* Border Radius */
-  --radius-lg: 8px;
-  --radius-xl: 12px;
-  --radius-2xl: 16px;
-  --radius-3xl: 24px;
   --radius-full: 1440px;
-
-  /* Named Radii */
-  --radius-cards: 16px;
-  --radius-links: 8px;
-  --radius-images: 8px;
-  --radius-inputs: 12px;
   --radius-buttons: 1440px;
-  --radius-media-frame: 16px;
-  --radius-large-panels: 24px;
+  --radius-pills: 1440px;
+  --radius-tags: 1440px;
+  --radius-cards: 0px;
+  --radius-images: 0px;
+  --radius-inputs: 0px;
+  --radius-panels: 0px;
 
   /* Surfaces */
-  --surface-workshop-ivory: #f2efe9;
-  --surface-soft-paper: #f7f5f1;
-  --surface-studio-white: #ffffff;
-  --surface-drafting-line: #e6e3dd;
-  --surface-charcoal-ink: #1f1915;
+  --surface-canvas: var(--color-bone-white);
+  --surface-card-tint: var(--color-mint-wash);
+  --surface-card-tint-pink: var(--color-candy-pink);
+  --surface-card-tint-blue: var(--color-powder-blue);
+  --surface-inverted-field: var(--color-navy-ink);
 
   /* Semantic Page Base */
-  --background: var(--color-workshop-ivory);
-  --foreground: var(--color-charcoal-ink);
+  --background: var(--color-bone-white);
+  --foreground: var(--color-ink-black);
 }
 
-/* Mobile typography scale overrides */
+/* Tablet overrides */
+@media (max-width: 1023px) {
+  :root {
+    --page-padding: 24px;
+    --section-gap: 56px;
+  }
+}
+
+/* Mobile overrides */
 @media (max-width: 767px) {
   :root {
-    --text-body: 15px;
-    --text-button-label: 15px;
-    --text-card-title: 20px;
-    --text-section-title: 28px;
-    --tracking-section-title: -0.8px;
-    --text-page-title: 40px;
-    --tracking-page-title: -1.5px;
-    --text-display: 52px;
-    --tracking-display: -2.5px;
+    --page-padding: 16px;
+    --section-gap: 48px;
+    --text-heading-sm: 26px;
+    --text-heading: 34px;
+    --text-display: 44px;
+    --tracking-display: -0.035em;
   }
 }
 
 @theme {
   /* Colors */
-  --color-charcoal-ink: #1f1915;
-  --color-workshop-ivory: #f2efe9;
-  --color-paper-white: #fffdf6;
-  --color-studio-white: #ffffff;
-  --color-soft-paper: #f7f5f1;
-  --color-drafting-line: #e6e3dd;
-  --color-quiet-graphite: #6b6661;
-  --color-faded-graphite: #8d8883;
+  --color-bone-white: #fffef7;
+  --color-ink-black: #000000;
+  --color-graphite: #666666;
+  --color-ash: #aaaaaa;
+  --color-hairline: #e3e0d6;
   --color-iip-yellow: #ffc61a;
+  --color-navy-ink: #101731;
+  --color-powder-blue: #a5c8eb;
+  --color-mint-wash: #a5ebd6;
+  --color-candy-pink: #ffacea;
+  --color-magenta-bloom: #8a0467;
+  --color-forest-teal: #03624c;
+  --color-charcoal-scale: #4d4c4a;
+
+  /* Aliases */
+  --color-workshop-ivory: #fffef7;
+  --color-paper-white: #fffef7;
+  --color-studio-white: #ffffff;
+  --color-soft-paper: #fffef7;
+  --color-drafting-line: #e3e0d6;
+  --color-charcoal-ink: #000000;
+  --color-quiet-graphite: #666666;
+  --color-faded-graphite: #aaaaaa;
 
   /* Background & Foreground */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
   /* Typography */
-  --font-geist: var(--font-geist), Arial, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-sans: var(--font-geist), Arial, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-fragment-mono: var(--font-fragment-mono), 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --font-mono: var(--font-fragment-mono), 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-switzer: var(--font-switzer), 'Switzer', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: var(--font-switzer), 'Switzer', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-fragment-mono), 'IBM Plex Mono', monospace;
 
   /* Typography — Scale */
-  --text-nav: 11px;
-  --leading-nav: 1.5;
-  --tracking-nav: 0.3px;
-  --text-label: 11px;
-  --leading-label: 1.5;
-  --tracking-label: 0.3px;
-  --text-body-small: 14px;
-  --leading-body-small: 1.6;
+  --text-caption: 12px;
+  --text-body-sm: 14px;
   --text-body: 16px;
-  --leading-body: 1.6;
-  --text-button-label: 16px;
-  --leading-button-label: 1.5;
-  --tracking-button-label: 0.496px;
-  --text-card-title: 24px;
-  --leading-card-title: 1.2;
-  --tracking-card-title: -0.5px;
-  --text-section-title: 40px;
-  --leading-section-title: 1.12;
-  --tracking-section-title: -1.2px;
-  --text-page-title: 72px;
-  --leading-page-title: 1.0;
-  --tracking-page-title: -3px;
-  --text-display: 120px;
-  --leading-display: 0.93;
-  --tracking-display: -8.04px;
+  --text-subheading: 20px;
+  --text-heading-sm: 34px;
+  --text-heading: 54px;
+  --text-display: 84px;
 
   /* Spacing */
-  --spacing-4: 4px;
   --spacing-8: 8px;
-  --spacing-12: 12px;
   --spacing-16: 16px;
-  --spacing-20: 20px;
   --spacing-24: 24px;
   --spacing-32: 32px;
-  --spacing-40: 40px;
   --spacing-48: 48px;
   --spacing-64: 64px;
   --spacing-80: 80px;
-  --spacing-96: 96px;
-  --spacing-120: 120px;
+  --spacing-112: 112px;
 
   /* Border Radius */
-  --radius-lg: 8px;
-  --radius-xl: 12px;
-  --radius-2xl: 16px;
-  --radius-3xl: 24px;
   --radius-full: 1440px;
 }
 
 body {
-  background-color: var(--color-workshop-ivory);
-  color: var(--color-charcoal-ink);
-  font-family: var(--font-geist);
+  background-color: var(--color-bone-white);
+  color: var(--color-ink-black);
+  font-family: var(--font-switzer);
   min-height: 100dvh;
 }

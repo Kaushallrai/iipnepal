@@ -123,15 +123,15 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Right Actions: Login + Register Pill (Emil Kowalski micro-interactions) */}
+          {/* Right Actions: Login + Enroll Pill (Emil Kowalski micro-interactions) */}
           <div className="hidden md:flex items-center gap-6">
             <Link
               href="/login"
               className={cn(
                 "font-mono text-[11.5px] uppercase tracking-[0.35px] transition-colors py-2 px-2.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-iip-yellow)] rounded-sm",
                 isDarkHeroMode
-                  ? "text-white/70 hover:text-[var(--color-paper-white)]"
-                  : "text-[var(--color-quiet-graphite)] hover:text-[var(--color-charcoal-ink)]"
+                  ? "text-white/70 hover:text-[var(--color-bone-white)]"
+                  : "text-[var(--color-graphite)] hover:text-[var(--color-ink-black)]"
               )}
             >
               Login
@@ -139,19 +139,19 @@ export function Navbar() {
 
             <Link
               href="/enroll"
-              className="inline-flex items-center justify-center bg-[var(--color-iip-yellow)] text-[var(--color-charcoal-ink)] hover:bg-[#f5bc14] active:scale-[0.98] transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] font-sans font-medium text-[14px] leading-none py-3 px-6 rounded-[1440px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-charcoal-ink)]"
+              className="inline-flex items-center justify-center bg-[var(--color-iip-yellow)] text-[var(--color-ink-black)] hover:bg-[#f5bc14] active:scale-[0.98] transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] font-sans font-normal text-[15px] leading-none py-3.5 px-7 rounded-[1440px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ink-black)]"
             >
-              Register
+              Enroll
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center gap-4 md:hidden">
+          <div className="flex items-center gap-3 md:hidden">
             <Link
               href="/enroll"
-              className="inline-flex items-center justify-center bg-[var(--color-iip-yellow)] text-[var(--color-charcoal-ink)] font-sans font-medium text-[13px] leading-none py-2 px-4 rounded-[1440px]"
+              className="inline-flex items-center justify-center bg-[var(--color-iip-yellow)] text-[var(--color-ink-black)] font-sans font-normal text-[13.5px] leading-none py-2.5 px-5 rounded-[1440px]"
             >
-              Register
+              Enroll
             </Link>
 
             <button
@@ -245,9 +245,9 @@ export function Navbar() {
             <Link
               href="/enroll"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full inline-flex items-center justify-center bg-[var(--color-iip-yellow)] text-[var(--color-charcoal-ink)] hover:bg-[#f5bc14] font-sans font-medium text-base py-3.5 px-6 rounded-[1440px] transition-colors"
+              className="w-full inline-flex items-center justify-center bg-[var(--color-iip-yellow)] text-[var(--color-ink-black)] hover:bg-[#f5bc14] font-sans font-normal text-base py-4 px-8 rounded-[1440px] transition-colors"
             >
-              Register at IIP →
+              Enroll at IIP →
             </Link>
 
             <p className="font-mono text-[10.5px] text-[var(--color-faded-graphite)] text-center pt-2">

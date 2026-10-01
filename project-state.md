@@ -5,61 +5,46 @@
 ## 1. Active Context & Current Task
 * **Current Phase**: Phase 4 — Dynamic Routes & Data (`/courses`, `/courses/[slug]`, `/portfolio`, `/portfolio/[slug]`)
 * **Mandatory Directive**: **STRICT ORIGINAL CONTENT PRESERVATION (100% Verbatim)** — Retain all original text, titles, headings, course names, descriptions, fees, mission statements, and faculty mentors from `https://www.iipnepal.com/`. Do NOT rewrite or paraphrase original content. ONLY add additional content if something is genuinely missing.
-* **Status**: Phase 3 complete. Homepage fully assembled and visually verified via Playwright:
-  1. `HeroSection`: Verbatim title, original regional partnership copy with Additya Shrestha, phone +977 9802364760, Yellow & Glass action pills.
-  2. `WhyIipSection`: Verbatim vision statement, official introductory description, and authentic 4 course/mentor pillars.
-  3. `CoursesPreviewSection`: Balanced 2+3 editorial grid presenting all 5 authentic courses with verbatim descriptions, fee tiers, and discount labels.
-  4. `PortfolioTeaserSection`: Editorial masonry showcase of authentic student documentary fieldwork from Asan Chowk, Annapurna, Patan, and Bhaktapur.
-  5. `AdmissionsProcessSection`: Verbatim 7-step admissions process and manifesto from legacy `/about` and `/reach`.
-  6. `ClosingCtaSection`: Verbatim closing call-to-action on Charcoal Ink `#1f1915`.
-* **Next Task**: **Task 4.1 — Build `/courses` directory page** using the authentic courses dataset and Prisma data layer.
-* **Unified Container**: All sections share `max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12`.
-* **Proportional Gestalt Rhythm**:
-  - Tight proximity between titles and descriptions (`gap-2` to `gap-3`).
-  - Clear section breathing room: `py-18 sm:py-20 lg:py-24`.
-  - Harmonious card padding: `p-4 sm:p-5` with `rounded-[16px]` and no drop shadows.
-* **No Eyebrow Clichés**: Capsule badges with pulsing dots have been eliminated from section headers. Authoritative headings stand directly on their own.
-* **Balanced Editorial Grid (2 + 3)**:
-  - Row 1 (2 Columns): Flagship mentor-led diplomas (Pro Level Advanced 6-Mo & Pro Level Foundation 3-Mo) with prominent 16:9 imagery.
-  - Row 2 (3 Columns): Foundation & modular courses (Online Mobile 1-Mo, Basic 1-Mo, Foundation 3-Mo) with balanced 4:3 imagery.
-* **Authentic Photography Only**:
-  - Replaced mobile photography stock look with authentic Kathmandu cafe documentary photograph.
-  - All 5 courses use dedicated Kathmandu photography assets.
+* **Style System (`docs/DESIGN.md`)**:
+  - **Canvas**: Bone White `#fffef7`.
+  - **Text**: Ink Black `#000000`, Graphite `#666666`, Ash `#aaaaaa`, Hairline `#e3e0d6`.
+  - **Accents**: IIP Yellow `#ffc61a` (primary Enroll action), Navy Ink `#101731` (closing CTA & dark hero base).
+  - **Typography**: Switzer / Inter single-family. Weight 300 (`font-light`) for display and headlines (20px and up) with tight tracking (`-0.02em` to `-0.04em`), weight 400 for body/labels/buttons. **Never bold a heading (no weight 500+).**
+  - **Border Radii**: `0px` (sharp!) for all cards, photographs, frames, inputs, and editorial containers. `1440px` pill radius strictly for interactive buttons, pills, tags, and menu triggers.
+  - **Button Padding**: Generous padding (`py-3.5 px-7` or `py-4 px-8` / `px-9`, min-height 48px–52px).
+  - **Nomenclature**: ALWAYS use "Enroll", "Enroll Now", "Enrollment", "Enroll Online". NEVER use "Register" or "Registration".
+  - **CTAs**: Use "Contact Us" buttons instead of raw telephone numbers inside button capsules.
+  - **Mobile & Tablet Touch Snapping**: Courses and Portfolio sections feature horizontal swipe/snap carousels with arrow controls and category pills rather than endless vertical card stacks.
+  - **Decluttered Footer**: Clean, spacious 3-column footer on Bone White with 1px hairline divider, Contact Us pill, Enroll Online pill, and no duplicate clutter.
+  - **Unique Photography**: Every card and section uses a distinct, authentic Kathmandu documentary photograph (no duplicate photos anywhere).
 
-## 3. Logic & Function Map
-*(This section maps where core logic, state, and functions reside to prevent redundant reading)*
+## 2. Logic & Function Map
 
 ### Configuration & Infrastructure
-* **Styling (`src/app/globals.css`)**: Contains all Tailwind v4 `@theme` mappings and core CSS variables (colors, spacing, radii) imported directly from `docs/DESIGN.md`.
+* **Styling (`src/app/globals.css`)**: Contains all Tailwind v4 `@theme` mappings and core CSS variables from `docs/DESIGN.md`: Bone White canvas, Ink Black, Hairline rules, Switzer typography, 0px card/image radii, 1440px pill buttons.
 * **Database Models (`prisma/schema.prisma`)**: Defines the data layer: `Course`, `PortfolioItem`, `EnrollmentLead`, `ContactMessage`.
-* **Typography (`src/app/layout.tsx`)**: Configures and injects Next.js optimized fonts (`Geist` for sans/display, `Fragment Mono` for technical text).
-
-### Libs & Clients
-* **Prisma Client (`src/lib/prisma.ts`)**: Singleton initialization of Prisma client for Next.js SSR/API routes.
-* **Supabase Client (`src/lib/supabase.ts`)**: Initializes standard client and service-role client for direct BaaS queries/storage.
-* **Utilities (`src/lib/utils.ts`)**: `cn()` utility combining `clsx` and `tailwind-merge`.
-* **Courses Data (`src/lib/courses-data.ts`)**: Authentic dataset containing all 5 official IIP Nepal courses with unique Kathmandu photography assets.
+* **Typography (`src/app/layout.tsx`)**: Configures and injects Next.js optimized fonts (`Inter` for Switzer single-family 300 & 400 weights, `Fragment Mono` for technical labels).
 
 ### Components & Layout
-* **Global Navbar (`src/components/layout/navbar.tsx`)**: 65px sticky bar with scroll-aware dual modes (transparent over dark hero, Workshop Ivory with Drafting Line border on light sections). Unified 1280px container with balanced margins.
-* **Global Footer (`src/components/layout/footer.tsx`)**: Balanced editorial footer on Workshop Ivory `#f2efe9` (`max-w-[1280px]`). Contains Kathmandu campus address, telephone (+977 9802364760), faculty mentors (Additya Shrestha, Jhaggu Roka, Kishor Shrestha), authentic course links, and IIP Foundation India affiliation.
-* **Hero Section (`src/components/home/hero-section.tsx`)**: Balanced photographic display hero on Charcoal Ink `#1f1915` with authentic Kathmandu documentary photography, original "Welcome to the IIP Centre Nepal" title, regional partnership notice with Additya Shrestha, Yellow "Register Online" Pill, and Glass "Courses Available" Pill.
-* **Why IIP Section (`src/components/home/why-iip-section.tsx`)**: Proportional 4-column differentiator grid presenting the authentic mission statement ("Institute of National Importance in promoting Cultural and Creative Arts...") and official course pillars.
-* **Course Previews Grid (`src/components/home/courses-preview-section.tsx`)**: 2+3 editorial magazine grid showcasing all 5 authentic courses with proportional Gestalt spacing and no orphaned cards.
-* **Portfolio Teaser (`src/components/home/portfolio-teaser-section.tsx`)**: *(Pending Task 3.4)*.
+* **Global Navbar (`src/components/layout/navbar.tsx`)**: Sticky header with transparent mode over dark hero and Bone White mode on scroll. Features "Enroll" yellow pill button with generous touch padding and responsive mobile menu.
+* **Global Footer (`src/components/layout/footer.tsx`)**: Decluttered, serene editorial footer on Bone White with 1px hairline divider, "Contact Us" and "Enroll Online" buttons, clean navigation, and Kathmandu Centre contact info.
+* **Hero Section (`src/components/home/hero-section.tsx`)**: Full-bleed documentary photography hero with weight-300 poster display headline ("Welcome to the IIP Centre Nepal!"), Yellow "Enroll Online" Pill with generous padding, and Glass "Explore Courses" Pill.
+* **Why IIP Section (`src/components/home/why-iip-section.tsx`)**: 4-column differentiator grid with clean line icons, weight-300 headings, and whitespace separation.
+* **Courses Preview Section (`src/components/home/courses-preview-section.tsx`)**: Sharp 0px card design with interactive filter tabs, 12px metadata, and responsive horizontal touch snap carousel for mobile/tablet with arrow controls.
+* **Portfolio Teaser Section (`src/components/home/portfolio-teaser-section.tsx`)**: Sharp 0px editorial frames with authentic, distinct Kathmandu photographs, and responsive horizontal snap carousel for mobile/tablet.
+* **Admissions Process Section (`src/components/home/admissions-process-section.tsx`)**: Verbatim 7-step admissions process with "Enroll Online" button.
+* **Closing CTA Section (`src/components/home/closing-cta-section.tsx`)**: Navy Ink banner with weight-300 poster headline, "Enroll Now" pill, and "Contact Us" pill.
 
-### Animations & Motion (GSAP)
-* **GSAP Registry (`src/components/animations/gsap-registry.tsx`)**: Safe client plugin registration for `ScrollTrigger` and `@gsap/react`, with global `prefers-reduced-motion` handling and trigger cleanup on unmount.
-* **Scroll Reveal (`src/components/animations/scroll-reveal.tsx`)**: Reusable wrapper for editorial staggered scroll reveals (Y-axis translation + opacity fade, 0.4s–0.6s).
-
-## 4. Recent Changes Log
-* **[2026-10-01]**: Verbatim Original Content Realignment & Phase 3 Completion — Enforced strict original content policy in `AGENTS.md` and `project-state.md`. Extracted 100% authentic course descriptions, fees, discount pricing, curricula, prerequisites, and FAQs from `https://www.iipnepal.com/course/*` into `src/lib/courses-data.ts`. Updated `HeroSection` and `WhyIipSection` with exact original headings, mission statement, regional partnership text, and faculty details. Built `PortfolioTeaserSection` with authentic Nepal documentary assets, `AdmissionsProcessSection` with authentic 7-step process, and `ClosingCtaSection`. Validated via clean build and Playwright full-page screenshot.
-* **[2026-10-01]**: Anti-Slop Design & Spacing Overhaul — Removed eyebrow capsule clichés, unified container to `max-w-[1280px] px-6 sm:px-8 lg:px-12`, applied proportional Gestalt spacing (`py-18 to py-24`), restructured the 5 courses into a balanced 2+3 editorial grid, and generated a new high-taste Kathmandu cafe documentary photograph for the Online Mobile Photography course. Updated `AGENTS.md` and `project-state.md`.
-* **[2026-10-01]**: Completed Task 3.3 — Generated authentic course photography assets, created `src/lib/courses-data.ts`, built `CoursesPreviewSection` in `src/components/home/courses-preview-section.tsx`, mounted on Home page, and verified build.
-* **[2026-10-01]**: Content Realignment — Extracted full original content from `https://www.iipnepal.com/`. Updated `AGENTS.md` to enforce strict original content preservation. Updated `HeroSection`, `WhyIipSection`, and `Footer` with exact original headings, mission, team, and course titles.
-* **[2026-10-01]**: Completed Task 3.2 — Built `WhyIipSection` in `src/components/home/why-iip-section.tsx`, mounted on Home page, and verified clean build.
-* **[2026-10-01]**: Completed Task 3.1 — Created authentic Kathmandu documentary photography asset `public/images/hero-photographer.jpg`, built `HeroSection` in `src/components/home/hero-section.tsx`, mounted in `src/app/page.tsx`, and verified clean build.
-* **[2026-10-01]**: Completed Task 2.3 — Installed `gsap`, `@gsap/react`, and `framer-motion`. Built `GsapRegistry` and `ScrollReveal` components in `src/components/animations/`, and integrated `GsapRegistry` into `src/app/layout.tsx`. Verified build.
-* **[2026-10-01]**: Completed Task 2.2 — Built and integrated `Footer` in `src/components/layout/footer.tsx` and `src/app/layout.tsx`. Verified build.
-* **[2026-10-01]**: Completed Task 2.1 — Built and integrated responsive `Navbar` in `src/components/layout/navbar.tsx` and `src/app/layout.tsx`. Installed `lucide-react`. Verified clean production build.
-* **[2026-10-01]**: Project initialized (Next.js 16, Tailwind 4, Prisma).
+## 3. Recent Changes Log
+* **[2026-10-01]**: Complete Design System & UX Realignment (per updated `docs/DESIGN.md`):
+  - Rewrote and unified `docs/DESIGN.md` incorporating the art-book / oversized editorial poster system.
+  - Updated `AGENTS.md` and `project-state.md` with strict rules: 0px sharp card/image corners, 1440px pill buttons with generous padding, "Enroll" instead of "Register", "Contact Us" instead of phone numbers on buttons, mobile/tablet horizontal snap carousels, and decluttered footer.
+  - Updated `src/app/globals.css` with Bone White (`#fffef7`), Ink Black (`#000000`), Switzer single-family type, 0px card/image radii, 1440px button pills.
+  - Updated `src/app/layout.tsx` to load Inter (300, 400) for Switzer font system.
+  - Replaced "Register" with "Enroll" across all components (`Navbar`, `HeroSection`, `CoursesPreviewSection`, `AdmissionsProcessSection`, `ClosingCtaSection`, `Footer`).
+  - Increased button padding across all interactive elements (`px-7 py-3.5` to `px-9 py-4`).
+  - Decluttered `Footer` into an airy, elegant 3-column layout on Bone White with a "Contact Us" button.
+  - Replaced raw phone number button in `ClosingCtaSection` with a "Contact Us" button.
+  - Added horizontal swipe/snap carousels with arrow controls for tablet and mobile in `CoursesPreviewSection` and `PortfolioTeaserSection`.
+  - Guaranteed 100% unique, distinct photography across all sections.
+  - Verified with clean `npm run build` and Playwright visual testing across desktop (1440x900) and mobile (390x844).

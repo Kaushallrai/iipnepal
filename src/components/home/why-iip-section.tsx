@@ -45,54 +45,52 @@ export function WhyIipSection() {
   return (
     <section
       aria-label="About IIP Nepal & Mission"
-      className="w-full bg-[var(--color-workshop-ivory)] py-28 sm:py-36 lg:py-44 border-b border-[var(--color-drafting-line)]"
+      className="w-full bg-[var(--color-bone-white)] py-24 sm:py-32 lg:py-40 border-b border-[var(--color-hairline)]"
     >
-      <div className="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-16">
-        {/* Section Header: Vision Statement with Generous Margin */}
-        <div className="max-w-3xl mb-20 sm:mb-24 lg:mb-28">
+      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12">
+        {/* Section Header: Section Title Block per DESIGN.md */}
+        <div className="max-w-4xl mb-18 sm:mb-22 lg:mb-28">
           <ScrollReveal yOffset={14} duration={0.5}>
-            <span className="font-mono text-[11.5px] uppercase tracking-[0.25em] text-[var(--color-faded-graphite)] block mb-5">
+            <span className="font-mono text-[12px] uppercase tracking-[0.25em] text-[var(--color-graphite)] block mb-5">
               Vision & Institute Mission
             </span>
           </ScrollReveal>
 
           <ScrollReveal delay={0.08} yOffset={16} duration={0.6}>
-            <h2 className="font-sans font-medium text-[var(--color-charcoal-ink)] text-[26px] sm:text-[34px] lg:text-[40px] leading-[1.25] tracking-[-1px] text-balance">
+            <h2 className="font-sans font-light text-[var(--color-ink-black)] text-[26px] sm:text-[34px] lg:text-[44px] leading-[1.2] tracking-[-0.023em] text-balance">
               “To emerge as ‘Institute of National Importance in promoting Cultural and Creative Arts of India, globally’ by guiding and inculcating knowledge in learners mindset from world over to become artists, thinkers and leaders.”
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.16} yOffset={14} duration={0.6}>
-            <p className="font-sans text-[16px] sm:text-[17px] leading-[1.7] text-[var(--color-quiet-graphite)] max-w-2xl mt-6">
+            <p className="font-sans text-[16px] sm:text-[17px] leading-[1.7] text-[var(--color-graphite)] max-w-2xl mt-6">
               IIP Nepal offers short-term courses, weekend workshops, and diploma programs, designed to develop both creative and technical photography skills.
             </p>
           </ScrollReveal>
         </div>
 
-        {/* 4-Column Grid with Expansive Breathing Room */}
+        {/* 4-Column Grid per DESIGN.md — No card fills, clean line icons, whitespace separation */}
         <ScrollReveal yOffset={20} duration={0.6} stagger={0.1}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 lg:gap-x-16 gap-y-14 sm:gap-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 lg:gap-x-14 gap-y-12 sm:gap-y-16">
             {PILLARS.map((item) => {
               const Icon = item.icon;
               return (
                 <div key={item.number} className="flex flex-col gap-4 group">
-                  {/* Top metadata line with icon and mono index */}
-                  <div className="flex items-center justify-between pb-4 border-b border-[var(--color-drafting-line)]">
-                    <div className="w-10 h-10 rounded-full bg-white border border-[var(--color-drafting-line)] flex items-center justify-center text-[var(--color-charcoal-ink)] group-hover:bg-[var(--color-iip-yellow)] transition-colors duration-200">
-                      <Icon className="w-4 h-4 text-[var(--color-charcoal-ink)]" aria-hidden="true" />
-                    </div>
-                    <span className="font-mono text-[12px] text-[var(--color-faded-graphite)] tracking-[0.2em]">
+                  {/* Top hairline rule with line icon and mono number */}
+                  <div className="flex items-center justify-between pb-4 border-b border-[var(--color-hairline)]">
+                    <Icon className="w-5 h-5 text-[var(--color-ink-black)] group-hover:text-[var(--color-iip-yellow)] transition-colors duration-200 stroke-[1.5]" aria-hidden="true" />
+                    <span className="font-mono text-[12px] text-[var(--color-ash)] tracking-[0.2em]">
                       {item.number}
                     </span>
                   </div>
 
-                  {/* Heading with air */}
-                  <h3 className="font-sans font-medium text-[20px] leading-snug tracking-[-0.4px] text-[var(--color-charcoal-ink)] mt-2">
+                  {/* 20px weight-300 heading */}
+                  <h3 className="font-sans font-light text-[20px] leading-snug tracking-[-0.018em] text-[var(--color-ink-black)] mt-1">
                     {item.title}
                   </h3>
 
-                  {/* Body copy */}
-                  <p className="font-sans text-[15px] leading-[1.7] text-[var(--color-quiet-graphite)]">
+                  {/* 14-16px Graphite body copy */}
+                  <p className="font-sans text-[14.5px] leading-[1.65] text-[var(--color-graphite)]">
                     {item.description}
                   </p>
                 </div>

@@ -45,26 +45,26 @@ export function WhyIipSection() {
   return (
     <section
       aria-label="About IIP Nepal & Mission"
-      className="w-full bg-[var(--color-workshop-ivory)] py-20 sm:py-24 lg:py-32 border-b border-[var(--color-drafting-line)]"
+      className="w-full bg-[var(--color-workshop-ivory)] py-24 sm:py-32 lg:py-40 border-b border-[var(--color-drafting-line)]"
     >
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14 lg:px-20 xl:px-24">
         {/* Section Header: Eyebrow + Original Vision & Mission */}
         <div className="max-w-3xl mb-16 sm:mb-20">
           <ScrollReveal yOffset={16} duration={0.5}>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[1440px] border border-[var(--color-drafting-line)] bg-white/60 mb-5 text-[11px] font-mono uppercase tracking-[0.3px] text-[var(--color-faded-graphite)]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[1440px] border border-[var(--color-drafting-line)] bg-white/70 mb-6 text-[11px] font-mono uppercase tracking-[0.3px] text-[var(--color-faded-graphite)]">
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-charcoal-ink)]" aria-hidden="true" />
               About IIP Nepal · Vision & Mission
             </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.1} yOffset={18} duration={0.6}>
-            <h2 className="font-sans font-medium text-[var(--color-charcoal-ink)] text-[26px] sm:text-[32px] lg:text-[38px] leading-[1.15] tracking-[-1px] text-balance">
+            <h2 className="font-sans font-medium text-[var(--color-charcoal-ink)] text-[28px] sm:text-[34px] lg:text-[42px] leading-[1.12] tracking-[-1.2px] text-balance">
               “To emerge as an Institute of National Importance, guiding and inculcating knowledge in learners from world over to become artists, thinkers, and leaders.”
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.2} yOffset={16} duration={0.6}>
-            <p className="font-sans text-[15px] sm:text-base leading-relaxed text-[var(--color-quiet-graphite)] max-w-2xl mt-5">
+            <p className="font-sans text-[15px] sm:text-[16px] leading-relaxed text-[var(--color-quiet-graphite)] max-w-2xl mt-5">
               IIP Nepal offers short-term courses, weekend workshops, and diploma programs, designed to develop both creative and technical photography skills at our Kathmandu Centre.
             </p>
           </ScrollReveal>
@@ -72,7 +72,7 @@ export function WhyIipSection() {
 
         {/* 4-Column Grid Reflecting IIP Nepal's Actual Course Pathways */}
         <ScrollReveal yOffset={20} duration={0.6} stagger={0.1}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 sm:gap-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 lg:gap-x-12 xl:gap-x-16 gap-y-12 sm:gap-y-16">
             {PILLARS.map((item) => {
               const Icon = item.icon;
               return (

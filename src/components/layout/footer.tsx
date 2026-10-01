@@ -6,9 +6,9 @@ export function Footer() {
 
   return (
     <footer className="w-full bg-[var(--color-workshop-ivory)] border-t border-[var(--color-drafting-line)] text-[var(--color-charcoal-ink)] transition-colors">
-      {/* Main Footer Content */}
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+      {/* Main Footer Content with Generous Screen Margins */}
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14 lg:px-20 xl:px-24 pt-20 sm:pt-28 pb-14 sm:pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-10 xl:gap-14 mb-16 sm:mb-20">
           {/* Column 1: Brand & Original Overview (5 cols) */}
           <div className="lg:col-span-5 flex flex-col gap-5">
             <Link

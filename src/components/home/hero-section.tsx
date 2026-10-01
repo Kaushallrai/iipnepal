@@ -32,9 +32,9 @@ export function HeroSection() {
         />
       </div>
 
-      {/* Main Content Area */}
-      <div className="relative z-10 w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-24 pb-12 flex-1 flex flex-col justify-center">
-        <div className="max-w-3xl">
+      {/* Main Content Area with Expansive Breathing Room */}
+      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14 lg:px-20 xl:px-24 pt-16 sm:pt-24 lg:pt-32 pb-16 sm:pb-24 lg:pb-28 flex-1 flex flex-col justify-center">
+        <div className="max-w-4xl">
           {/* Eyebrow Capsule */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-[1440px] border border-white/20 bg-white/10 backdrop-blur-md mb-6 sm:mb-8 text-[11px] font-mono text-[var(--color-paper-white)] tracking-[0.3px] uppercase">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-iip-yellow)] animate-pulse" aria-hidden="true" />
@@ -81,8 +81,8 @@ export function HeroSection() {
       </div>
 
       {/* Technical Annotation Bottom Strip with Original Details */}
-      <div className="relative z-10 w-full border-t border-white/10 bg-black/30 backdrop-blur-sm">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[11px] font-mono text-white/60 tracking-[0.3px] uppercase">
+      <div className="relative z-10 w-full border-t border-white/10 bg-black/35 backdrop-blur-md">
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14 lg:px-20 xl:px-24 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] font-mono text-white/60 tracking-[0.3px] uppercase">
           <div className="flex items-center gap-4">
             <span>Online & Kathmandu Centre</span>
             <span className="text-white/20" aria-hidden="true">/</span>

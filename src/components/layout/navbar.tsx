@@ -67,13 +67,13 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          "sticky top-0 z-40 w-full h-[65px] transition-colors duration-300 backdrop-blur-md",
+          "sticky top-0 z-40 w-full h-[70px] transition-colors duration-300 backdrop-blur-md",
           isDarkHeroMode
             ? "bg-[#1f1915]/60 border-b border-white/10 text-[var(--color-paper-white)]"
             : "bg-[var(--color-workshop-ivory)]/95 border-b border-[var(--color-drafting-line)] text-[var(--color-charcoal-ink)]"
         )}
       >
-        <div className="max-w-[1280px] h-full mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-[1440px] h-full mx-auto px-6 sm:px-10 md:px-14 lg:px-20 xl:px-24 flex items-center justify-between">
           {/* Logo / Brand Mark */}
           <Link
             href="/"

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Fragment_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { GsapRegistry } from "@/components/animations/gsap-registry";
 import "./globals.css";
 
 const geist = Geist({
@@ -35,9 +36,11 @@ export default function RootLayout({
       className={`${geist.variable} ${fragmentMono.variable} antialiased`}
     >
       <body className="min-h-[100dvh] flex flex-col bg-[var(--color-workshop-ivory)] text-[var(--color-charcoal-ink)] font-sans selection:bg-[var(--color-iip-yellow)] selection:text-[var(--color-charcoal-ink)]">
-        <Navbar />
-        <main className="flex-1 flex flex-col">{children}</main>
-        <Footer />
+        <GsapRegistry>
+          <Navbar />
+          <main className="flex-1 flex flex-col">{children}</main>
+          <Footer />
+        </GsapRegistry>
       </body>
     </html>
   );

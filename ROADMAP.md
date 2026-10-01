@@ -22,7 +22,7 @@ This document outlines the step-by-step implementation tasks. The Agent must com
   - [x] Apply large `Geist` typography (`taste`).
   - [x] Apply `impeccable` rules to ensure editorial feel.
   - [x] Apply `emil-kowalski` rules to add subtle load-in animations.
-- [ ] **Task 3.2: Why IIP Section.**
+- [x] **Task 3.2: Why IIP Section.**
 - [ ] **Task 3.3: Course Previews Grid.** (Requires database fetch)
 - [ ] **Task 3.4: Portfolio Teaser.** Implement masonry layout.
 

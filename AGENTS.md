@@ -24,11 +24,11 @@ Whenever you are tasked with building a new UI component, follow this strict pip
 4. **Auto-Polish**: Once critique passes, refine the UI to clean up spacing and ensure an editorial feel.
 5. **Auto-Animate**: Apply the **Emil Kowalski** rules for micro-interactions, and `antigravity-design-expert` for GSAP.
 
-## 5. Content Strategy & Gap Filling (MANDATORY)
-The legacy IIP Nepal website (`https://www.iipnepal.com/`) and `docs/BRIEF.md` outline the institute's mission, courses, and pages, but lack comprehensive course modules, full syllabus outlines, detailed differentiators, and rich narrative copy.
-* **Proactive Content Writing**: You MUST write and synthesize complete, authentic, high-caliber editorial content to fill every information gap. Do NOT use `lorem ipsum`, vague placeholder text (`[Insert text here]`), or block yourself waiting for copy.
-* **Photography Education Tone**: Keep the copy rooted in genuine photography education—manual exposure mastery, studio strobe lighting, documentary field work, darkroom chemistry, visual storytelling, and Kathmandu-based mentorship.
-* **Structured Details**: Flesh out rich curricula for courses (learning outcomes, weekly structures, gear requirements, mentor review sessions), clear FAQ items, realistic portfolio student projects, and authentic institute background details (Jyoti Bhawan, Kanti Path, Kathmandu).
+## 5. Content Strategy & Original Content Preservation (MANDATORY)
+The redesign MUST preserve and prioritize the authentic, original content from the legacy IIP Nepal website (`https://www.iipnepal.com/`).
+* **Preserve Original Content**: Always use the original headings, mission statements, institutional text, actual course offerings, and team/contact details (e.g., regional partner led by IIP alumnus Additya Shrestha, mentors Jhaggu Roka & Kishor Shrestha, short-term courses, weekend workshops, and diploma programs). Do NOT replace the real original website text with arbitrary or made-up slogans.
+* **Gap Filling Only When Missing**: You may only add additional content and editorial depth where information is genuinely missing (e.g. detailed week-by-week syllabus breakdowns, specific technical gear checklists, extended FAQs).
+* **Zero Generic Fillers**: Never use `lorem ipsum` or generic placeholder brackets. Keep any supplemental copy strictly grounded in genuine photography education and Kathmandu-based mentorship.
 
 ## 6. MCP (Model Context Protocol) Usage
 You have access to powerful MCP servers. You must use them proactively:

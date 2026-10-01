@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Camera, Mail, MapPin, Phone, Clock } from "lucide-react";
+import { ArrowUpRight, Camera, Mail, MapPin, Phone, Users } from "lucide-react";
 
 export function Footer() {
   const currentYear = 2026;
@@ -9,7 +9,7 @@ export function Footer() {
       {/* Main Footer Content */}
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
-          {/* Column 1: Brand & Manifesto (5 cols) */}
+          {/* Column 1: Brand & Original Overview (5 cols) */}
           <div className="lg:col-span-5 flex flex-col gap-5">
             <Link
               href="/"
@@ -30,15 +30,21 @@ export function Footer() {
             </Link>
 
             <p className="font-sans text-[14px] leading-relaxed text-[var(--color-quiet-graphite)] max-w-sm">
-              An editorial photography institute rooted in warm film grain, darkroom discipline, manual exposure mastery, and Kathmandu-based mentorship.
+              Official regional partner in Nepal, led by IIP alumnus Additya Shrestha. Offering short-term courses, weekend workshops, and diploma programs to develop creative and technical photography skills.
             </p>
 
             {/* Accreditation Badge */}
             <div className="pt-2">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--color-drafting-line)] bg-white/50 text-[11px] font-mono text-[var(--color-faded-graphite)] uppercase tracking-[0.3px]">
+              <a
+                href="https://www.iipfoundationindia.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--color-drafting-line)] bg-white/50 text-[11px] font-mono text-[var(--color-faded-graphite)] uppercase tracking-[0.3px] hover:text-[var(--color-charcoal-ink)] hover:border-[var(--color-charcoal-ink)]/30 transition-colors"
+              >
                 <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-iip-yellow)]" aria-hidden="true" />
-                An Education Wing of IIP Foundation
-              </span>
+                Affiliated with IIP Foundation India
+                <ArrowUpRight className="w-3 h-3 opacity-60" aria-hidden="true" />
+              </a>
             </div>
           </div>
 
@@ -77,7 +83,7 @@ export function Footer() {
                   href="/about"
                   className="hover:text-[var(--color-charcoal-ink)] transition-colors focus-visible:outline-none focus-visible:underline"
                 >
-                  About IIP
+                  About Us
                 </Link>
               </li>
               <li>
@@ -93,77 +99,77 @@ export function Footer() {
                   href="/enroll"
                   className="inline-flex items-center gap-1 font-medium text-[var(--color-charcoal-ink)] hover:text-black transition-colors"
                 >
-                  Enroll Online
+                  Register Online
                   <ArrowUpRight className="w-3.5 h-3.5 text-[var(--color-iip-yellow)]" aria-hidden="true" />
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Featured Courses (2 cols) */}
-          <div className="lg:col-span-2 flex flex-col gap-4">
+          {/* Column 3: Original Courses at Kathmandu Centre (3 cols) */}
+          <div className="lg:col-span-3 flex flex-col gap-4">
             <h3 className="font-mono text-[11px] uppercase tracking-[0.3px] text-[var(--color-charcoal-ink)] font-medium">
-              Curriculum
+              Kathmandu Centre Courses
             </h3>
             <ul className="flex flex-col gap-2.5 font-sans text-[14px] text-[var(--color-quiet-graphite)]">
               <li>
                 <Link
-                  href="/courses/foundation-photography"
+                  href="/courses/mobile-photography"
                   className="hover:text-[var(--color-charcoal-ink)] transition-colors"
                 >
-                  Foundation Course
+                  Online Mobile Photography (1 Mo)
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/courses/documentary-street"
+                  href="/courses/basic-photography"
                   className="hover:text-[var(--color-charcoal-ink)] transition-colors"
                 >
-                  Documentary & Street
+                  1-Month Online Basic Course
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/courses/studio-portraiture"
+                  href="/courses/foundation-course"
                   className="hover:text-[var(--color-charcoal-ink)] transition-colors"
                 >
-                  Studio & Lighting
+                  3-Month Online Foundation Course
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/courses/film-darkroom-mastery"
+                  href="/courses/pro-level-foundation"
                   className="hover:text-[var(--color-charcoal-ink)] transition-colors"
                 >
-                  Film & Darkroom
+                  Pro Level Foundation (Mentor-led)
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/courses"
-                  className="text-[12px] font-mono uppercase tracking-[0.2px] text-[var(--color-faded-graphite)] hover:text-[var(--color-charcoal-ink)] pt-1 transition-colors"
+                  href="/courses/pro-level-advanced"
+                  className="hover:text-[var(--color-charcoal-ink)] transition-colors"
                 >
-                  View all courses →
+                  Pro Level Advanced (6 Months)
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 4: Kathmandu Campus & Contact (3 cols) */}
-          <div className="lg:col-span-3 flex flex-col gap-4">
+          {/* Column 4: Kathmandu Contact & Faculty Mentors (2 cols) */}
+          <div className="lg:col-span-2 flex flex-col gap-4">
             <h3 className="font-mono text-[11px] uppercase tracking-[0.3px] text-[var(--color-charcoal-ink)] font-medium">
-              Campus Location
+              Contact & Mentors
             </h3>
             <ul className="flex flex-col gap-3 font-sans text-[14px] text-[var(--color-quiet-graphite)]">
-              <li className="flex items-start gap-2.5">
+              <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[var(--color-charcoal-ink)] shrink-0 mt-0.5" aria-hidden="true" />
                 <span>
                   Jyoti Bhawan, Kanti Path,
                   <br />
-                  Kathmandu 44600, Nepal
+                  Kathmandu, Nepal
                 </span>
               </li>
-              <li className="flex items-center gap-2.5">
+              <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[var(--color-charcoal-ink)] shrink-0" aria-hidden="true" />
                 <a
                   href="tel:+9779802364760"
@@ -172,7 +178,7 @@ export function Footer() {
                   +977 9802364760
                 </a>
               </li>
-              <li className="flex items-center gap-2.5">
+              <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[var(--color-charcoal-ink)] shrink-0" aria-hidden="true" />
                 <a
                   href="mailto:info@iipnepal.com"
@@ -181,9 +187,13 @@ export function Footer() {
                   info@iipnepal.com
                 </a>
               </li>
-              <li className="flex items-center gap-2.5 text-[13px] text-[var(--color-faded-graphite)] pt-1">
-                <Clock className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-                <span>Mon – Sat: 09:00 – 18:00 NST</span>
+              <li className="pt-1 flex flex-col gap-1 text-[12px] font-mono text-[var(--color-faded-graphite)]">
+                <span className="flex items-center gap-1.5 text-[var(--color-quiet-graphite)]">
+                  <Users className="w-3.5 h-3.5" aria-hidden="true" />
+                  Mentors & Team:
+                </span>
+                <span>Additya Shrestha (Lead)</span>
+                <span>Jhaggu Roka · Kishor Shrestha</span>
               </li>
             </ul>
           </div>
@@ -192,7 +202,7 @@ export function Footer() {
         {/* Bottom Sub-Footer Divider & Metadata */}
         <div className="pt-8 border-t border-[var(--color-drafting-line)] flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-mono text-[11px] text-[var(--color-faded-graphite)] uppercase tracking-[0.2px] text-center sm:text-left">
-            © {currentYear} Indian Institute of Photography Nepal.
+            © {currentYear} Indian Institute of Photography Nepal. Official Regional Partner.
           </p>
 
           <div className="flex items-center gap-6 font-mono text-[11px] uppercase tracking-[0.3px] text-[var(--color-quiet-graphite)]">

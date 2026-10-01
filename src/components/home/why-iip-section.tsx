@@ -1,79 +1,79 @@
 "use client";
 
-import { Aperture, Eye, Compass, Award } from "lucide-react";
+import { Smartphone, BookOpen, Layers, Users } from "lucide-react";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
 
-interface Differentiator {
-  icon: typeof Aperture;
+interface ProgramPillar {
+  icon: typeof Smartphone;
   number: string;
   title: string;
   description: string;
 }
 
-const DIFFERENTIATORS: Differentiator[] = [
+const PILLARS: ProgramPillar[] = [
   {
-    icon: Aperture,
+    icon: Smartphone,
     number: "01",
-    title: "Manual Discipline & Darkroom",
+    title: "Short-Term & Online Courses",
     description:
-      "We strip away automatic digital shortcuts. Students begin by mastering optical physics, manual triangle exposure, and traditional silver halide darkroom chemistry.",
+      "1-Month Online Mobile Photography and Basic Photography courses designed to develop creative and technical fundamentals rapidly for all learners.",
   },
   {
-    icon: Eye,
+    icon: BookOpen,
     number: "02",
-    title: "Weekly 1-on-1 Print Critiques",
+    title: "Foundation Photography",
     description:
-      "Direct weekly mentorship with practicing photojournalists and documentary artists. You learn to defend your sequencing, critique contact sheets, and establish visual voice.",
+      "3-Month Online Foundation and Pro Level Foundation courses providing structured training across camera mechanics, composition, and visual thinking.",
   },
   {
-    icon: Compass,
+    icon: Layers,
     number: "03",
-    title: "Kathmandu Valley Expeditions",
+    title: "Mentor-Led Pro Advanced",
     description:
-      "Field projects in Patan, Bhaktapur, and the inner alleys of Kanti Path. Learn to work with real communities, changing ambient sunlight, and fast-moving documentary subjects.",
+      "6-Month intensive mentor-led diploma program taking students deep into studio strobe lighting, documentary fieldwork, and professional commercial execution.",
   },
   {
-    icon: Award,
+    icon: Users,
     number: "04",
-    title: "Juried Gallery Exhibitions",
+    title: "Regional Leadership & Mentorship",
     description:
-      "Education culminates in a curated public exhibition in Kathmandu. Graduate with a physical print portfolio, exhibition credits, and IIP Foundation network access.",
+      "Led by IIP alumnus Additya Shrestha alongside experienced mentors including Jhaggu Roka and Kishor Shrestha, backed by the global IIP Foundation.",
   },
 ];
 
 export function WhyIipSection() {
   return (
     <section
-      aria-label="Why IIP Nepal"
+      aria-label="About IIP Nepal & Mission"
       className="w-full bg-[var(--color-workshop-ivory)] py-20 sm:py-24 lg:py-32 border-b border-[var(--color-drafting-line)]"
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header: Eyebrow + Title */}
+        {/* Section Header: Eyebrow + Original Vision & Mission */}
         <div className="max-w-3xl mb-16 sm:mb-20">
           <ScrollReveal yOffset={16} duration={0.5}>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[1440px] border border-[var(--color-drafting-line)] bg-white/60 mb-5 text-[11px] font-mono uppercase tracking-[0.3px] text-[var(--color-faded-graphite)]">
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-charcoal-ink)]" aria-hidden="true" />
-              Why IIP Nepal
+              About IIP Nepal · Vision & Mission
             </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.1} yOffset={18} duration={0.6}>
-            <h2 className="font-sans font-medium text-[var(--color-charcoal-ink)] text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.12] tracking-[-1.2px] text-balance">
-              Education Grounded in the Raw Realities of Visual Craft.
+            <h2 className="font-sans font-medium text-[var(--color-charcoal-ink)] text-[26px] sm:text-[32px] lg:text-[38px] leading-[1.15] tracking-[-1px] text-balance">
+              “To emerge as an Institute of National Importance, guiding and inculcating knowledge in learners from world over to become artists, thinkers, and leaders.”
             </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.2} yOffset={16} duration={0.6}>
-            <p className="font-sans text-[15px] sm:text-base leading-relaxed text-[var(--color-quiet-graphite)] max-w-2xl mt-4">
-              We reject templated digital coursework. At IIP Nepal, photography is taught as an intimate dialogue between optical discipline, light measurement, and cultural empathy.
+            <p className="font-sans text-[15px] sm:text-base leading-relaxed text-[var(--color-quiet-graphite)] max-w-2xl mt-5">
+              IIP Nepal offers short-term courses, weekend workshops, and diploma programs, designed to develop both creative and technical photography skills at our Kathmandu Centre.
             </p>
           </ScrollReveal>
         </div>
 
-        {/* 4-Column Text-Led Grid (No heavy card borders, clean whitespace) */}
+        {/* 4-Column Grid Reflecting IIP Nepal's Actual Course Pathways */}
         <ScrollReveal yOffset={20} duration={0.6} stagger={0.1}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 sm:gap-y-16">
-            {DIFFERENTIATORS.map((item) => {
+            {PILLARS.map((item) => {
               const Icon = item.icon;
               return (
                 <div key={item.number} className="flex flex-col gap-4 group">
@@ -88,7 +88,7 @@ export function WhyIipSection() {
                   </div>
 
                   {/* Heading */}
-                  <h3 className="font-sans font-medium text-[20px] sm:text-[22px] leading-tight tracking-[-0.5px] text-[var(--color-charcoal-ink)]">
+                  <h3 className="font-sans font-medium text-[19px] sm:text-[21px] leading-tight tracking-[-0.4px] text-[var(--color-charcoal-ink)]">
                     {item.title}
                   </h3>
 

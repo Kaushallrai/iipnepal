@@ -8,14 +8,14 @@ import { ScrollReveal } from "@/components/animations/scroll-reveal";
 export function HeroSection() {
   return (
     <section
-      aria-label="Introduction & Mission"
+      aria-label="Welcome to IIP Centre Nepal"
       className="relative w-full min-h-[calc(100dvh-65px)] min-h-[640px] max-h-[1050px] bg-[var(--color-charcoal-ink)] flex flex-col justify-between overflow-hidden"
     >
       {/* Background Documentary Photography */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-photographer.jpg"
-          alt="Nepali documentary photographer with rangefinder camera in Kathmandu workshop"
+          alt="Indian Institute of Photography Nepal - Student with rangefinder camera in Kathmandu workshop"
           fill
           priority
           sizes="100vw"
@@ -38,24 +38,24 @@ export function HeroSection() {
           {/* Eyebrow Capsule */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-[1440px] border border-white/20 bg-white/10 backdrop-blur-md mb-6 sm:mb-8 text-[11px] font-mono text-[var(--color-paper-white)] tracking-[0.3px] uppercase">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-iip-yellow)] animate-pulse" aria-hidden="true" />
-            Kathmandu · Est. 2011 · Photography Institute
+            Indian Institute of Photography · Kathmandu Centre
           </div>
 
-          {/* Compressed Editorial Display Headline */}
+          {/* Authentic Display Headline */}
           <ScrollReveal yOffset={20} duration={0.7}>
-            <h1 className="font-sans font-normal text-[var(--color-soft-paper)] text-[52px] sm:text-[80px] lg:text-[120px] leading-[0.93] tracking-[-2.5px] sm:tracking-[-4.5px] lg:tracking-[-8.04px] text-balance mb-6 sm:mb-8">
-              The World Is Yours.
+            <h1 className="font-sans font-normal text-[var(--color-soft-paper)] text-[44px] sm:text-[68px] lg:text-[104px] leading-[0.94] tracking-[-2px] sm:tracking-[-4px] lg:tracking-[-6.5px] text-balance mb-6 sm:mb-8">
+              Welcome to the IIP Centre Nepal.
             </h1>
           </ScrollReveal>
 
-          {/* Supporting Copy */}
+          {/* Authentic Legacy Supporting Copy */}
           <ScrollReveal delay={0.15} yOffset={16} duration={0.6}>
-            <p className="font-sans font-normal text-[var(--color-paper-white)] text-base sm:text-lg lg:text-xl leading-relaxed max-w-xl text-pretty opacity-95 mb-8 sm:mb-10">
-              Master the decisive moment. Professional darkroom discipline, manual exposure craft, and studio lighting mentorship at Nepal&apos;s premier photography academy.
+            <p className="font-sans font-normal text-[var(--color-paper-white)] text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl text-pretty opacity-95 mb-8 sm:mb-10">
+              We are proud to be associated with IIP Nepal as our official regional partner, led by talented IIP alumnus Additya Shrestha. Offering short-term courses, weekend workshops, and mentor-led diploma programs in Kathmandu.
             </p>
           </ScrollReveal>
 
-          {/* Dual CTAs: Dark Hero Glass Pill + Yellow Pill */}
+          {/* Dual CTAs: Yellow Pill (Register / Enroll) + Dark Hero Glass Pill */}
           <ScrollReveal delay={0.3} yOffset={14} duration={0.5}>
             <div className="flex flex-wrap items-center gap-4 sm:gap-5">
               {/* Primary: Yellow Pill */}
@@ -63,7 +63,7 @@ export function HeroSection() {
                 href="/enroll"
                 className="inline-flex items-center justify-center gap-2 bg-[var(--color-iip-yellow)] text-[var(--color-charcoal-ink)] hover:bg-[#f5bc14] active:scale-[0.98] transition-all duration-150 font-sans font-medium text-[15px] sm:text-base py-3.5 px-6 sm:px-7 rounded-[1440px] shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-paper-white)]"
               >
-                <span>Enroll at IIP</span>
+                <span>Register Online</span>
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </Link>
 
@@ -73,24 +73,24 @@ export function HeroSection() {
                 className="inline-flex items-center justify-center gap-2 bg-[rgba(255,253,246,0.14)] hover:bg-[rgba(255,253,246,0.22)] active:scale-[0.98] text-[var(--color-paper-white)] border border-[rgba(255,253,246,0.28)] backdrop-blur-md transition-all duration-150 font-sans font-medium text-[15px] sm:text-base py-3.5 px-6 sm:px-7 rounded-[1440px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-iip-yellow)]"
               >
                 <Compass className="w-4 h-4 opacity-80" aria-hidden="true" />
-                <span>Explore Courses</span>
+                <span>Courses Available</span>
               </Link>
             </div>
           </ScrollReveal>
         </div>
       </div>
 
-      {/* Technical Darkroom Annotation Bottom Strip */}
+      {/* Technical Annotation Bottom Strip with Original Details */}
       <div className="relative z-10 w-full border-t border-white/10 bg-black/30 backdrop-blur-sm">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[11px] font-mono text-white/60 tracking-[0.3px] uppercase">
           <div className="flex items-center gap-4">
-            <span>Darkroom & Digital Suites</span>
+            <span>Online & Kathmandu Centre</span>
             <span className="text-white/20" aria-hidden="true">/</span>
-            <span>Manual 35mm & 120 Format</span>
+            <span>Short-Term & Pro-Level Diplomas</span>
           </div>
           <div className="flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-emerald-400/80 inline-block" aria-hidden="true" />
-            <span className="text-white/80">Admissions Open · Spring 2026 Batch</span>
+            <span className="text-white/80">Call: +977 9802364760</span>
           </div>
         </div>
       </div>

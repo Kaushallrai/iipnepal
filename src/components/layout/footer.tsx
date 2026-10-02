@@ -1,7 +1,15 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Camera, Mail, MapPin, Phone } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 const FOOTER_LINKS = [
   { label: "Home", href: "/" },
@@ -14,9 +22,70 @@ const FOOTER_LINKS = [
 
 export function Footer() {
   const currentYear = 2026;
+  const footerRef = useRef<HTMLElement>(null);
+  const linksRef = useRef<HTMLDivElement>(null);
+  const wordmarkRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const footer = footerRef.current;
+      const linksContainer = linksRef.current;
+      const wordmark = wordmarkRef.current;
+      if (!footer) return;
+
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      if (prefersReducedMotion) return;
+
+      // Stagger link rows reveal on scroll
+      if (linksContainer) {
+        gsap.fromTo(
+          linksContainer.children,
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.65,
+            stagger: 0.08,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: linksContainer,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      }
+
+      // Bottom colossal wordmark reveal & scroll parallax
+      if (wordmark) {
+        gsap.fromTo(
+          wordmark,
+          { yPercent: 35, opacity: 0.05 },
+          {
+            yPercent: 0,
+            opacity: 0.22,
+            ease: "none",
+            scrollTrigger: {
+              trigger: footer,
+              start: "bottom 130%",
+              end: "bottom bottom",
+              scrub: 1.2,
+            },
+          }
+        );
+      }
+    },
+    { scope: footerRef }
+  );
 
   return (
-    <footer className="w-full bg-[#0a0a0a] text-white border-t border-white/10 relative overflow-hidden">
+    <footer
+      ref={footerRef}
+      className="section_footer theme-dark w-full bg-[#0a0a0a] text-white border-t border-white/10 relative overflow-hidden select-none"
+    >
       {/* Top Editorial Chrome: Identity & Contact Info */}
       <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12 pt-16 sm:pt-20 pb-12">
         <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-10 pb-12 border-b border-white/10">
@@ -26,7 +95,7 @@ export function Footer() {
               className="inline-flex items-center gap-3 group w-fit focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-iip-yellow)]"
               aria-label="IIP Nepal Homepage"
             >
-              <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center transition-transform group-hover:scale-105">
+              <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center transition-transform group-hover:scale-105 shrink-0">
                 <Camera className="w-4 h-4 text-[var(--color-iip-yellow)]" aria-hidden="true" />
               </div>
               <div className="flex flex-col">
@@ -79,13 +148,16 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Creative Giants Full-Width Editorial Link Rows with Trailing Arrows */}
-        <div className="flex flex-col divide-y divide-white/10 border-b border-white/10">
+        {/* Creative Giants Full-Width Editorial Link Rows with Trailing Arrows & Stagger Animation */}
+        <div
+          ref={linksRef}
+          className="flex flex-col divide-y divide-white/10 border-b border-white/10"
+        >
           {FOOTER_LINKS.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="group flex items-center justify-between py-5 text-white hover:text-[var(--color-iip-yellow)] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-iip-yellow)]"
+              className="group flex items-center justify-between py-5 text-white hover:text-[var(--color-iip-yellow)] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-iip-yellow)] will-change-transform"
             >
               <span className="font-mono text-[13px] sm:text-[14px] uppercase tracking-[0.2em]">
                 {link.label}
@@ -94,7 +166,6 @@ export function Footer() {
             </Link>
           ))}
         </div>
-
 
         {/* Legal & Attribution Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono uppercase tracking-[0.2em] text-white/50">
@@ -114,8 +185,11 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Creative Giants Bottom Colossal Poster Wordmark Spanning Edge-to-Edge */}
-      <div className="w-full overflow-hidden select-none pointer-events-none opacity-20 hover:opacity-30 transition-opacity pb-2">
+      {/* Creative Giants Bottom Colossal Poster Wordmark Spanning Edge-to-Edge with Parallax */}
+      <div
+        ref={wordmarkRef}
+        className="footer-wordmark w-full overflow-hidden select-none pointer-events-none pb-2 will-change-transform"
+      >
         <svg
           viewBox="0 0 1200 135"
           className="w-full h-auto block"

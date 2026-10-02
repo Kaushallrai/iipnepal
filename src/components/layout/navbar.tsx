@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Camera, X, ArrowUpRight } from "lucide-react";
+import { Camera, Menu, X, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface NavItem {
@@ -22,11 +22,11 @@ const NAV_ITEMS: NavItem[] = [
 export function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 30);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -35,7 +35,7 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (menuOpen) {
+    if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
@@ -43,10 +43,10 @@ export function Navbar() {
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [menuOpen]);
+  }, [mobileMenuOpen]);
 
   useEffect(() => {
-    setMenuOpen(false);
+    setMobileMenuOpen(false);
   }, [pathname]);
 
   return (
@@ -59,27 +59,27 @@ export function Navbar() {
             : "bg-[var(--color-bone-white)]"
         )}
       >
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 h-[72px] sm:h-[80px] flex items-center justify-between">
-          {/* Creative Giants Header Lockup: Circular Mark + Microtype Eyebrow */}
+        <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 h-[72px] sm:h-[80px] flex items-center justify-between">
+          {/* Creative Giants Header Brand Lockup: Circular Camera Mark + Technical Microtype */}
           <Link
             href="/"
             className="flex items-center gap-3.5 group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-iip-yellow)]"
             aria-label="IIP Nepal Homepage"
           >
-            <div className="w-8 h-8 rounded-full bg-[var(--color-ink-black)] text-[var(--color-bone-white)] flex items-center justify-center transition-transform group-hover:scale-105">
+            <div className="w-8 h-8 rounded-full bg-[var(--color-ink-black)] text-[var(--color-bone-white)] flex items-center justify-center transition-transform group-hover:scale-105 shrink-0">
               <Camera className="w-4 h-4 text-[var(--color-iip-yellow)]" aria-hidden="true" />
             </div>
             <div className="flex flex-col">
               <span className="font-mono text-[11px] sm:text-[11.5px] uppercase tracking-[0.2em] font-medium text-[var(--color-ink-black)] leading-tight">
                 PHOTOGRAPHY EDUCATION
               </span>
-              <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-[var(--color-graphite)] leading-tight">
+              <span className="font-mono text-[9px] sm:text-[9.5px] uppercase tracking-[0.2em] text-[var(--color-graphite)] leading-tight">
                 // KATHMANDU CENTRE · EST. 2011
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation Bar (Direct links, No Menu button) */}
           <nav
             aria-label="Primary Navigation"
             className="hidden lg:flex items-center gap-8 xl:gap-10 font-mono text-[12px] uppercase tracking-[0.25em]"
@@ -114,112 +114,111 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Right Actions: Menu Pill + Yellow Enroll Pill */}
+          {/* Right Actions: Direct Enroll Pill + Mobile Drawer Trigger */}
           <div className="flex items-center gap-3 sm:gap-4">
             <Link
+              href="/contact"
+              className="hidden sm:inline-flex items-center font-mono text-[11.5px] uppercase tracking-[0.2em] text-[var(--color-graphite)] hover:text-[var(--color-ink-black)] transition-colors pr-2"
+            >
+              Contact Us
+            </Link>
+
+            <Link
               href="/enroll"
-              className="inline-flex items-center justify-center bg-[var(--color-iip-yellow)] text-[var(--color-ink-black)] hover:bg-[#f5bc14] active:scale-[0.98] transition-all font-sans font-normal text-[14px] sm:text-[14.5px] py-2.5 sm:py-3 px-5 sm:px-7 rounded-[1440px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ink-black)]"
+              className="inline-flex items-center justify-center bg-[var(--color-iip-yellow)] text-[var(--color-ink-black)] hover:bg-[#f5bc14] active:scale-[0.98] transition-all font-sans font-normal text-[13.5px] sm:text-[14px] py-2.5 sm:py-3 px-5 sm:px-7 rounded-[1440px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ink-black)] shadow-none"
             >
               Enroll
             </Link>
 
-            {/* Creative Giants Black Menu Pill */}
+            {/* Mobile Hamburger Only (Hidden on Desktop) */}
             <button
               type="button"
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="inline-flex items-center justify-center bg-[var(--color-ink-black)] text-[var(--color-bone-white)] hover:bg-black/85 active:scale-[0.98] transition-all font-sans font-normal text-[14px] sm:text-[14.5px] py-2.5 sm:py-3 px-5 sm:px-6 rounded-[1440px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-iip-yellow)]"
-              aria-label={menuOpen ? "Close Menu" : "Open Menu"}
-              aria-expanded={menuOpen}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden w-10 h-10 rounded-full border border-[var(--color-hairline)] flex items-center justify-center text-[var(--color-ink-black)] hover:bg-black/5 active:scale-95 transition-all"
+              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={mobileMenuOpen}
             >
-              <span>{menuOpen ? "Close" : "Menu"}</span>
+              {mobileMenuOpen ? (
+                <X className="w-4 h-4" />
+              ) : (
+                <Menu className="w-4 h-4" />
+              )}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Creative Giants Full-Screen Editorial Menu Overlay */}
-      {menuOpen && (
+      {/* Mobile Editorial Navigation Overlay (Mobile Viewports Only) */}
+      {mobileMenuOpen && (
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="Navigation Menu"
-          className="fixed inset-0 z-50 bg-[var(--color-ink-black)] text-[var(--color-bone-white)] flex flex-col justify-between p-8 sm:p-14 lg:p-20 animate-in fade-in duration-300"
+          aria-label="Mobile Navigation Menu"
+          className="lg:hidden fixed inset-0 z-50 bg-[#0a0a0a] text-white flex flex-col justify-between p-6 sm:p-10 animate-in fade-in duration-200"
         >
           {/* Top Bar inside Overlay */}
-          <div className="flex items-center justify-between border-b border-white/15 pb-6">
+          <div className="flex items-center justify-between border-b border-white/10 pb-5">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-[var(--color-bone-white)] text-[var(--color-ink-black)] flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center">
                 <Camera className="w-4 h-4 text-[var(--color-iip-yellow)]" aria-hidden="true" />
               </div>
-              <span className="font-mono text-[12px] uppercase tracking-[0.25em] text-white/70">
+              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/70">
                 IIP NEPAL // INDEX
               </span>
             </div>
 
             <button
               type="button"
-              onClick={() => setMenuOpen(false)}
-              className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.2em] bg-white/10 hover:bg-white/20 py-2.5 px-6 rounded-[1440px] text-white transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-10 h-10 rounded-full border border-white/20 text-white flex items-center justify-center hover:bg-white/10 active:scale-95 transition-colors"
+              aria-label="Close mobile menu"
             >
-              <span>Close</span>
-              <X className="w-4 h-4" />
+              <X className="w-5 h-5" aria-hidden="true" />
             </button>
           </div>
 
-          {/* Main Giant Menu Links */}
-          <div className="my-auto py-8">
-            <nav className="flex flex-col gap-4 sm:gap-6">
-              {NAV_ITEMS.map((item, idx) => {
-                const isActive =
-                  item.href === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(item.href);
+          {/* Links List */}
+          <nav
+            aria-label="Mobile Menu Links"
+            className="flex flex-col gap-3 py-6"
+          >
+            {NAV_ITEMS.map((item, index) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="font-sans font-light text-[32px] sm:text-[40px] text-white hover:text-[var(--color-iip-yellow)] transition-colors flex items-center justify-between border-b border-white/10 py-3"
+              >
+                <span>{item.label}</span>
+                <span className="font-mono text-[12px] text-white/40 tracking-[0.2em]">
+                  0{index + 1}
+                </span>
+              </Link>
+            ))}
+          </nav>
 
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="group flex items-baseline justify-between py-2 sm:py-3 border-b border-white/10 hover:border-white/40 transition-colors"
-                  >
-                    <div className="flex items-baseline gap-6 sm:gap-10">
-                      <span className="font-mono text-[12px] text-white/40">
-                        0{idx + 1}
-                      </span>
-                      <span className="font-sans font-light text-[36px] sm:text-[56px] lg:text-[72px] leading-tight tracking-[-0.03em] group-hover:translate-x-3 transition-transform duration-300">
-                        {item.label}
-                      </span>
-                    </div>
-                    <ArrowUpRight
-                      className={cn(
-                        "w-6 h-6 sm:w-8 sm:h-8 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1",
-                        isActive
-                          ? "text-[var(--color-iip-yellow)] opacity-100"
-                          : "text-white/40 group-hover:text-white"
-                      )}
-                      aria-hidden="true"
-                    />
-                  </Link>
-                );
-              })}
-            </nav>
-          </div>
-
-          {/* Bottom Overlay Details */}
-          <div className="pt-8 border-t border-white/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 font-mono text-[12px] uppercase tracking-[0.2em] text-white/60">
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-8">
-              <span>Jyoti Bhawan, Kanti Path, Kathmandu</span>
-              <span>Tel: +977 9802364760</span>
-            </div>
-
-            <div className="flex items-center gap-6">
+          {/* Bottom Actions & Coordinates */}
+          <div className="flex flex-col gap-5 pt-4 border-t border-white/10">
+            <div className="flex items-center justify-between gap-3">
               <Link
                 href="/enroll"
-                onClick={() => setMenuOpen(false)}
-                className="bg-[var(--color-iip-yellow)] text-[var(--color-ink-black)] py-3 px-8 rounded-[1440px] font-sans font-normal"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex-1 inline-flex items-center justify-center bg-[var(--color-iip-yellow)] text-[var(--color-ink-black)] font-sans font-normal text-[15px] py-3.5 px-6 rounded-[1440px]"
               >
-                Enroll Now →
+                Enroll Online
               </Link>
+              <Link
+                href="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="inline-flex items-center justify-center border border-white/30 text-white font-sans font-normal text-[15px] py-3.5 px-6 rounded-[1440px]"
+              >
+                Contact
+              </Link>
+            </div>
+
+            <div className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-white/50 flex flex-col gap-1">
+              <span>Kathmandu Centre · Jyoti Bhawan, Kanti Path</span>
+              <span>Tel: +977 9802364760 · info@iipnepal.com</span>
             </div>
           </div>
         </div>

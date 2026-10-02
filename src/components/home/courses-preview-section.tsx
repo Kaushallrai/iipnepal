@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
+import { LineReveal } from "@/components/animations/line-reveal";
 import { ORIGINAL_COURSES, CourseItem } from "@/lib/courses-data";
 
 interface CoursesPreviewProps {
@@ -55,11 +56,13 @@ export function CoursesPreviewSection({ courses }: CoursesPreviewProps) {
               </span>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.08} yOffset={16} duration={0.6}>
-              <h2 className="font-sans font-light text-[var(--color-ink-black)] text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.05] tracking-[-0.03em]">
-                Courses Available at Kathmandu Centre
-              </h2>
-            </ScrollReveal>
+            <LineReveal
+              as="h2"
+              lines={["Courses Available at", "Kathmandu Centre"]}
+              className="font-sans font-light text-[var(--color-ink-black)] text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.05] tracking-[-0.03em]"
+              duration={0.75}
+              stagger={0.08}
+            />
           </div>
 
           <div className="flex items-center gap-4 self-start sm:self-end">

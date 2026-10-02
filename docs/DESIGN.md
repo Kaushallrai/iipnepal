@@ -225,15 +225,50 @@ Four 12px all-caps labels (CHOOSE COURSE, YOUR DETAILS, SUBMIT, CONFIRMATION) se
 
 8px 12px padding, 1440px radius, 12px all-caps. Default: Ink Black text, transparent fill, 1px Ash border. Accent: IIP Yellow fill, Ink Black text, no border.
 
-### Closing CTA
-**Role:** Final conversion moment on the home page and course pages.
+### Top Navigation Bar
+**Role:** Persistent public editorial navigation. Chrome that recedes.
 
-A full-bleed photograph (dark, muted, documentary) with a Navy Ink or Ink Black overlay, rather than a flat color band. Headline "Ready to start your photography journey?" in Bone White, 54–84px weight 300, left-aligned, with one Yellow Pill ("Enroll at IIP →"). No more than one dark section in a row.
+No heavy background fill — the Bone White (`#fffef7`) canvas is the header with subtle 1px hairline border on scroll. Navigation links are directly visible in desktop view (`Home`, `Courses`, `Portfolio`, `About`, `Contact`) in 12px font-mono uppercase tracking (`0.25em`). At the far right: Yellow Pill "Enroll" (`#ffc61a`) with Ink Black text. Standalone desktop "Menu" button toggle is removed; on mobile/tablet a lightweight responsive menu handles navigation cleanly.
+
+### Closing CTA (Compact Height)
+**Role:** High-impact closing conversion before Get In Touch / Footer.
+
+Sleek, decreased height (`py-14 sm:py-20 lg:py-24`) on `#0a0a0a` deep black background. Headline "Ready to Start Your Photography Journey?" rendered in Switzer 300 / font-light with signature Creative Giants line-by-line masked reveals. Dual action pills: Yellow Pill "Enroll Now" and translucent glass "Contact Us".
+
+### Animated Admissions Timeline
+**Role:** Clear 7-step admission process with interactive timeline motion.
+
+An editorial timeline layout featuring an animated vertical 1px hairline track that draws/fills active progress on scroll. Steps 01 to 07 illuminate as scroll passes each node. Step titles and descriptions enter via staggered line reveals.
+
+### Testimonials Section
+**Role:** Authentic student and alumni reviews modeled after Creative Giants.
+
+Minimalist quotation slider featuring oversized weight-300 typography (`text-[26px] sm:text-[36px] lg:text-[42px]`), circular outline arrow navigation controls (`←` `→`), subtle counter indicator, and line-by-line quote reveals.
+
+### Brand & Partner Marquee
+**Role:** Institutional validation and photography affiliations.
+
+Full-width continuous smooth linear marquee ticker (`#fffef7` canvas with 1px top and bottom hairline borders) featuring authentic IIP partners: IIP Foundation, Canon Professional Services, Nikon School, Photo Kathmandu, National Geographic Contributors, Patan Museum, and Nepal Tourism Board.
+
+### News & Fieldwork Dispatches
+**Role:** Editorial journal and field updates.
+
+Grid of documentary story cards featuring sharp 0px photography frames, subtle hover scale (`scale: 1.05`), category tags, and "Read Dispatch ↗" arrow links.
+
+### Get In Touch Section
+**Role:** Editorial contact and inquiry invitation directly modeled after Creative Giants' `section_contact-cta`.
+
+Two-column editorial split: left column features a 12px all-caps eyebrow ("GET IN TOUCH"), display headline ("Speak to us."), narrative invitation, and Kathmandu campus coordinates; right column features a clean inquiry form with sharp 0px inputs and Yellow Pill "Send Enquiry" button.
 
 ### Footer
-**Role:** Contact details and legal links on every page.
+**Role:** Full-width editorial links, contact details, and colossal bottom poster wordmark.
 
-Same Bone White canvas, no fill change, 1px Hairline top rule. Multi-column link lists in 14px Ink Black with 8px row gap. Includes the IIP logo, address (Jyoti Bhawan, Kanti Path, Kathmandu 44600), phone (+977 9802364760), email, primary links, social links, and Terms/Privacy. Keep the "An Education Wing of IIP Foundation" attribution as a 12px Graphite line. The Charcoal Scale → Ink Black gradient (`#4d4c4a` → `#000000`) is reserved for an optional dark-footer variant and is never used elsewhere.
+Deep black (`#0a0a0a`) surface with full-width link list rows with trailing right-up arrows (`↗`) separated by 1px hairlines. Links reveal with stagger on scroll into view. The colossal `IIP NEPAL` display poster wordmark stretches edge-to-edge across the bottom with subtle scroll parallax.
+
+### Creative Giants Animation System & Parallax
+- **Signature Line-by-Line Reveal (`[js-line-animation]`)**: Major headings, quotes, and manifesto lines are wrapped in `overflow: hidden` line containers (`.line`) with inner elements (`.line-inner`) that animate `fromTo({ yPercent: 100 }, { yPercent: 0, duration: 0.7s, ease: "power3.out", stagger: 0.08s })` triggered on scroll.
+- **Hero Entrance Sequence**: ClipPath wipe on top header (`clipPath: inset(0% 0% 100% 0%)`), colossal wordmark fade & slide, image band vertical clipPath wipe (`clipPath: inset(100% 0% 0% 0%)`), and line-by-line overlay text stagger.
+- **Scroll Parallax**: Multi-speed scroll parallax applied to documentary image bands (`yPercent: -20` to `yPercent: -40`), background layers, and bottom footer wordmark.
 
 ### Legal Page Body
 **Role:** Terms and Privacy.

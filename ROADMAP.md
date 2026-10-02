@@ -16,16 +16,25 @@ This document outlines the step-by-step implementation tasks. The Agent must com
 - [x] **Task 2.2:** Build the Global Footer.
 - [x] **Task 2.3:** Initialize GSAP provider/registry for Next.js App Router. (Skill: `antigravity-design-expert`)
 
-## Phase 3: Home Page Implementation
+## Phase 3: Home Page Implementation (Creative Giants System)
 - [x] **Task 3.1: Hero Section.**
-  - [x] Scaffold structure.
-  - [x] Apply large `Geist` typography (`taste`).
-  - [x] Apply `impeccable` rules to ensure editorial feel.
-  - [x] Apply `emil-kowalski` rules to add subtle load-in animations.
+  - [x] Exact Creative Giants entrance sequence (clipPath on top wordmark, colossal Bebas Neue wordmark, image band clipPath reveal).
+  - [x] 100dvh sizing with zero scrollbar overflow.
+  - [x] Direct navigation bar (Home, Courses, Portfolio, About, Contact + Enroll CTA) removing desktop menu button.
+  - [x] LineReveal on overlay headline & scroll-driven parallax.
 - [x] **Task 3.2: Why IIP Section.**
-- [x] **Task 3.3: Course Previews Grid.** (Requires database fetch)
-- [x] **Task 3.4: Portfolio Teaser.** Implement masonry layout with authentic student photography.
-- [x] **Task 3.5: Admissions & Closing CTA.** Implement authentic 7-step admissions workflow and verbatim closing CTA band.
+  - [x] Creative Giants `[js-line-animation]` line-by-line reveal.
+  - [x] Drawing hairline border (`scaleX: 0 -> 1`).
+  - [x] 3 Key metrics (`13+`, `5,000+`, `100%`) with line icons.
+- [x] **Task 3.3: Course Previews Grid.** 5 core programs, chromatic cards, arrow controls, LineReveal.
+- [x] **Task 3.4: Portfolio Teaser.** Pinned horizontal parallax scroll with calibrated speeds and zero text collisions / overlaps.
+- [x] **Task 3.5: Admissions Process.** Animated vertical timeline track with scroll progress scrub and node activations.
+- [x] **Task 3.6: Testimonials Section.** Creative Giants minimalist quote slider with circular outline controls.
+- [x] **Task 3.7: Brand Marquee Section.** Continuous infinite linear partner ticker.
+- [x] **Task 3.8: News & Dispatches Section.** Editorial cards with image zoom on hover and tags.
+- [x] **Task 3.9: Closing CTA.** Decreased height, line-by-line reveal, dual actions.
+- [x] **Task 3.10: Get In Touch Section.** Pre-footer split editorial contact and quick inquiry form.
+- [x] **Task 3.11: Footer Animation.** Link rows stagger reveal and colossal bottom poster wordmark with scroll parallax.
 
 ## Phase 4: Dynamic Routes & Data (Courses & Portfolio)
 - [ ] **Task 4.1:** Build `/courses` directory page. Fetch from Prisma.

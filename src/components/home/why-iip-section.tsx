@@ -1,84 +1,100 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Globe, Users, Award } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { LineReveal } from "@/components/animations/line-reveal";
 
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
 }
 
 export function WhyIipSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+  const metricsRef = useRef<HTMLDivElement>(null);
+  const eyebrowRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          once: true,
-        },
-        defaults: { ease: "power2.out" },
-      });
+  useGSAP(
+    () => {
+      const section = sectionRef.current;
+      const line = lineRef.current;
+      const metrics = metricsRef.current;
+      const eyebrow = eyebrowRef.current;
+      if (!section) return;
 
-      // Creative Giants Eyebrow reveal
-      tl.from(".why-iip_eyebrow", {
-        opacity: 0,
-        y: 18,
-        duration: 0.7,
-      });
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
 
-      // Creative Giants Manifesto Display Headline reveal
-      tl.from(
-        ".why-iip_manifesto",
-        {
-          opacity: 0,
-          y: 30,
-          duration: 0.85,
-        },
-        "-=0.5"
-      );
+      if (prefersReducedMotion) {
+        if (line) gsap.set(line, { scaleX: 1 });
+        if (metrics) gsap.set(metrics.children, { opacity: 1, y: 0 });
+        if (eyebrow) gsap.set(eyebrow, { opacity: 1, y: 0 });
+        return;
+      }
 
-      // Subtext paragraph reveal
-      tl.from(
-        ".why-iip_desc",
-        {
-          opacity: 0,
-          y: 20,
-          duration: 0.75,
-        },
-        "-=0.55"
-      );
+      // Eyebrow fade in with dot pulse
+      if (eyebrow) {
+        gsap.fromTo(
+          eyebrow,
+          { opacity: 0, y: 16 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 80%",
+              once: true,
+            },
+          }
+        );
+      }
 
-      // Architectural Hairline divider draw
-      tl.from(
-        ".why-iip_line",
-        {
-          scaleX: 0,
-          transformOrigin: "left",
-          duration: 0.9,
-          ease: "power2.inOut",
-        },
-        "-=0.5"
-      );
+      // Hairline divider drawing animation
+      if (line) {
+        gsap.fromTo(
+          line,
+          { scaleX: 0, transformOrigin: "left" },
+          {
+            scaleX: 1,
+            duration: 1,
+            ease: "power2.inOut",
+            scrollTrigger: {
+              trigger: line,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      }
 
-      // Creative Giants 3 Key Metrics Stagger
-      tl.from(
-        ".why-iip_metric",
-        {
-          opacity: 0,
-          y: 28,
-          duration: 0.8,
-          stagger: 0.16,
-        },
-        "-=0.5"
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+      // 3 Key metrics stagger reveal
+      if (metrics) {
+        gsap.fromTo(
+          metrics.children,
+          { opacity: 0, y: 28 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.75,
+            stagger: 0.14,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: metrics,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      }
+    },
+    { scope: sectionRef }
+  );
 
   return (
     <section
@@ -89,25 +105,56 @@ export function WhyIipSection() {
       <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12">
         {/* Creative Giants "WHAT WE DO" Eyebrow & Giant Manifesto Statement */}
         <div className="max-w-4xl mb-14 sm:mb-18 lg:mb-20">
-          <span className="why-iip_eyebrow font-mono text-[12px] uppercase tracking-[0.25em] text-[var(--color-graphite)] block mb-5">
-            WHAT WE DO // VISION & MISSION
-          </span>
+          <div
+            ref={eyebrowRef}
+            className="flex items-center gap-2.5 font-mono text-[12px] uppercase tracking-[0.25em] text-[var(--color-graphite)] mb-6 select-none"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-ink-black)] inline-block" />
+            <span>WHAT WE DO // VISION & MISSION</span>
+          </div>
 
-          <h2 className="why-iip_manifesto font-sans font-light text-[var(--color-ink-black)] text-[26px] sm:text-[38px] lg:text-[46px] leading-[1.14] tracking-[-0.03em] text-balance">
-            “To emerge as ‘Institute of National Importance in promoting Cultural and Creative Arts of India, globally’ by guiding and inculcating knowledge in learners mindset from world over to become artists, thinkers and leaders.”
-          </h2>
+          {/* Creative Giants Signature Line-by-Line Reveal on Headline */}
+          <LineReveal
+            as="h2"
+            lines={[
+              "“To emerge as ‘Institute of National Importance",
+              "in promoting Cultural and Creative Arts of India, globally’",
+              "by guiding and inculcating knowledge in learners mindset",
+              "from world over to become artists, thinkers and leaders.”",
+            ]}
+            className="font-sans font-light text-[var(--color-ink-black)] text-[24px] sm:text-[34px] lg:text-[42px] leading-[1.18] tracking-[-0.03em] text-balance mb-6"
+            duration={0.75}
+            stagger={0.08}
+            startTrigger="top 78%"
+          />
 
-          <p className="why-iip_desc font-sans text-[16px] sm:text-[18px] leading-[1.7] text-[var(--color-graphite)] max-w-2xl mt-6">
-            We go beyond traditional classrooms. IIP Nepal offers short-term courses, weekend workshops, and mentor-led diploma programs, designed to develop creative vision and manual exposure mastery in real-world spaces.
-          </p>
+          {/* Supporting Narrative with Line-by-Line Reveal */}
+          <LineReveal
+            as="p"
+            lines={[
+              "We go beyond traditional classrooms. IIP Nepal offers short-term courses,",
+              "weekend workshops, and mentor-led diploma programs, designed to develop creative",
+              "vision and manual exposure mastery in real-world spaces.",
+            ]}
+            className="font-sans text-[16px] sm:text-[18px] leading-[1.7] text-[var(--color-graphite)] max-w-2xl mt-4"
+            duration={0.7}
+            stagger={0.07}
+            startTrigger="top 78%"
+          />
         </div>
 
-        {/* Hairline Divider */}
-        <div className="why-iip_line w-full h-[1px] bg-[var(--color-hairline)] mb-12 sm:mb-16" />
+        {/* Hairline Divider Drawing */}
+        <div
+          ref={lineRef}
+          className="w-full h-[1px] bg-[var(--color-hairline)] mb-12 sm:mb-16 will-change-transform"
+        />
 
         {/* Creative Giants 3 Key Metrics Row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-12">
-          <div className="why-iip_metric flex flex-col gap-3">
+        <div
+          ref={metricsRef}
+          className="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-12"
+        >
+          <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3">
               <Globe className="w-6 h-6 text-[var(--color-ink-black)] stroke-[1.25]" aria-hidden="true" />
               <span className="font-sans font-light text-[36px] sm:text-[44px] text-[var(--color-ink-black)] tracking-tight leading-none">
@@ -119,7 +166,7 @@ export function WhyIipSection() {
             </p>
           </div>
 
-          <div className="why-iip_metric flex flex-col gap-3">
+          <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3">
               <Users className="w-6 h-6 text-[var(--color-ink-black)] stroke-[1.25]" aria-hidden="true" />
               <span className="font-sans font-light text-[36px] sm:text-[44px] text-[var(--color-ink-black)] tracking-tight leading-none">
@@ -131,7 +178,7 @@ export function WhyIipSection() {
             </p>
           </div>
 
-          <div className="why-iip_metric flex flex-col gap-3">
+          <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3">
               <Award className="w-6 h-6 text-[var(--color-ink-black)] stroke-[1.25]" aria-hidden="true" />
               <span className="font-sans font-light text-[36px] sm:text-[44px] text-[var(--color-ink-black)] tracking-tight leading-none">

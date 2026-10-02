@@ -35,19 +35,39 @@ The redesign MUST preserve and prioritize 100% of the authentic, original conten
 ## 6. Creative Giants Design System & Editorial Rules (MANDATORY per docs/DESIGN.md)
 The visual architecture is directly modeled after **Creative Giants** (`https://www.creativegiants.art/`) while honoring the authentic IIP Nepal identity:
 * **Primary Reference Site**: Always consult `https://www.creativegiants.art/` for layout hierarchy, rhythm, typography contrast, and editorial discipline.
-* **100dvh Hero Sizing & Entrance Timeline**: Sized to `h-[calc(100dvh-72px)] sm:h-[calc(100dvh-80px)]` so the entire hero (header + colossal poster wordmark `IIP NEPAL` + full-bleed documentary photo band + technical annotation strip) fits 100% within the viewport height without causing page scrollbar overflow. Animated with Creative Giants' signature GSAP clipPath entrance sequence (`clipPath: "inset(0% 0% 100% 0%)"` on the top wordmark, fading in the headline, `clipPath: "inset(100% 0% 0% 0%)"` on the image band, and staggered overlay items).
-* **Display Poster Wordmark**: Use colossal, condensed architectural poster lettering (`Bebas Neue` / `var(--font-poster)`) for `IIP NEPAL` spanning edge-to-edge across the screen on cream paper before the first photograph, and again at the very bottom of the deep black footer.
+* **Navigation Bar Over Menu Button**: Prefer a clean, persistent horizontal navigation bar displaying primary links (`Home`, `Courses`, `Portfolio`, `About`, `Contact`), a Yellow Pill "Enroll" button, and subtle secondary actions. Remove standalone desktop "Menu" button pills.
+* **100dvh Hero Sizing & Exact Creative Giants Entrance Timeline**: Sized to `h-[calc(100dvh-72px)] sm:h-[calc(100dvh-80px)]` so the entire hero (header + colossal poster wordmark `IIP NEPAL` + full-bleed documentary photo band + technical annotation strip) fits 100% within the viewport height without causing page scrollbar overflow. Animated with Creative Giants' signature GSAP clipPath entrance sequence (`clipPath: "inset(0% 0% 100% 0%)"` on the top wordmark, fading in the headline, `clipPath: "inset(100% 0% 0% 0%)"` on the image band, and staggered overlay items with line reveals). Includes scroll-driven image parallax and subtle scale.
+* **Creative Giants Signature Line-by-Line Reveal Animation (`[js-line-animation]`)**:
+  - All major display headlines, quotes, manifesto statements, and section introductions MUST use Creative Giants' line-by-line masked reveal animation: each line is wrapped in an `overflow: hidden` line container (`.line`), with an inner block (`.line-inner`) translating from `yPercent: 100` to `yPercent: 0` via GSAP ScrollTrigger (`duration: 0.7s - 0.8s`, `ease: "power3.out"`, staggered `0.08s`).
+* **Display Poster Wordmark**: Use colossal, condensed architectural poster lettering (`Bebas Neue` / `var(--font-poster)`) for `IIP NEPAL` spanning edge-to-edge across the screen on cream paper before the first photograph, and again at the very bottom of the deep black footer with scroll parallax.
 * **Architectural Swiss Grid**: Subtle 5-column vertical hairline rules (`rgba(0,0,0,0.04)`) spanning down the page, providing architectural structure.
 * **Typography**: Bebas Neue (`font-poster`) for colossal poster wordmarks. Switzer / Inter single-family for editorial copy: weight 300 (`font-light`) for display and headlines (20px and above) with aggressive tight tracking (`-0.02em` to `-0.04em`), weight 400 for body, labels, buttons, and form text. **Never bold a heading (no weight 500+).**
-* **Why IIP / Vision & Mission**: Manifesto statement and 3 metrics row (`13+`, `5,000+`, `100%`) with Lucide line icons and drawing hairline border. No 4 numbered pillar cards.
+* **Why IIP / Vision & Mission**: Manifesto statement with signature line-by-line reveal, drawing hairline divider (`scaleX: 0 -> 1`), and 3 metrics row (`13+`, `5,000+`, `100%`) with Lucide line icons.
 * **Creative Giants Pinned Horizontal Parallax Projects Section (`section_projects-scroll theme-dark`)**:
   - Full-width Deep Black (`#0a0a0a`) section showcasing Student Work & Fieldwork / Portfolio & Student Projects.
   - Desktop (`(min-width: 991px)`): Pinned horizontal scroll container via GSAP ScrollTrigger (`pin: true`, `pinSpacing: true`, `scrub: 1.2`, `anticipatePin: 1`). Slides translate across `x: -scrollWidth`. Each slide features Creative Giants' 3-column layout with multi-speed parallax:
-    - Left column (`projects-scroll_content-left`): Eyebrow (`PROJECT 01`), display headline, photographer credit (`xPercent: -18`, `scrub: 3`).
-    - Middle column (`projects-scroll_content-middle`): Sharp documentary photo frame with authentic Nepal imagery (`xPercent: -45`, `scrub: 3`).
-    - Right column (`projects-scroll_content-right`): Underlined category tags, narrative summary, and "Explore Project ↗" CTA (`xPercent: -75`, `scrub: 3`).
-  - Bottom Fixed Progress Bar & Counter: 1px hairline progress track with active indicator width (`0% -> 100%`), number counter (`01 / 04`), and "All Projects" pill button.
+    - Left column (`projects-scroll_content-left`): Eyebrow (`PROJECT 01`), display headline, photographer credit (`xPercent: -10`, `scrub: 3`).
+    - Middle column (`projects-scroll_content-middle`): Sharp documentary photo frame with authentic Nepal imagery (`xPercent: -20`, `scrub: 3`).
+    - Right column (`projects-scroll_content-right`): Underlined category tags, concise narrative summary, and "Explore Project ↗" CTA (`xPercent: -30`, `scrub: 3`).
+    - Note on collision prevention: Parallax differentials are calibrated so text never collides or overlaps with the middle photograph.
+  - Bottom Fixed Progress Bar & Counter: 1px hairline progress track with active indicator width (`0% -> 100%`), number counter (`[ 01 / 04 ]`), and "All Projects" pill button.
   - Tablet / Mobile Fallback (`< 991px`): Horizontal touch snap carousel on `#0a0a0a` deep black background with circular chevron navigation controls (`←` `→`).
+* **Animated Admissions Process Timeline**:
+  - Editorial step-by-step timeline featuring an animated vertical 1px hairline track that scrubs progress on scroll, illuminable numbered step nodes (`01` through `07`), and staggered line reveals for authentic admissions criteria.
+* **Decreased Height Closing CTA Section**:
+  - Compact editorial height (`py-14 sm:py-20 lg:py-24`) with line-by-line masked text reveals, verbatim copy ("Ready to Start Your Photography Journey?"), and dual action pills.
+* **Testimonials Section (`section_testimonials`)**:
+  - Creative Giants minimalist quotation slider with oversized Switzer 300 type, circular outline arrow navigation (`←` `→`), and authentic alumni voices.
+* **Brand / Partner Marquee (`section_brand-marquee`)**:
+  - Continuous smooth infinite marquee ticker displaying institutional partners and affiliations (IIP Foundation, Canon, Nikon, Photo Kathmandu, etc.).
+* **News & Fieldwork Dispatches (`section_news-cta`)**:
+  - Editorial cards with documentary photography, image scale on hover (`scale: 1.05`), category tags, and "Read Dispatch ↗" links.
+* **Get In Touch Section (`section_contact-cta`)**:
+  - Creative Giants editorial pre-footer contact section with display headline ("Speak to us."), narrative intro, Kathmandu campus coordinates, and a sharp 0px quick inquiry form.
+* **Creative Giants Deep Black Editorial Footer**:
+  - Deep black (`#0a0a0a`) canvas with full-width link list rows with right-up arrows (`HOME ↗`, `COURSES ↗`, etc.) separated by 1px hairlines, contact info, "Enroll Now" and "Contact Us" pill buttons, and the colossal `IIP NEPAL` display wordmark running edge-to-edge across the bottom with scroll parallax.
+* **Global Parallax Effects**:
+  - Multi-speed scroll parallax applied to image containers, editorial bands, and background hairlines.
 * **Border Radii**:
   - `0px` radius (`rounded-none`) for all cards, photographs, frames, inputs, and editorial containers. Sharp, clean, print-like edges.
   - `1440px` radius (`rounded-full`) reserved strictly for interactive elements (buttons, pills, tags, menu triggers, carousel controls).
@@ -55,7 +75,6 @@ The visual architecture is directly modeled after **Creative Giants** (`https://
 * **Zero Drop Shadows**: No drop shadows anywhere. Elevation and structure come purely from whitespace, color tint, scale, and 1px hairline dividers (`#e3e0d6`).
 * **No Duplicate Photos**: Never use the same photograph in the same section or page. Every course and portfolio showcase must have a unique, authentic documentary photograph.
 * **No Standalone Flagship Feature**: The standalone FlagshipFeatureSection is removed; flagship emphasis is integrated cleanly within the curriculum and deep black parallax portfolio sections.
-* **Creative Giants Deep Black Editorial Footer**: Deep black (`#0a0a0a`) canvas with full-width link list rows with right-up arrows (`HOME ↗`, `COURSES ↗`, etc.) separated by 1px hairlines, contact info, "Enroll Now" and "Contact Us" pill buttons, and the colossal `IIP NEPAL` display wordmark running edge-to-edge across the bottom.
 * **No Eyebrow Clichés**: Do NOT put a pill badge / capsule eyebrow above every section header. Use a quiet 12px all-caps Graphite text line or omit entirely. Strong headlines stand on their own.
 
 ## 7. MCP (Model Context Protocol) Usage

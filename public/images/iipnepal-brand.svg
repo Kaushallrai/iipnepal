@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <!-- Rotated Yellow Card -->
+  <rect x="52" y="2" width="38" height="38" rx="5" transform="rotate(15 71 21)" fill="#f6b803"/>
+  <!-- First 'i' -->
+  <circle cx="14" cy="12" r="5.5" fill="#888888"/>
+  <path d="M 8 22 C 11 25, 17 25, 20 22 L 20 54 L 8 54 Z" fill="currentColor"/>
+  <!-- Second 'i' -->
+  <circle cx="32" cy="12" r="5.5" fill="#888888"/>
+  <path d="M 26 22 C 29 25, 35 25, 38 22 L 38 54 L 26 54 Z" fill="currentColor"/>
+  <!-- 'P' body -->
+  <path d="M 44 22 L 70 22 C 82 22, 89 28, 89 36 C 89 44, 82 50, 70 50 L 58 50 L 58 54 L 44 54 Z" fill="currentColor"/>
+  <rect x="58" y="31" width="13" height="10" rx="3" fill="#111111" class="p-hole"/>
+  <!-- NEPAL text -->
+  <text x="100" y="38" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="24" letter-spacing="0.08em" fill="currentColor">NEPAL</text>
+  <text x="101" y="50" font-family="monospace" font-weight="600" font-size="8.5" letter-spacing="0.25em" fill="#f6b803">ACADEMY</text>
+</svg>

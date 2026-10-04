@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" fill="none">
+  <!-- Rotated Yellow Card Behind P -->
+  <rect x="74" y="8" width="54" height="54" rx="8" transform="rotate(18 101 35)" fill="#f6b803"/>
+  
+  <!-- First 'i': Grey dot and stem -->
+  <circle cx="28" cy="24" r="8" fill="#8a8a8a"/>
+  <path d="M 19 38 C 23 42, 33 42, 37 38 L 37 92 L 19 92 Z" fill="#ffffff"/>
+  
+  <!-- Second 'i': Grey dot and stem -->
+  <circle cx="53" cy="24" r="8" fill="#8a8a8a"/>
+  <path d="M 44 38 C 48 42, 58 42, 62 38 L 62 92 L 44 92 Z" fill="#ffffff"/>
+  
+  <!-- Bold 'P' with white outline separating it from the yellow card -->
+  <path d="M 70 38 L 105 38 C 122 38, 132 46, 132 58 C 132 70, 122 78, 105 78 L 88 78 L 88 92 L 70 92 Z" fill="#ffffff" stroke="#111111" stroke-width="1.5"/>
+  <path d="M 88 51 L 103 51 C 111 51, 115 54, 115 58 C 115 62, 111 65, 103 65 L 88 65 Z" fill="#111111"/>
+
+  <!-- ACADEMY text -->
+  <text x="80" y="104" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="14.5" letter-spacing="0.12em" fill="#ffffff">ACADEMY</text>
+  
+  <!-- (An IIP FOUNDATION Initiative) -->
+  <text x="80" y="115" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="500" font-size="6.8" letter-spacing="0.02em" fill="#e0e0e0">(An IIP FOUNDATION Initiative)</text>
+</svg>

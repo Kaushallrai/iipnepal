@@ -1,84 +1,56 @@
-# IIP Nepal — Style Reference (Based on https://www.creativegiants.art)
-> An oversized editorial poster on cream paper, directly modeled after the architecture of [Creative Giants](https://www.creativegiants.art/). One enormous condensed poster wordmark, one full-bleed photographic band with overlay, architectural hairline grid guidelines, inverted dark flagship showcases, and a deep black editorial footer with a colossal bottom wordmark.
+# Creative Giants — Style Reference
+> oversized editorial poster on cream paper
 
-**Theme:** light · **Primary Reference Site:** [https://www.creativegiants.art](https://www.creativegiants.art/)
+**Theme:** light
 
-This document defines the visual system for IIP Nepal by directly adapting the award-winning layout, typography, surface progression, and component patterns of **Creative Giants** (`https://www.creativegiants.art/`) while honoring the authentic IIP Nepal identity and original content:
-1. **Top Chrome**: A whisper-weight header directly on the Bone White (`#fffef7`) canvas with zero heavy background. Circular camera mark + all-caps tracking microtype on the left (`PHOTOGRAPHY EDUCATION // KATHMANDU CENTRE · EST. 2011`), desktop nav links, and pill actions on the right (Yellow Pill "Enroll" + Black Pill "Menu").
-2. **Display Poster Wordmark & 100dvh Hero**: A colossal, sculptural headline (`IIP NEPAL`) rendered in condensed architectural poster lettering (`Bebas Neue` / `--font-poster`) spanning edge-to-edge across the screen at poster scale on cream paper, followed by a full-bleed documentary photo band. The entire hero section fits 100% within the viewport height (`h-[calc(100dvh-72px)] sm:h-[calc(100dvh-80px)]`) without causing vertical scrollbar overflow. Animated with Creative Giants' signature GSAP clipPath entrance sequence (`clipPath: inset(0% 0% 100% 0%)` for top wordmark, fading in the headline, `clipPath: inset(100% 0% 0% 0%)` for the image band, and staggered overlay reveal).
-3. **Hero Image Band & Dual Actions**: Full-bleed edge-to-edge documentary photography directly under the poster headline, with bottom-left location tag (`KATHMANDU, NEPAL // EST. 2011`), statement headline (`Welcome to the IIP Centre Nepal!`), authentic welcoming narrative, and dual generous action pills (`Enroll Online` in IIP Yellow and `Explore Courses` in Hero Glass).
-4. **Architectural Grid Guidelines**: Subtle 5-column vertical 1px hairline rules (`rgba(0,0,0,0.04)`) spanning down the page, providing Swiss architectural discipline.
-5. **"What We Do" / Manifesto Section**: A 12px all-caps eyebrow (`WHAT WE DO // VISION & MISSION`), an oversized 44px–46px Switzer weight-300 light manifesto quote, supporting narrative, a drawing 1px hairline divider, and a 3-metric statistics grid (`13+`, `5,000+`, `100%`) with 1px-stroke line icons. No repetitive pillar cards.
-6. **Curriculum & Courses Grid with Chromatic Cards**: 3-column sharp 0px card layout, circular outline arrow controls (`←` `→`), category filter pills, horizontal touch snap carousel for mobile/tablet, and signature pastel card surfaces (`#a5ebd6` Mint Wash, `#ffacea` Candy Pink, `#a5c8eb` Powder Blue) for intentional color ruptures.
-7. **Creative Giants Pinned Horizontal Parallax Projects Section (`section_projects-scroll theme-dark`)**: Signature full-width deep black (`#0a0a0a`) section showcasing Student Work & Fieldwork / Portfolio & Student Projects.
-   - **Desktop (`(min-width: 991px)`)**: Pinned horizontal scroll container via GSAP ScrollTrigger (`pin: true`, `pinSpacing: true`, `scrub: 1.2`, `anticipatePin: 1`). Slides translate across `x: -scrollWidth`. Each slide features Creative Giants' 3-column layout with multi-speed parallax:
-     - Left column (`projects-scroll_content-left`): Eyebrow (`PROJECT 01`), display headline, photographer credit (`xPercent: -18`, `scrub: 3`).
-     - Middle column (`projects-scroll_content-middle`): Sharp documentary photo frame with authentic Nepal imagery (`xPercent: -45`, `scrub: 3`).
-     - Right column (`projects-scroll_content-right`): Underlined category tags, narrative summary, and "Explore Project ↗" CTA (`xPercent: -75`, `scrub: 3`).
-   - **Bottom Fixed Progress Bar & Counter**: 1px hairline progress track with active indicator width (`0% -> 100%`), number counter (`01 / 04`), and "All Projects" pill button.
-   - **Tablet / Mobile Fallback (`< 991px`)**: Horizontal touch snap carousel on `#0a0a0a` deep black background with circular chevron navigation controls (`←` `→`).
-8. **Closing CTA & Deep Black Editorial Footer**: Deep black (`#0a0a0a`) closing canvas with verbatim closing CTA ("Ready to Start Your Photography Journey?"), generous pill buttons ("Enroll Now" and "Contact Us"), followed by full-width editorial link list rows with right-up arrows (`HOME ↗`, `COURSES ↗`, `PORTFOLIO ↗`, `ABOUT IIP ↗`, `ENROLL ONLINE ↗`, `CONTACT US ↗`), contact coordinates, and culminating in the colossal `IIP NEPAL` display poster wordmark stretching edge-to-edge across the bottom in muted stone/white.
+Source measurements are normalized; roles and recommendations are interpreted. Font summary lists are independent, not paired by position. HTML examples are reconstructions, not source components.
 
----
+Creative Giants reads like an oversized art-book spread rendered in code: a warm off-white canvas, hairline margins, and display type so large it functions as a poster rather than a heading. The whole system runs on negative space and one weight of light (300) — headlines whisper at 64–84px instead of bolding into shouting, and letter-spacing tightens aggressively (-0.04em) as type grows so the words feel chiseled, not spaced. Chromatic color is rationed into small, saturated hits: vivid magenta, deep teal, powder blue, hot pink, mint, and navy appear as card surfaces or accents, never as background floods. Interactive elements are black-on-cream pills with fully rounded (1440px) radii, and the chrome is almost invisible — a single circular logo mark and a 'Menu' button floating in white space. The visual identity is a production studio's contact sheet: one enormous headline, one full-bleed photograph, one quiet line of meta text. Every other page should follow the same economy.
 
 ## Tokens — Colors
 
 | Name | Value | Token | Role |
 |------|-------|-------|------|
-| Bone White | `#fffef7` | `--color-bone-white` | The only page canvas. Also card surfaces and text on dark photography or Navy Ink. Replaces pure `#ffffff` everywhere |
-| Ink Black | `#000000` | `--color-ink-black` | Primary text, icons, outlines, Dark Pill fill |
-| Graphite | `#666666` | `--color-graphite` | Secondary body copy, captions, metadata, eyebrow labels |
-| Ash | `#aaaaaa` | `--color-ash` | Input borders, outline pills, inactive links, carousel controls. Borders only — never body text |
-| Hairline | `#e3e0d6` | `--color-hairline` | Dividers, footer top rule, frame rules on the cream canvas |
-| IIP Yellow | `#ffc61a` | `--color-iip-yellow` | **Enroll button fill, tag chips, hover underline highlights, active markers.** Always paired with Ink Black text. Never as text on cream, never as a section fill |
-| Navy Ink | `#101731` | `--color-navy-ink` | The only dark field besides photography: one featured accent card or the closing CTA overlay base. Text inverts to Bone White |
-| Powder Blue | `#a5c8eb` | `--color-powder-blue` | Pastel card tint |
-| Mint Wash | `#a5ebd6` | `--color-mint-wash` | Pastel card tint |
-| Candy Pink | `#ffacea` | `--color-candy-pink` | Pastel card tint |
-| Magenta Bloom | `#8a0467` | `--color-magenta-bloom` | 1px editorial tag border on image edges, tiny decorative hits only |
-| Forest Teal | `#03624c` | `--color-forest-teal` | 1px editorial tag border on image edges, tiny decorative hits only |
-| Charcoal Scale | `#4d4c4a` | `--color-charcoal-scale` | Start of the dark-footer gradient variant only |
-
-**Color rules**
-- Pastels, Magenta, and Teal are **accents, never floods**. Max one chromatic card per row.
-- Yellow is the only CTA color. Pastels and Navy are never used for buttons.
-- No blue, green, or purple as UI accents (links, focus, states). Interface stays black, cream, and gray, with yellow as the exception.
-
----
+| Bone White | `#fffef7` | `--color-bone-white` | Page canvas, card surfaces, text on dark accents — a warm off-white that replaces pure #ffffff and gives the whole system a paper-like, printed feel |
+| Ink Black | `#000000` | `--color-ink-black` | Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color |
+| Graphite | `#666666` | `--color-graphite` | Secondary body text, captions, metadata, helper copy — recedes so display type can dominate |
+| Ash | `#aaaaaa` | `--color-ash` | Input borders, inactive link color, tertiary dividers — soft structural gray that disappears when not needed |
+| Charcoal Scale | `#4d4c4a` | `--color-charcoal-scale` | Mid-neutral for list borders, subtle elevation on the dark gradient track — warm gray, not blue-gray |
+| Magenta Bloom | `#8a0467` | `--color-magenta-bloom` | Pink supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color |
+| Forest Teal | `#03624c` | `--color-forest-teal` | Saturated brand accent for card frames and decorative strokes; pairs with Magenta Bloom for duotone treatments |
+| Powder Blue | `#a5c8eb` | `--color-powder-blue` | Soft chromatic accent — card backgrounds, wash backgrounds, muted illustration fill; cools the warm canvas without competing |
+| Candy Pink | `#ffacea` | `--color-candy-pink` | Pastel card surface — high-key, used as one-of-many tints in news/article cards; a softer sibling of Magenta Bloom |
+| Mint Wash | `#a5ebd6` | `--color-mint-wash` | Pastel card surface — replaces the structural canvas on selected cards; reads as calm, cool, breathable |
+| Navy Ink | `#101731` | `--color-navy-ink` | Deep accent card surface and inverted text ground; the only dark field the system uses, applied sparingly as a featured block |
+| Signal Yellow | `#ffd001` | `--color-signal-yellow` | Sporadic high-chroma highlight (badges, tag pills, hover state on cards) — used in trace amounts, never as a primary fill |
 
 ## Tokens — Typography
 
-### Switzer — single-family system · `--font-switzer`
-- **Substitute:** Inter (300, 400), or any geometric humanist sans with a true 300 weight
-- **Weights:** 300 for display and headlines (20px and up), 400 for body, metadata, and UI controls
-- **Sizes:** 12, 14, 16, 20, 34, 54, 84
-- **Line height:** 1.00 – 1.43
-- **Letter spacing:** tightens as size grows — `-0.04em` at 84px, `-0.023em` at 54px, `-0.02em` at 34px, `-0.018em` at 20px and below
-- **Role:** One family for everything. Weight 300 at poster sizes keeps the hairline strokes airbrushed on the cream canvas; weight 400 is used wherever text is small so it stays legible.
-
-**Never bold a Switzer heading.** Do not use 500+ anywhere.
-
-**Accessibility note:** weight 300 is only used at 20px and above. Body, captions, labels, buttons, and form text are weight 400.
+### Switzer — Single-family system: weight 300 for all display and headline work (12–84px), weight 400 for body, metadata, and UI controls. The signature choice is using weight 300 at 64–84px — most systems would bold to 700–800 here; Switzer at light preserves the hairline strokes, making the type feel airbrushed onto the cream canvas. Tighter letter-spacing as size grows (-0.04em at 84px, -0.018em at 14px) keeps the counters open without looking spaced-out. · `--font-switzer`
+- **Substitute:** Inter (300, 400), Söhne (300, 400), or any geometric humanist sans with a true 300 weight
+- **Weights:** 300, 400
+- **Sizes:** 12, 14, 16, 18, 20, 34, 54, 64, 84
+- **Line height:** 1.00–1.43
+- **Letter spacing:** -0.04em at 84px, -0.027em at 64px, -0.023em at 54px, -0.02em at 34px, -0.018em at 20px and below
+- **Role:** Single-family system: weight 300 for all display and headline work (12–84px), weight 400 for body, metadata, and UI controls. The signature choice is using weight 300 at 64–84px — most systems would bold to 700–800 here; Switzer at light preserves the hairline strokes, making the type feel airbrushed onto the cream canvas. Tighter letter-spacing as size grows (-0.04em at 84px, -0.018em at 14px) keeps the counters open without looking spaced-out.
 
 ### Type Scale
 
-| Role | Weight | Size (desktop / mobile) | Line Height | Letter Spacing | Token |
-|------|--------|-------------------------|-------------|----------------|-------|
-| caption / label (all-caps) | 400 | 12px / 12px | 1.43 | 0.04em | `--text-caption` |
-| body-sm | 400 | 14px / 14px | 1.43 | -0.018em | `--text-body-sm` |
-| body | 400 | 16px / 16px | 1.5 | -0.018em | `--text-body` |
-| subheading / card-title | 300 | 20px / 20px | 1.4 | -0.018em | `--text-subheading` |
-| heading-sm | 300 | 34px / 26px | 1.25 | -0.02em | `--text-heading-sm` |
-| heading | 300 | 54px / 34px | 1.0 | -0.023em | `--text-heading` |
-| display | 300 | 84px / 44px | 1.0 | -0.04em | `--text-display` |
-
-Display is for poster statements: never more than two lines. Used for the home hero, page titles, and the closing CTA.
-
----
+| Role | Family | Weight | Size | Line Height | Letter Spacing | Token |
+|------|--------|--------|------|-------------|----------------|-------|
+| caption | — | — | 12px | 1.43 | -0.018px | `--text-caption` |
+| body-sm | — | — | 14px | 1.43 | -0.018px | `--text-body-sm` |
+| body | — | — | 16px | 1.4 | -0.018px | `--text-body` |
+| subheading | — | — | 20px | 1.4 | -0.018px | `--text-subheading` |
+| heading-sm | — | — | 34px | 1.25 | -0.02px | `--text-heading-sm` |
+| heading | — | — | 54px | 1 | -0.023px | `--text-heading` |
+| display | — | — | 84px | 1 | -0.04px | `--text-display` |
 
 ## Tokens — Spacing & Shapes
 
-**Base unit:** 8px · **Density:** comfortable
+**Base unit:** 8px
+
+**Density:** comfortable
 
 ### Spacing Scale
 
@@ -97,287 +69,153 @@ Display is for poster statements: never more than two lines. Used for the home h
 
 | Element | Value |
 |---------|-------|
-| buttons | 1440px |
-| pills | 1440px |
 | tags | 1440px |
 | cards | 0px |
+| pills | 1440px |
 | images | 0px |
-| inputs | 0px |
-| panels | 0px |
-
-**The rule:** fully rounded is for **interactive elements only** (buttons, pills, tags, the Menu trigger, carousel arrows). Editorial surfaces — images, cards, frames, form fields — stay sharp.
+| buttons | 1440px |
 
 ### Shadows
-None. No drop shadows anywhere. Separation comes from whitespace, color tint, scale, and 1px hairlines.
+
+| Name | Value | Token |
+|------|-------|-------|
+| subtle | `rgba(255, 255, 255, 0.2) 0px 0px 0px 1px` | `--shadow-subtle` |
 
 ### Layout
-- **Page model:** full-bleed. Content runs edge to edge with consistent side padding: 16px mobile, 24px tablet, 32px desktop (48px on screens above 1600px).
-- **Text measure:** body copy blocks are capped at ~680px; legal pages at 720px.
-- **Section padding:** 112px desktop, 80px tablet, 64px mobile
-- **Section gap:** 64px (48px on mobile)
-- **Card padding:** 24px (only on tinted cards)
-- **Element gap:** 8px
-- **Breakpoints:** mobile below 768px, tablet 768–1023px, desktop 1024px and up. Each viewport gets its own intentional layout, not a shrunk desktop.
 
----
+- **Section gap:** 64px
+- **Card padding:** 24px
+- **Element gap:** 8px
 
 ## Components
 
-### Top Navigation
-**Role:** Persistent public navigation. Chrome that recedes.
+### Pill Menu Button
+**Role:** Primary navigation trigger in the header
 
-No background fill — the cream page is the header. ~16px vertical padding, full-bleed, ~64px tall. IIP logo mark at the far left. Desktop links in 12px Switzer 400 all-caps: **Home, Courses, Portfolio, About, Contact**. At the far right: a plain **Login** text link and the **Yellow Pill** labeled Enroll. Over the dark hero photograph the bar is transparent with Bone White text. Sticky, with a Bone White fill and 1px Hairline bottom border once the user scrolls past the hero.
+Black (#000000) fill, Bone White (#fffef7) text at 16px weight 400, fully rounded at 1440px radius, padding 12px 24px, no border. Sits in the top-right corner with generous whitespace around it — its darkness is the only heavy element on the cream canvas.
 
-On mobile: logo and a **Pill Menu Button** (Ink Black fill, Bone White text) that opens a full-screen Bone White overlay with large weight-300 links and the Yellow Pill at the bottom.
+### Header Lockup
+**Role:** Persistent top chrome
 
-### Yellow Pill Button
-**Role:** The single primary conversion control (Enroll) — header, course pages, closing CTA.
+Two-line eyebrow text (12px, weight 400, all caps, Ink Black) reading 'UNIQUE PUBLIC INTERVENTIONS // IMMERSIVE ACTIVATIONS' to the left of a 32px circular logo mark, Menu button floated right. Zero background — the cream page is the header background. ~16px vertical padding, full-bleed.
 
-`#ffc61a` fill, Ink Black text, 16px Switzer 400, no border, 1440px radius, 12px 24px padding. Hover: slightly darker yellow. Visible in the nav at all times.
+### Display Poster Headline
+**Role:** Hero / section title
 
-### Dark Pill Button
-**Role:** Secondary action on cream (e.g. "Explore Courses" on light sections, Menu trigger).
-
-Ink Black fill, Bone White text, 16px Switzer 400, 1440px radius, 12px 24px padding, no border.
-
-### Outline Pill
-**Role:** Tertiary action, filters, tag chips on cream.
-
-Transparent fill, Ink Black text, 1px Ash border, 1440px radius. Hover: border darkens to Ink Black, nothing else changes.
-
-### Hero Glass Pill
-**Role:** Secondary action placed directly over dark photography ("Explore Courses" in the hero).
-
-`rgba(255,254,247,0.16)` fill, 1px `rgba(255,254,247,0.32)` border, Bone White text, 1440px radius, 12px 24px padding. This is the only place glass is allowed.
-
-### Text Link With Arrow
-**Role:** Navigation to deeper pages.
-
-Switzer 400 in Ink Black with a trailing arrow ("Explore Courses →", "View Portfolio →", "View course →"). On hover, a 2px IIP Yellow underline appears; text stays Ink Black. Never browser-default blue.
-
-### Photographic Display Hero
-**Role:** Opening statement on the home page.
-
-A full-bleed, darkened documentary photograph of a student or mentor at work in Kathmandu — muted, warm gray, no glossy grade, no stock devices. No border radius, no shadow. The display headline (84px, weight 300, `-0.04em`, Bone White) sits bottom-left with 32px padding, preceded by a 12px all-caps Bone White meta line (for example "KATHMANDU, NEPAL"). Beneath it: the Hero Glass Pill (Explore Courses) and the Yellow Pill (Enroll). The tagline "The World is Yours" can anchor the message. Motion: a subtle image fade-in only.
-
-### Section Title Block
-**Role:** Section opener. Replaces the old "Eyebrow Capsule".
-
-An optional 12px all-caps Graphite label on a single line, followed by a 34–54px weight-300 statement headline. No background, no rules, no capsule. Separation by whitespace alone: 48–64px above the title block, 32px below the headline. Use the eyebrow label sparingly — strong headlines stand on their own.
-
-### Editorial Statement Block
-**Role:** Manifesto-style introduction for the About intro and About page.
-
-Large weight-300 copy (54px) in Ink Black on Bone White, left-aligned, never more than a few lines. Content comes from IIP's actual mission — original copy only. 48px gap before the following visual.
-
-### Why IIP Grid
-**Role:** Text-led overview of real differentiators.
-
-Four columns on the cream canvas (two on tablet, one on mobile). No card borders, no fills. Each column: a 16–20px 1px-stroke Ink Black line icon (Lucide), a 20px weight-300 heading, and 14–16px Graphite supporting copy. 16px internal gaps, 32px column gaps. Whitespace separates, nothing else.
-
-### Course Card
-**Role:** Scannable summary of a course on the Courses page and the home preview.
-
-No border, no shadow, no radius. A 4:3 sharp-cornered image on top. 16px below: a 20px weight-300 title in Ink Black. 8px below: a 14px Graphite description, 3-line clamp. Then a 12px all-caps metadata row (for example "3 MONTHS · MENTOR-LED") and a "View course →" link. Optional 1px Magenta or Teal border on the image edge as an editorial tag.
-
-**Composition:** avoid a monotonous identical grid. For the five courses, use an editorial layout — two flagship mentor-led diplomas on the first row, three modular courses on the second. On desktop, up to three columns with 48px column gaps; two on tablet; one on mobile.
-
-### Chromatic Accent Card
-**Role:** The occasional pop of color in a card grid.
-
-One of Powder Blue, Mint Wash, or Candy Pink as the card surface with 24–32px padding and Ink Black text — or Navy Ink with Bone White text for a featured block. 0px radius. **Never more than one per row.**
-
-### Portfolio Grid
-**Role:** Image-led showcase of student and project work.
-
-Masonry or editorial grid, free-ratio so each photograph keeps its composition. Sharp corners, 16px gaps. Captions in 12px all-caps below, or revealed on hover. Hover: image scales to 1.03 inside an overflow-hidden frame with a caption fade (disabled under `prefers-reduced-motion`).
-
-### Portfolio Detail
-Opens with a Hero Image Band, followed by title, short story, 12px all-caps metadata, a full-width gallery, related work, and previous/next navigation. Each project reads as a photo story.
+84px Switzer weight 300, letter-spacing -0.04em, line-height 1.0, color Ink Black. Occupies the full viewport width minus the page margin. Optionally rendered with a vertical Charcoal-to-Black gradient on warm-cream lettering for a sculptural poster effect. Never wraps above 2 lines.
 
 ### Hero Image Band
-**Role:** Full-bleed editorial photography.
+**Role:** Full-bleed editorial photography
 
-Full viewport width, no radius, no shadow. Meta text (12px all-caps) and a 34px weight-300 headline sit bottom-left, 32px from the left and bottom edges, in Bone White. The UI yields entirely to the photograph.
+Full-viewport-width image, no border-radius, no shadow. Meta text (location: 12px all-caps) and headline (34px weight 300) sit bottom-left with 32px left padding. Imagery is the hero; UI chrome yields entirely to the photograph.
 
-### Course Detail Layout
-**Role:** In-depth information at /courses/[slug].
+### Section Title Block
+**Role:** In-page section openers
 
-Open with a Hero Image Band carrying the course title, duration, type, and the Yellow Pill. Then sections in order: Overview, What You'll Learn, Course Structure, Who It's For, Requirements, Important Information, Enrollment CTA. On desktop, a sticky summary panel (Bone White, 1px Hairline border, 0px radius, 32px padding) shows duration, type, and an Enroll pill; on mobile it becomes a fixed bottom bar.
+All-caps eyebrow label (12px, weight 400, Graphite) on a single line, followed by a 34–54px weight 300 statement headline. No background, no rules, no decorations — separation is by whitespace alone (48–64px below the eyebrow, 32px below the headline).
 
-### Form Field
-**Role:** Inputs for Enroll, Contact, and Login.
+### Project / News Card
+**Role:** Card grid items for articles and case studies
 
-Transparent fill on Bone White, 1px Ash border, 0px radius, 48px height, Switzer 16px weight 400. Labels sit above in 12px all-caps Graphite. Focus: 2px Ink Black ring. Errors: Ink Black text, 2px Ink Black border, and an icon — never color alone.
+3-column grid, no card border, no shadow, no radius. Image sits top of card (square or 4:3, sharp corners). Title 18–20px weight 300 in Ink Black sits 16px below the image. Body copy 14px weight 400 in Graphite, 3-line clamp. Optional 1px chromatic accent border (#8a0467 or #03624c) on the image edge for editorial tagging.
 
-### Enrollment Steps Indicator
-**Role:** Progress marker for the Enroll flow.
+### Chromatic Accent Card
+**Role:** Variant card surface using the brand accent palette
 
-Four 12px all-caps labels (CHOOSE COURSE, YOUR DETAILS, SUBMIT, CONFIRMATION) separated by 1px Hairline rules. Active step Ink Black, the rest Graphite.
+Uses one of the pastel or saturated tints (#ffacea, #a5ebd6, #a5c8eb, or #101731) as the card surface. Text inverts: Bone White on Navy Ink, Ink Black on pastels. 0px radius, 24–32px padding. Used as the occasional pop in a card grid; never more than one in a row.
 
 ### Carousel Arrow Control
-**Role:** Next/previous on card rows.
+**Role:** Next/prev navigation for card carousels
 
-32px circle, 1px Ash border, transparent fill, 16px Ink Black chevron. Hover: border darkens to Ink Black only. Floats at the right edge of the section title.
+32px circular outline button, 1px Ash (#aaaaaa) border, transparent fill, 16px Ink Black chevron icon centered. No background change on hover — only the border darkens to Ink Black. Floats above the card row at the right edge of the section title.
+
+### Meta Eyebrow
+**Role:** Context labels above headlines
+
+12px Switzer weight 400, all caps, letter-spacing 0 (default), color Graphite (#666666). Single line. Used for location, section names, project categories.
+
+### Full-Bleed Footer
+**Role:** Page footer
+
+No background fill — same Bone White canvas. Top edge defined by a 1px hairline divider. Multi-column link lists with 14px weight 400 Ink Black text, 8px row-gap. The extreme Charcoal-to-Black linear gradient (rgb(77,76,74) → rgb(0,0,0)) is reserved for any dark footer band variant; never used elsewhere.
 
 ### Tag / Category Pill
-**Role:** Small labels and filters.
+**Role:** Small editorial labels and filters
 
-8px 12px padding, 1440px radius, 12px all-caps. Default: Ink Black text, transparent fill, 1px Ash border. Accent: IIP Yellow fill, Ink Black text, no border.
-
-### Top Navigation Bar
-**Role:** Persistent public editorial navigation. Chrome that recedes.
-
-No heavy background fill — the Bone White (`#fffef7`) canvas is the header with subtle 1px hairline border on scroll. Navigation links are directly visible in desktop view (`Home`, `Courses`, `Portfolio`, `About`, `Contact`) in 12px font-mono uppercase tracking (`0.25em`). At the far right: Yellow Pill "Enroll" (`#ffc61a`) with Ink Black text. Standalone desktop "Menu" button toggle is removed; on mobile/tablet a lightweight responsive menu handles navigation cleanly.
-
-### Closing CTA (Compact Height)
-**Role:** High-impact closing conversion before Get In Touch / Footer.
-
-Sleek, decreased height (`py-14 sm:py-20 lg:py-24`) on `#0a0a0a` deep black background. Headline "Ready to Start Your Photography Journey?" rendered in Switzer 300 / font-light with signature Creative Giants line-by-line masked reveals. Dual action pills: Yellow Pill "Enroll Now" and translucent glass "Contact Us".
-
-### Animated Admissions Timeline
-**Role:** Clear 7-step admission process with interactive timeline motion.
-
-An editorial timeline layout featuring an animated vertical 1px hairline track that draws/fills active progress on scroll. Steps 01 to 07 illuminate as scroll passes each node. Step titles and descriptions enter via staggered line reveals.
-
-### Testimonials Section
-**Role:** Authentic student and alumni reviews modeled after Creative Giants.
-
-Minimalist quotation slider featuring oversized weight-300 typography (`text-[26px] sm:text-[36px] lg:text-[42px]`), circular outline arrow navigation controls (`←` `→`), subtle counter indicator, and line-by-line quote reveals.
-
-### Brand & Partner Marquee
-**Role:** Institutional validation and photography affiliations.
-
-Full-width continuous smooth linear marquee ticker (`#fffef7` canvas with 1px top and bottom hairline borders) featuring authentic IIP partners: IIP Foundation, Canon Professional Services, Nikon School, Photo Kathmandu, National Geographic Contributors, Patan Museum, and Nepal Tourism Board.
-
-### News & Fieldwork Dispatches
-**Role:** Editorial journal and field updates.
-
-Grid of documentary story cards featuring sharp 0px photography frames, subtle hover scale (`scale: 1.05`), category tags, and "Read Dispatch ↗" arrow links.
-
-### Get In Touch Section
-**Role:** Editorial contact and inquiry invitation directly modeled after Creative Giants' `section_contact-cta`.
-
-Two-column editorial split: left column features a 12px all-caps eyebrow ("GET IN TOUCH"), display headline ("Speak to us."), narrative invitation, and Kathmandu campus coordinates; right column features a clean inquiry form with sharp 0px inputs and Yellow Pill "Send Enquiry" button.
-
-### Footer
-**Role:** Full-width editorial links, contact details, and colossal bottom poster wordmark.
-
-Deep black (`#0a0a0a`) surface with full-width link list rows with trailing right-up arrows (`↗`) separated by 1px hairlines. Links reveal with stagger on scroll into view. The colossal `IIP NEPAL` display poster wordmark stretches edge-to-edge across the bottom with subtle scroll parallax.
-
-### Creative Giants Animation System & Parallax
-- **Signature Line-by-Line Reveal (`[js-line-animation]`)**: Major headings, quotes, and manifesto lines are wrapped in `overflow: hidden` line containers (`.line`) with inner elements (`.line-inner`) that animate `fromTo({ yPercent: 100 }, { yPercent: 0, duration: 0.7s, ease: "power3.out", stagger: 0.08s })` triggered on scroll.
-- **Hero Entrance Sequence**: ClipPath wipe on top header (`clipPath: inset(0% 0% 100% 0%)`), colossal wordmark fade & slide, image band vertical clipPath wipe (`clipPath: inset(100% 0% 0% 0%)`), and line-by-line overlay text stagger.
-- **Scroll Parallax**: Multi-speed scroll parallax applied to documentary image bands (`yPercent: -20` to `yPercent: -40`), background layers, and bottom footer wordmark.
-
-### Legal Page Body
-**Role:** Terms and Privacy.
-
-Single column, max-width 720px, Switzer 16px / 1.7 in Ink Black on Bone White, with weight-300 headings at 34px. No imagery or decoration.
-
----
+8px vertical, 12px horizontal padding, 1440px radius, 12px weight 400 all-caps. Default: Ink Black text, transparent fill, 1px Ash border. Accent variant: Signal Yellow (#ffd001) fill, Ink Black text, no border.
 
 ## Do's and Don'ts
 
 ### Do
-- Use Bone White `#fffef7` as the only page background.
-- Set headlines in weight 300 at 20px and above; push display type to 84px with `-0.04em` tracking (44px on mobile).
-- Use weight 400 for body, labels, buttons, and form text.
-- Apply the 1440px pill radius to every button, tag, and menu trigger. Keep cards, images, frames, and inputs sharp.
-- Let full-bleed photographs carry the visual weight; let UI chrome recede.
-- Keep one primary CTA — the Yellow Pill "Enroll" — visible in the nav at all times.
-- Ration color: chromatic cards are one-per-row, borders are 1px.
-- Keep section gaps at 48–64px and let whitespace be the primary structural tool.
-- Left-align content. Only the Section Title Block and hero are allowed to dominate the viewport width.
-- Add a section only if it helps visitors understand IIP, evaluate a course, see student work, or take action.
+- Set headlines at weight 300 — never bold a Switzer heading, no matter the size.
+- Use Bone White (#fffef7) as the only page background. Pure #ffffff breaks the warm paper language.
+- Apply the 1440px pill radius to every button, tag, and Menu element — sharp corners are reserved for cards and images only.
+- Push display headlines to 64–84px with -0.04em letter-spacing; the negative tracking is what makes the type feel carved, not printed.
+- Let full-bleed photographs carry the visual weight. UI chrome should recede — the Menu button and logo are the only non-image elements above the fold.
+- Use chromatic accents (#8a0467, #03624c, #a5c8eb) as borders, small fills, and single-card highlights — never flood a section with color.
+- Keep section gaps at 48–64px. The cream canvas is the layout's primary structural tool; rules and dividers are secondary.
 
 ### Don't
-- Don't bold headlines or use any weight above 400.
-- Don't use pure `#ffffff`. The warm off-white is the signature.
-- Don't use drop shadows, gradients (except the dark-footer variant), heavy blur, or glassmorphism outside the Hero Glass Pill.
-- Don't round cards, images, frames, or inputs.
-- Don't fill a CTA with anything other than IIP Yellow, Ink Black, or the outline/glass pills.
-- Don't use IIP Yellow as text or as a large fill.
-- Don't put a capsule eyebrow above every section header.
-- Don't exceed two lines on a display headline.
-- Don't turn the Why IIP grid into bordered cards.
-- Don't use bright stock-education photography, giant-device mockups, or fake setups.
-- Don't alternate dark and light bands; the dark moments are the hero, the closing CTA, and at most one Navy Ink accent card.
-- Don't animate anything but opacity and transform, 300–600ms, and always respect `prefers-reduced-motion`.
-
----
+- Don't bold headlines. The 300 weight is the brand — weight 500+ destroys the airbrushed feel.
+- Don't use pure #ffffff anywhere. The warm off-white is a signature, not a fallback.
+- Don't add shadows. The system's 0px box-shadow signature means elevation comes from color and scale, not depth.
+- Don't round card or image corners. 1440px belongs only to interactive elements; editorial surfaces stay sharp.
+- Don't fill a CTA with a chromatic color. No action background evidence supports a colored button — all interactive surfaces are black or transparent.
+- Don't exceed two lines on a display headline. The 84px treatment is for poster statements, not paragraphs.
+- Don't use #0000ee or default link blue. Inherit Ink Black for all text links; never let browser defaults leak in.
 
 ## Surfaces
 
 | Level | Name | Value | Purpose |
 |-------|------|-------|---------|
-| 0 | Canvas | `#fffef7` | Page background everywhere |
-| 1 | Card Tint | `#a5ebd6` / `#ffacea` / `#a5c8eb` | Pastel accent card surfaces, one per row |
-| 2 | IIP Yellow | `#ffc61a` | Enroll pill, tag chips — never a section fill |
-| 3 | Inverted Field | `#101731` | Featured accent card or CTA overlay base; text inverts to Bone White |
+| 0 | Canvas | `#fffef7` | Page background — warm off-white paper tone |
+| 1 | Card Tint | `#a5ebd6` | Pastel card variant — replaces canvas on accent cards |
+| 1 | Card Tint Pink | `#ffacea` | Pastel card variant — high-key highlight |
+| 1 | Card Tint Blue | `#a5c8eb` | Pastel card variant — cool wash |
+| 2 | Signal Pop | `#ffd001` | Sporadic yellow accent — badges, hover, single-card highlight |
+| 3 | Inverted Field | `#101731` | Dark accent surface for featured blocks; text inverts to Bone White |
 
 ## Elevation
 
-No meaningful elevation. Do not add box-shadows to cards, buttons, panels, or modals. Hierarchy comes from scale, color tint, whitespace, and 1px Hairline rules.
-
----
+The system has no meaningful elevation. The single detected shadow (rgba(255,255,255,0.2) 0px 0px 0px 1px) is a white 1px inner ring, not a drop shadow — it functions as a hairline highlight on dark elements, not as depth. Separation is built entirely from the warm canvas, whitespace, and the rare dark inverted field. Do not add box-shadows to cards, buttons, or modals.
 
 ## Imagery
 
-Editorial photography dominates: full-bleed, sharp-cornered, no rounded masks. Treatment is documentary and atmospheric — students at work, mentors teaching, hands on cameras, Kathmandu light — muted and warm, never staged. Hero images are 16:9; course cards use consistent 4:3 crops; portfolio uses free-ratio masonry so each photograph keeps its composition. Student work is shown large and uncropped where possible, with `alt` text and blur placeholders on every image. No illustration, no 3D, no product mockups. Icons are tiny 1px-stroke Lucide line marks (16–20px) in Ink Black or Graphite. Density is image-led; text is a quiet annotation layer.
-
----
+Editorial photography dominates: full-bleed, sharp-cornered, no overlays or rounded masks. Treatment leans toward documentary and atmospheric — wrinkled hands, public installations, candid human subjects — never staged product shots. Imagery is always presented at large scale (full viewport width or card-filling) so the photograph, not the UI, is the design unit. No illustration, no 3D, no product mockups. Iconography is minimal: a single small circular logo mark, outline-only chevrons on carousel controls, and featherweight 1px-stroke UI icons. Density is image-led, with text serving as a quiet annotation layer below or over the photograph.
 
 ## Layout
 
-Full-bleed page model with consistent side padding. Every section opens with a Section Title Block and 48–64px of negative space. Content is left-aligned. The only sticky element is the header (plus the course-page summary panel). The home page follows the compact structure from `BRIEF.md`.
-
-| Page | Pattern |
-|------|---------|
-| Home | Full-bleed photo hero, Why IIP, Courses Preview (editorial composition), Student Work, About intro, Closing CTA |
-| Courses | Section Title Block (page title in display type), then editorial course grid |
-| Course Detail | Hero Image Band, structured information, sticky summary panel |
-| Portfolio / Detail | Large masonry image grid; detail pages as photo stories |
-| About | Statement block, institute story, faculty included inline (no separate faculty pages) |
-| Contact | Contact details, form, and map |
-| Enroll | Short stepped form with Enrollment Steps Indicator |
-| Login | Minimal centered form, kept out of the primary nav |
-| Terms / Privacy | Plain readable text column |
-
----
+Full-bleed page model: no max-width container, content runs edge-to-edge with consistent left/right padding (16–32px on mobile, 32px+ on desktop). The hero is a single oversized display headline ('CREATIVE GIANTS' at 84px) taking roughly 40% of the viewport, immediately followed by a full-bleed photograph with bottom-left meta + headline overlay. Section rhythm is monolithic: each new section is introduced by a small all-caps eyebrow + 34–54px weight 300 statement, separated by 48–64px of negative space — no alternating dark/light bands except the single inverted Navy Ink accent card. Content is consistently left-aligned; no centered stacks except the hero display headline. The news/case-study area uses a 3-column card grid with a right-floated arrow control cluster. Navigation is a single top header — no sidebar, no sticky elements beyond the header itself. Overall density is spacious and editorial: every section breathes, and whitespace is the primary structural tool.
 
 ## Agent Prompt Guide
 
 **Quick Color Reference**
-- text: `#000000`
-- background: `#fffef7`
-- secondary text: `#666666`
-- border / outline: `#aaaaaa`
-- divider: `#e3e0d6`
-- primary action: `#ffc61a` fill with `#000000` text
-- pastel card surface: `#a5ebd6`, `#ffacea`, or `#a5c8eb`
-- featured dark card: `#101731` with `#fffef7` text
-- accent hairlines: `#8a0467`, `#03624c` (1px only)
+- text: #000000
+- background: #fffef7
+- border / divider: #aaaaaa
+- secondary text: #666666
+- accent: #8a0467 (magenta) and #03624c (teal) — borders and small hits only
+- pastel card surface: #a5ebd6, #ffacea, or #a5c8eb
+- primary action: no distinct CTA color
 
-**Example Component Prompts**
+**3-5 Example Component Prompts**
 
-1. *Hero:* Full-bleed dark documentary photograph, no radius. Bottom-left, 32px padding: a 12px all-caps Bone White meta line, then an 84px Switzer weight-300 headline, `-0.04em`, line-height 1.0, Bone White, max two lines. Below it, a Hero Glass Pill ("Explore Courses") and an IIP Yellow pill ("Enroll").
-2. *Top nav:* Transparent, ~64px, Bone White text over the hero. 12px all-caps Switzer 400 links (Home, Courses, Portfolio, About, Contact), plain "Login" text link, and a `#ffc61a` pill "Enroll" with Ink Black text at the far right.
-3. *Course card:* No border, 0px radius. 4:3 sharp image, 20px weight-300 title in Ink Black 16px below it, 14px Graphite description with a 3-line clamp, a 12px all-caps metadata row, and a "View course →" link.
-4. *Why IIP:* Four columns on Bone White, no card borders. 1px-stroke line icons, 20px weight-300 headings in Ink Black, 14–16px Graphite copy, 32px column gaps.
-5. *Closing CTA:* Full-bleed muted photograph with a dark overlay, a Bone White weight-300 headline ("Ready to start your photography journey?"), and a single `#ffc61a` pill "Enroll at IIP →".
+1. *Hero display headline*: Full-bleed cream (#fffef7) canvas. 'CREATIVE GIANTS' at 84px Switzer weight 300, color #000000, letter-spacing -0.04em, line-height 1.0, left-aligned with 32px left padding. No background, no border. The headline should occupy ~40% of the viewport height.
 
----
+2. *Pill Menu button*: 16px Switzer weight 400, color #fffef7 on #000000 fill, 1440px border-radius, padding 12px 24px, no border. Float top-right with 32px margin from edges. Sits alone in the header — no other UI chrome competes.
+
+3. *Full-bleed image band with overlay*: Edge-to-edge photograph (no border-radius). Bottom-left overlay: 12px Switzer weight 400 all-caps meta in #fffef7 ('BRIGHTON, UNITED KINGDOM'), 32px below it a 34px weight 300 statement headline in #fffef7. 32px padding from the left and bottom edges.
+
+4. *News / project card*: 3-column grid, no card border, 0px radius. Square image (no radius) sits at top. 16px below: 20px Switzer weight 300 title in #000000. 8px below: 14px weight 400 description in #666666, 3-line clamp. 48px column gap, no row gap (single row).
+
+5. *Pastel accent card*: One card in the grid swaps to surface #a5ebd6 with 24px padding around its content, text in #000000 at 20px weight 300. The remaining two cards stay on the cream canvas. This is the system's only color-rupture moment.
 
 ## Similar Brands
 
-- **Pentagram** — Oversized editorial display headlines, light-weight typography, and minimal chrome on a neutral canvas.
-- **Locomotive** — Studio-as-art-book treatment: cream canvas, large weight-300 statements, sharp full-bleed imagery, pill-shaped controls.
-- **Magnum Photos** — Image-first presentation where the interface stays out of the way.
-- **A24** — Dark cinematic photography paired with oversized quiet typography.
-- **B-Reel** — Single-line display headline, edge-to-edge hero, near-white canvas with rationed accents.
-
----
+- **Pentagram** — Same oversized editorial display headlines, weight-light typography, full-bleed project photography, and minimal navigation chrome on a neutral canvas.
+- **Locomotive (locomotive.ca)** — Same 'studio portfolio as art book' treatment — cream canvas, large weight-300 sans-serif statements, sharp-cornered full-bleed imagery, and pill-shaped controls.
+- **Resn** — Same full-bleed experimental photography and whisper-weight display type; both agencies treat the homepage as a single oversized canvas rather than a dashboard.
+- **B-Reel** — Same single-line display headline, edge-to-edge video/photo hero, and a cream/near-white canvas with rationed chromatic accents.
 
 ## Quick Start
 
@@ -390,41 +228,40 @@ Full-bleed page model with consistent side padding. Every section opens with a S
   --color-ink-black: #000000;
   --color-graphite: #666666;
   --color-ash: #aaaaaa;
-  --color-hairline: #e3e0d6;
-  --color-iip-yellow: #ffc61a; /* placeholder: swap for exact logo yellow */
-  --color-navy-ink: #101731;
-  --color-powder-blue: #a5c8eb;
-  --color-mint-wash: #a5ebd6;
-  --color-candy-pink: #ffacea;
+  --color-charcoal-scale: #4d4c4a;
   --color-magenta-bloom: #8a0467;
   --color-forest-teal: #03624c;
-  --color-charcoal-scale: #4d4c4a;
+  --color-powder-blue: #a5c8eb;
+  --color-candy-pink: #ffacea;
+  --color-mint-wash: #a5ebd6;
+  --color-navy-ink: #101731;
+  --color-signal-yellow: #ffd001;
 
-  /* Typography — Font Family */
-  --font-switzer: 'Switzer', Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Typography — Font Families */
+  --font-switzer: 'Switzer', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  /* Typography — Scale (desktop) */
+  /* Typography — Scale */
   --text-caption: 12px;
   --leading-caption: 1.43;
-  --tracking-caption: 0.04em;
+  --tracking-caption: -0.018px;
   --text-body-sm: 14px;
   --leading-body-sm: 1.43;
-  --tracking-body-sm: -0.018em;
+  --tracking-body-sm: -0.018px;
   --text-body: 16px;
-  --leading-body: 1.5;
-  --tracking-body: -0.018em;
+  --leading-body: 1.4;
+  --tracking-body: -0.018px;
   --text-subheading: 20px;
   --leading-subheading: 1.4;
-  --tracking-subheading: -0.018em;
+  --tracking-subheading: -0.018px;
   --text-heading-sm: 34px;
   --leading-heading-sm: 1.25;
-  --tracking-heading-sm: -0.02em;
+  --tracking-heading-sm: -0.02px;
   --text-heading: 54px;
   --leading-heading: 1;
-  --tracking-heading: -0.023em;
+  --tracking-heading: -0.023px;
   --text-display: 84px;
   --leading-display: 1;
-  --tracking-display: -0.04em;
+  --tracking-display: -0.04px;
 
   /* Typography — Weights */
   --font-weight-light: 300;
@@ -442,44 +279,31 @@ Full-bleed page model with consistent side padding. Every section opens with a S
   --spacing-112: 112px;
 
   /* Layout */
-  --nav-height: 64px;
   --section-gap: 64px;
   --card-padding: 24px;
   --element-gap: 8px;
-  --page-padding: 32px;
 
   /* Border Radius */
   --radius-full: 1440px;
-  --radius-buttons: 1440px;
-  --radius-pills: 1440px;
+  --radius-full-2: 1600px;
+
+  /* Named Radii */
   --radius-tags: 1440px;
   --radius-cards: 0px;
+  --radius-pills: 1440px;
   --radius-images: 0px;
-  --radius-inputs: 0px;
+  --radius-buttons: 1440px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px;
 
   /* Surfaces */
   --surface-canvas: #fffef7;
   --surface-card-tint: #a5ebd6;
   --surface-card-tint-pink: #ffacea;
   --surface-card-tint-blue: #a5c8eb;
+  --surface-signal-pop: #ffd001;
   --surface-inverted-field: #101731;
-}
-
-/* Tablet */
-@media (max-width: 1023px) {
-  :root { --page-padding: 24px; --section-gap: 56px; }
-}
-
-/* Mobile overrides */
-@media (max-width: 767px) {
-  :root {
-    --page-padding: 16px;
-    --section-gap: 48px;
-    --text-heading-sm: 26px;
-    --text-heading: 34px;
-    --text-display: 44px;
-    --tracking-display: -0.035em;
-  }
 }
 ```
 
@@ -492,27 +316,40 @@ Full-bleed page model with consistent side padding. Every section opens with a S
   --color-ink-black: #000000;
   --color-graphite: #666666;
   --color-ash: #aaaaaa;
-  --color-hairline: #e3e0d6;
-  --color-iip-yellow: #ffc61a;
-  --color-navy-ink: #101731;
-  --color-powder-blue: #a5c8eb;
-  --color-mint-wash: #a5ebd6;
-  --color-candy-pink: #ffacea;
+  --color-charcoal-scale: #4d4c4a;
   --color-magenta-bloom: #8a0467;
   --color-forest-teal: #03624c;
-  --color-charcoal-scale: #4d4c4a;
+  --color-powder-blue: #a5c8eb;
+  --color-candy-pink: #ffacea;
+  --color-mint-wash: #a5ebd6;
+  --color-navy-ink: #101731;
+  --color-signal-yellow: #ffd001;
 
   /* Typography */
-  --font-switzer: 'Switzer', Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-switzer: 'Switzer', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Typography — Scale */
   --text-caption: 12px;
+  --leading-caption: 1.43;
+  --tracking-caption: -0.018px;
   --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --tracking-body-sm: -0.018px;
   --text-body: 16px;
+  --leading-body: 1.4;
+  --tracking-body: -0.018px;
   --text-subheading: 20px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: -0.018px;
   --text-heading-sm: 34px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.02px;
   --text-heading: 54px;
+  --leading-heading: 1;
+  --tracking-heading: -0.023px;
   --text-display: 84px;
+  --leading-display: 1;
+  --tracking-display: -0.04px;
 
   /* Spacing */
   --spacing-8: 8px;
@@ -526,5 +363,9 @@ Full-bleed page model with consistent side padding. Every section opens with a S
 
   /* Border Radius */
   --radius-full: 1440px;
+  --radius-full-2: 1600px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px;
 }
 ```

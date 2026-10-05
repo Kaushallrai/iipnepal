@@ -258,7 +258,7 @@ export default function HowItWorks({
     <section
       id="how-it-works"
       ref={sectionRef}
-      className="w-full bg-[#fffef7] text-black relative z-20 pt-[74px] sm:pt-[78px] lg:pt-[80px] pb-4 sm:pb-6 px-6 sm:px-8 md:px-12 lg:px-16 min-h-screen lg:min-h-screen flex flex-col justify-between"
+      className="w-full bg-[#fffef7] text-black relative z-20 py-24 sm:py-28 md:py-32 lg:py-36 px-6 sm:px-8 md:px-12 lg:px-16 min-h-screen flex flex-col justify-between"
       aria-label="How IIP Nepal Works — Curriculum Roadmap"
     >
       <div className="w-full max-w-[105rem] mx-auto flex flex-col justify-between h-full flex-1">

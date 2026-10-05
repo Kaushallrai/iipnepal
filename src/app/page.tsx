@@ -4,6 +4,7 @@ import WhatWeDo from "@/components/home/WhatWeDo";
 import CoursesSection from "@/components/home/CoursesSection";
 import PortfolioSection from "@/components/home/PortfolioSection";
 import HowItWorks from "@/components/home/HowItWorks";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
 
 export default function Home(): React.JSX.Element {
   return (
@@ -37,6 +38,11 @@ export default function Home(): React.JSX.Element {
       {/* 5. Portfolio Section (Creative Giants Pinned Horizontal Parallax Scroll with Top Editorial Header) */}
       <div className="relative z-20 bg-[#0a0a0a]">
         <PortfolioSection />
+      </div>
+
+      {/* 6. Testimonials Section (Creative Giants Light Canvas Alumni Voices Slider) */}
+      <div className="relative z-20 bg-[#fffef7]">
+        <TestimonialsSection />
       </div>
     </main>
   );

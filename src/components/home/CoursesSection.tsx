@@ -344,7 +344,7 @@ export default function CoursesSection({
     <section
       id="courses"
       ref={sectionRef}
-      className="relative w-full bg-[#0a0a0a] text-white z-20"
+      className="relative w-full bg-[#0a0a0a] text-white z-20 pb-20 sm:pb-24 md:pb-28 lg:pb-32"
       aria-label="Photography Courses"
     >
       {/* Pinned Viewport Container (Spacious layout matching WhatWeDo container scale) */}

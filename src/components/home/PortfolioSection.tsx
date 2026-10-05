@@ -288,7 +288,7 @@ export default function PortfolioSection({
       id="portfolio"
       ref={sectionRef}
       aria-label="Photography Portfolio and Student Fieldwork"
-      className="relative w-full bg-[#0a0a0a] text-white z-20 overflow-hidden"
+      className="relative w-full bg-[#0a0a0a] text-white z-20 overflow-hidden pb-20 sm:pb-24 md:pb-28 lg:pb-32"
     >
       {/* ========================================================================= */}
       {/* 1. DESKTOP VIEWPORT: Pinned Stage with Fixed Editorial Header             */}

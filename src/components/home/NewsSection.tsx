@@ -116,14 +116,14 @@ export default function NewsSection(): React.JSX.Element {
     <section
       ref={sectionRef}
       id="news"
-      className="section_news-cta theme-light relative w-full bg-[#fffef7] text-black overflow-hidden py-24 sm:py-28 md:py-32 lg:py-36 select-none"
+      className="section_news-cta theme-light relative w-full bg-[#fffef7] text-black overflow-hidden pt-16 sm:pt-20 md:pt-24 pb-24 sm:pb-28 md:pb-32 lg:pb-36 select-none"
       style={{ overscrollBehaviorX: "contain" }}
     >
       <div className="padding-global w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-[105rem] mx-auto">
         <div className="news-cta_component">
           <div className="slider-blog_wrap flex flex-col gap-12 sm:gap-14 md:gap-16">
             {/* Top Control Bar: Eyebrow + Masked Headline on left, Circular Navigation Buttons on right */}
-            <div className="slider-blog_layout flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+            <div className="slider-blog_layout flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-6">
               {/* Header Wrap */}
               <div className="header-wrap flex flex-col items-start">
                 {/* Eyebrow with glowing signal yellow dot */}

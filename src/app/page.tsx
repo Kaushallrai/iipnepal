@@ -5,7 +5,10 @@ import CoursesSection from "@/components/home/CoursesSection";
 import PortfolioSection from "@/components/home/PortfolioSection";
 import HowItWorks from "@/components/home/HowItWorks";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
+import BrandSection from "@/components/home/BrandSection";
 import NewsSection from "@/components/home/NewsSection";
+import ContactSection from "@/components/home/ContactSection";
+import Footer from "@/components/Footer";
 
 export default function Home(): React.JSX.Element {
   return (
@@ -46,10 +49,23 @@ export default function Home(): React.JSX.Element {
         <TestimonialsSection />
       </div>
 
+      {/* 6.5. Brand Marquee Section (Creative Giants Edge-to-Edge Monochrome Logos Strip) */}
+      <div className="relative z-20 bg-[#fffef7] overflow-hidden">
+        <BrandSection />
+      </div>
+
       {/* 7. News & Perspectives Section (Creative Giants Light Canvas Editorial News Slider) */}
       <div className="relative z-20 bg-[#fffef7]">
         <NewsSection />
       </div>
+
+      {/* 7.5. Contact & Admissions Section (Creative Giants Light Canvas Form) */}
+      <div className="relative z-20 bg-[#fffef7]">
+        <ContactSection />
+      </div>
+
+      {/* 8. Footer Section (Creative Giants Architectural Dark Stage) */}
+      <Footer />
     </main>
   );
 }

@@ -99,7 +99,7 @@ export default function TestimonialsSection(): React.JSX.Element {
     <section
       ref={sectionRef}
       id="testimonials"
-      className="section_testimonials relative w-full bg-[#fffef7] text-black overflow-hidden py-24 sm:py-28 md:py-32 lg:py-36 select-none"
+      className="section_testimonials relative w-full bg-[#fffef7] text-black overflow-hidden pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-16 sm:pb-20 md:pb-24 select-none"
       style={{ overscrollBehaviorX: "contain" }}
     >
       <div className="padding-global w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-[105rem] mx-auto">

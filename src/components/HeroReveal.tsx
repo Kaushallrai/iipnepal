@@ -565,13 +565,12 @@ export default function HeroReveal({
         {/* Full-Width Background Bar on scroll */}
         <div
           ref={fullHeaderBgRef}
-          className={`absolute inset-0 w-full h-[72px] sm:h-[76px] md:h-[84px] transition-all duration-300 pointer-events-none ${
-            isInsideCourses
-              ? "bg-[#0a0a0a]/95 backdrop-blur-md"
-              : isScrolledPastHero
+          className={`absolute inset-0 w-full h-[72px] sm:h-[76px] md:h-[84px] transition-all duration-300 pointer-events-none ${isInsideCourses
+            ? "bg-[#0a0a0a]/95 backdrop-blur-md"
+            : isScrolledPastHero
               ? "bg-[#fffef7]/95 backdrop-blur-md"
               : "bg-transparent"
-          }`}
+            }`}
         />
 
         <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pointer-events-none">
@@ -610,8 +609,8 @@ export default function HeroReveal({
                         isInsideCourses
                           ? "/images/iip-official-logo-white.svg"
                           : isScrolledPastHero
-                          ? "/images/iip-official-logo-dark.svg"
-                          : "/images/iip-official-logo-white.svg"
+                            ? "/images/iip-official-logo-dark.svg"
+                            : "/images/iip-official-logo-white.svg"
                       }
                       alt="IIP Academy Official Logo"
                       fill
@@ -634,13 +633,12 @@ export default function HeroReveal({
                   <Link
                     key={idx}
                     href={item.href}
-                    className={`font-mono text-xs lg:text-[13px] uppercase tracking-[0.2em] font-medium transition-colors duration-200 cursor-pointer drop-shadow-sm leading-none whitespace-nowrap ${
-                      isInsideCourses
-                        ? "text-white/85 hover:text-[#ffd001]"
-                        : isScrolledPastHero
+                    className={`font-mono text-xs lg:text-[13px] uppercase tracking-[0.2em] font-medium transition-colors duration-200 cursor-pointer drop-shadow-sm leading-none whitespace-nowrap ${isInsideCourses
+                      ? "text-white/85 hover:text-[#ffd001]"
+                      : isScrolledPastHero
                         ? "text-black hover:text-[#666666]"
                         : "text-white/85 hover:text-[#ffd001]"
-                    }`}
+                      }`}
                   >
                     {item.label}
                   </Link>
@@ -649,7 +647,7 @@ export default function HeroReveal({
             </div>
 
             {/* RIGHT ENROLL BUTTON: Anchors flush to the right padding gutter */}
-            <div className="absolute top-1/2 -translate-y-1/2 right-0 h-[44px] md:h-[46px] flex items-center z-50 pointer-events-none">
+            <div className="absolute top-1/2 -translate-y-1/2 right-0 flex items-center z-50 pointer-events-none">
               <div
                 ref={enrollBtnRef}
                 className="flex items-center pointer-events-auto"
@@ -657,7 +655,7 @@ export default function HeroReveal({
               >
                 <Link
                   href={enrollHref}
-                  className="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-[#ffd001] hover:bg-white text-black font-mono text-xs sm:text-sm font-semibold tracking-[0.14em] sm:tracking-[0.16em] uppercase transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer leading-none"
+                  className="inline-flex items-center justify-center px-6 sm:px-8 md:px-9 py-3.5 sm:py-4 rounded-full bg-[#ffd001] hover:bg-white text-black font-mono text-xs sm:text-sm font-bold tracking-[0.14em] sm:tracking-[0.16em] uppercase transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer leading-none"
                 >
                   {enrollText}
                 </Link>

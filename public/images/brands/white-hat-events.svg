@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" fill="none">
+  <!-- White Hat icon -->
+  <g fill="#000000">
+    <!-- Brim -->
+    <path d="M8 32 C14 30.5, 26 29, 36 29 C46 29, 58 30.5, 64 32 C65 32.3, 64 33.5, 62 33.8 C54 35, 46 35.5, 36 35.5 C26 35.5, 18 35, 10 33.8 C8 33.5, 7 32.3, 8 32 Z" />
+    <!-- Crown -->
+    <path d="M22 28.5 C22 28.5, 20 18, 26 14 C29 12, 33 13.5, 36 13.5 C39 13.5, 43 12, 46 14 C52 18, 50 28.5, 50 28.5 Z" />
+    <!-- Ribbon Band (negative space) -->
+    <path d="M21.5 25.5 C26 26.5, 46 26.5, 50.5 25.5 L50.8 28 C45 29, 27 29, 21.2 28 Z" fill="#fffef7" />
+  </g>
+  <!-- Typography -->
+  <text x="72" y="23" font-family="'Switzer', 'Inter', -apple-system, sans-serif" font-size="14" font-weight="600" letter-spacing="2.5" fill="#000000">WHITE HAT</text>
+  <text x="72.5" y="35" font-family="'Switzer', 'Inter', -apple-system, sans-serif" font-size="8.5" font-weight="400" letter-spacing="3.5" fill="#666666">EVENTS • NEPAL</text>
+</svg>

@@ -268,3 +268,22 @@ html.lenis body {
 .font-polaroid {
   font-family: var(--font-polaroid), "Caveat", cursive, sans-serif;
 }
+
+/* Creative Giants Seamless Marquee Timeline */
+@keyframes marquee_timeline {
+  from {
+    transform: translate3d(0%, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-timeline {
+  animation: marquee_timeline 90s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-timeline:hover {
+  animation-play-state: paused;
+}

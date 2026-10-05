@@ -2,6 +2,8 @@ import React from "react";
 import HeroReveal from "@/components/HeroReveal";
 import WhatWeDo from "@/components/home/WhatWeDo";
 import CoursesSection from "@/components/home/CoursesSection";
+import PortfolioSection from "@/components/home/PortfolioSection";
+import HowItWorks from "@/components/home/HowItWorks";
 
 export default function Home(): React.JSX.Element {
   return (
@@ -25,6 +27,16 @@ export default function Home(): React.JSX.Element {
       {/* 3. Courses Section (Darkroom Black Stage for Polaroid Gallery) */}
       <div className="relative z-20 bg-[#0a0a0a]">
         <CoursesSection />
+      </div>
+
+      {/* 4. How It Works Section (Bone White Canvas, Single Screen Height, Alternating Timeline) */}
+      <div className="relative z-20 bg-[#fffef7]">
+        <HowItWorks />
+      </div>
+
+      {/* 5. Portfolio Section (Creative Giants Pinned Horizontal Parallax Scroll with Top Editorial Header) */}
+      <div className="relative z-20 bg-[#0a0a0a]">
+        <PortfolioSection />
       </div>
     </main>
   );

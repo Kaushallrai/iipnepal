@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import LineReveal from "@/components/animations/LineReveal";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -113,6 +114,12 @@ export default function CoursesSection({
   const sectionRef = useRef<HTMLElement>(null);
   const pinnedRef = useRef<HTMLDivElement>(null);
   const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
+  const stageElementsRef = useRef<HTMLDivElement>(null);
+  const viewAllBtnRef = useRef<HTMLDivElement>(null);
+  const polaroidColRef = useRef<HTMLDivElement>(null);
+  const railRef = useRef<HTMLDivElement>(null);
+  const courseRowsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const hasAnimatedStageRef = useRef(false);
 
   const [scrollIndex, setScrollIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -130,12 +137,13 @@ export default function CoursesSection({
       if (scrollTriggerRef.current) {
         const st = scrollTriggerRef.current;
         const total = courses.length;
+        // Target exact snap point for each course (aligned with rail notches)
         const targetScroll =
-          st.start + ((index + 0.5) / total) * (st.end - st.start);
+          st.start + (index / (total - 1)) * (st.end - st.start);
 
         const lenis = (window as unknown as { lenis?: { scrollTo: (target: number, opts?: { duration?: number }) => void } }).lenis;
         if (lenis && typeof lenis.scrollTo === "function") {
-          lenis.scrollTo(targetScroll, { duration: 1.1 });
+          lenis.scrollTo(targetScroll, { duration: 1.0 });
         } else {
           window.scrollTo({
             top: targetScroll,
@@ -161,17 +169,19 @@ export default function CoursesSection({
         trigger: sectionRef.current,
         pin: pinnedRef.current,
         start: "top top",
-        end: () => `+=${window.innerHeight * 2.8}`,
-        scrub: 0.35,
-        anticipatePin: 1,
+        end: () => `+=${window.innerHeight * 4.2}`,
+        scrub: 0.5,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const progress = self.progress;
           setScrollProgress(progress);
 
-          // Divide scroll range into equal segments per course
-          const rawIdx = Math.floor(progress * totalCourses);
-          const clampedIdx = Math.max(0, Math.min(totalCourses - 1, rawIdx));
+          // Divide scroll range into equal segments centered on snap notches
+          const courseProgress = progress * (totalCourses - 1);
+          const clampedIdx = Math.max(
+            0,
+            Math.min(totalCourses - 1, Math.round(courseProgress))
+          );
           setScrollIndex(clampedIdx);
         },
       });
@@ -194,6 +204,142 @@ export default function CoursesSection({
     };
   }, [courses.length]);
 
+  // Entrance motion animation for stage elements, Polaroid, and each course list item at 85% viewport
+  useEffect(() => {
+    const polaroidEl = polaroidColRef.current;
+    const railEl = railRef.current;
+    const validRows = courseRowsRef.current.filter(Boolean);
+    const viewBtn = viewAllBtnRef.current;
+
+    if (!polaroidEl && validRows.length === 0) return;
+
+    if (hasAnimatedStageRef.current) {
+      if (polaroidEl) gsap.set(polaroidEl, { opacity: 1, y: 0, rotate: 0 });
+      if (railEl) gsap.set(railEl, { opacity: 1, scaleY: 1 });
+      if (viewBtn) gsap.set(viewBtn, { opacity: 1, y: 0 });
+      gsap.set(validRows, { opacity: 1, y: 0 });
+      return;
+    }
+
+    // Initial hidden state
+    if (polaroidEl) gsap.set(polaroidEl, { opacity: 0, y: 40, rotate: -2 });
+    if (railEl) gsap.set(railEl, { opacity: 0, scaleY: 0.75, transformOrigin: "top center" });
+    if (viewBtn) gsap.set(viewBtn, { opacity: 0, y: 15 });
+    if (validRows.length > 0) gsap.set(validRows, { opacity: 0, y: 28 });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !hasAnimatedStageRef.current) {
+          hasAnimatedStageRef.current = true;
+          observer.disconnect();
+
+          const tl = gsap.timeline();
+
+          // 1. View all courses button entrance
+          if (viewBtn) {
+            tl.to(viewBtn, {
+              opacity: 1,
+              y: 0,
+              duration: 0.95,
+              ease: "power3.out",
+            });
+          }
+
+          // 2. Polaroid entrance animation with child component reveals
+          if (polaroidEl) {
+            tl.to(
+              polaroidEl,
+              {
+                opacity: 1,
+                y: 0,
+                rotate: 0,
+                duration: 1.2,
+                ease: "power3.out",
+              },
+              viewBtn ? "-=0.75" : 0
+            );
+
+            const polaroidMedia = polaroidEl.querySelector(".polaroid-media");
+            const polaroidChin = polaroidEl.querySelector(".polaroid-chin");
+            const polaroidButtons = polaroidEl.querySelector(".polaroid-buttons");
+
+            if (polaroidMedia) {
+              tl.fromTo(
+                polaroidMedia,
+                { scale: 1.05, opacity: 0.7 },
+                { scale: 1, opacity: 1, duration: 1.1, ease: "power2.out" },
+                "-=0.95"
+              );
+            }
+
+            if (polaroidChin) {
+              tl.fromTo(
+                polaroidChin,
+                { opacity: 0, y: 8 },
+                { opacity: 1, y: 0, duration: 0.85, ease: "power3.out" },
+                "-=0.8"
+              );
+            }
+
+            if (polaroidButtons) {
+              tl.fromTo(
+                polaroidButtons,
+                { opacity: 0, scale: 0.92 },
+                { opacity: 1, scale: 1, duration: 0.75, ease: "back.out(1.5)" },
+                "-=0.6"
+              );
+            }
+          }
+
+          // 3. Central rail entrance
+          if (railEl) {
+            tl.to(
+              railEl,
+              {
+                opacity: 1,
+                scaleY: 1,
+                duration: 1.0,
+                ease: "power2.out",
+              },
+              "-=1.0"
+            );
+          }
+
+          // 4. Staggered entrance for EACH component from the course list
+          if (validRows.length > 0) {
+            tl.to(
+              validRows,
+              {
+                opacity: 1,
+                y: 0,
+                duration: 1.0,
+                stagger: 0.1,
+                ease: "power3.out",
+              },
+              "-=0.9"
+            );
+          }
+        }
+      },
+      { rootMargin: "0px 0px -15% 0px", threshold: 0.02 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+      if (hasAnimatedStageRef.current) {
+        if (polaroidEl) gsap.set(polaroidEl, { opacity: 1, y: 0, rotate: 0 });
+        if (railEl) gsap.set(railEl, { opacity: 1, scaleY: 1 });
+        if (viewBtn) gsap.set(viewBtn, { opacity: 1, y: 0 });
+        gsap.set(validRows, { opacity: 1, y: 0 });
+      }
+    };
+  }, []);
+
   return (
     <section
       id="courses"
@@ -212,27 +358,33 @@ export default function CoursesSection({
         {/* ============================================================ */}
         <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 lg:mb-8 shrink-0 select-none">
           <div className="max-w-3xl text-left">
-            {/* Eyebrow */}
+            {/* Eyebrow with Line Reveal */}
             <div className="flex items-center gap-2.5 mb-2.5">
               <span className="w-2 h-2 rounded-full bg-[#ffd001] shrink-0 inline-block" />
-              <span className="font-mono text-xs sm:text-[13px] tracking-[0.22em] uppercase font-semibold text-white/90">
-                {eyebrow}
-              </span>
+              <LineReveal
+                as="span"
+                lines={[eyebrow]}
+                className="font-mono text-xs sm:text-[13px] tracking-[0.22em] uppercase font-semibold text-white/90"
+              />
             </div>
 
-            {/* Statement Headline: 34-44px Switzer light weight 300 */}
-            <h2 className="font-sans font-light text-2xl sm:text-3xl lg:text-[40px] leading-[1.12] tracking-[-0.035em] text-white mb-2">
-              {heading}
-            </h2>
+            {/* Statement Headline with Creative Giants masked line reveal */}
+            <LineReveal
+              as="h2"
+              lines={[heading]}
+              className="font-sans font-light text-2xl sm:text-3xl lg:text-[40px] leading-[1.12] tracking-[-0.035em] text-white mb-2"
+            />
 
-            {/* Subheading paragraph */}
-            <p className="font-sans font-normal text-sm sm:text-base text-white/60 max-w-2xl leading-relaxed tracking-[-0.01em]">
-              {subheading}
-            </p>
+            {/* Subheading with Creative Giants masked line reveal */}
+            <LineReveal
+              as="p"
+              lines={[subheading]}
+              className="font-sans font-normal text-sm sm:text-base text-white/60 max-w-2xl leading-relaxed tracking-[-0.01em]"
+            />
           </div>
 
           {/* Top Action: View All Courses Button Spiced with Yellow Accent */}
-          <div className="shrink-0 pt-1 md:pt-0 select-none">
+          <div ref={viewAllBtnRef} className="shrink-0 pt-1 md:pt-0 select-none will-change-transform">
             <Link
               href="/courses"
               className="group/all inline-flex items-center gap-0.5 font-mono text-xs sm:text-[13px] tracking-[0.16em] uppercase text-white hover:bg-[#ffd001] hover:text-black px-2 py-1 transition-all duration-150 font-medium leading-none"
@@ -248,13 +400,13 @@ export default function CoursesSection({
         {/* 2. MAIN STAGE: Centered with decreased side spacing &        */}
         {/* generous breathing room beside the central scroll rail       */}
         {/* ============================================================ */}
-        <div className="w-full flex-1 flex flex-col justify-center min-h-0 py-2 sm:py-4">
+        <div ref={stageElementsRef} className="w-full flex-1 flex flex-col justify-center min-h-0 py-2 sm:py-4 will-change-transform">
           <div className="w-full max-w-7xl xl:max-w-[92rem] 2xl:max-w-[98rem] mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-14 xl:gap-20 2xl:gap-24">
             {/* ======================================================== */}
             {/* COLUMN 1: POLAROID PHOTOGRAPH (MUSEUM ARTIFACT)          */}
             {/* Prominent, authentic photographic paper, generous bounds */}
             {/* ======================================================== */}
-            <div className="w-full lg:w-[360px] xl:w-[390px] 2xl:w-[420px] shrink-0 flex flex-col items-center justify-center my-auto">
+            <div ref={polaroidColRef} className="w-full lg:w-[360px] xl:w-[390px] 2xl:w-[420px] shrink-0 flex flex-col items-center justify-center my-auto will-change-transform">
               {/* The Physical Polaroid Paper Print in Authentic Bone Color */}
               <div
                 className="relative w-full max-w-[390px] lg:max-w-none bg-[#fffef7] text-black border border-[#e8e4d8] p-3.5 sm:p-4 pb-5 sm:pb-6 flex flex-col select-none transition-transform duration-300"
@@ -265,7 +417,7 @@ export default function CoursesSection({
               >
                 {/* Polaroid Top Bar: 01 on Top Left & IIP Archive on Top Right */}
                 {/* Both share the exact same font-mono, tracking-[0.22em] and color (text-black/50), keeping 01 size */}
-                <div className="w-full flex items-baseline justify-between pb-2">
+                <div className="polaroid-top w-full flex items-baseline justify-between pb-2">
                   {/* Top left 01: same font and color as IIP archive, keeping larger font size */}
                   <span className="font-mono text-xl sm:text-2xl   text-black/50 leading-none">
                     {courses[activeIndex]?.number}
@@ -278,7 +430,7 @@ export default function CoursesSection({
                 </div>
 
                 {/* Photo Emulsion Area: Pure Black & White Instant Film with Glossy Sheen (NO BLACK BORDER) */}
-                <div className="relative w-full aspect-[4/3.8] overflow-hidden">
+                <div className="polaroid-media relative w-full aspect-[4/3.8] overflow-hidden">
                   {courses.map((course, idx) => {
                     const isActive = idx === activeIndex;
                     return (
@@ -346,7 +498,7 @@ export default function CoursesSection({
                 </div>
 
                 {/* Polaroid Bottom Chin: Editorial & Clean Layout on Bone Paper */}
-                <div className="w-full pt-3.5 sm:pt-4 flex flex-col justify-between">
+                <div className="polaroid-chin w-full pt-3.5 sm:pt-4 flex flex-col justify-between">
                   {/* Course Title in Clean Modern Typography */}
                   <h3 className="font-mono  text-base sm:text-lg lg:text-[19px] leading-[1.22] text-[#111111] tracking-[-0.02em] line-clamp-2 min-h-[2.4em] ">
                     {courses[activeIndex]?.title}
@@ -372,7 +524,7 @@ export default function CoursesSection({
                     </div>
 
                     {/* Right: Simple [ ENROLL ] [ VIEW ] Buttons Spiced with Yellow Accent */}
-                    <div className="flex items-center gap-2 sm:gap-2.5 shrink-0 select-none font-mono text-xs sm:text-[13px] tracking-[0.14em] uppercase">
+                    <div className="polaroid-buttons flex items-center gap-2 sm:gap-2.5 shrink-0 select-none font-mono text-xs sm:text-[13px] tracking-[0.14em] uppercase">
                       {/* Enroll Button (First) with Yellow Accent Brackets & Yellow Hover */}
                       <Link
                         href={`/enroll?course=${courses[activeIndex]?.slug}`}
@@ -402,7 +554,10 @@ export default function CoursesSection({
             {/* COLUMN 2: CUSTOM VERTICAL SCROLL IN THE MIDDLE           */}
             {/* Generous spacing beside the scroll rail so it breathes   */}
             {/* ======================================================== */}
-            <div className="hidden lg:flex flex-col items-center justify-center shrink-0 w-16 xl:w-20 px-2 lg:px-4 self-stretch my-auto">
+            <div
+              ref={railRef}
+              className="hidden lg:flex flex-col items-center justify-center shrink-0 w-16 xl:w-20 px-2 lg:px-4 self-stretch my-auto"
+            >
               <div className="relative h-[270px] xl:h-[300px] w-full flex flex-col items-center justify-between py-1 select-none">
                 {/* Top Label */}
                 <span className="font-mono text-[10px] tracking-wider text-white/40 font-semibold">
@@ -475,6 +630,9 @@ export default function CoursesSection({
                   return (
                     <div
                       key={course.id}
+                      ref={(el) => {
+                        courseRowsRef.current[idx] = el;
+                      }}
                       onMouseEnter={() => setHoveredIndex(idx)}
                       onMouseLeave={() => setHoveredIndex(null)}
                       onClick={() => handleJumpToCourse(idx)}
@@ -494,7 +652,7 @@ export default function CoursesSection({
                         <div className="flex items-center gap-3.5 sm:gap-4 flex-1">
                           {/* Square Checkbox / Focus Point Marker (Sketch: [ ] vs [■]) */}
                           <div
-                            className={`w-4 h-4 rounded-none transition-all duration-200 shrink-0 flex items-center justify-center ${isActive
+                            className={`course-marker w-4 h-4 rounded-none transition-all duration-200 shrink-0 flex items-center justify-center ${isActive
                               ? "bg-[#ffd001] border-2 border-[#ffd001]"
                               : "border border-white/35 group-hover:border-white bg-transparent"
                               }`}
@@ -507,7 +665,7 @@ export default function CoursesSection({
 
                           {/* Course Title */}
                           <h4
-                            className={`font-sans text-base sm:text-lg md:text-xl lg:text-[21px] xl:text-[23px] tracking-[-0.025em] transition-colors duration-200 leading-tight ${isActive
+                            className={`course-title font-sans text-base sm:text-lg md:text-xl lg:text-[21px] xl:text-[23px] tracking-[-0.025em] transition-colors duration-200 leading-tight ${isActive
                               ? "font-normal text-white"
                               : "font-light text-white/50 group-hover:text-white"
                               }`}
@@ -519,7 +677,7 @@ export default function CoursesSection({
                         {/* Duration on right (NO DASHED LINES) */}
                         <div className="flex items-center gap-2.5 shrink-0 pl-2">
                           <span
-                            className={`font-mono text-xs sm:text-[13px] uppercase tracking-[0.16em] transition-colors ${isActive
+                            className={`course-duration font-mono text-xs sm:text-[13px] uppercase tracking-[0.16em] transition-colors ${isActive
                               ? "text-[#ffd001] font-semibold"
                               : "text-white/40 group-hover:text-white/80 font-normal"
                               }`}

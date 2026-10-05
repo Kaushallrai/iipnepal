@@ -69,4 +69,18 @@ export const ORIGINAL_PORTFOLIO_ITEMS: PortfolioItem[] = [
     summary:
       "Natural-light environmental portrait capturing morning rituals and architectural shadows beside the ancient stepped temple.",
   },
+  {
+    id: "port-5",
+    slug: "silver-gelatin-darkroom",
+    title: "The Silver Chemistry",
+    category: "Darkroom & Archive",
+    photographer: "Additya Shrestha",
+    course: "Pro Level Advanced Photography Course (Mentor-led)",
+    year: "2026",
+    location: "IIP Darkroom, Kathmandu",
+    coverImage: "/images/flagship-mentor-darkroom.jpg",
+    aspectRatio: "wide",
+    summary:
+      "Master darkroom archive documenting the tactile chemistry of red-light enlarging, fiber-base development, and exhibition printmaking in Kathmandu.",
+  },
 ];

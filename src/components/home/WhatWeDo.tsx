@@ -1,12 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import React, { useRef, useEffect } from "react";
+import gsap from "gsap";
+import LineReveal from "@/components/animations/LineReveal";
 
 export interface WhatWeDoStat {
   value: string;
@@ -48,104 +44,51 @@ export default function WhatWeDo({
   ],
 }: WhatWeDoProps): React.JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
-  const eyebrowRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const descriptionRef = useRef<HTMLDivElement>(null);
-  const statsContainerRef = useRef<HTMLDivElement>(null);
-  const statCardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const statIconsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const hasAnimatedStatsRef = useRef(false);
 
   useEffect(() => {
-    if (!sectionRef.current) return;
+    const validIcons = statIconsRef.current.filter(Boolean);
+    if (validIcons.length === 0) return;
 
-    const ctx = gsap.context(() => {
-      // 1. Eyebrow fade up
-      if (eyebrowRef.current) {
-        gsap.fromTo(
-          eyebrowRef.current,
-          { opacity: 0, y: 20 },
-          {
+    if (hasAnimatedStatsRef.current) {
+      gsap.set(validIcons, { opacity: 1, scale: 1, y: 0 });
+      return;
+    }
+
+    gsap.set(validIcons, { opacity: 0, scale: 0.85, y: 12 });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !hasAnimatedStatsRef.current) {
+          hasAnimatedStatsRef.current = true;
+          observer.disconnect();
+
+          gsap.to(validIcons, {
             opacity: 1,
+            scale: 1,
             y: 0,
-            duration: 0.7,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: eyebrowRef.current,
-              start: "top 88%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      }
+            duration: 1.15,
+            stagger: 0.12,
+            ease: "power3.out",
+          });
+        }
+      },
+      { rootMargin: "0px 0px -15% 0px", threshold: 0.02 }
+    );
 
-      // 2. Heading reveal
-      if (headingRef.current) {
-        gsap.fromTo(
-          headingRef.current,
-          { opacity: 0, y: 35 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.9,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: headingRef.current,
-              start: "top 84%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      }
-
-      // 3. Description sub-block reveal
-      if (descriptionRef.current) {
-        gsap.fromTo(
-          descriptionRef.current,
-          { opacity: 0, y: 30 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.85,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: descriptionRef.current,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      }
-
-      // 4. Stat cards stagger reveal
-      const validCards = statCardsRef.current.filter(Boolean);
-      if (validCards.length > 0 && statsContainerRef.current) {
-        gsap.fromTo(
-          validCards,
-          { opacity: 0, y: 35 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            stagger: 0.14,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: statsContainerRef.current,
-              start: "top 88%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      }
-    }, sectionRef);
-
-    const refreshTimer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 200);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
     return () => {
-      clearTimeout(refreshTimer);
-      ctx.revert();
+      observer.disconnect();
+      if (hasAnimatedStatsRef.current) {
+        gsap.set(validIcons, { opacity: 1, scale: 1, y: 0 });
+      }
     };
-  }, [stats]);
+  }, []);
 
   return (
     <section
@@ -159,26 +102,22 @@ export default function WhatWeDo({
         {/* Starts directly at the left margin, utilizing horizontal space */}
         {/* ============================================================ */}
         <div className="w-full text-left mb-10 sm:mb-12 md:mb-14">
-          {/* Eyebrow */}
-          <div
-            ref={eyebrowRef}
-            className="flex items-center gap-2.5 mb-4 sm:mb-5 select-none"
-            style={{ willChange: "transform, opacity" }}
-          >
-            <span className="w-2 h-2 rounded-full bg-black shrink-0 inline-block" />
-            <span className="font-mono text-xs sm:text-sm tracking-[0.2em] uppercase font-semibold text-black">
-              {eyebrow}
-            </span>
+          {/* Eyebrow with Line Reveal & Yellow Accent Dot */}
+          <div className="flex items-center gap-2.5 mb-4 sm:mb-5 select-none">
+            <span className="w-2 h-2 rounded-full bg-[#ffd001] shrink-0 inline-block shadow-[0_0_8px_rgba(255,208,1,0.6)]" />
+            <LineReveal
+              as="span"
+              lines={[eyebrow]}
+              className="font-mono text-xs sm:text-sm tracking-[0.2em] uppercase font-semibold text-black"
+            />
           </div>
 
-          {/* Statement Headline: Left-aligned, spans across wide horizontal space */}
-          <h2
-            ref={headingRef}
+          {/* Statement Headline with Creative Giants line reveal */}
+          <LineReveal
+            as="h2"
+            lines={[heading]}
             className="font-sans font-light text-2xl sm:text-3xl md:text-4xl lg:text-[46px] xl:text-[52px] leading-[1.14] tracking-[-0.035em] text-black max-w-5xl xl:max-w-6xl"
-            style={{ willChange: "transform, opacity" }}
-          >
-            {heading}
-          </h2>
+          />
         </div>
 
         {/* ============================================================ */}
@@ -187,34 +126,29 @@ export default function WhatWeDo({
         {/* ============================================================ */}
         <div className="w-full flex flex-col items-center ">
           <div className="w-full max-w-4xl lg:max-w-5xl mx-auto flex flex-col gap-14 sm:gap-16 md:gap-20">
-            {/* Subdescription */}
-            <div
-              ref={descriptionRef}
-              style={{ willChange: "transform, opacity" }}
-            >
-              <p className="text-base sm:text-lg md:text-xl text-[#555555] font-normal leading-[1.65] tracking-[-0.018em] text-left">
-                {description}
-              </p>
-            </div>
+            {/* Subdescription with Creative Giants masked line reveal */}
+            <LineReveal
+              as="p"
+              lines={[description]}
+              className="text-base sm:text-lg md:text-xl text-[#555555] font-normal leading-[1.65] tracking-[-0.018em] text-left"
+            />
 
             {/* Stats: Connected directly under description with zero divider */}
-            <div
-              ref={statsContainerRef}
-              className="w-full"
-            >
+            <div className="w-full">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 md:gap-10 lg:gap-12">
                 {stats.map((stat, idx) => (
                   <div
                     key={idx}
-                    ref={(el) => {
-                      statCardsRef.current[idx] = el;
-                    }}
                     className="flex flex-col items-start text-left gap-3 sm:gap-3.5"
-                    style={{ willChange: "transform, opacity" }}
                   >
-                    {/* Top: Icon + Number */}
+                    {/* Top: Icon + Number with Smooth Motion Animation */}
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 sm:w-9 sm:h-9 shrink-0 flex items-center justify-center text-black">
+                      <div
+                        ref={(el) => {
+                          statIconsRef.current[idx] = el;
+                        }}
+                        className="w-8 h-8 sm:w-9 sm:h-9 shrink-0 flex items-center justify-center text-black will-change-transform"
+                      >
                         {stat.icon === "globe" && (
                           <svg
                             width="100%"
@@ -264,15 +198,19 @@ export default function WhatWeDo({
                           </svg>
                         )}
                       </div>
-                      <span className="font-sans font-light text-3xl sm:text-4xl md:text-5xl leading-none tracking-[-0.035em] text-black">
-                        {stat.value}
-                      </span>
+                      <LineReveal
+                        as="span"
+                        lines={[stat.value]}
+                        className="font-sans font-light text-3xl sm:text-4xl md:text-5xl leading-none tracking-[-0.035em] text-black"
+                      />
                     </div>
 
-                    {/* Bottom: Caption Label */}
-                    <p className="text-xs sm:text-[13px] md:text-sm text-[#666666] leading-snug font-normal max-w-[28ch]">
-                      {stat.label}
-                    </p>
+                    {/* Bottom: Caption Label with Line Reveal */}
+                    <LineReveal
+                      as="p"
+                      lines={[stat.label]}
+                      className="text-xs sm:text-[13px] md:text-sm text-[#666666] leading-snug font-normal max-w-[28ch]"
+                    />
                   </div>
                 ))}
               </div>

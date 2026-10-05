@@ -102,14 +102,17 @@ export default function HeroReveal({
         }
 
         const coursesSection = document.querySelector("#courses");
+        const portfolioSection = document.querySelector("#portfolio");
+        let insideDark = false;
         if (coursesSection) {
           const cRect = coursesSection.getBoundingClientRect();
-          // Navbar height is around 84px.
-          // True when top of courses section reaches navbar and bottom hasn't passed above it.
-          setIsInsideCourses(cRect.top <= 84 && cRect.bottom > 84);
-        } else {
-          setIsInsideCourses(false);
+          if (cRect.top <= 84 && cRect.bottom > 84) insideDark = true;
         }
+        if (portfolioSection) {
+          const pRect = portfolioSection.getBoundingClientRect();
+          if (pRect.top <= 84 && pRect.bottom > 84) insideDark = true;
+        }
+        setIsInsideCourses(insideDark);
       }
     };
     handleScroll();
@@ -564,9 +567,9 @@ export default function HeroReveal({
           ref={fullHeaderBgRef}
           className={`absolute inset-0 w-full h-[72px] sm:h-[76px] md:h-[84px] transition-all duration-300 pointer-events-none ${
             isInsideCourses
-              ? "bg-[#0a0a0a]/95 backdrop-blur-md border-b border-white/10 shadow-xs"
+              ? "bg-[#0a0a0a]/95 backdrop-blur-md"
               : isScrolledPastHero
-              ? "bg-[#fffef7]/95 backdrop-blur-md border-b border-black/10 shadow-xs"
+              ? "bg-[#fffef7]/95 backdrop-blur-md"
               : "bg-transparent"
           }`}
         />
@@ -669,7 +672,7 @@ export default function HeroReveal({
       {/* ============================================================== */}
       <section
         ref={containerRef}
-        className="relative z-10 w-full min-h-screen min-h-[100dvh] flex flex-col justify-between pt-[88px] sm:pt-[96px] md:pt-[104px] pb-6 sm:pb-8 pointer-events-auto"
+        className="relative z-20 w-full min-h-screen min-h-[100dvh] flex flex-col justify-between pt-[88px] sm:pt-[96px] md:pt-[104px] pb-6 sm:pb-8 pointer-events-auto"
       >
         {/* Top spacer */}
         <div className="w-full h-2 sm:h-6 shrink-0" />
@@ -736,28 +739,28 @@ export default function HeroReveal({
             <span className="inline-block w-2 h-2 rounded-full bg-[#ffd001]" />
           </div>
         </div>
-
-        {/* Right-Side Editorial Display Text: Big, centered vertically, hidden on screens < 1480px */}
-        <div
-          className="fixed right-6 sm:right-8 md:right-12 lg:right-16 top-1/2 -translate-y-1/2 z-20 hidden min-[1480px]:flex items-center justify-center pointer-events-none select-none text-[#ffd001]"
-        >
-          <div
-            ref={editorialTagRef}
-            className="font-editorial text-5xl lg:text-6xl xl:text-7xl tracking-[0.24em] font-normal uppercase select-none drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] flex items-center justify-center gap-6"
-            style={{
-              writingMode: "vertical-rl",
-              textOrientation: "mixed",
-              willChange: "transform, opacity",
-            }}
-          >
-            <span>IIP</span>
-            <span className="text-3xl lg:text-4xl font-sans inline-block text-[#ffd001]">
-              ✱
-            </span>
-            <span>NEPAL</span>
-          </div>
-        </div>
       </section>
+
+      {/* Right-Side Editorial Display Text: Sits on top of background photo (z-0) but BEHIND the hero reveal animation layer (z-20) */}
+      <div
+        className="fixed right-6 sm:right-8 md:right-12 lg:right-16 top-1/2 -translate-y-1/2 z-10 hidden min-[1380px]:flex items-center justify-center pointer-events-none select-none text-[#ffd001]"
+      >
+        <div
+          ref={editorialTagRef}
+          className="font-editorial text-5xl lg:text-6xl xl:text-7xl tracking-[0.24em] font-normal uppercase select-none drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] flex items-center justify-center gap-6"
+          style={{
+            writingMode: "vertical-rl",
+            textOrientation: "mixed",
+            willChange: "transform, opacity",
+          }}
+        >
+          <span>IIP</span>
+          <span className="text-3xl lg:text-4xl font-sans inline-block text-[#ffd001]">
+            ✱
+          </span>
+          <span>NEPAL</span>
+        </div>
+      </div>
 
       {/* ============================================================== */}
       {/* 4. PROGRESS BAR CONTAINER (ANCHORS "LOADING" & "/COUNTER")     */}

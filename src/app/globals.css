@@ -1,5 +1,32 @@
 @import "tailwindcss";
 
+/* Authentic Creative Giants Switzer Webfont (Light 300, Regular 400, ExtraLight 200) */
+@font-face {
+  font-family: 'Switzer';
+  src: url('https://cdn.prod.website-files.com/678fc13a6195245eefbb1f34/67abbacd113fcc08efe66918_Switzer-Light.woff') format('woff'),
+       url('https://cdn.fontshare.com/wf/EW5HJEX6O4L64XUWQA2XU7Q6BZ3B4JA4/ZWUP4SQYHHMMSS5LFHFFBX6DXL7C3DTU/H5EOHLIZH5K7IZK6SGYJI75L4KV6FUO7.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('https://cdn.prod.website-files.com/678fc13a6195245eefbb1f34/67abb977efde095c9ce551dd_Switzer-Regular.woff2') format('woff2'),
+       url('https://cdn.fontshare.com/wf/BLNB4FAQFNK56DWWNF7PMGTCOTZHOEII/ST3WKSSDMBK2MIQQO3MAVYWLF4FTOLFV/6IN5WOLRCYP4G4MOCOHOMXNON6Q7MDAR.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('https://cdn.fontshare.com/wf/JXG72O2TZZZ5GVUMRFHCQDLSBYPRIWXQ/ZP6MERMWLACGBGZHTVL3PGEM4LJZTZ57/O2INHB7RBA62NQZWIAP3RS5WRI4PR4T5.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Colors from DESIGN.md */
   --color-bone-white: #fffef7;
@@ -26,8 +53,8 @@
   --color-quiet-graphite: var(--color-graphite);
   --color-faded-graphite: var(--color-ash);
 
-  /* Typography — Font Families */
-  --font-switzer: var(--font-switzer), 'Switzer', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Typography — Font Families (Switzer takes precedence, razor thin and clean) */
+  --font-switzer: 'Switzer', var(--font-switzer), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-sans: var(--font-switzer);
   --font-fragment-mono: var(--font-fragment-mono), 'IBM Plex Mono', monospace;
   --font-mono: var(--font-fragment-mono);
@@ -186,12 +213,18 @@ body {
   overflow-x: hidden;
   width: 100%;
   max-width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 html {
   overflow-x: hidden;
   width: 100%;
   max-width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Lenis Smooth Scrolling styles */

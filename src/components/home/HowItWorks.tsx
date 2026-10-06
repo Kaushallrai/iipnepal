@@ -163,8 +163,9 @@ export default function HowItWorks({
           const stepTl = gsap.timeline();
 
           if (connector) {
+            const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
             gsap.set(connector, {
-              transformOrigin: isLeft ? "right center" : "left center",
+              transformOrigin: isDesktop ? (isLeft ? "right center" : "left center") : "left center",
             });
           }
 
@@ -258,15 +259,15 @@ export default function HowItWorks({
     <section
       id="how-it-works"
       ref={sectionRef}
-      className="w-full bg-[#fffef7] text-black relative z-20 py-24 sm:py-28 md:py-32 lg:py-36 px-6 sm:px-8 md:px-12 lg:px-16 min-h-screen flex flex-col justify-between"
+      className="w-full bg-[#fffef7] text-black relative z-20 py-24 sm:py-28 md:py-32 lg:py-36 overflow-hidden"
       aria-label="How IIP Nepal Works — Curriculum Roadmap"
     >
-      <div className="w-full max-w-[105rem] mx-auto flex flex-col justify-between h-full flex-1">
+      <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-between">
         {/* ============================================================ */}
         {/* 1. TOP HEADER: HEADING & SUBHEADING ON THE LEFT              */}
         {/* Right side features Photography Aperture Iris Motif (Design) */}
         {/* ============================================================ */}
-        <div className="w-full flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-5 sm:mb-6 lg:mb-8 shrink-0 select-none">
+        <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 sm:mb-8 lg:mb-10 shrink-0 select-none">
           {/* Top-Left: Heading & Subheading ON THE LEFT with fluid responsive width */}
           <div className="flex-1 min-w-0 text-left">
             {/* Eyebrow with Yellow Accent Dot */}
@@ -294,22 +295,22 @@ export default function HowItWorks({
             />
           </div>
 
-          {/* Top-Right: Photography Aperture Iris Diaphragm Motif (Pure Visual Design) */}
+          {/* Top-Right: Photography Aperture Iris Diaphragm Motif (Design detail, visible on tablet & desktop) */}
           <div
             ref={apertureMotifRef}
-            className="hidden xl:flex items-center gap-4 text-right will-change-transform shrink-0 ml-6"
+            className="hidden md:flex items-center gap-3.5 xl:gap-4 text-right will-change-transform shrink-0 md:ml-6"
           >
             <div className="flex flex-col items-end">
-              <span className="font-mono text-xs tracking-[0.2em] uppercase text-black/70 font-semibold">
+              <span className="font-mono text-[11px] xl:text-xs tracking-[0.2em] uppercase text-black/70 font-semibold">
                 CURRICULUM ARCHITECTURE
               </span>
-              <span className="font-mono text-[11px] tracking-[0.16em] uppercase text-black/50">
+              <span className="font-mono text-[10px] xl:text-[11px] tracking-[0.16em] uppercase text-black/50">
                 CONTINUOUS INTAKE // 4 STAGES
               </span>
             </div>
 
             {/* Geometric Optical Aperture Diaphragm SVG Graphic */}
-            <div className="relative w-12 h-12 flex items-center justify-center">
+            <div className="relative w-10 h-10 xl:w-12 xl:h-12 flex items-center justify-center">
               <svg
                 viewBox="0 0 100 100"
                 className="w-full h-full text-black/85"
@@ -340,73 +341,87 @@ export default function HowItWorks({
         </div>
 
         {/* ============================================================ */}
-        {/* 2. TIMELINE: DIAGONAL "L" RETICLES WITH GENEROUS BREATHING SPACE */}
-        {/* Top-Left and Bottom-Right diagonal pair, clean 1px border    */}
-        {/* Inset container padding creates clean space to descriptions  */}
+        {/* 2. TIMELINE: RESPONSIVE LEFT RAIL (< lg) & CENTER SPINE (lg+) */}
+        {/* Top-Left and Bottom-Right diagonal viewfinder reticles        */}
         {/* ============================================================ */}
         <div
           ref={stepsContainerRef}
-          className="relative w-full max-w-5xl xl:max-w-6xl mx-auto flex-1 flex flex-col justify-center mt-10 sm:mt-12 lg:mt-14 mb-auto px-6 sm:px-10 xl:px-14 pt-4 pb-4 sm:pt-5 sm:pb-5"
+          className="relative w-full max-w-5xl xl:max-w-6xl mx-auto flex-1 flex flex-col justify-center mt-6 sm:mt-8 lg:mt-12 mb-auto px-4 sm:px-8 md:px-12 lg:px-14 xl:px-16 pt-8 pb-8 sm:pt-10 sm:pb-10 lg:pt-8 lg:pb-8"
         >
-          {/* DIAGONAL VIEWFINDER FRAMING RETICLES: Balanced 24px scale, NOT bold (1px hairline) */}
+          {/* DIAGONAL VIEWFINDER FRAMING RETICLES: Positioned outside or with breathing room */}
           <div
-            className="hidden lg:block absolute top-0 left-0 w-6 h-6 border-t border-l border-black/40 pointer-events-none"
+            className="absolute top-0 left-0 w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 border-t border-l border-black/35 pointer-events-none"
             aria-hidden="true"
           />
           <div
-            className="hidden lg:block absolute bottom-0 right-0 w-6 h-6 border-b border-r border-black/40 pointer-events-none"
+            className="absolute bottom-0 right-0 w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 border-b border-r border-black/35 pointer-events-none"
             aria-hidden="true"
           />
 
-          {/* Continuous Center Spine with Optical Graduation Ticks */}
+          {/* Continuous Spine with Optical Graduation Ticks */}
+          {/* Mobile/Tablet (< lg): Anchored along the left (left-3 sm:left-5) */}
+          {/* Desktop (>= lg): Centered at left-1/2 */}
           <div
             ref={spineRef}
-            className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-1.5 bottom-1.5 w-[1.5px] bg-black/20 pointer-events-none"
+            className="absolute left-3 sm:left-5 lg:left-1/2 -translate-x-1/2 top-4 bottom-4 w-[1.5px] bg-black/15 lg:bg-black/20 pointer-events-none"
           >
             {/* Optical Lens Barrel Distance Ticks along spine */}
-            <div className="absolute top-[12%] -left-1 w-2.5 h-[1px] bg-black/35" />
-            <div className="absolute top-[37%] -left-1 w-2.5 h-[1px] bg-black/35" />
-            <div className="absolute top-[62%] -left-1 w-2.5 h-[1px] bg-black/35" />
-            <div className="absolute top-[87%] -left-1 w-2.5 h-[1px] bg-black/35" />
+            <div className="absolute top-[12%] -left-1 w-2.5 h-[1px] bg-black/30 lg:bg-black/35" />
+            <div className="absolute top-[37%] -left-1 w-2.5 h-[1px] bg-black/30 lg:bg-black/35" />
+            <div className="absolute top-[62%] -left-1 w-2.5 h-[1px] bg-black/30 lg:bg-black/35" />
+            <div className="absolute top-[87%] -left-1 w-2.5 h-[1px] bg-black/30 lg:bg-black/35" />
           </div>
 
-          {/* 4 Alternating Timeline Rows */}
-          <div className="w-full flex flex-col gap-y-2 sm:gap-y-2.5 lg:gap-y-3 relative">
+          {/* 4 Timeline Rows */}
+          <div className="w-full flex flex-col gap-y-7 sm:gap-y-8 lg:gap-y-3 relative">
             {steps.map((step, idx) => {
-              const isLeft = idx % 2 === 0; // 0=left, 1=right, 2=left, 3=right
+              const isLeft = idx % 2 === 0; // 0=left, 1=right, 2=left, 3=right on desktop
 
               return (
                 <div
                   key={step.number}
-                  className="w-full grid grid-cols-1 lg:grid-cols-2 relative items-center"
+                  className="w-full grid grid-cols-1 lg:grid-cols-2 relative items-start lg:items-center"
                 >
-                  {/* Spine Center Node: Camera Optical Focus Ring with Yellow Center */}
+                  {/* Spine Node: Camera Optical Focus Ring with Yellow Center */}
+                  {/* On Mobile/Tablet: Left rail node (left-3 sm:left-5, top-1) */}
+                  {/* On Desktop: Center spine node (left-1/2, top-1/2) */}
                   <div
                     ref={(el) => {
                       nodeDotsRef.current[idx] = el;
                     }}
-                    className="hidden lg:flex absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-4.5 h-4.5 rounded-full bg-[#fffef7] border border-black/80 z-20 items-center justify-center pointer-events-none shadow-xs"
+                    className="flex absolute left-3 sm:left-5 lg:left-1/2 -translate-x-1/2 top-1 lg:top-1/2 -translate-y-0 lg:-translate-y-1/2 w-4 h-4 lg:w-4.5 lg:h-4.5 rounded-full bg-[#fffef7] border border-black/80 z-20 items-center justify-center pointer-events-none shadow-xs"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[#ffd001] block" />
                   </div>
 
-                  {/* Horizontal Hairline Connector to Spine */}
+                  {/* Hairline Connector to Spine */}
+                  {/* Mobile/Tablet: Connects from node (left-3) to text box (w-4) */}
+                  {/* Desktop: Hairline to the left or right of center */}
                   <div
                     ref={(el) => {
                       connectorsRef.current[idx] = el;
                     }}
-                    className={`hidden lg:block absolute top-1/2 -translate-y-1/2 h-[1px] bg-black/25 pointer-events-none ${
-                      isLeft ? "right-1/2 w-8 xl:w-10" : "left-1/2 w-8 xl:w-10"
+                    className={`block absolute pointer-events-none bg-black/25 ${
+                      // Mobile/Tablet: starts at circle node and points right
+                      "left-3 sm:left-5 top-3 -translate-y-1/2 w-3.5 sm:w-4 h-[1px] lg:top-1/2 " +
+                      // Desktop: starts at center spine
+                      (isLeft
+                        ? "lg:left-auto lg:right-1/2 lg:w-8 lg:xl:w-10"
+                        : "lg:left-1/2 lg:w-8 lg:xl:w-10")
                     }`}
                   />
 
-                  {/* ========================================== */}
-                  {/* LEFT COLUMN: Steps 01 and 03               */}
-                  {/* ========================================== */}
+                  {/* ============================================================ */}
+                  {/* STEP CONTENT                                                 */}
+                  {/* Mobile/Tablet: Consistent left-aligned reading stack         */}
+                  {/* Desktop: Alternates Left Column (01, 03) and Right (02, 04)  */}
+                  {/* ============================================================ */}
+
+                  {/* Desktop Left Column Slot (Steps 01, 03 on desktop) */}
                   <div
                     className={`w-full ${
                       isLeft
-                        ? "flex justify-end lg:pr-8 xl:lg:pr-10"
+                        ? "flex justify-start lg:justify-end pl-9 sm:pl-12 lg:pl-0 lg:pr-8 xl:lg:pr-10"
                         : "hidden lg:flex justify-end lg:pr-8 xl:lg:pr-10 opacity-0 pointer-events-none select-none"
                     }`}
                   >
@@ -415,27 +430,27 @@ export default function HowItWorks({
                         ref={(el) => {
                           stepBlocksRef.current[idx] = el;
                         }}
-                        className="w-full max-w-xl xl:max-w-[580px] flex flex-col text-right items-end select-none group"
+                        className="w-full max-w-xl xl:max-w-[580px] flex flex-col text-left lg:text-right items-start lg:items-end select-none group"
                       >
-                        {/* Step Phase & Number in Gold Accent */}
-                        <div className="flex items-center gap-2 mb-0.5 overflow-hidden justify-end">
-                          <span className="step-line-inner font-mono text-[11px] sm:text-[12px] tracking-[0.16em] uppercase text-black/55 font-medium">
-                            {step.phase}
-                          </span>
-                          <span className="text-black/30 text-xs">•</span>
-                          <span className="step-line-inner font-mono text-xs sm:text-[13px] font-bold tracking-[0.18em] text-[#ca8a04]">
+                        {/* Step Phase & Number - Clean single line: Circle Node -> Hairline -> [ 01 ] -> Phase */}
+                        <div className="flex items-center gap-2 mb-1 justify-start lg:justify-end whitespace-nowrap overflow-visible">
+                          <span className="step-line-inner font-mono text-xs sm:text-[13px] font-bold tracking-[0.16em] text-[#ca8a04] shrink-0 lg:order-2">
                             [ {step.number} ]
+                          </span>
+                          <span className="text-black/30 text-xs shrink-0 lg:order-1">•</span>
+                          <span className="step-line-inner font-mono text-[11px] sm:text-[12px] tracking-[0.14em] uppercase text-black/60 font-medium shrink-0 lg:order-0">
+                            {step.phase}
                           </span>
                         </div>
 
                         {/* Title with Masked Line Container */}
-                        <div className="overflow-hidden mb-1">
+                        <div className="overflow-hidden mb-1 sm:mb-1.5">
                           <h3 className="step-line-inner font-sans font-medium text-base sm:text-lg lg:text-[18.5px] xl:text-[19.5px] leading-snug text-black tracking-[-0.025em] group-hover:text-black transition-colors">
                             {step.title}
                           </h3>
                         </div>
 
-                        {/* Rich, informative description with slightly increased font */}
+                        {/* Rich, informative description */}
                         <div className="overflow-hidden">
                           <p className="step-line-inner font-sans font-normal text-[13px] sm:text-[13.5px] lg:text-[14px] xl:text-[14.5px] text-black/80 leading-relaxed max-w-xl xl:max-w-[560px]">
                             {step.description}
@@ -445,13 +460,11 @@ export default function HowItWorks({
                     )}
                   </div>
 
-                  {/* ========================================== */}
-                  {/* RIGHT COLUMN: Steps 02 and 04              */}
-                  {/* ========================================== */}
+                  {/* Desktop Right Column Slot (Steps 02, 04 on desktop) */}
                   <div
                     className={`w-full ${
                       !isLeft
-                        ? "flex justify-start lg:pl-8 xl:lg:pl-10"
+                        ? "flex justify-start pl-9 sm:pl-12 lg:pl-8 xl:lg:pl-10"
                         : "hidden lg:flex justify-start lg:pl-8 xl:lg:pl-10 opacity-0 pointer-events-none select-none"
                     }`}
                   >
@@ -462,25 +475,25 @@ export default function HowItWorks({
                         }}
                         className="w-full max-w-xl xl:max-w-[580px] flex flex-col text-left items-start select-none group"
                       >
-                        {/* Step Phase & Number in Gold Accent */}
-                        <div className="flex items-center gap-2 mb-0.5 overflow-hidden justify-start">
-                          <span className="step-line-inner font-mono text-xs sm:text-[13px] font-bold tracking-[0.18em] text-[#ca8a04]">
+                        {/* Step Phase & Number - Clean single line: Circle Node -> Hairline -> [ 02 ] -> Phase */}
+                        <div className="flex items-center gap-2 mb-1 justify-start whitespace-nowrap overflow-visible">
+                          <span className="step-line-inner font-mono text-xs sm:text-[13px] font-bold tracking-[0.16em] text-[#ca8a04] shrink-0">
                             [ {step.number} ]
                           </span>
-                          <span className="text-black/30 text-xs">•</span>
-                          <span className="step-line-inner font-mono text-[11px] sm:text-[12px] tracking-[0.16em] uppercase text-black/55 font-medium">
+                          <span className="text-black/30 text-xs shrink-0">•</span>
+                          <span className="step-line-inner font-mono text-[11px] sm:text-[12px] tracking-[0.14em] uppercase text-black/60 font-medium shrink-0">
                             {step.phase}
                           </span>
                         </div>
 
                         {/* Title with Masked Line Container */}
-                        <div className="overflow-hidden mb-1">
+                        <div className="overflow-hidden mb-1 sm:mb-1.5">
                           <h3 className="step-line-inner font-sans font-medium text-base sm:text-lg lg:text-[18.5px] xl:text-[19.5px] leading-snug text-black tracking-[-0.025em] group-hover:text-black transition-colors">
                             {step.title}
                           </h3>
                         </div>
 
-                        {/* Rich, informative description with slightly increased font */}
+                        {/* Rich, informative description */}
                         <div className="overflow-hidden">
                           <p className="step-line-inner font-sans font-normal text-[13px] sm:text-[13.5px] lg:text-[14px] xl:text-[14.5px] text-black/80 leading-relaxed max-w-xl xl:max-w-[560px]">
                             {step.description}

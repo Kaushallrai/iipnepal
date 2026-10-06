@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(CustomEase);
@@ -35,7 +36,7 @@ export default function HeroReveal({
   brandSecondary = "NEPAL",
   announcementTitle = "WELCOME TO THE IIP CENTRE NEPAL",
   announcementText = "Indian Institute of Photography launches in Kathmandu with White Hat Events — led by alumnus Additya Shrestha.",
-  ctaText = "( EXPLORE COURSES )",
+  ctaText = "[ EXPLORE COURSES ]",
   navItems = [
     { label: "Courses", href: "#courses" },
     { label: "Portfolio", href: "#portfolio" },
@@ -73,7 +74,31 @@ export default function HeroReveal({
   const [counterDisplay, setCounterDisplay] = useState(0);
   const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
   const [isInsideCourses, setIsInsideCourses] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
+
+  // Lock body scroll when mobile menu drawer is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -565,7 +590,7 @@ export default function HeroReveal({
         {/* Full-Width Background Bar on scroll */}
         <div
           ref={fullHeaderBgRef}
-          className={`absolute inset-0 w-full h-[72px] sm:h-[76px] md:h-[84px] transition-all duration-300 pointer-events-none ${isInsideCourses
+          className={`absolute inset-0 w-full h-[64px] sm:h-[72px] md:h-[84px] transition-all duration-300 pointer-events-none ${isInsideCourses
             ? "bg-[#0a0a0a]/95 backdrop-blur-md"
             : isScrolledPastHero
               ? "bg-[#fffef7]/95 backdrop-blur-md"
@@ -573,12 +598,12 @@ export default function HeroReveal({
             }`}
         />
 
-        <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pointer-events-none">
-          <div className="relative w-full h-[72px] sm:h-[76px] md:h-[84px] flex items-center justify-between pointer-events-auto">
+        <div className="w-full max-w-[105rem] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 pointer-events-none">
+          <div className="relative w-full h-[64px] sm:h-[72px] md:h-[84px] flex items-center justify-between pointer-events-auto">
             {/* LEFT LOGO: Anchors flush to the left padding gutter */}
             <div
               ref={logoWrapperRef}
-              className="absolute top-1/2 -translate-y-1/2 left-0 h-[44px] md:h-[46px] flex items-center z-50 pointer-events-auto"
+              className="absolute top-1/2 -translate-y-1/2 left-0 h-[40px] sm:h-[44px] md:h-[46px] flex items-center z-50 pointer-events-auto"
             >
               <Link
                 href="/"
@@ -590,10 +615,10 @@ export default function HeroReveal({
                   ref={initialTextLogoRef}
                   className="flex items-center gap-1.5 sm:gap-2 text-[#111111]"
                 >
-                  <span className="font-mono font-bold tracking-[0.1em] text-xl sm:text-2xl md:text-3xl">
+                  <span className="font-mono font-bold tracking-[0.1em] text-lg sm:text-2xl md:text-3xl">
                     {brandPrimary}
                   </span>
-                  <span className="font-mono font-normal tracking-[0.2em] text-xl sm:text-2xl md:text-3xl text-neutral-800">
+                  <span className="font-mono font-normal tracking-[0.2em] text-lg sm:text-2xl md:text-3xl text-neutral-800">
                     {brandSecondary}
                   </span>
                 </div>
@@ -603,7 +628,7 @@ export default function HeroReveal({
                   ref={officialLogoRef}
                   className="hidden items-center transition-transform duration-300 group-hover:scale-105"
                 >
-                  <div className="relative w-[48px] sm:w-[54px] md:w-[60px] h-[34px] sm:h-[40px] md:h-[44px] shrink-0">
+                  <div className="relative w-[42px] sm:w-[50px] md:w-[60px] h-[30px] sm:h-[36px] md:h-[44px] shrink-0">
                     <Image
                       src={
                         isInsideCourses
@@ -622,7 +647,7 @@ export default function HeroReveal({
               </Link>
             </div>
 
-            {/* MIDDLE NAVIGATION LINKS */}
+            {/* MIDDLE NAVIGATION LINKS (Visible on lg >= 1024px screens) */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[44px] md:h-[46px] hidden lg:flex items-center justify-center z-50 pointer-events-none">
               <nav
                 ref={navMenuRef}
@@ -646,19 +671,37 @@ export default function HeroReveal({
               </nav>
             </div>
 
-            {/* RIGHT ENROLL BUTTON: Anchors flush to the right padding gutter */}
+            {/* RIGHT ACTIONS: Enroll CTA (Desktop only) + Minimalist Lucide Menu Trigger (Mobile/Tablet) */}
             <div className="absolute top-1/2 -translate-y-1/2 right-0 flex items-center z-50 pointer-events-none">
               <div
                 ref={enrollBtnRef}
                 className="flex items-center pointer-events-auto"
                 style={{ willChange: "transform, opacity" }}
               >
+                {/* Desktop-only Enroll button: hidden on mobile/tablet where hamburger menu is active */}
                 <Link
                   href={enrollHref}
-                  className="inline-flex items-center justify-center px-6 sm:px-8 md:px-9 py-3.5 sm:py-4 rounded-full bg-[#ffd001] hover:bg-white text-black font-mono text-xs sm:text-sm font-bold tracking-[0.14em] sm:tracking-[0.16em] uppercase transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer leading-none"
+                  className="hidden lg:inline-flex items-center justify-center px-7 lg:px-9 py-3.5 lg:py-4 rounded-full bg-[#ffd001] hover:bg-white text-black font-mono text-xs md:text-sm font-medium tracking-[0.16em] uppercase transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer leading-none shrink-0"
                 >
                   {enrollText}
                 </Link>
+
+                {/* Minimalist Lucide Menu Trigger for Tablet & Mobile (< 1024px) */}
+                <button
+                  type="button"
+                  onClick={() => setIsMobileMenuOpen(true)}
+                  aria-label="Open menu"
+                  aria-expanded={isMobileMenuOpen}
+                  className={`lg:hidden w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer border ${
+                    isInsideCourses
+                      ? "border-white/20 bg-black/40 text-white hover:border-[#ffd001]"
+                      : isScrolledPastHero
+                        ? "border-black/15 bg-black/5 text-black hover:border-black"
+                        : "border-white/20 bg-black/30 backdrop-blur-sm text-white hover:border-[#ffd001]"
+                  }`}
+                >
+                  <Menu className="w-5 h-5 sm:w-5.5 sm:h-5.5" strokeWidth={1.5} />
+                </button>
               </div>
             </div>
           </div>
@@ -666,28 +709,119 @@ export default function HeroReveal({
       </header>
 
       {/* ============================================================== */}
+      {/* 2.5. RIGHT-SIDE SLIDE-IN MENU DRAWER (MOBILE & TABLET)         */}
+      {/* ============================================================== */}
+      {/* Backdrop overlay */}
+      <div
+        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] transition-opacity duration-300 lg:hidden ${
+          isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setIsMobileMenuOpen(false)}
+        aria-hidden="true"
+      />
+
+      {/* Drawer Panel: Slides in smoothly from the right side */}
+      <div
+        className={`fixed top-0 right-0 bottom-0 w-full max-w-[340px] sm:max-w-md h-[100dvh] bg-[#0a0a0a] text-white z-[70] flex flex-col justify-between transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-2xl border-l border-white/10 lg:hidden ${
+          isMobileMenuOpen ? "translate-x-0 pointer-events-auto" : "translate-x-full pointer-events-none"
+        }`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site Navigation"
+      >
+        {/* Top Header Row inside Drawer: Logo + Lucide X Close Icon */}
+        <div className="w-full px-6 sm:px-8 h-[64px] sm:h-[72px] md:h-[84px] flex items-center justify-between border-b border-white/10 shrink-0">
+          <Link
+            href="/"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="flex items-center gap-1.5"
+          >
+            <div className="relative w-[42px] sm:w-[48px] h-[30px] sm:h-[34px]">
+              <Image
+                src="/images/iip-official-logo-white.svg"
+                alt="IIP Academy"
+                fill
+                className="object-contain"
+              />
+            </div>
+          </Link>
+
+          {/* Minimalist Lucide Close Icon */}
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-label="Close menu"
+            className="w-10 h-10 rounded-full flex items-center justify-center border border-white/20 bg-white/10 text-white cursor-pointer hover:border-[#ffd001] hover:text-[#ffd001] transition-colors"
+          >
+            <X className="w-5 h-5" strokeWidth={1.5} />
+          </button>
+        </div>
+
+        {/* Drawer Center Nav Links: Clean, minimal editorial list */}
+        <div className="flex-1 overflow-y-auto px-6 sm:px-8 py-8 flex flex-col justify-between">
+          <nav className="flex flex-col gap-4">
+            {navItems.map((item, idx) => (
+              <a
+                key={idx}
+                href={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="group flex items-center justify-between py-2.5 text-white/90 hover:text-[#ffd001] transition-colors"
+              >
+                <span className="font-sans font-light text-2xl sm:text-3xl tracking-tight group-hover:translate-x-1 transition-transform duration-200">
+                  {item.label}
+                </span>
+                <ArrowUpRight className="w-4 h-4 text-white/40 group-hover:text-[#ffd001] transition-colors shrink-0" strokeWidth={1.5} />
+              </a>
+            ))}
+          </nav>
+
+          {/* Quick Enroll CTA inside menu */}
+          <div className="pt-6 border-t border-white/10 mt-6">
+            <Link
+              href={enrollHref}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="inline-flex w-full items-center justify-center py-3.5 rounded-full bg-[#ffd001] hover:bg-white text-black font-mono text-xs sm:text-sm font-semibold tracking-[0.16em] uppercase transition-all duration-200"
+            >
+              {enrollText} — Intake 2026
+            </Link>
+          </div>
+        </div>
+
+        {/* Drawer Bottom Metadata Row */}
+        <div className="w-full px-6 sm:px-8 py-4 border-t border-white/10 flex items-center justify-between font-mono text-[11px] text-white/50 tracking-wider shrink-0">
+          <span>KATHMANDU STUDIO</span>
+          <a
+            href="mailto:info@iipnepal.com"
+            className="hover:text-[#ffd001] transition-colors"
+          >
+            INFO@IIPNEPAL.COM
+          </a>
+        </div>
+      </div>
+
+      {/* ============================================================== */}
       {/* 3. HERO CONTENT SECTION (SCROLLS UP NATURALLY OVER PINNED IMAGE) */}
       {/* ============================================================== */}
       <section
         ref={containerRef}
-        className="relative z-20 w-full min-h-screen min-h-[100dvh] flex flex-col justify-between pt-[88px] sm:pt-[96px] md:pt-[104px] pb-6 sm:pb-8 pointer-events-auto"
+        className="relative z-20 w-full min-h-screen min-h-[100dvh] flex flex-col justify-between pt-[76px] sm:pt-[88px] md:pt-[104px] pb-5 sm:pb-8 pointer-events-auto"
       >
         {/* Top spacer */}
-        <div className="w-full h-2 sm:h-6 shrink-0" />
+        <div className="w-full h-1 sm:h-4 md:h-6 shrink-0" />
 
         {/* Center Typography, Announcement & CTA */}
         <div
           ref={heroContentRef}
-          className="my-auto py-6 sm:py-10 flex flex-col items-center justify-center text-center px-6 sm:px-8 md:px-12 lg:px-16 pointer-events-auto"
+          className="my-auto py-4 sm:py-8 md:py-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-12 lg:px-16 pointer-events-auto"
         >
           <div className="max-w-4xl xl:max-w-5xl mx-auto flex flex-col items-center">
             {/* Display Poster Headline: Switzer light weight 300 per DESIGN.md */}
-            <div className="overflow-hidden py-1 mb-4 sm:mb-6 max-w-full">
+            <div className="overflow-hidden py-1 mb-3 sm:mb-6 max-w-full">
               <h1
                 ref={(el) => {
                   titleLinesRef.current[0] = el;
                 }}
-                className="text-white font-sans font-light uppercase text-3xl sm:text-5xl md:text-6xl lg:text-[76px] xl:text-[84px] tracking-[-0.035em] sm:tracking-[-0.04em] leading-[1.08] sm:leading-[1.04] md:leading-[1.0] drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] max-w-5xl break-words"
+                className="text-white font-sans font-light uppercase text-2xl sm:text-4xl md:text-5xl lg:text-[76px] xl:text-[84px] tracking-[-0.03em] sm:tracking-[-0.04em] leading-[1.12] sm:leading-[1.04] md:leading-[1.0] drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] max-w-5xl break-words"
                 style={{ willChange: "transform" }}
               >
                 {announcementTitle}
@@ -697,22 +831,22 @@ export default function HeroReveal({
             {/* Shortened Concise Announcement (Only 1-2 lines) */}
             <div
               ref={announcementRef}
-              className="max-w-xl mx-auto mb-6 sm:mb-8"
+              className="max-w-xl mx-auto mb-5 sm:mb-8 px-2 sm:px-0"
               style={{ willChange: "transform, opacity" }}
             >
-              <p className="text-white/85 font-sans font-light text-sm sm:text-base md:text-lg leading-[1.5] tracking-[-0.018em] drop-shadow-md">
+              <p className="text-white/85 font-sans font-light text-xs sm:text-base md:text-lg leading-[1.5] sm:leading-[1.55] tracking-[-0.018em] drop-shadow-md">
                 {announcementText}
               </p>
             </div>
 
-            {/* Single CTA Link: "( EXPLORE COURSES )" */}
+            {/* Single CTA Link: "[ EXPLORE COURSES ]" without underline */}
             <div
               ref={ctaRef}
               className="flex items-center justify-center"
             >
               <a
                 href="#courses"
-                className="text-[#ffd001] hover:text-white font-mono text-xs sm:text-sm tracking-[0.24em] uppercase transition-colors duration-200 cursor-pointer py-1.5 px-4 border-b border-[#ffd001]/50 hover:border-white leading-none"
+                className="text-[#ffd001] hover:text-white font-mono text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.24em] uppercase transition-colors duration-200 cursor-pointer py-2 px-4 leading-none no-underline"
               >
                 {ctaText}
               </a>
@@ -723,18 +857,18 @@ export default function HeroReveal({
         {/* Bottom Information Bar (Kathmandu Studio & Est. 2026): Exact same padding as navbar */}
         <div
           ref={bottomBarRef}
-          className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex flex-row items-center justify-between pb-8 sm:pb-10 pt-4 text-white/90 font-mono text-xs sm:text-sm tracking-[0.18em] sm:tracking-[0.22em] uppercase font-medium pointer-events-auto shrink-0"
+          className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex flex-row items-center justify-between pb-5 sm:pb-8 md:pb-10 pt-3 sm:pt-4 text-white/90 font-mono text-[11px] sm:text-xs md:text-sm tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.22em] uppercase font-medium pointer-events-auto shrink-0"
         >
           {/* LEFT: KATHMANDU STUDIO */}
-          <div className="flex items-center gap-2 sm:gap-2.5">
-            <span className="inline-block w-2 h-2 rounded-full bg-white/70" />
-            <span>KATHMANDU STUDIO</span>
+          <div className="flex items-center gap-1.5 sm:gap-2.5">
+            <span className="inline-block w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white/70" />
+            <span className="whitespace-nowrap">KATHMANDU STUDIO</span>
           </div>
 
           {/* RIGHT: EST. 2026 */}
-          <div className="flex items-center gap-2 sm:gap-2.5">
-            <span>EST. 2026</span>
-            <span className="inline-block w-2 h-2 rounded-full bg-[#ffd001]" />
+          <div className="flex items-center gap-1.5 sm:gap-2.5">
+            <span className="whitespace-nowrap">EST. 2026</span>
+            <span className="inline-block w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#ffd001]" />
           </div>
         </div>
       </section>

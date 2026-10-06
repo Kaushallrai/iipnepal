@@ -52,18 +52,40 @@ Creative Giants reads like an oversized art-book spread rendered in code: a warm
 
 **Density:** comfortable
 
-### Spacing Scale
+### Spacing Scale (8px Grid Tokens)
 
-| Name | Value | Token |
-|------|-------|-------|
-| 8 | 8px | `--spacing-8` |
-| 16 | 16px | `--spacing-16` |
-| 24 | 24px | `--spacing-24` |
-| 32 | 32px | `--spacing-32` |
-| 48 | 48px | `--spacing-48` |
-| 64 | 64px | `--spacing-64` |
-| 80 | 80px | `--spacing-80` |
-| 112 | 112px | `--spacing-112` |
+| Step | Multiplier | Value | Token | Role |
+|------|------------|-------|-------|------|
+| 1 | 0.5x | 4px | `--space-1` | Micro adjustments, hairline offsets |
+| 2 | 1x | 8px | `--space-2` | Element gap, icon margins, tag vertical padding |
+| 3 | 1.5x | 12px | `--space-3` | Tag horizontal padding, button inner padding |
+| 4 | 2x | 16px | `--space-4` | Card text spacing, standard UI controls gap |
+| 5 | 2.5x | 20px | `--space-5` | Medium element margin |
+| 6 | 3x | 24px | `--space-6` | Card padding, mobile page gutter (`px-6`) |
+| 8 | 4x | 32px | `--space-8` | Small tablet page gutter (`sm:px-8`) |
+| 10 | 5x | 40px | `--space-10` | Mobile header margin-bottom (`mb-10`) |
+| 12 | 6x | 48px | `--space-12` | Tablet page gutter (`md:px-12`), small tablet header margin (`sm:mb-12`) |
+| 14 | 7x | 56px | `--space-14` | Tablet header margin (`md:mb-14`), mobile content gap (`gap-14`) |
+| 16 | 8x | 64px | `--space-16` | Desktop page gutter (`lg:px-16`), desktop header margin (`lg:mb-16`) |
+| 20 | 10x | 80px | `--space-20` | Tablet content gap (`md:gap-20`) |
+| 24 | 12x | 96px | `--space-24` | Mobile section vertical padding (`py-24`), desktop content gap (`lg:gap-24`) |
+| 28 | 14x | 112px | `--space-28` | Small tablet section vertical padding (`sm:py-28`) |
+| 32 | 16x | 128px | `--space-32` | Medium tablet section vertical padding (`md:py-32`) |
+| 36 | 18x | 144px | `--space-36` | Desktop section vertical padding (`lg:py-36`) |
+
+### Standardized Layout Rules & Responsive Anchors
+All page sections and containers MUST adhere to these exact responsive tiers:
+
+| Property | Mobile (`< 640px`) | Small Tablet (`sm: 640px+`) | Tablet (`md: 768px+`) | Desktop (`lg: 1024px+`) | CSS Variable / Utility Class |
+|---|---|---|---|---|---|
+| **Container Padding (X)** | 24px (`px-6`) | 32px (`sm:px-8`) | 48px (`md:px-12`) | 64px (`lg:px-16`) | `--page-gutter` / `.padding-global` / `px-gutter` |
+| **Section Padding (Y)** | 96px (`py-24`) | 112px (`sm:py-28`) | 128px (`md:py-32`) | 144px (`lg:py-36`) | `--section-py` / `.section-py` / `py-section` |
+| **Header Bottom Margin** | 40px (`mb-10`) | 48px (`sm:mb-12`) | 56px (`md:mb-14`) | 64px (`lg:mb-16`) | `--header-mb` / `.section-header-mb` / `mb-header` |
+| **Content Gap** | 56px (`gap-14`) | 64px (`sm:gap-16`) | 80px (`md:gap-20`) | 96px (`lg:gap-24`) | `--content-gap` / `.section-content-gap` / `gap-content` |
+| **Max Content Width** | 100% | 100% | 100% | 105rem (1680px) | `--max-content-width` / `max-w-[105rem]` |
+
+> [!IMPORTANT]
+> **Tailwind v4 Token Rule**: Never define numeric `--spacing-<N>` inside Tailwind's `@theme` block. Doing so overrides Tailwind's core utility formula (`N * 4px`). Use semantic names (e.g. `--spacing-section`, `--spacing-gutter`) or the unified layout utilities (`.padding-global`, `.section-py`).
 
 ### Border Radius
 
@@ -369,3 +391,20 @@ Full-bleed page model: no max-width container, content runs edge-to-edge with co
   --shadow-subtle: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px;
 }
 ```
+
+## Component Architecture & Standards
+
+### UI Component Library: shadcn/ui
+- Standard UI primitives (Sheet / Drawer, Dialog, Dropdown Menu, Tooltip, Navigation) can use shadcn/ui components.
+- Tailored with the IIP Design Tokens (`--color-bone-white`, `--color-ink-black`, `--color-signal-yellow`).
+- Slide-in sheets/drawers animate from the right side with backdrop blur and accessible focus management.
+
+### Iconography: Lucide React
+- Standardize exclusively on `lucide-react` icons (e.g. `Menu`, `X`, `ArrowUpRight`, `ChevronRight`).
+- Consistent stroke width: `strokeWidth={1.5}` or `1.75` for sharp, minimal architectural clarity.
+- Avoid bulky, complex or non-standard custom SVG icons.
+
+### Hero CTA Pattern
+- Use bracketed typography `[ EXPLORE COURSES ]`.
+- Render without underline (`no-underline`).
+- Clean hover transitions from Signal Yellow (`#ffd001`) to Studio White (`#ffffff`).

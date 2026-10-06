@@ -1,12 +1,17 @@
 "use client";
 
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Keyboard, Mousewheel } from "swiper/modules";
+import type { Swiper as SwiperCore } from "swiper";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LineReveal from "@/components/animations/LineReveal";
+
+import "swiper/css";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -272,23 +277,25 @@ export default function PortfolioSection({
     };
   }, [items.length]);
 
-  // Mobile Carousel Left/Right Scroll
-  const scrollMobile = (direction: "left" | "right") => {
-    if (mobileCarouselRef.current) {
-      const scrollAmount = mobileCarouselRef.current.clientWidth * 0.88;
-      mobileCarouselRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
-    }
-  };
+  const [swiperActiveIndex, setSwiperActiveIndex] = useState(0);
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
+  const swiperInstanceRef = useRef<SwiperCore | null>(null);
+
+  const handlePrevSlide = useCallback(() => {
+    swiperInstanceRef.current?.slidePrev();
+  }, []);
+
+  const handleNextSlide = useCallback(() => {
+    swiperInstanceRef.current?.slideNext();
+  }, []);
 
   return (
     <section
       id="portfolio"
       ref={sectionRef}
       aria-label="Photography Portfolio and Student Fieldwork"
-      className="relative w-full bg-[#0a0a0a] text-white z-20 overflow-hidden pb-20 sm:pb-24 md:pb-28 lg:pb-32"
+      className="relative w-full bg-[#0a0a0a] text-white z-20 overflow-hidden py-24 sm:py-28 md:py-32 lg:py-0"
     >
       {/* ========================================================================= */}
       {/* 1. DESKTOP VIEWPORT: Pinned Stage with Fixed Editorial Header             */}
@@ -296,7 +303,7 @@ export default function PortfolioSection({
       {/* ========================================================================= */}
       <div
         ref={pinnedRef}
-        className="hidden lg:flex flex-col justify-between w-full h-screen min-h-[720px] max-h-[1080px] pt-[92px] sm:pt-[98px] md:pt-[104px] lg:pt-[108px] pb-6 sm:pb-8 px-6 sm:px-8 md:px-12 lg:px-16 max-w-[105rem] mx-auto overflow-hidden"
+        className="hidden lg:flex flex-col justify-between w-full h-screen min-h-[720px] max-h-[1080px] pt-[108px] pb-12 px-6 sm:px-8 md:px-12 lg:px-16 max-w-[105rem] mx-auto overflow-hidden"
       >
         {/* ============================================================ */}
         {/* 1. EDITORIAL HEADER: Eyebrow + Heading + View All Archive    */}
@@ -498,110 +505,198 @@ export default function PortfolioSection({
       </div>
 
       {/* ========================================================================= */}
-      {/* 2. MOBILE / TABLET VIEWPORT: Touch Snap Carousel (< 1024px)              */}
-      {/* Pure Black and White Photography Cards with Direct Slide Navigation      */}
+      {/* 2. MOBILE / TABLET VIEWPORT: Touch Peek Swiper (< 1024px)                 */}
+      {/* Museum Darkroom Exhibition Cards with Live Indicator & Direct Touch Swipe */}
       {/* ========================================================================= */}
-      <div className="lg:hidden pt-24 sm:pt-28 pb-16 px-6 sm:px-10 flex flex-col gap-8">
-        {/* Mobile Header with Left/Right Arrow Controls */}
-        <div className="flex items-end justify-between border-b border-white/10 pb-6 gap-4">
-          <div className="flex flex-col gap-2">
+      <div className="lg:hidden px-6 sm:px-8 md:px-12 lg:px-16 max-w-[105rem] mx-auto flex flex-col gap-6 overflow-visible">
+        {/* Mobile Header: Clean, borderless header with Eyebrow, Heading & Navigation Arrows */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between pb-2 gap-4 select-none">
+          <div className="flex flex-col gap-1.5 max-w-xl text-left">
             <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ffd001] shrink-0 inline-block" />
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#ffd001] font-semibold">
-                {eyebrow}
-              </span>
+              <span className="w-2 h-2 rounded-full bg-[#ffd001] shrink-0 inline-block shadow-[0_0_8px_rgba(255,208,1,0.6)]" />
+              <LineReveal
+                as="span"
+                lines={[eyebrow]}
+                className="font-mono text-xs tracking-[0.22em] uppercase font-semibold text-white/90"
+              />
             </div>
-            <h2 className="font-sans font-light text-2xl sm:text-3xl leading-tight text-white">
-              {heading}
-            </h2>
-            <p className="font-sans font-normal text-xs sm:text-sm text-white/60 leading-relaxed">
-              {subheading}
-            </p>
+            <LineReveal
+              as="h2"
+              lines={[heading]}
+              className="font-sans font-light text-2xl sm:text-3xl leading-tight text-white tracking-[-0.03em]"
+            />
+            <LineReveal
+              as="p"
+              lines={[subheading]}
+              className="font-sans font-normal text-xs sm:text-[13px] text-white/60 leading-relaxed"
+            />
           </div>
 
-          <div className="flex items-center gap-2.5 shrink-0">
-            <button
-              type="button"
-              onClick={() => scrollMobile("left")}
-              className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 active:scale-95 transition-all"
-              aria-label="Previous Portfolio item"
+          {/* Action Row & Circular Arrow Buttons */}
+          <div className="flex items-center justify-between sm:justify-end gap-3 pt-1 sm:pt-0 shrink-0">
+            <Link
+              href="/portfolio"
+              className="group/all inline-flex items-center gap-0.5 font-mono text-xs uppercase tracking-[0.16em] text-white hover:bg-[#ffd001] hover:text-black px-2 py-1 transition-all duration-150 font-medium leading-none"
             >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollMobile("right")}
-              className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 active:scale-95 transition-all"
-              aria-label="Next Portfolio item"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
+              <span className="text-[#ffd001] group-hover/all:text-black font-semibold transition-colors">[</span>
+              <span className="px-1">ARCHIVE</span>
+              <span className="text-[#ffd001] group-hover/all:text-black font-semibold transition-colors">]</span>
+            </Link>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handlePrevSlide}
+                disabled={isBeginning}
+                className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/20 flex items-center justify-center transition-all duration-200 text-sm ${
+                  isBeginning
+                    ? "opacity-25 border-white/10 pointer-events-none cursor-not-allowed text-white/30"
+                    : "hover:border-[#ffd001] hover:bg-[#ffd001] hover:text-black active:scale-95 text-white/80 cursor-pointer"
+                }`}
+                aria-label="Previous portfolio item"
+              >
+                ←
+              </button>
+              <button
+                type="button"
+                onClick={handleNextSlide}
+                disabled={isEnd}
+                className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/20 flex items-center justify-center transition-all duration-200 text-sm ${
+                  isEnd
+                    ? "opacity-25 border-white/10 pointer-events-none cursor-not-allowed text-white/30"
+                    : "hover:border-[#ffd001] hover:bg-[#ffd001] hover:text-black active:scale-95 text-white/80 cursor-pointer"
+                }`}
+                aria-label="Next portfolio item"
+              >
+                →
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Mobile Swipeable Track (3 items) */}
-        <div
-          ref={mobileCarouselRef}
-          className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-6 pb-2"
-        >
-          {items.map((item, idx) => (
-            <div
-              key={item.id}
-              className="shrink-0 w-[84vw] sm:w-[480px] snap-center flex flex-col gap-4 bg-white/[0.03] border border-white/10 p-5"
-            >
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-black border border-white/10">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  sizes="84vw"
-                  className="object-cover"
-                  style={{
-                    filter: "grayscale(100%) contrast(1.12) brightness(1.02)",
-                  }}
-                />
-              </div>
-
-              <div className="flex flex-col gap-2 pt-1">
-                <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.2em] text-white/50">
-                  <span className="text-[#ffd001] font-medium">PORTFOLIO 0{idx + 1}</span>
-                  <span>{item.tag}</span>
-                </div>
-
-                <h3 className="font-sans font-light text-xl sm:text-2xl text-white leading-tight">
-                  {item.title}
-                </h3>
-
-                <p className="font-sans font-light text-xs sm:text-sm text-white/60 leading-relaxed line-clamp-3">
-                  {item.description}
-                </p>
-
-                <div className="flex items-center justify-between pt-2 border-t border-white/10 mt-1">
-                  <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider text-white/40">
-                    {item.photographer} · {item.year}
+        {/* Mobile Swipeable Track: Touch Peek Cards */}
+        <div className="w-full overflow-visible" style={{ clipPath: "inset(0 -100vw 0 0)" }}>
+          <Swiper
+            modules={[Navigation, Keyboard, Mousewheel]}
+            slidesPerView="auto"
+            spaceBetween={18}
+            speed={500}
+            grabCursor={true}
+            watchSlidesProgress={true}
+            touchAngle={45}
+            preventClicks={true}
+            preventClicksPropagation={true}
+            resistanceRatio={0.85}
+            keyboard={{ enabled: true, onlyInViewport: true }}
+            mousewheel={{ forceToAxis: true }}
+            onSwiper={(swiper) => {
+              swiperInstanceRef.current = swiper;
+              setIsBeginning(swiper.isBeginning);
+              setIsEnd(swiper.isEnd);
+              setSwiperActiveIndex(swiper.activeIndex);
+            }}
+            onSlideChange={(swiper) => {
+              setIsBeginning(swiper.isBeginning);
+              setIsEnd(swiper.isEnd);
+              setSwiperActiveIndex(swiper.activeIndex);
+            }}
+            className="w-full !overflow-visible"
+          >
+            {items.map((item, idx) => (
+              <SwiperSlide
+                key={item.id}
+                className="!w-[88vw] sm:!w-[520px] md:!w-[600px] max-w-[620px] !h-auto flex flex-col cursor-pointer"
+                onClick={() => {
+                  if (swiperActiveIndex !== idx) {
+                    swiperInstanceRef.current?.slideTo(idx);
+                  }
+                }}
+              >
+                {/* Museum Exhibition Card Shell - Clean, Focused, High-Impact */}
+                <div className="relative w-full bg-[#111111] border border-white/10 p-4 sm:p-5 flex flex-col gap-3.5 text-left select-none group transition-all duration-200 hover:border-white/25 shadow-[0_24px_54px_-12px_rgba(0,0,0,0.95)]">
+                  {/* Top Bar: Index & Tagline ABOVE the photo */}
+                  <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.2em] text-white/50">
+                    <span className="text-[#ffd001] font-semibold">
+                      PORTFOLIO // {item.number}
+                    </span>
+                    <span className="text-white/60 tracking-[0.14em]">{item.tag}</span>
                   </div>
 
-                  <Link
-                    href={`/portfolio/${item.slug}`}
-                    className="inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-[0.18em] text-[#ffd001] hover:text-white transition-colors"
-                  >
-                    <span>View Story</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </Link>
+                  {/* Photo Frame: Maximum Visual Impact */}
+                  <div className="relative aspect-[4/3] sm:aspect-[16/10] w-full overflow-hidden bg-black border border-white/10">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      priority={idx === 0}
+                      sizes="(max-width: 640px) 88vw, (max-width: 1024px) 600px, 620px"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                      style={{
+                        filter: "grayscale(100%) contrast(1.12) brightness(1.02)",
+                      }}
+                    />
+
+                    {/* Specular sheen overlay */}
+                    <div
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        background:
+                          "linear-gradient(130deg, rgba(255,255,255,0.2) 0%, transparent 40%, rgba(255,255,255,0.05) 100%)",
+                      }}
+                    />
+
+                    {/* Medium / Gear Badge */}
+                    <div className="absolute bottom-2.5 right-2.5 bg-black/85 backdrop-blur-sm border border-white/20 px-2 py-0.5 text-[10px] font-mono tracking-wider uppercase text-white/90">
+                      {item.medium}
+                    </div>
+                  </div>
+
+                  {/* Card Content Below Photo: Title, Description, Author & Circle View Button */}
+                  <div className="flex flex-col gap-2 pt-0.5">
+                    {/* Title */}
+                    <h3 className="font-sans font-light text-xl sm:text-2xl text-white leading-tight tracking-[-0.025em]">
+                      {item.title}
+                    </h3>
+
+                    {/* Concise Narrative */}
+                    <p className="font-sans font-light text-xs sm:text-[13px] text-white/70 leading-relaxed line-clamp-2">
+                      {item.description}
+                    </p>
+
+                    {/* Photographer & Circular Arrow View Button */}
+                    <div className="pt-2.5 flex items-center justify-between border-t border-white/10 mt-1">
+                      <div className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider text-white/60">
+                        <span className="text-white font-medium">{item.photographer}</span>
+                        <span className="text-white/30">·</span>
+                        <span className="text-white/50">{item.location}</span>
+                      </div>
+
+                      {/* Clean Circular Arrow Button */}
+                      <Link
+                        href={`/portfolio/${item.slug}`}
+                        onClick={(e) => e.stopPropagation()}
+                        aria-label={`View ${item.title}`}
+                        className="w-8 h-8 rounded-full border border-white/25 flex items-center justify-center text-white/80 hover:text-black hover:bg-[#ffd001] hover:border-[#ffd001] active:scale-95 transition-all duration-200 shrink-0 group/circle"
+                      >
+                        <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover/circle:translate-x-0.5 group-hover/circle:-translate-y-0.5" />
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
 
-        {/* Mobile View Complete Archive Link */}
-        <div className="pt-2 text-center">
-          <Link
-            href="/portfolio"
-            className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.2em] text-white/70 hover:text-[#ffd001] transition-colors"
-          >
-            <span>[ Explore Complete Portfolio Archive ]</span>
-          </Link>
+        {/* Minimal Centered [ 01 / 03 ] Indicator Below Cards */}
+        <div className="w-full flex items-center justify-center pt-1 select-none">
+          <div className="inline-flex items-center gap-1.5 font-mono text-xs sm:text-[13px] tracking-[0.24em] text-white/50">
+            <span className="text-[#ffd001] font-semibold">[</span>
+            <span className="text-white font-medium">{items[swiperActiveIndex]?.number}</span>
+            <span className="text-white/30">/</span>
+            <span>0{items.length}</span>
+            <span className="text-[#ffd001] font-semibold">]</span>
+          </div>
         </div>
       </div>
     </section>

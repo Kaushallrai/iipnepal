@@ -1,7 +1,61 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { LineReveal } from "@/components/animations/LineReveal";
+import { Phone, Mail, MapPin } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+export interface CourseOption {
+  id: string;
+  number: string;
+  title: string;
+  duration: string;
+  slug: string;
+}
+
+export const COURSES: CourseOption[] = [
+  {
+    id: "mobile-photography-course",
+    number: "01",
+    title: "Mobile Photography Course",
+    duration: "1 Month",
+    slug: "mobile-photography-course",
+  },
+  {
+    id: "beginners-course",
+    number: "02",
+    title: "Basic Photography Course",
+    duration: "1 Month",
+    slug: "beginners-course",
+  },
+  {
+    id: "foundation-course",
+    number: "03",
+    title: "Foundation Photography Course",
+    duration: "3 Months",
+    slug: "foundation-course",
+  },
+  {
+    id: "pro-level-foundation-photography-course",
+    number: "04",
+    title: "Pro-Level Foundation Photography Course",
+    duration: "3 Months",
+    slug: "pro-level-foundation-photography-course",
+  },
+  {
+    id: "pro-level-advanced-photography-course",
+    number: "05",
+    title: "Pro-Level Advanced Photography Course",
+    duration: "6 Months",
+    slug: "pro-level-advanced-photography-course",
+  },
+];
 
 interface FormData {
   firstName: string;
@@ -12,27 +66,33 @@ interface FormData {
   details: string;
 }
 
-const PROGRAM_OPTIONS = [
-  "One-Year Professional Diploma in Photography",
-  "Commercial & Fashion Photography",
-  "Documentary & Visual Storytelling",
-  "Weekend Foundation Course",
-  "Portfolio Assessment & Mentorship",
-  "Other / General Inquiry",
-];
-
 export default function ContactSection(): React.JSX.Element {
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
-    program: PROGRAM_OPTIONS[0],
+    program: COURSES[2].id, // Default to 03 Foundation Course
     details: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Pre-select course if present in URL query params (?course=...)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const urlParams = new URLSearchParams(window.location.search);
+    const courseSlug = urlParams.get("course");
+    if (courseSlug) {
+      const match = COURSES.find(
+        (c) => c.slug === courseSlug || c.id === courseSlug
+      );
+      if (match) {
+        setFormData((prev) => ({ ...prev, program: match.id }));
+      }
+    }
+  }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -45,7 +105,7 @@ export default function ContactSection(): React.JSX.Element {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -55,18 +115,18 @@ export default function ContactSection(): React.JSX.Element {
     <section
       id="contact"
       aria-label="Contact and Admissions Section"
-      className="section_contact-cta theme-light relative w-full bg-[#fffef7] text-black overflow-hidden pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-24 sm:pb-28 md:pb-32 lg:pb-36 select-none border-t border-[#eae8dc]"
+      className="section_contact-cta theme-light relative w-full bg-[#fffef7] text-black overflow-hidden pt-12 sm:pt-16 md:pt-20 lg:pt-32 pb-14 sm:pb-18 md:pb-24 lg:pb-36 select-none border-t border-[#eae8dc]"
       style={{
         fontFamily: "'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       }}
     >
       <div className="padding-global w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-[105rem] mx-auto">
-        <div className="contact-cta_component grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 sm:gap-16 lg:gap-24 items-start">
+        <div className="contact-cta_component grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 md:gap-8 lg:gap-20 xl:gap-24 items-start">
           {/* LEFT COLUMN: Editorial Brand Statement & Direct Channels */}
-          <div className="contact-cta_content flex flex-col justify-between h-full">
+          <div className="contact-cta_content md:col-span-5 lg:col-span-5 flex flex-col justify-between md:min-h-full">
             <div className="header-wrap flex flex-col items-start">
               {/* Eyebrow with glowing Signal Yellow dot */}
-              <div className="eyebrow-wrap flex items-center gap-2.5 text-xs sm:text-[13px] font-mono uppercase tracking-[0.22em] text-black font-semibold mb-3 sm:mb-4">
+              <div className="eyebrow-wrap flex items-center gap-2.5 text-xs sm:text-[13px] font-mono uppercase tracking-[0.22em] text-black font-semibold mb-2 sm:mb-3 md:mb-4">
                 <span className="eyebrow-dot w-2 h-2 rounded-full bg-[#ffd001] shrink-0 inline-block shadow-[0_0_8px_rgba(255,208,1,0.6)]" />
                 <div>Get in touch</div>
               </div>
@@ -75,48 +135,74 @@ export default function ContactSection(): React.JSX.Element {
               <LineReveal
                 as="h2"
                 lines={["Speak to us."]}
-                className="heading-style-h1 font-sans font-light text-4xl sm:text-5xl md:text-6xl lg:text-[72px] xl:text-[80px] leading-[1.04] tracking-[-0.035em] text-black mb-5 sm:mb-6"
+                className="heading-style-h1 font-sans font-light text-3xl sm:text-4xl md:text-5xl lg:text-[72px] xl:text-[80px] leading-[1.05] tracking-[-0.035em] text-black mb-3 sm:mb-4 md:mb-5 lg:mb-6"
               />
 
               {/* Explanatory Narrative */}
-              <p className="text-size-regular text-color-secondary font-light text-[15px] sm:text-[16px] md:text-[17px] leading-[1.62] text-[#666666] tracking-[-0.018em] max-w-[42ch]">
+              <p className="text-size-regular text-color-secondary font-light text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] leading-[1.55] md:leading-[1.62] text-[#666666] tracking-[-0.018em] max-w-[42ch]">
                 If you want to start a course, share a portfolio idea, or simply
                 schedule a one-on-one darkroom visit in Kathmandu, we want to
                 hear from you.
               </p>
+
+              {/* MOBILE ONLY: Ultra-compact, 1-tap quick action pills (Zero unnecessary scrolling) */}
+              <div className="md:hidden flex flex-col gap-2 w-full pt-3 pb-1">
+                <div className="grid grid-cols-2 gap-2 w-full">
+                  <a
+                    href="tel:+9779802364760"
+                    className="inline-flex items-center justify-center gap-2 py-2 px-3 rounded-full bg-[#f4f2e9] hover:bg-[#ffd001] active:bg-[#ffd001] text-black font-mono text-[11px] tracking-[0.06em] uppercase border border-[#e2e0d2] transition-colors"
+                    aria-label="Call Direct Admissions at +977 9802364760"
+                  >
+                    <Phone className="w-3 h-3 text-[#666666]" aria-hidden="true" />
+                    <span>Call Studio</span>
+                  </a>
+                  <a
+                    href="mailto:info@iipnepal.com"
+                    className="inline-flex items-center justify-center gap-2 py-2 px-3 rounded-full bg-[#f4f2e9] hover:bg-[#ffd001] active:bg-[#ffd001] text-black font-mono text-[11px] tracking-[0.06em] uppercase border border-[#e2e0d2] transition-colors"
+                    aria-label="Email faculty at info@iipnepal.com"
+                  >
+                    <Mail className="w-3 h-3 text-[#666666]" aria-hidden="true" />
+                    <span>Email Us</span>
+                  </a>
+                </div>
+                <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.08em] text-[#777777] px-1 pt-0.5">
+                  <span>Kathmandu Centre</span>
+                  <span>Lalitpur, Nepal</span>
+                </div>
+              </div>
             </div>
 
-            {/* Direct Studio Contact Cards */}
-            <div className="contact-details_wrap mt-10 sm:mt-14 pt-8 sm:pt-10 border-t border-[#e2e0d2] flex flex-col gap-5 sm:gap-6">
-              <div className="flex flex-col gap-1">
+            {/* TABLET & DESKTOP: Architectural Studio Contact Block */}
+            <div className="contact-details_wrap hidden md:flex flex-col gap-4 md:gap-5 lg:gap-6 mt-8 md:mt-10 lg:mt-14 pt-6 md:pt-8 lg:pt-10 border-t border-[#e2e0d2]">
+              <div className="flex flex-col gap-0.5 md:gap-1">
                 <span className="font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.16em] text-[#888888]">
                   Kathmandu Centre
                 </span>
-                <span className="font-normal text-[15px] sm:text-[16px] text-black">
+                <span className="font-normal text-[14px] md:text-[15px] lg:text-[16px] text-black">
                   Lalitpur, Bagmati Province, Nepal
                 </span>
               </div>
 
-              <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-10">
-                <div className="flex flex-col gap-1">
+              <div className="flex flex-col xl:flex-row xl:items-center gap-4 xl:gap-10">
+                <div className="flex flex-col gap-0.5 md:gap-1">
                   <span className="font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.16em] text-[#888888]">
                     Direct Admissions
                   </span>
                   <a
                     href="tel:+9779802364760"
-                    className="font-normal text-[15px] sm:text-[16px] text-black hover:text-[#ffd001] transition-colors"
+                    className="font-normal text-[14px] md:text-[15px] lg:text-[16px] text-black hover:text-[#ffd001] transition-colors"
                   >
                     +977 9802364760
                   </a>
                 </div>
 
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-0.5 md:gap-1">
                   <span className="font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.16em] text-[#888888]">
                     Faculty Email
                   </span>
                   <a
                     href="mailto:info@iipnepal.com"
-                    className="font-normal text-[15px] sm:text-[16px] text-black hover:text-[#ffd001] transition-colors"
+                    className="font-normal text-[14px] md:text-[15px] lg:text-[16px] text-black hover:text-[#ffd001] transition-colors"
                   >
                     info@iipnepal.com
                   </a>
@@ -126,13 +212,13 @@ export default function ContactSection(): React.JSX.Element {
           </div>
 
           {/* RIGHT COLUMN: Creative Giants Minimalist Form */}
-          <div className="form_component w-full">
+          <div className="form_component md:col-span-7 lg:col-span-7 w-full">
             {isSubmitted ? (
               <div
                 role="status"
-                className="form_success-wrapper bg-black text-[#fffef7] p-8 sm:p-12 md:p-14 flex flex-col items-start gap-4 transition-all duration-500 animate-fade-in"
+                className="form_success-wrapper bg-black text-[#fffef7] p-6 sm:p-10 md:p-12 lg:p-14 flex flex-col items-start gap-4 transition-all duration-500"
               >
-                <div className="w-10 h-10 rounded-full bg-[#ffd001] text-black flex items-center justify-center font-bold text-lg mb-2">
+                <div className="w-10 h-10 rounded-full bg-[#ffd001] text-black flex items-center justify-center font-bold text-lg mb-1">
                   ✓
                 </div>
                 <h3 className="font-light text-2xl sm:text-3xl tracking-[-0.03em] text-[#fffef7]">
@@ -151,11 +237,11 @@ export default function ContactSection(): React.JSX.Element {
                       lastName: "",
                       email: "",
                       phone: "",
-                      program: PROGRAM_OPTIONS[0],
+                      program: COURSES[2].id,
                       details: "",
                     });
                   }}
-                  className="mt-4 inline-flex items-center text-xs font-mono uppercase tracking-[0.16em] text-[#ffd001] hover:underline"
+                  className="mt-3 inline-flex items-center text-xs font-mono uppercase tracking-[0.16em] text-[#ffd001] hover:underline cursor-pointer"
                 >
                   Send another inquiry →
                 </button>
@@ -163,13 +249,13 @@ export default function ContactSection(): React.JSX.Element {
             ) : (
               <form
                 onSubmit={handleSubmit}
-                className="form_form grid grid-cols-1 sm:grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-8 sm:gap-y-10"
+                className="form_form grid grid-cols-2 gap-x-4 sm:gap-x-6 lg:gap-x-8 gap-y-5 sm:gap-y-6 md:gap-y-7 lg:gap-y-9"
               >
-                {/* First Name */}
-                <div className="form_field-wrapper flex flex-col items-start">
+                {/* First Name - 1 col on mobile, tablet & desktop */}
+                <div className="form_field-wrapper col-span-1 flex flex-col items-start">
                   <label
                     htmlFor="First-Name"
-                    className="form_field-label font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1.5"
+                    className="form_field-label font-mono text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1 sm:mb-1.5"
                   >
                     First name *
                   </label>
@@ -181,15 +267,15 @@ export default function ContactSection(): React.JSX.Element {
                     value={formData.firstName}
                     onChange={handleChange}
                     placeholder="Aarav"
-                    className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[16px] sm:text-[17px] font-normal py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none transition-colors duration-200"
+                    className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[15px] sm:text-[16px] md:text-[17px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none transition-colors duration-200"
                   />
                 </div>
 
-                {/* Last Name */}
-                <div className="form_field-wrapper flex flex-col items-start">
+                {/* Last Name - 1 col on mobile, tablet & desktop */}
+                <div className="form_field-wrapper col-span-1 flex flex-col items-start">
                   <label
                     htmlFor="Last-Name"
-                    className="form_field-label font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1.5"
+                    className="form_field-label font-mono text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1 sm:mb-1.5"
                   >
                     Last name *
                   </label>
@@ -201,15 +287,15 @@ export default function ContactSection(): React.JSX.Element {
                     value={formData.lastName}
                     onChange={handleChange}
                     placeholder="Shrestha"
-                    className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[16px] sm:text-[17px] font-normal py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none transition-colors duration-200"
+                    className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[15px] sm:text-[16px] md:text-[17px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none transition-colors duration-200"
                   />
                 </div>
 
-                {/* Email Address */}
-                <div className="form_field-wrapper flex flex-col items-start">
+                {/* Email Address - full width on mobile, 1 col on tablet/desktop */}
+                <div className="form_field-wrapper col-span-2 sm:col-span-1 flex flex-col items-start">
                   <label
                     htmlFor="Email-Address"
-                    className="form_field-label font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1.5"
+                    className="form_field-label font-mono text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1 sm:mb-1.5"
                   >
                     Email address *
                   </label>
@@ -221,15 +307,15 @@ export default function ContactSection(): React.JSX.Element {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="aarav@example.com"
-                    className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[16px] sm:text-[17px] font-normal py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none transition-colors duration-200"
+                    className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[15px] sm:text-[16px] md:text-[17px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none transition-colors duration-200"
                   />
                 </div>
 
-                {/* Phone Number */}
-                <div className="form_field-wrapper flex flex-col items-start">
+                {/* Phone Number - full width on mobile, 1 col on tablet/desktop */}
+                <div className="form_field-wrapper col-span-2 sm:col-span-1 flex flex-col items-start">
                   <label
                     htmlFor="Phone-Number"
-                    className="form_field-label font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1.5"
+                    className="form_field-label font-mono text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1 sm:mb-1.5"
                   >
                     Phone number
                   </label>
@@ -240,58 +326,74 @@ export default function ContactSection(): React.JSX.Element {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="+977"
-                    className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[16px] sm:text-[17px] font-normal py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none transition-colors duration-200"
+                    className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[15px] sm:text-[16px] md:text-[17px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none transition-colors duration-200"
                   />
                 </div>
 
-                {/* Program / Course of Interest */}
-                <div className="form_field-wrapper sm:col-span-2 flex flex-col items-start">
+                {/* Program / Course of Interest — shadcn Select */}
+                <div className="form_field-wrapper col-span-2 flex flex-col items-start w-full">
                   <label
                     htmlFor="Program-Interest"
-                    className="form_field-label font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1.5"
+                    className="form_field-label font-mono text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1 sm:mb-1.5"
                   >
                     Program of interest
                   </label>
-                  <select
-                    id="Program-Interest"
-                    name="program"
+                  <Select
                     value={formData.program}
-                    onChange={handleChange}
-                    className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[15px] sm:text-[16px] font-normal py-2.5 px-0 outline-none transition-colors duration-200 cursor-pointer"
+                    onValueChange={(val) =>
+                      setFormData((prev) => ({ ...prev, program: val }))
+                    }
                   >
-                    {PROGRAM_OPTIONS.map((opt) => (
-                      <option key={opt} value={opt} className="bg-[#fffef7] text-black">
-                        {opt}
-                      </option>
-                    ))}
-                  </select>
+                    <SelectTrigger
+                      id="Program-Interest"
+                      className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[14px] sm:text-[15px] md:text-[16px] font-normal py-2 sm:py-2.5 px-0 outline-none transition-colors duration-200 cursor-pointer rounded-none shadow-none ring-0 focus:ring-0"
+                    >
+                      <SelectValue placeholder="Select a course" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#fffef7] border border-[#e2e0d2] shadow-xl rounded-xl max-h-80 w-[calc(100vw-3rem)] sm:w-[460px]">
+                      {COURSES.map((course) => (
+                        <SelectItem
+                          key={course.id}
+                          value={course.id}
+                          className="py-2.5 px-3 rounded-lg text-sm cursor-pointer data-[highlighted]:bg-[#ffd001] data-[highlighted]:text-black transition-colors"
+                        >
+                          <span className="font-mono text-xs text-black/50 mr-2 shrink-0">
+                            {course.number}
+                          </span>
+                          <span className="font-normal text-black">
+                            {course.title}
+                          </span>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 {/* Project / Inquiry Details */}
-                <div className="form_field-wrapper sm:col-span-2 flex flex-col items-start">
+                <div className="form_field-wrapper col-span-2 flex flex-col items-start">
                   <label
                     htmlFor="Project-Details"
-                    className="form_field-label font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1.5"
+                    className="form_field-label font-mono text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1 sm:mb-1.5"
                   >
                     Project or mentorship details
                   </label>
                   <textarea
                     id="Project-Details"
                     name="details"
-                    rows={3}
+                    rows={2}
                     value={formData.details}
                     onChange={handleChange}
-                    placeholder="Tell us about your photographic experience, equipment, or questions..."
-                    className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[15px] sm:text-[16px] font-normal py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none resize-none transition-colors duration-200"
+                    placeholder="Tell us about your photographic experience or questions..."
+                    className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[14px] sm:text-[15px] md:text-[16px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none resize-none transition-colors duration-200"
                   />
                 </div>
 
-                {/* Action Submit Button (Exact Creative Giants Sliding Pill Button) */}
-                <div className="button-group sm:col-span-2 pt-4 flex items-center">
+                {/* Action Submit Button */}
+                <div className="button-group col-span-2 pt-2 sm:pt-4 flex items-center">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn is-icon group relative inline-flex items-center gap-3.5 bg-black hover:bg-[#ffd001] text-[#fffef7] hover:text-black py-4 px-10 rounded-full transition-colors duration-300 overflow-hidden cursor-pointer select-none"
+                    className="btn is-icon group relative inline-flex items-center justify-center gap-3.5 bg-black hover:bg-[#ffd001] text-[#fffef7] hover:text-black py-3.5 sm:py-4 px-8 sm:px-10 rounded-full transition-colors duration-300 overflow-hidden cursor-pointer select-none w-full sm:w-auto"
                   >
                     {/* Animated Sliding Background */}
                     <span className="btn__circle-wrap absolute inset-0 w-full h-full overflow-hidden pointer-events-none">

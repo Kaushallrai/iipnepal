@@ -1,5 +1,5 @@
 import React from "react";
-import HeroReveal from "@/components/HeroReveal";
+import HeroReveal from "@/components/home/HeroReveal";
 import WhatWeDo from "@/components/home/WhatWeDo";
 import CoursesSection from "@/components/home/CoursesSection";
 import PortfolioSection from "@/components/home/PortfolioSection";
@@ -8,7 +8,7 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import BrandSection from "@/components/home/BrandSection";
 import NewsSection from "@/components/home/NewsSection";
 import ContactSection from "@/components/home/ContactSection";
-import Footer from "@/components/Footer";
+import Footer from "@/components/layout/Footer";
 
 export default function Home(): React.JSX.Element {
   return (
@@ -21,7 +21,7 @@ export default function Home(): React.JSX.Element {
         brandSecondary="NEPAL"
         announcementTitle="WELCOME TO THE IIP CENTRE NEPAL"
         announcementText="Indian Institute of Photography launches in Kathmandu with White Hat Events — led by alumnus Additya Shrestha."
-        ctaText="( EXPLORE COURSES )"
+        ctaText="[ EXPLORE COURSES ]"
       />
 
       {/* 2. What We Do Section */}

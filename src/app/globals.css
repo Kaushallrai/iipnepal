@@ -86,23 +86,33 @@
   --font-weight-light: 300;
   --font-weight-regular: 400;
 
-  /* Spacing */
-  --spacing-unit: 8px;
-  --spacing-8: 8px;
-  --spacing-16: 16px;
-  --spacing-24: 24px;
-  --spacing-32: 32px;
-  --spacing-48: 48px;
-  --spacing-64: 64px;
-  --spacing-80: 80px;
-  --spacing-112: 112px;
+  /* Spacing Base Tokens (8px Grid System) */
+  --space-unit: 8px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-28: 112px;
+  --space-32: 128px;
+  --space-36: 144px;
 
-  /* Layout */
+  /* Standard Layout & Spacing Rules (Default Mobile: < 640px) */
+  --page-gutter: 24px;          /* Mobile horizontal container padding */
+  --section-py: 96px;           /* Mobile vertical section padding */
+  --header-mb: 40px;            /* Mobile section header bottom margin */
+  --content-gap: 56px;          /* Mobile gap between description & content */
+  --max-content-width: 105rem;  /* Max container width (1680px) */
   --nav-height: 64px;
-  --section-gap: 64px;
   --card-padding: 24px;
-  --element-gap: 8px;
-  --page-padding: 32px;
 
   /* Border Radius */
   --radius-full: 1440px;
@@ -126,19 +136,45 @@
   --foreground: var(--color-ink-black);
 }
 
-/* Tablet overrides */
-@media (max-width: 1023px) {
+/* Tablet overrides (sm: 640px - 767px) */
+@media (min-width: 640px) {
   :root {
-    --page-padding: 24px;
-    --section-gap: 56px;
+    --page-gutter: 32px;
+    --section-py: 112px;
+    --header-mb: 48px;
+    --content-gap: 64px;
   }
 }
 
-/* Mobile overrides */
+/* Tablet overrides (md: 768px - 1023px) */
+@media (min-width: 768px) {
+  :root {
+    --page-gutter: 48px;
+    --section-py: 128px;
+    --header-mb: 56px;
+    --content-gap: 80px;
+    --text-heading-sm: 30px;
+    --text-heading: 44px;
+    --text-display: 64px;
+  }
+}
+
+/* Desktop overrides (lg: 1024px+) */
+@media (min-width: 1024px) {
+  :root {
+    --page-gutter: 64px;
+    --section-py: 144px;
+    --header-mb: 64px;
+    --content-gap: 96px;
+    --text-heading-sm: 34px;
+    --text-heading: 54px;
+    --text-display: 84px;
+  }
+}
+
+/* Mobile typography scale (< 768px) */
 @media (max-width: 767px) {
   :root {
-    --page-padding: 16px;
-    --section-gap: 48px;
     --text-heading-sm: 26px;
     --text-heading: 34px;
     --text-display: 44px;
@@ -183,26 +219,48 @@
   --font-mono: var(--font-fragment-mono), 'IBM Plex Mono', monospace;
 
   /* Typography — Scale */
-  --text-caption: 12px;
-  --text-body-sm: 14px;
-  --text-body: 16px;
-  --text-subheading: 20px;
-  --text-heading-sm: 34px;
-  --text-heading: 54px;
-  --text-display: 84px;
+  --text-caption: var(--text-caption, 12px);
+  --text-body-sm: var(--text-body-sm, 14px);
+  --text-body: var(--text-body, 16px);
+  --text-subheading: var(--text-subheading, 20px);
+  --text-heading-sm: var(--text-heading-sm, 34px);
+  --text-heading: var(--text-heading, 54px);
+  --text-display: var(--text-display, 84px);
 
-  /* Spacing */
-  --spacing-8: 8px;
-  --spacing-16: 16px;
-  --spacing-24: 24px;
-  --spacing-32: 32px;
-  --spacing-48: 48px;
-  --spacing-64: 64px;
-  --spacing-80: 80px;
-  --spacing-112: 112px;
+  /* Semantic Layout Spacing (Clean, collision-free tokens) */
+  --spacing-section: var(--section-py);
+  --spacing-gutter: var(--page-gutter);
+  --spacing-header: var(--header-mb);
+  --spacing-content: var(--content-gap);
+}
 
-  /* Border Radius */
-  --radius-full: 1440px;
+/* ============================================================ */
+/* STANDARDIZED LAYOUT UTILITY CLASSES                          */
+/* Applied uniformly across all current and future page sections */
+/* ============================================================ */
+
+/* 1. Global Page Gutter Container (Max 105rem + responsive horizontal gutters) */
+.padding-global,
+.container-global {
+  width: 100%;
+  max-width: var(--max-content-width, 105rem);
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+
+/* 2. Standard Section Vertical Padding (96px mobile -> 112px sm -> 128px md -> 144px lg) */
+.section-py {
+  padding-block: var(--section-py);
+}
+
+/* 3. Standard Section Header Spacing (40px mobile -> 48px sm -> 56px md -> 64px lg) */
+.section-header-mb {
+  margin-bottom: var(--header-mb);
+}
+
+/* 4. Standard Content Gap (56px mobile -> 64px sm -> 80px md -> 96px lg) */
+.section-content-gap {
+  gap: var(--content-gap);
 }
 
 body {

@@ -122,90 +122,89 @@ export default function NewsSection(): React.JSX.Element {
       <div className="padding-global w-full px-6 sm:px-8 md:px-12 lg:px-16 max-w-[105rem] mx-auto">
         <div className="news-cta_component">
           <div className="slider-blog_wrap flex flex-col gap-12 sm:gap-14 md:gap-16">
-            {/* Top Control Bar: Eyebrow + Masked Headline on left, Circular Navigation Buttons on right */}
-            <div className="slider-blog_layout flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-6">
-              {/* Header Wrap */}
-              <div className="header-wrap flex flex-col items-start">
-                {/* Eyebrow with glowing signal yellow dot */}
-                <div
-                  ref={eyebrowRef}
-                  className="eyebrow-wrap flex items-center gap-2.5 text-xs sm:text-[13px] font-mono uppercase tracking-[0.22em] text-black font-semibold mb-3 sm:mb-4"
-                >
-                  <span className="eyebrow-dot w-2 h-2 rounded-full bg-[#ffd001] shrink-0 inline-block shadow-[0_0_8px_rgba(255,208,1,0.6)]" />
-                  <div>News &amp; opinion</div>
-                </div>
+            {/* Top Header Lockup: Eyebrow above, Headline + Arrow Buttons beside each other */}
+            <div className="slider-blog_header flex flex-col gap-3 sm:gap-4 md:gap-5 mb-2 sm:mb-4">
+              {/* Eyebrow with glowing signal yellow dot */}
+              <div
+                ref={eyebrowRef}
+                className="eyebrow-wrap flex items-center gap-2.5 text-xs sm:text-[13px] font-mono uppercase tracking-[0.22em] text-black font-semibold"
+              >
+                <span className="eyebrow-dot w-2 h-2 rounded-full bg-[#ffd001] shrink-0 inline-block shadow-[0_0_8px_rgba(255,208,1,0.6)]" />
+                <div>News &amp; opinion</div>
+              </div>
 
-                {/* Masked Line Animation Display Headline with clean breathing line height */}
+              {/* Headline with Decreased Size + Arrow Buttons Beside It (On Mobile, Tablet & Desktop) */}
+              <div className="slider-blog_action_row flex items-center justify-between gap-4">
                 <LineReveal
                   as="h2"
                   lines={["Stay up to date"]}
-                  className="heading-style-h1 font-sans font-light text-4xl sm:text-5xl md:text-6xl lg:text-[76px] xl:text-[84px] leading-[1.04] tracking-[-0.035em] text-black"
+                  className="heading-style-h1 font-sans font-light text-2xl sm:text-3xl md:text-4xl lg:text-[46px] xl:text-[54px] leading-[1.08] tracking-[-0.03em] text-black"
                 />
-              </div>
 
-              {/* Slider Navigation Buttons (Exact Creative Giants circular outline buttons) */}
-              <div className="slider-blog_btn_layout flex items-center gap-3">
-                {/* Prev Button */}
-                <button
-                  ref={prevButtonRef}
-                  type="button"
-                  disabled={isBeginning}
-                  onClick={() => swiperInstanceRef.current?.slidePrev()}
-                  aria-label="Previous articles"
-                  className={cn(
-                    "slider_button relative w-10 h-10 md:w-11 md:h-11 rounded-full border border-black/30 flex items-center justify-center transition-all duration-200",
-                    "hover:border-black hover:bg-[#ffd001] active:scale-95 cursor-pointer",
-                    isBeginning && "opacity-25 border-black/15 pointer-events-none cursor-not-allowed"
-                  )}
-                >
-                  <div className="slider_icon w-4 h-4 flex items-center justify-center text-black">
-                    <svg
-                      width="100%"
-                      height="100%"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M10.6846 3.41603L2.1005 12.0001L10.684 20.5836L11.5191 19.7484L4.36134 12.5906L21.309 12.5906L21.309 11.4095L4.36134 11.4095L11.5197 4.25118L10.6846 3.41603Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </div>
-                </button>
+                {/* Slider Navigation Buttons (Beside the Headline - Exact dimensions as TestimonialsSection) */}
+                <div className="slider-blog_btn_layout flex items-center gap-3 shrink-0">
+                  {/* Prev Button */}
+                  <button
+                    ref={prevButtonRef}
+                    type="button"
+                    disabled={isBeginning}
+                    onClick={() => swiperInstanceRef.current?.slidePrev()}
+                    aria-label="Previous articles"
+                    className={cn(
+                      "slider_button relative w-10 h-10 md:w-11 md:h-11 rounded-full border border-black/30 flex items-center justify-center transition-all duration-200",
+                      "hover:border-black hover:bg-[#ffd001] active:scale-95 cursor-pointer",
+                      isBeginning && "opacity-25 border-black/15 pointer-events-none cursor-not-allowed"
+                    )}
+                  >
+                    <div className="slider_icon w-4 h-4 flex items-center justify-center text-black">
+                      <svg
+                        width="100%"
+                        height="100%"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M10.6846 3.41603L2.1005 12.0001L10.684 20.5836L11.5191 19.7484L4.36134 12.5906L21.309 12.5906L21.309 11.4095L4.36134 11.4095L11.5197 4.25118L10.6846 3.41603Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </div>
+                  </button>
 
-                {/* Next Button */}
-                <button
-                  ref={nextButtonRef}
-                  type="button"
-                  disabled={isEnd}
-                  onClick={() => swiperInstanceRef.current?.slideNext()}
-                  aria-label="Next articles"
-                  className={cn(
-                    "slider_button relative w-10 h-10 md:w-11 md:h-11 rounded-full border border-black/30 flex items-center justify-center transition-all duration-200",
-                    "hover:border-black hover:bg-[#ffd001] active:scale-95 cursor-pointer",
-                    isEnd && "opacity-25 border-black/15 pointer-events-none cursor-not-allowed"
-                  )}
-                >
-                  <div className="slider_icon w-4 h-4 flex items-center justify-center text-black">
-                    <svg
-                      width="100%"
-                      height="100%"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M13.3154 3.41603L21.8995 12.0001L13.316 20.5836L12.4809 19.7484L19.6387 12.5906L2.69105 12.5906L2.69105 11.4095L19.6387 11.4095L12.4803 4.25118L13.3154 3.41603Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </div>
-                </button>
+                  {/* Next Button */}
+                  <button
+                    ref={nextButtonRef}
+                    type="button"
+                    disabled={isEnd}
+                    onClick={() => swiperInstanceRef.current?.slideNext()}
+                    aria-label="Next articles"
+                    className={cn(
+                      "slider_button relative w-10 h-10 md:w-11 md:h-11 rounded-full border border-black/30 flex items-center justify-center transition-all duration-200",
+                      "hover:border-black hover:bg-[#ffd001] active:scale-95 cursor-pointer",
+                      isEnd && "opacity-25 border-black/15 pointer-events-none cursor-not-allowed"
+                    )}
+                  >
+                    <div className="slider_icon w-4 h-4 flex items-center justify-center text-black">
+                      <svg
+                        width="100%"
+                        height="100%"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M13.3154 3.41603L21.8995 12.0001L13.316 20.5836L12.4809 19.7484L19.6387 12.5906L2.69105 12.5906L2.69105 11.4095L19.6387 11.4095L12.4803 4.25118L13.3154 3.41603Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </div>
+                  </button>
+                </div>
               </div>
             </div>
 

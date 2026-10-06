@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Fragment_Mono, Bebas_Neue, Syne, Playfair_Display, Caveat } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "@/components/SmoothScroll";
+import SmoothScroll from "@/components/providers/SmoothScroll";
 
 const switzer = Inter({
   variable: "--font-switzer",

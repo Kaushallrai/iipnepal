@@ -38,8 +38,6 @@
   --color-navy-ink: #101731;
   --color-powder-blue: #a5c8eb;
   --color-mint-wash: #a5ebd6;
-  --color-candy-pink: #ffacea;
-  --color-magenta-bloom: #8a0467;
   --color-forest-teal: #03624c;
   --color-charcoal-scale: #4d4c4a;
 
@@ -127,7 +125,6 @@
   /* Surfaces */
   --surface-canvas: var(--color-bone-white);
   --surface-card-tint: var(--color-mint-wash);
-  --surface-card-tint-pink: var(--color-candy-pink);
   --surface-card-tint-blue: var(--color-powder-blue);
   --surface-inverted-field: var(--color-navy-ink);
 
@@ -199,8 +196,6 @@
   --color-navy-ink: #101731;
   --color-powder-blue: #a5c8eb;
   --color-mint-wash: #a5ebd6;
-  --color-candy-pink: #ffacea;
-  --color-magenta-bloom: #8a0467;
   --color-forest-teal: #03624c;
   --color-charcoal-scale: #4d4c4a;
 

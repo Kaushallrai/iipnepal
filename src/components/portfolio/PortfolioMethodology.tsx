@@ -28,9 +28,12 @@ export default function PortfolioMethodology(): React.JSX.Element {
           {/* Column 1: Fieldwork */}
           <ScrollReveal variant="fade-up" distance={20} duration={0.7}>
             <div className="flex flex-col gap-4">
-              <span className="font-mono text-xs uppercase tracking-[0.16em] text-[#8a0467] font-semibold">
-                01 / Documentary Fieldwork & Ethical Proximity
-              </span>
+              <div className="flex items-center gap-2 select-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#ffd001] shrink-0" />
+                <span className="font-mono text-xs uppercase tracking-[0.16em] text-black font-semibold">
+                  01 / Documentary Fieldwork & Ethical Proximity
+                </span>
+              </div>
 
               <h3 className="font-sans font-light text-2xl text-black">
                 Patience Before the Shutter
@@ -49,9 +52,12 @@ export default function PortfolioMethodology(): React.JSX.Element {
           {/* Column 2: Darkroom & Printmaking */}
           <ScrollReveal variant="fade-up" distance={20} duration={0.7} delay={0.1}>
             <div className="flex flex-col gap-4">
-              <span className="font-mono text-xs uppercase tracking-[0.16em] text-[#03624c] font-semibold">
-                02 / The Physical Print & Archival Longevity
-              </span>
+              <div className="flex items-center gap-2 select-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#ffd001] shrink-0" />
+                <span className="font-mono text-xs uppercase tracking-[0.16em] text-black font-semibold">
+                  02 / The Physical Print & Archival Longevity
+                </span>
+              </div>
 
               <h3 className="font-sans font-light text-2xl text-black">
                 Tactile Chemistry Over Discardable Pixels

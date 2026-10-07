@@ -127,9 +127,9 @@ export default function PortfolioRoster({ items }: PortfolioRosterProps): React.
                       {/* Relocated Action: Refined, Understated Editorial Text Link (No loud black button) */}
                       <Link
                         href={`/portfolio/${item.slug}`}
-                        className="inline-flex items-center gap-2 font-mono text-xs sm:text-[13px] uppercase tracking-[0.2em] text-black hover:text-[#8a0467] transition-colors group/cta shrink-0 self-start sm:self-auto"
+                        className="inline-flex items-center gap-2 font-mono text-xs sm:text-[13px] uppercase tracking-[0.2em] text-black hover:text-[#444444] transition-colors group/cta shrink-0 self-start sm:self-auto"
                       >
-                        <span className="border-b border-black group-hover/cta:border-[#8a0467] pb-0.5 transition-colors font-medium">
+                        <span className="border-b border-black group-hover/cta:border-[#ffd001] pb-0.5 transition-colors font-medium">
                           Explore Exhibition
                         </span>
                         <ArrowUpRight className="w-3.5 h-3.5 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 transition-transform" />

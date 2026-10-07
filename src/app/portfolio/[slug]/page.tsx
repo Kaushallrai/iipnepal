@@ -10,7 +10,6 @@ import {
 } from "@/lib/portfolio-data";
 import PortfolioDetailHero from "@/components/portfolio/detail/PortfolioDetailHero";
 import PortfolioDetailStory from "@/components/portfolio/detail/PortfolioDetailStory";
-import PortfolioDetailGallery from "@/components/portfolio/detail/PortfolioDetailGallery";
 import PortfolioCourseBanner from "@/components/portfolio/detail/PortfolioCourseBanner";
 import PortfolioDetailNav from "@/components/portfolio/detail/PortfolioDetailNav";
 import Footer from "@/components/layout/Footer";
@@ -78,13 +77,10 @@ export default async function PortfolioDetailPage({ params }: PageProps): Promis
         fontFamily: "'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       }}
     >
-      {/* 1. EDITORIAL HERO & INTERACTIVE MASTER FRAMES */}
+      {/* 1. EDITORIAL HERO & INTERACTIVE 2/3 + 1/3 PHOTOGRAPHIC EXHIBITION */}
       <PortfolioDetailHero item={item} />
 
-      {/* 2. COMPLETE PHOTOGRAPHIC EXHIBITION (IMAGES FIRST) */}
-      <PortfolioDetailGallery item={item} />
-
-      {/* 3. COMPACT CURATORIAL DOSSIER & FIELDWORK CONTEXT */}
+      {/* 2. COMPACT CURATORIAL DOSSIER & FIELDWORK CONTEXT */}
       <PortfolioDetailStory item={item} />
 
       {/* 4. ACADEMIC PROVENANCE & COURSE BRIDGE */}

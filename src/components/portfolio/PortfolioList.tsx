@@ -115,7 +115,7 @@ export default function PortfolioList({ items }: PortfolioListProps): React.JSX.
                             {item.title}
                           </h2>
 
-                          <p className="font-mono text-xs sm:text-[13px] text-[#8a0467] uppercase tracking-wider font-medium">
+                          <p className="font-mono text-xs sm:text-[13px] text-[#555555] uppercase tracking-wider font-medium">
                             {item.tagline}
                           </p>
 
@@ -145,7 +145,7 @@ export default function PortfolioList({ items }: PortfolioListProps): React.JSX.
                           </div>
 
                           <div className="flex items-center justify-between">
-                            <span className="font-mono text-xs uppercase tracking-[0.16em] text-black group-hover:text-[#8a0467] font-semibold transition-colors whitespace-nowrap">
+                            <span className="font-mono text-xs uppercase tracking-[0.16em] text-black group-hover:underline decoration-[#ffd001] underline-offset-4 font-semibold transition-all whitespace-nowrap">
                               Explore Complete Exhibition (4 Frames) →
                             </span>
                           </div>
@@ -161,7 +161,7 @@ export default function PortfolioList({ items }: PortfolioListProps): React.JSX.
                             {item.title}
                           </h2>
 
-                          <span className="font-mono text-xs uppercase tracking-[0.16em] text-black group-hover:text-[#8a0467] font-semibold transition-colors whitespace-nowrap shrink-0 pt-1 sm:pt-0">
+                          <span className="font-mono text-xs uppercase tracking-[0.16em] text-black group-hover:underline decoration-[#ffd001] underline-offset-4 font-semibold transition-all whitespace-nowrap shrink-0 pt-1 sm:pt-0">
                             Explore Story →
                           </span>
                         </div>

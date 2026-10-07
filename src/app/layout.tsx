@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Fragment_Mono, Bebas_Neue, Syne, Playfair_Display, Caveat } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/providers/SmoothScroll";
+import Navbar from "@/components/layout/Navbar";
 
 const switzer = Inter({
   variable: "--font-switzer",
@@ -62,7 +63,10 @@ export default function RootLayout({
       className={`${switzer.variable} ${posterFont.variable} ${fragmentMono.variable} ${syne.variable} ${playfair.variable} ${polaroidFont.variable} antialiased`}
     >
       <body className="min-h-screen bg-[var(--color-bone-white)] text-[var(--color-ink-black)] overflow-x-hidden w-full max-w-full">
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          <Navbar />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

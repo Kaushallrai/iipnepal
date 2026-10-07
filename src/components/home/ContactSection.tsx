@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { LineReveal } from "@/components/animations/LineReveal";
 import { Phone, Mail, MapPin } from "lucide-react";
 import {
@@ -167,7 +168,7 @@ export default function ContactSection(): React.JSX.Element {
                 </div>
                 <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.08em] text-[#777777] px-1 pt-0.5">
                   <span>Kathmandu Centre</span>
-                  <span>Lalitpur, Nepal</span>
+                  <span>Jyoti Bhawan, Kanti Path</span>
                 </div>
               </div>
             </div>
@@ -179,7 +180,7 @@ export default function ContactSection(): React.JSX.Element {
                   Kathmandu Centre
                 </span>
                 <span className="font-normal text-[14px] md:text-[15px] lg:text-[16px] text-black">
-                  Lalitpur, Bagmati Province, Nepal
+                  Jyoti Bhawan, Kanti Path, Kathmandu, Bagmati Province 44600
                 </span>
               </div>
 
@@ -207,6 +208,20 @@ export default function ContactSection(): React.JSX.Element {
                     info@iipnepal.com
                   </a>
                 </div>
+              </div>
+
+              {/* Dedicated Contact Page & Interactive Map Link */}
+              <div className="pt-2">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-black hover:text-[#666666] transition-colors no-underline group"
+                >
+                  <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0" />
+                  <span className="underline decoration-black/30 underline-offset-4 group-hover:decoration-black">
+                    Open Dedicated Contact Page & Studio Map
+                  </span>
+                  <span>→</span>
+                </Link>
               </div>
             </div>
           </div>

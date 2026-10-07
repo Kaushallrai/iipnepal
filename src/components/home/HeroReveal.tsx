@@ -2,10 +2,8 @@
 
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
-import { Menu, X, ArrowUpRight } from "lucide-react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(CustomEase);
@@ -32,19 +30,9 @@ export interface HeroRevealProps {
 export default function HeroReveal({
   imageSrc = "/images/hero-photographer.jpg",
   imageAlt = "IIP Nepal Photography Master Archive",
-  brandPrimary = "IIP",
-  brandSecondary = "NEPAL",
   announcementTitle = "WELCOME TO THE IIP CENTRE NEPAL",
   announcementText = "Indian Institute of Photography launches in Kathmandu with White Hat Events — led by alumnus Additya Shrestha.",
   ctaText = "[ EXPLORE COURSES ]",
-  navItems = [
-    { label: "Courses", href: "#courses" },
-    { label: "Portfolio", href: "#portfolio" },
-    { label: "About Us", href: "#about" },
-    { label: "Contact", href: "#contact" },
-  ],
-  enrollText = "Enroll Now",
-  enrollHref = "#enroll",
 }: HeroRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -57,14 +45,6 @@ export default function HeroReveal({
   const announcementRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
-  // Top navigation bar elements
-  const fullHeaderBgRef = useRef<HTMLDivElement>(null);
-  const logoWrapperRef = useRef<HTMLDivElement>(null);
-  const initialTextLogoRef = useRef<HTMLDivElement>(null);
-  const officialLogoRef = useRef<HTMLDivElement>(null);
-  const navMenuRef = useRef<HTMLElement>(null);
-  const enrollBtnRef = useRef<HTMLDivElement>(null);
-
   // Right-side vertical display text
   const editorialTagRef = useRef<HTMLDivElement>(null);
 
@@ -72,33 +52,7 @@ export default function HeroReveal({
   const bottomBarRef = useRef<HTMLDivElement>(null);
 
   const [counterDisplay, setCounterDisplay] = useState(0);
-  const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
-  const [isInsideCourses, setIsInsideCourses] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
-
-  // Lock body scroll when mobile menu drawer is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isMobileMenuOpen]);
-
-  // Close mobile menu on Escape key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -117,27 +71,6 @@ export default function HeroReveal({
           const bottomFade = Math.max(0, 1 - sy / 160);
           bottomBarRef.current.style.opacity = String(bottomFade);
         }
-
-        const whatSection = document.querySelector(".section_what");
-        if (whatSection) {
-          const rect = whatSection.getBoundingClientRect();
-          setIsScrolledPastHero(rect.top <= 84);
-        } else {
-          setIsScrolledPastHero(sy > window.innerHeight - 84);
-        }
-
-        const coursesSection = document.querySelector("#courses");
-        const portfolioSection = document.querySelector("#portfolio");
-        let insideDark = false;
-        if (coursesSection) {
-          const cRect = coursesSection.getBoundingClientRect();
-          if (cRect.top <= 84 && cRect.bottom > 84) insideDark = true;
-        }
-        if (portfolioSection) {
-          const pRect = portfolioSection.getBoundingClientRect();
-          if (pRect.top <= 84 && pRect.bottom > 84) insideDark = true;
-        }
-        setIsInsideCourses(insideDark);
       }
     };
     handleScroll();
@@ -160,6 +93,13 @@ export default function HeroReveal({
 
     const ease = "customEase";
     setCounterDisplay(0);
+
+    // Target the global Navbar elements by ID
+    const logoWrapper = document.getElementById("nav-logo-wrapper");
+    const initialTextLogo = document.getElementById("nav-initial-text");
+    const officialLogo = document.getElementById("nav-official-logo");
+    const navMenu = document.getElementById("nav-menu");
+    const rightActions = document.getElementById("nav-right-actions");
 
     // Initial state:
     // Pinned image clipped to 0% width horizontal strip at center (45% to 55%)
@@ -188,8 +128,8 @@ export default function HeroReveal({
     });
 
     // 1. Logo initial state: centered horizontally in the screen
-    if (logoWrapperRef.current) {
-      gsap.set(logoWrapperRef.current, {
+    if (logoWrapper) {
+      gsap.set(logoWrapper, {
         left: "50%",
         xPercent: -50,
         x: 0,
@@ -198,16 +138,16 @@ export default function HeroReveal({
     }
 
     // Initial text visible in dark ink
-    if (initialTextLogoRef.current) {
-      gsap.set(initialTextLogoRef.current, {
+    if (initialTextLogo) {
+      gsap.set(initialTextLogo, {
         opacity: 1,
         display: "flex",
       });
     }
 
     // Official logo mark hidden initially during loading bar fill
-    if (officialLogoRef.current) {
-      gsap.set(officialLogoRef.current, {
+    if (officialLogo) {
+      gsap.set(officialLogo, {
         opacity: 0,
         display: "none",
         scale: 0.9,
@@ -215,17 +155,17 @@ export default function HeroReveal({
     }
 
     // 2. Middle navigation links hidden initially
-    if (navMenuRef.current) {
-      gsap.set(navMenuRef.current, {
+    if (navMenu) {
+      gsap.set(navMenu, {
         opacity: 0,
         y: -15,
         pointerEvents: "none",
       });
     }
 
-    // 3. Enroll button hidden initially
-    if (enrollBtnRef.current) {
-      gsap.set(enrollBtnRef.current, {
+    // 3. Right actions (Enroll CTA + Mobile menu trigger) hidden initially
+    if (rightActions) {
+      gsap.set(rightActions, {
         opacity: 0,
         y: -15,
         pointerEvents: "none",
@@ -377,9 +317,9 @@ export default function HeroReveal({
 
     // --- PHASE 4: Transform Top Section Into Navigation Bar ---
     // Logo shifts to the left edge of the padded container (0%)
-    if (logoWrapperRef.current) {
+    if (logoWrapper) {
       tl.to(
-        logoWrapperRef.current,
+        logoWrapper,
         {
           left: "0%",
           xPercent: 0,
@@ -392,16 +332,16 @@ export default function HeroReveal({
     }
 
     // Cross-fade: Hide initial text "IIP NEPAL" and show the official brand logo
-    if (initialTextLogoRef.current) {
+    if (initialTextLogo) {
       tl.to(
-        initialTextLogoRef.current,
+        initialTextLogo,
         {
           opacity: 0,
           duration: 0.45,
           ease: "power2.out",
           onComplete: () => {
-            if (initialTextLogoRef.current) {
-              initialTextLogoRef.current.style.display = "none";
+            if (initialTextLogo) {
+              initialTextLogo.style.display = "none";
             }
           },
         },
@@ -409,9 +349,9 @@ export default function HeroReveal({
       );
     }
 
-    if (officialLogoRef.current) {
+    if (officialLogo) {
       tl.set(
-        officialLogoRef.current,
+        officialLogo,
         {
           display: "flex",
           opacity: 0,
@@ -421,7 +361,7 @@ export default function HeroReveal({
       );
 
       tl.to(
-        officialLogoRef.current,
+        officialLogo,
         {
           opacity: 1,
           scale: 1,
@@ -433,33 +373,33 @@ export default function HeroReveal({
     }
 
     // Middle navigation links slide down smoothly
-    if (navMenuRef.current) {
+    if (navMenu) {
       tl.to(
-        navMenuRef.current,
+        navMenu,
         {
           opacity: 1,
           y: 0,
           duration: 0.9,
           ease: "power2.out",
           onStart: () => {
-            if (navMenuRef.current) navMenuRef.current.style.pointerEvents = "auto";
+            if (navMenu) navMenu.style.pointerEvents = "auto";
           },
         },
         revealTime + 0.45
       );
     }
 
-    // Enroll button on the right slides down
-    if (enrollBtnRef.current) {
+    // Right actions (Enroll button & Mobile menu trigger) slide down
+    if (rightActions) {
       tl.to(
-        enrollBtnRef.current,
+        rightActions,
         {
           opacity: 1,
           y: 0,
           duration: 0.85,
           ease: "power2.out",
           onStart: () => {
-            if (enrollBtnRef.current) enrollBtnRef.current.style.pointerEvents = "auto";
+            if (rightActions) rightActions.style.pointerEvents = "auto";
           },
         },
         revealTime + 0.5
@@ -584,223 +524,7 @@ export default function HeroReveal({
       </div>
 
       {/* ============================================================== */}
-      {/* 2. TOP NAVBAR (FIXED OVER TOP, BEHIND-IMAGE TRANSPARENT)       */}
-      {/* ============================================================== */}
-      <header className="fixed top-0 left-0 right-0 w-full z-50">
-        {/* Full-Width Background Bar on scroll */}
-        <div
-          ref={fullHeaderBgRef}
-          className={`absolute inset-0 w-full h-[64px] sm:h-[72px] md:h-[84px] transition-all duration-300 pointer-events-none ${isInsideCourses
-            ? "bg-[#0a0a0a]/95 backdrop-blur-md"
-            : isScrolledPastHero
-              ? "bg-[#fffef7]/95 backdrop-blur-md"
-              : "bg-transparent"
-            }`}
-        />
-
-        <div className="w-full max-w-[105rem] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 pointer-events-none">
-          <div className="relative w-full h-[64px] sm:h-[72px] md:h-[84px] flex items-center justify-between pointer-events-auto">
-            {/* LEFT LOGO: Anchors flush to the left padding gutter */}
-            <div
-              ref={logoWrapperRef}
-              className="absolute top-1/2 -translate-y-1/2 left-0 h-[40px] sm:h-[44px] md:h-[46px] flex items-center z-50 pointer-events-auto"
-            >
-              <Link
-                href="/"
-                className="group flex items-center cursor-pointer"
-                title="IIP Academy Nepal"
-              >
-                {/* Initial Loading Text: "IIP NEPAL" */}
-                <div
-                  ref={initialTextLogoRef}
-                  className="flex items-center gap-1.5 sm:gap-2 text-[#111111]"
-                >
-                  <span className="font-mono font-bold tracking-[0.1em] text-lg sm:text-2xl md:text-3xl">
-                    {brandPrimary}
-                  </span>
-                  <span className="font-mono font-normal tracking-[0.2em] text-lg sm:text-2xl md:text-3xl text-neutral-800">
-                    {brandSecondary}
-                  </span>
-                </div>
-
-                {/* Official Real IIP Nepal Website Logo ONLY */}
-                <div
-                  ref={officialLogoRef}
-                  className="hidden items-center transition-transform duration-300 group-hover:scale-105"
-                >
-                  <div className="relative w-[42px] sm:w-[50px] md:w-[60px] h-[30px] sm:h-[36px] md:h-[44px] shrink-0">
-                    <Image
-                      src={
-                        isInsideCourses
-                          ? "/images/iip-official-logo-white.svg"
-                          : isScrolledPastHero
-                            ? "/images/iip-official-logo-dark.svg"
-                            : "/images/iip-official-logo-white.svg"
-                      }
-                      alt="IIP Academy Official Logo"
-                      fill
-                      priority
-                      className="object-contain drop-shadow-md transition-all duration-300"
-                    />
-                  </div>
-                </div>
-              </Link>
-            </div>
-
-            {/* MIDDLE NAVIGATION LINKS (Visible on lg >= 1024px screens) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[44px] md:h-[46px] hidden lg:flex items-center justify-center z-50 pointer-events-none">
-              <nav
-                ref={navMenuRef}
-                className="flex items-center justify-center gap-6 xl:gap-10"
-                style={{ willChange: "transform, opacity" }}
-              >
-                {navItems.map((item, idx) => (
-                  <Link
-                    key={idx}
-                    href={item.href}
-                    className={`font-mono text-xs lg:text-[13px] uppercase tracking-[0.2em] font-medium transition-colors duration-200 cursor-pointer drop-shadow-sm leading-none whitespace-nowrap ${isInsideCourses
-                      ? "text-white/85 hover:text-[#ffd001]"
-                      : isScrolledPastHero
-                        ? "text-black hover:text-[#666666]"
-                        : "text-white/85 hover:text-[#ffd001]"
-                      }`}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </nav>
-            </div>
-
-            {/* RIGHT ACTIONS: Enroll CTA (Desktop only) + Minimalist Lucide Menu Trigger (Mobile/Tablet) */}
-            <div className="absolute top-1/2 -translate-y-1/2 right-0 flex items-center z-50 pointer-events-none">
-              <div
-                ref={enrollBtnRef}
-                className="flex items-center pointer-events-auto"
-                style={{ willChange: "transform, opacity" }}
-              >
-                {/* Desktop-only Enroll button: hidden on mobile/tablet where hamburger menu is active */}
-                <Link
-                  href={enrollHref}
-                  className="hidden lg:inline-flex items-center justify-center px-7 lg:px-9 py-3.5 lg:py-4 rounded-full bg-[#ffd001] hover:bg-white text-black font-mono text-xs md:text-sm font-medium tracking-[0.16em] uppercase transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer leading-none shrink-0"
-                >
-                  {enrollText}
-                </Link>
-
-                {/* Minimalist Lucide Menu Trigger for Tablet & Mobile (< 1024px) */}
-                <button
-                  type="button"
-                  onClick={() => setIsMobileMenuOpen(true)}
-                  aria-label="Open menu"
-                  aria-expanded={isMobileMenuOpen}
-                  className={`lg:hidden w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer border ${
-                    isInsideCourses
-                      ? "border-white/20 bg-black/40 text-white hover:border-[#ffd001]"
-                      : isScrolledPastHero
-                        ? "border-black/15 bg-black/5 text-black hover:border-black"
-                        : "border-white/20 bg-black/30 backdrop-blur-sm text-white hover:border-[#ffd001]"
-                  }`}
-                >
-                  <Menu className="w-5 h-5 sm:w-5.5 sm:h-5.5" strokeWidth={1.5} />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* ============================================================== */}
-      {/* 2.5. RIGHT-SIDE SLIDE-IN MENU DRAWER (MOBILE & TABLET)         */}
-      {/* ============================================================== */}
-      {/* Backdrop overlay */}
-      <div
-        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] transition-opacity duration-300 lg:hidden ${
-          isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
-        onClick={() => setIsMobileMenuOpen(false)}
-        aria-hidden="true"
-      />
-
-      {/* Drawer Panel: Slides in smoothly from the right side */}
-      <div
-        className={`fixed top-0 right-0 bottom-0 w-full max-w-[340px] sm:max-w-md h-[100dvh] bg-[#0a0a0a] text-white z-[70] flex flex-col justify-between transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-2xl border-l border-white/10 lg:hidden ${
-          isMobileMenuOpen ? "translate-x-0 pointer-events-auto" : "translate-x-full pointer-events-none"
-        }`}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Site Navigation"
-      >
-        {/* Top Header Row inside Drawer: Logo + Lucide X Close Icon */}
-        <div className="w-full px-6 sm:px-8 h-[64px] sm:h-[72px] md:h-[84px] flex items-center justify-between border-b border-white/10 shrink-0">
-          <Link
-            href="/"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="flex items-center gap-1.5"
-          >
-            <div className="relative w-[42px] sm:w-[48px] h-[30px] sm:h-[34px]">
-              <Image
-                src="/images/iip-official-logo-white.svg"
-                alt="IIP Academy"
-                fill
-                className="object-contain"
-              />
-            </div>
-          </Link>
-
-          {/* Minimalist Lucide Close Icon */}
-          <button
-            type="button"
-            onClick={() => setIsMobileMenuOpen(false)}
-            aria-label="Close menu"
-            className="w-10 h-10 rounded-full flex items-center justify-center border border-white/20 bg-white/10 text-white cursor-pointer hover:border-[#ffd001] hover:text-[#ffd001] transition-colors"
-          >
-            <X className="w-5 h-5" strokeWidth={1.5} />
-          </button>
-        </div>
-
-        {/* Drawer Center Nav Links: Clean, minimal editorial list */}
-        <div className="flex-1 overflow-y-auto px-6 sm:px-8 py-8 flex flex-col justify-between">
-          <nav className="flex flex-col gap-4">
-            {navItems.map((item, idx) => (
-              <a
-                key={idx}
-                href={item.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="group flex items-center justify-between py-2.5 text-white/90 hover:text-[#ffd001] transition-colors"
-              >
-                <span className="font-sans font-light text-2xl sm:text-3xl tracking-tight group-hover:translate-x-1 transition-transform duration-200">
-                  {item.label}
-                </span>
-                <ArrowUpRight className="w-4 h-4 text-white/40 group-hover:text-[#ffd001] transition-colors shrink-0" strokeWidth={1.5} />
-              </a>
-            ))}
-          </nav>
-
-          {/* Quick Enroll CTA inside menu */}
-          <div className="pt-6 border-t border-white/10 mt-6">
-            <Link
-              href={enrollHref}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="inline-flex w-full items-center justify-center py-3.5 rounded-full bg-[#ffd001] hover:bg-white text-black font-mono text-xs sm:text-sm font-semibold tracking-[0.16em] uppercase transition-all duration-200"
-            >
-              {enrollText} — Intake 2026
-            </Link>
-          </div>
-        </div>
-
-        {/* Drawer Bottom Metadata Row */}
-        <div className="w-full px-6 sm:px-8 py-4 border-t border-white/10 flex items-center justify-between font-mono text-[11px] text-white/50 tracking-wider shrink-0">
-          <span>KATHMANDU STUDIO</span>
-          <a
-            href="mailto:info@iipnepal.com"
-            className="hover:text-[#ffd001] transition-colors"
-          >
-            INFO@IIPNEPAL.COM
-          </a>
-        </div>
-      </div>
-
-      {/* ============================================================== */}
-      {/* 3. HERO CONTENT SECTION (SCROLLS UP NATURALLY OVER PINNED IMAGE) */}
+      {/* 2. HERO CONTENT SECTION (SCROLLS UP NATURALLY OVER PINNED IMAGE) */}
       {/* ============================================================== */}
       <section
         ref={containerRef}
@@ -895,7 +619,7 @@ export default function HeroReveal({
       </div>
 
       {/* ============================================================== */}
-      {/* 4. PROGRESS BAR CONTAINER (ANCHORS "LOADING" & "/COUNTER")     */}
+      {/* 3. PROGRESS BAR CONTAINER (ANCHORS "LOADING" & "/COUNTER")     */}
       {/* ============================================================== */}
       <div
         ref={progressBarRef}

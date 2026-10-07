@@ -55,12 +55,12 @@ export default function Footer(): React.JSX.Element {
             <div className="footer_contact-links flex flex-col items-start gap-2.5">
               {/* Creative Giants Underline Links: NO static underline; only smooth expansion on hover */}
               <a
-                href="https://maps.google.com/?q=Kathmandu,Nepal"
+                href="https://maps.app.goo.gl/792XAZpWFHjY1zWt6"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline-link is-large group relative inline-flex items-center text-[15px] sm:text-[16px] lg:text-[17px] font-normal text-[#aaaaaa] hover:text-[#fffef7] transition-colors duration-300 no-underline"
               >
-                <span>Kathmandu Centre, Lalitpur, Nepal</span>
+                <span>Jyoti Bhawan, Kanti Path, Kathmandu</span>
                 <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 group-hover:origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.625,0.05,0,1)] pointer-events-none" />
               </a>
 

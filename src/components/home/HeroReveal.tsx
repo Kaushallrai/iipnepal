@@ -209,12 +209,12 @@ export default function HeroReveal({
 
     const counterObj = { val: 0 };
 
-    // --- PHASE 1: Initial expand (0% to 28% width) ---
+    // --- PHASE 1: Ultra-fast Initial expand (0% to 45% width) ---
     tl.to(
       heroRef.current,
       {
-        clipPath: "polygon(0% 45%, 28% 45%, 28% 55%, 0% 55%)",
-        duration: 1.4,
+        clipPath: "polygon(0% 45%, 45% 45%, 45% 55%, 0% 55%)",
+        duration: 0.06,
       },
       0
     );
@@ -222,8 +222,8 @@ export default function HeroReveal({
     tl.to(
       progressBarRef.current,
       {
-        width: "28%",
-        duration: 1.4,
+        width: "45%",
+        duration: 0.06,
       },
       0
     );
@@ -231,62 +231,62 @@ export default function HeroReveal({
     tl.to(
       counterObj,
       {
-        val: 28,
-        duration: 1.4,
+        val: 45,
+        duration: 0.06,
         onUpdate: () => setCounterDisplay(Math.floor(counterObj.val)),
       },
       0
     );
 
-    // --- PHASE 2: Full horizontal stretch across screen (28% to 100%) ---
+    // --- PHASE 2: Rapid horizontal stretch across screen (45% to 100%) ---
     tl.to(
       heroRef.current,
       {
         clipPath: "polygon(0% 45%, 100% 45%, 100% 55%, 0% 55%)",
-        duration: 1.6,
+        duration: 0.08,
       },
-      1.5
+      0.06
     );
 
     tl.to(
       progressBarRef.current,
       {
         width: "100%",
-        duration: 1.6,
+        duration: 0.08,
       },
-      1.5
+      0.06
     );
 
     tl.to(
       counterObj,
       {
         val: 100,
-        duration: 1.6,
+        duration: 0.08,
         onUpdate: () => setCounterDisplay(Math.floor(counterObj.val)),
       },
-      1.5
+      0.06
     );
 
     // Concurrently scale up media during the horizontal stretch
     tl.to(
       mediaRef.current,
       {
-        scale: 0.35,
-        rotation: -7,
-        duration: 1.6,
+        scale: 0.4,
+        rotation: -5,
+        duration: 0.08,
       },
-      1.5
+      0.06
     );
 
     // --- PHASE 3: The Big Vertical Unfurl (100% reveal) ---
-    const revealTime = 3.25;
+    const revealTime = 0.14;
 
-    // Fade out loading progress labels
+    // Fade out loading progress labels immediately
     tl.to(
       [loadingLabelRef.current, counterRef.current],
       {
         opacity: 0,
-        duration: 0.25,
+        duration: 0.06,
         ease: "power2.out",
       },
       revealTime
@@ -297,10 +297,10 @@ export default function HeroReveal({
       heroRef.current,
       {
         clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        duration: 1.25,
+        duration: 0.3,
         ease,
       },
-      revealTime + 0.25
+      revealTime
     );
 
     // Concurrently scale up and un-rotate the photo
@@ -309,10 +309,10 @@ export default function HeroReveal({
       {
         scale: 1,
         rotation: 0,
-        duration: 1.35,
+        duration: 0.32,
         ease,
       },
-      revealTime + 0.25
+      revealTime
     );
 
     // --- PHASE 4: Transform Top Section Into Navigation Bar ---
@@ -324,10 +324,10 @@ export default function HeroReveal({
           left: "0%",
           xPercent: 0,
           x: 0,
-          duration: 1.2,
+          duration: 0.28,
           ease,
         },
-        revealTime + 0.25
+        revealTime
       );
     }
 
@@ -337,7 +337,7 @@ export default function HeroReveal({
         initialTextLogo,
         {
           opacity: 0,
-          duration: 0.45,
+          duration: 0.1,
           ease: "power2.out",
           onComplete: () => {
             if (initialTextLogo) {
@@ -345,7 +345,7 @@ export default function HeroReveal({
             }
           },
         },
-        revealTime + 0.25
+        revealTime
       );
     }
 
@@ -355,9 +355,9 @@ export default function HeroReveal({
         {
           display: "flex",
           opacity: 0,
-          scale: 0.92,
+          scale: 0.94,
         },
-        revealTime + 0.35
+        revealTime + 0.04
       );
 
       tl.to(
@@ -365,10 +365,10 @@ export default function HeroReveal({
         {
           opacity: 1,
           scale: 1,
-          duration: 0.65,
+          duration: 0.22,
           ease: "power2.out",
         },
-        revealTime + 0.4
+        revealTime + 0.06
       );
     }
 
@@ -379,13 +379,13 @@ export default function HeroReveal({
         {
           opacity: 1,
           y: 0,
-          duration: 0.9,
+          duration: 0.24,
           ease: "power2.out",
           onStart: () => {
             if (navMenu) navMenu.style.pointerEvents = "auto";
           },
         },
-        revealTime + 0.45
+        revealTime + 0.08
       );
     }
 
@@ -396,13 +396,13 @@ export default function HeroReveal({
         {
           opacity: 1,
           y: 0,
-          duration: 0.85,
+          duration: 0.24,
           ease: "power2.out",
           onStart: () => {
             if (rightActions) rightActions.style.pointerEvents = "auto";
           },
         },
-        revealTime + 0.5
+        revealTime + 0.08
       );
     }
 
@@ -413,15 +413,15 @@ export default function HeroReveal({
         {
           opacity: 1,
           y: 0,
-          duration: 0.9,
+          duration: 0.28,
           ease: "power2.out",
         },
-        revealTime + 0.55
+        revealTime + 0.1
       );
     }
 
     // --- PHASE 5: Hero Center Typography Staggered Reveal ---
-    const textStartTime = revealTime + 0.7;
+    const textStartTime = revealTime + 0.1;
 
     if (heroContentRef.current) {
       tl.set(heroContentRef.current, { opacity: 1 }, textStartTime);
@@ -433,8 +433,8 @@ export default function HeroReveal({
         validLines,
         {
           y: "0%",
-          duration: 1.05,
-          stagger: 0.08,
+          duration: 0.3,
+          stagger: 0.03,
           ease,
         },
         textStartTime
@@ -447,10 +447,10 @@ export default function HeroReveal({
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
+          duration: 0.24,
           ease: "power2.out",
         },
-        textStartTime + 0.2
+        textStartTime + 0.04
       );
     }
 
@@ -460,10 +460,10 @@ export default function HeroReveal({
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
+          duration: 0.24,
           ease: "power2.out",
         },
-        textStartTime + 0.35
+        textStartTime + 0.08
       );
     }
 
@@ -474,10 +474,10 @@ export default function HeroReveal({
         {
           opacity: 1,
           y: 0,
-          duration: 0.9,
+          duration: 0.24,
           ease: "power2.out",
         },
-        textStartTime + 0.35
+        textStartTime + 0.08
       );
     }
   }, []);

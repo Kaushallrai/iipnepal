@@ -366,6 +366,7 @@ export default function CoursesSection({
   return (
     <section
       id="courses"
+      data-theme="dark"
       ref={sectionRef}
       className="relative w-full bg-[#0a0a0a] text-white z-20 py-24 sm:py-28 md:py-32 lg:py-0 overflow-hidden"
       aria-label="Photography Courses"
@@ -374,6 +375,7 @@ export default function CoursesSection({
       {/* Viewport Container (Standard flow on mobile/tablet, pinned 100vh on desktop) */}
       <div
         ref={pinnedRef}
+        data-theme="dark"
         className="w-full lg:h-screen flex flex-col justify-center lg:justify-between px-6 sm:px-8 md:px-12 lg:px-16 max-w-[105rem] mx-auto overflow-visible lg:overflow-hidden lg:pt-[108px] lg:pb-12"
       >
         {/* ============================================================ */}

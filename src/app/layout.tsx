@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Fragment_Mono, Bebas_Neue, Syne, Playfair_Display, Caveat } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/providers/SmoothScroll";
@@ -46,7 +46,16 @@ const polaroidFont = Caveat({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+  themeColor: "#fffef7",
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://iipnepal.com"),
   title: "IIP Nepal — Indian Institute of Photography Nepal",
   description:
     "An editorial photography institute in Kathmandu, Nepal. Documentary photography, warm paper canvas, and professional mentorship.",

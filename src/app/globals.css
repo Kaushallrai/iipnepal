@@ -134,6 +134,12 @@
   /* Semantic Page Base */
   --background: var(--color-bone-white);
   --foreground: var(--color-ink-black);
+
+  /* Safe Area Insets (iOS Dynamic Island, Notch, Android System Bars) */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
 }
 
 /* Tablet overrides (sm: 640px - 767px) */
@@ -345,3 +351,25 @@ html.lenis body {
 .animate-marquee-timeline:hover {
   animation-play-state: paused;
 }
+
+/* Fast Infinite Disciplines Marquee */
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 24s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+

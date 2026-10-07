@@ -2,7 +2,12 @@
 
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export interface LineRevealProps {
   lines: (string | React.ReactNode)[];
@@ -22,8 +27,7 @@ export interface LineRevealProps {
 /**
  * Creative Giants Masked Line Reveal Animation
  * Wraps each line in an overflow-hidden mask and animates the inner element up from yPercent: 105 to 0.
- * Utilizes a dedicated IntersectionObserver with once: true so that animations trigger smoothly
- * and NEVER replay on scroll, parent re-renders, or pin state changes.
+ * Utilizes GSAP ScrollTrigger synchronized with Lenis smooth-scroll.
  */
 export function LineReveal({
   lines,
@@ -31,12 +35,11 @@ export function LineReveal({
   className,
   lineClassName,
   delay = 0,
-  duration = 1.15,
+  duration = 1.05,
   stagger = 0.08,
   once = true,
 }: LineRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const hasAnimatedRef = useRef(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -45,58 +48,37 @@ export function LineReveal({
     const innerElements = container.querySelectorAll(".line-inner");
     if (innerElements.length === 0) return;
 
-    // If animation has already played once, keep elements static and visible
-    if (hasAnimatedRef.current && once) {
-      gsap.set(innerElements, { yPercent: 0, opacity: 1 });
-      return;
-    }
-
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
     if (prefersReducedMotion) {
       gsap.set(innerElements, { yPercent: 0, opacity: 1 });
-      hasAnimatedRef.current = true;
       return;
     }
 
-    // Initial masked state
-    gsap.set(innerElements, { yPercent: 105, opacity: 0 });
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-          if (hasAnimatedRef.current && once) return;
-
-          hasAnimatedRef.current = true;
-          observer.disconnect();
-
-          gsap.to(innerElements, {
-            yPercent: 0,
-            opacity: 1,
-            duration,
-            delay,
-            stagger,
-            ease: "power3.out",
-          });
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        innerElements,
+        { yPercent: 105, opacity: 0 },
+        {
+          yPercent: 0,
+          opacity: 1,
+          duration,
+          delay,
+          stagger,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: container,
+            start: "top 92%",
+            toggleActions: "play none none none",
+            once,
+          },
         }
-      },
-      {
-        rootMargin: "0px 0px -15% 0px",
-        threshold: 0.02,
-      }
-    );
+      );
+    }, container);
 
-    observer.observe(container);
-
-    return () => {
-      observer.disconnect();
-      if (hasAnimatedRef.current && once) {
-        gsap.set(innerElements, { yPercent: 0, opacity: 1 });
-      }
-    };
+    return () => ctx.revert();
   }, [delay, duration, stagger, once]);
 
   return (

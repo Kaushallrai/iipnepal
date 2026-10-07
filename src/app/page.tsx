@@ -30,7 +30,7 @@ export default function Home(): React.JSX.Element {
       </div>
 
       {/* 3. Courses Section (Darkroom Black Stage for Polaroid Gallery) */}
-      <div className="relative z-20 bg-[#0a0a0a]">
+      <div data-theme="dark" className="relative z-20 bg-[#0a0a0a]">
         <CoursesSection />
       </div>
 
@@ -40,7 +40,7 @@ export default function Home(): React.JSX.Element {
       </div>
 
       {/* 5. Portfolio Section (Creative Giants Pinned Horizontal Parallax Scroll with Top Editorial Header) */}
-      <div className="relative z-20 bg-[#0a0a0a]">
+      <div data-theme="dark" className="relative z-20 bg-[#0a0a0a]">
         <PortfolioSection />
       </div>
 

@@ -19,6 +19,7 @@ const FOOTER_NAV_LINKS: FooterLinkItem[] = [
 export default function Footer(): React.JSX.Element {
   return (
     <footer
+      data-theme="dark"
       className="section_footer theme-dark relative z-20 w-full bg-[#000000] text-[#fffef7] overflow-hidden select-none border-t border-[#343332]"
       style={{
         fontFamily: "'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
@@ -284,7 +285,7 @@ export default function Footer(): React.JSX.Element {
 
       {/* Bottom Row: Colossal Centered Wordmark in EXACT Creative Giants Font Vector Geometry */}
       {/* Notice: Completely seamless with ZERO separator border above, refined size & pure white color */}
-      <div className="footer_bottom-row relative w-full overflow-hidden bg-black pt-3 pb-8 sm:pt-4 sm:pb-10 lg:pt-6 lg:pb-12 px-4 sm:px-8 flex items-center justify-center">
+      <div className="footer_bottom-row relative w-full overflow-hidden bg-black pt-3 pb-[calc(2rem+env(safe-area-inset-bottom,0px))] sm:pt-4 sm:pb-10 lg:pt-6 lg:pb-12 px-4 sm:px-8 pl-[max(1rem,env(safe-area-inset-left,0px))] pr-[max(1rem,env(safe-area-inset-right,0px))] flex items-center justify-center">
         <div className="footer_svg-wrap relative z-[4] w-full max-w-[56rem] sm:max-w-[62rem] lg:max-w-[70rem] mx-auto flex items-center justify-center">
           {/* Authentic Vector Display Wordmark with exact Creative Giants Letterform Geometry, perfectly centered and pure white */}
           <svg

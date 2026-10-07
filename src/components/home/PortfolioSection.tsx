@@ -293,6 +293,7 @@ export default function PortfolioSection({
   return (
     <section
       id="portfolio"
+      data-theme="dark"
       ref={sectionRef}
       aria-label="Photography Portfolio and Student Fieldwork"
       className="relative w-full bg-[#0a0a0a] text-white z-20 overflow-hidden py-24 sm:py-28 md:py-32 lg:py-0"
@@ -303,6 +304,7 @@ export default function PortfolioSection({
       {/* ========================================================================= */}
       <div
         ref={pinnedRef}
+        data-theme="dark"
         className="hidden lg:flex flex-col justify-between w-full h-screen min-h-[720px] max-h-[1080px] pt-[108px] pb-12 px-6 sm:px-8 md:px-12 lg:px-16 max-w-[105rem] mx-auto overflow-hidden"
       >
         {/* ============================================================ */}

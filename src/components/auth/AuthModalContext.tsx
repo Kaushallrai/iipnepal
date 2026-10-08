@@ -47,7 +47,7 @@ export function AuthModalProvider({
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState<AuthMode>("login");
   const [user, setUser] = useState<AuthUser | null>(null);
-  const [isLoadingUser, setIsLoadingUser] = useState(false);
+  const [isLoadingUser] = useState(false);
 
   // Listen for query params e.g. ?auth=login or ?auth=register on initial load
   useEffect(() => {

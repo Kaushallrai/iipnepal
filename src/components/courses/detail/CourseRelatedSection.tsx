@@ -75,7 +75,7 @@ export default function CourseRelatedSection({
 
                   {/* Archival Stamp Header */}
                   <div className="absolute top-3.5 left-3.5 bg-black/85 backdrop-blur-xs text-white font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] px-2.5 py-1">
-                    {rel.level} // Track {rel.number}
+                    {rel.level} {"//"} Track {rel.number}
                   </div>
 
                   {rel.discount && (

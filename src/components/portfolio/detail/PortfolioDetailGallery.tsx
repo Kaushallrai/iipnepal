@@ -193,7 +193,7 @@ export default function PortfolioDetailGallery({ item }: PortfolioDetailGalleryP
           {/* Top Bar */}
           <div className="flex items-center justify-between text-white font-mono text-xs uppercase tracking-widest pb-4 border-b border-white/10">
             <span className="truncate max-w-[240px] sm:max-w-none">
-              {item.title} // Plate 0{activeLightboxIndex + 1} of 0{item.gallery.length}
+              {item.title} {"//"} Plate 0{activeLightboxIndex + 1} of 0{item.gallery.length}
             </span>
             <div className="flex items-center gap-4">
               <span className="text-[#ffd001] hidden sm:inline-block text-[11px]">Use Arrow Keys to Navigate</span>

@@ -3,7 +3,7 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Keyboard, Mousewheel } from "swiper/modules";
 import type { Swiper as SwiperCore } from "swiper";
@@ -44,7 +44,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     mentor: "Additya Shrestha · Fellow",
     location: "Asan Chowk, Old Kathmandu",
     year: "2025",
-    image: "/images/portfolio-street.jpg",
+    image: "/images/portfolio-street.webp",
     medium: "Natural Sunlight · f/2.8 Prime",
     description:
       "A raw visual dissection of morning commerce and floral market vendors in Kathmandu's historic square, capturing generational trade and natural street light.",
@@ -60,7 +60,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     mentor: "Alpine Expeditionary Workshop",
     location: "Annapurna Sanctuary, 4,130m",
     year: "2025",
-    image: "/images/portfolio-himalayas.jpg",
+    image: "/images/portfolio-himalayas.webp",
     medium: "Medium Format · Zone System V",
     description:
       "Silver-gelatin inspired capture of morning mist drifting through alpine valleys below the Annapurna range, exploring high-altitude silence and glacial scale.",
@@ -76,7 +76,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     mentor: "Master Crafts Archive Fellowship",
     location: "Patan Durbar Courtyard",
     year: "2026",
-    image: "/images/portfolio-artisan.jpg",
+    image: "/images/portfolio-artisan.webp",
     medium: "85mm Prime · Diffused Daylight",
     description:
       "Intimate medium-format portraiture examining Newari copper repoussé craftsmanship, hand chisels, and centuries-old metallurgical heritage in Lalitpur.",
@@ -105,7 +105,6 @@ export default function PortfolioSection({
   const progressBarRef = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
   const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
-  const mobileCarouselRef = useRef<HTMLDivElement>(null);
 
   // Jump smoothly to a specific project on desktop
   const handleJumpToSlide = useCallback(
@@ -323,7 +322,7 @@ export default function PortfolioSection({
       <div
         ref={pinnedRef}
         data-theme="dark"
-        className="hidden lg:flex flex-col justify-between w-full h-screen min-h-[720px] max-h-[1080px] pt-[108px] pb-12 px-6 sm:px-8 md:px-12 lg:px-16 max-w-[105rem] mx-auto overflow-hidden"
+        className="hidden lg:flex flex-col justify-between w-full h-screen min-h-[720px] max-h-[1080px] pt-[108px] pb-12 px-6 sm:px-8 md:px-12 lg:px-16 max-w-[105rem] mx-auto overflow-hidden bg-[#0a0a0a]"
       >
         {/* ============================================================ */}
         {/* 1. EDITORIAL HEADER: Eyebrow + Heading + View All Archive    */}

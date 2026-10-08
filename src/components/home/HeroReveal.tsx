@@ -29,7 +29,7 @@ export interface HeroRevealProps {
 }
 
 export default function HeroReveal({
-  imageSrc = "/images/hero-photographer.jpg",
+  imageSrc = "/images/hero-photographer.webp",
   imageAlt = "IIP Nepal Photography Master Archive",
   announcementTitle = "WELCOME TO THE IIP CENTRE NEPAL",
   announcementText = "Indian Institute of Photography launches in Kathmandu with White Hat Events — led by alumnus Additya Shrestha.",
@@ -41,7 +41,6 @@ export default function HeroReveal({
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
-  const progressBarRef = useRef<HTMLDivElement>(null);
   const loadingLabelRef = useRef<HTMLSpanElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
@@ -58,32 +57,8 @@ export default function HeroReveal({
   const [counterDisplay, setCounterDisplay] = useState(0);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (typeof window !== "undefined") {
-        const sy = window.scrollY;
-
-        // Smoothly fade hero elements as they move up, preventing collision with the fixed navbar
-        const fade = Math.max(0, 1 - sy / 280);
-        if (heroContentRef.current) {
-          heroContentRef.current.style.opacity = String(fade);
-        }
-        if (editorialTagRef.current) {
-          editorialTagRef.current.style.opacity = String(fade);
-        }
-        if (bottomBarRef.current) {
-          const bottomFade = Math.max(0, 1 - sy / 160);
-          bottomBarRef.current.style.opacity = String(bottomFade);
-        }
-      }
-    };
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const runAnimation = useCallback(() => {
-    if (!heroRef.current || !mediaRef.current || !progressBarRef.current) return;
+    if (!heroRef.current || !mediaRef.current) return;
 
     if (timelineRef.current) {
       timelineRef.current.kill();
@@ -111,12 +86,6 @@ export default function HeroReveal({
       clipPath: "polygon(0% 45%, 0% 45%, 0% 55%, 0% 55%)",
     });
 
-    // Progress bar width starts at 0%
-    gsap.set(progressBarRef.current, {
-      width: "0%",
-      opacity: 1,
-    });
-
     if (loadingLabelRef.current) {
       gsap.set(loadingLabelRef.current, { opacity: 1 });
     }
@@ -124,10 +93,10 @@ export default function HeroReveal({
       gsap.set(counterRef.current, { opacity: 1 });
     }
 
-    // Media container initially scaled down and rotated -18 degrees in center
+    // Media container initially scaled down and rotated -16 degrees in center
     gsap.set(mediaRef.current, {
-      scale: 0.18,
-      rotation: -18,
+      scale: 0.22,
+      rotation: -16,
       transformOrigin: "center center",
     });
 
@@ -149,7 +118,7 @@ export default function HeroReveal({
       });
     }
 
-    // Official logo mark hidden initially during loading bar fill
+    // Official logo mark hidden initially during hero reveal
     if (officialLogo) {
       gsap.set(officialLogo, {
         opacity: 0,
@@ -217,23 +186,13 @@ export default function HeroReveal({
 
     const counterObj = { val: 0 };
 
-    // --- PHASE 1: Balanced Initial Expand & Loading Progress (0% to 45% width) ---
-    // Smooth start: ~0.5s so the user clearly sees the LOADING label and counter ticking up
+    // --- PHASE 1: Graceful Initial Expand (0% to 45% width) ---
+    // Smooth, deliberate opening of the horizontal photographic strip
     tl.to(
       heroRef.current,
       {
         clipPath: "polygon(0% 45%, 45% 45%, 45% 55%, 0% 55%)",
-        duration: 0.52,
-        ease: "power2.inOut",
-      },
-      0
-    );
-
-    tl.to(
-      progressBarRef.current,
-      {
-        width: "45%",
-        duration: 0.52,
+        duration: 0.95,
         ease: "power2.inOut",
       },
       0
@@ -243,7 +202,7 @@ export default function HeroReveal({
       counterObj,
       {
         val: 45,
-        duration: 0.52,
+        duration: 0.95,
         ease: "power2.inOut",
         onUpdate: () => setCounterDisplay(Math.floor(counterObj.val)),
       },
@@ -253,68 +212,58 @@ export default function HeroReveal({
     tl.to(
       mediaRef.current,
       {
-        scale: 0.28,
-        rotation: -10,
-        duration: 0.52,
+        scale: 0.32,
+        rotation: -9,
+        duration: 0.95,
         ease: "power2.inOut",
       },
       0
     );
 
-    // --- PHASE 2: Steady Stretch Across Screen (45% to 100%) ---
-    // Smooth glide to 100% over 0.68s
+    // --- PHASE 2: Steady Cinematic Stretch Across Screen (45% to 100%) ---
+    // Calm glide across to full viewport width
     tl.to(
       heroRef.current,
       {
         clipPath: "polygon(0% 45%, 100% 45%, 100% 55%, 0% 55%)",
-        duration: 0.68,
+        duration: 1.15,
         ease: "power2.out",
       },
-      0.52
-    );
-
-    tl.to(
-      progressBarRef.current,
-      {
-        width: "100%",
-        duration: 0.68,
-        ease: "power2.out",
-      },
-      0.52
+      0.95
     );
 
     tl.to(
       counterObj,
       {
         val: 100,
-        duration: 0.68,
+        duration: 1.15,
         ease: "power2.out",
         onUpdate: () => setCounterDisplay(Math.floor(counterObj.val)),
       },
-      0.52
+      0.95
     );
 
     tl.to(
       mediaRef.current,
       {
-        scale: 0.44,
-        rotation: -4,
-        duration: 0.68,
+        scale: 0.48,
+        rotation: -3,
+        duration: 1.15,
         ease: "power2.out",
       },
-      0.52
+      0.95
     );
 
     // --- PHASE 3: Micro-pause & The Big Vertical Unfurl (100% reveal) ---
-    // Confident 0.14s pause at 100% completion before the vertical reveal begins
-    const revealTime = 1.34;
+    // Poised breath at full width before vertical unfurl begins
+    const revealTime = 2.35;
 
     // Fade out loading progress labels smoothly
     tl.to(
       [loadingLabelRef.current, counterRef.current],
       {
         opacity: 0,
-        duration: 0.22,
+        duration: 0.25,
         ease: "power2.out",
       },
       revealTime
@@ -325,7 +274,7 @@ export default function HeroReveal({
       heroRef.current,
       {
         clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        duration: 0.72,
+        duration: 0.95,
         ease,
       },
       revealTime
@@ -337,7 +286,7 @@ export default function HeroReveal({
       {
         scale: 1,
         rotation: 0,
-        duration: 0.76,
+        duration: 1.05,
         ease,
       },
       revealTime
@@ -352,10 +301,10 @@ export default function HeroReveal({
           left: "0%",
           xPercent: 0,
           x: 0,
-          duration: 0.65,
+          duration: 0.75,
           ease,
         },
-        revealTime + 0.04
+        revealTime + 0.08
       );
     }
 
@@ -365,7 +314,7 @@ export default function HeroReveal({
         initialTextLogo,
         {
           opacity: 0,
-          duration: 0.2,
+          duration: 0.25,
           ease: "power2.out",
           onComplete: () => {
             if (initialTextLogo) {
@@ -373,7 +322,7 @@ export default function HeroReveal({
             }
           },
         },
-        revealTime + 0.05
+        revealTime + 0.1
       );
     }
 
@@ -385,7 +334,7 @@ export default function HeroReveal({
           opacity: 0,
           scale: 0.94,
         },
-        revealTime + 0.1
+        revealTime + 0.14
       );
 
       tl.to(
@@ -393,10 +342,10 @@ export default function HeroReveal({
         {
           opacity: 1,
           scale: 1,
-          duration: 0.35,
+          duration: 0.45,
           ease: "power2.out",
         },
-        revealTime + 0.12
+        revealTime + 0.16
       );
     }
 
@@ -407,13 +356,13 @@ export default function HeroReveal({
         {
           opacity: 1,
           y: 0,
-          duration: 0.42,
+          duration: 0.52,
           ease: "power2.out",
           onStart: () => {
             if (navMenu) navMenu.style.pointerEvents = "auto";
           },
         },
-        revealTime + 0.18
+        revealTime + 0.24
       );
     }
 
@@ -424,13 +373,13 @@ export default function HeroReveal({
         {
           opacity: 1,
           y: 0,
-          duration: 0.42,
+          duration: 0.52,
           ease: "power2.out",
           onStart: () => {
             if (rightActions) rightActions.style.pointerEvents = "auto";
           },
         },
-        revealTime + 0.18
+        revealTime + 0.24
       );
     }
 
@@ -441,15 +390,15 @@ export default function HeroReveal({
         {
           opacity: 1,
           y: 0,
-          duration: 0.5,
+          duration: 0.65,
           ease: "power2.out",
         },
-        revealTime + 0.22
+        revealTime + 0.3
       );
     }
 
     // --- PHASE 5: Hero Center Typography Staggered Reveal ---
-    const textStartTime = revealTime + 0.25;
+    const textStartTime = revealTime + 0.35;
 
     if (heroContentRef.current) {
       tl.set(heroContentRef.current, { opacity: 1 }, textStartTime);
@@ -461,8 +410,8 @@ export default function HeroReveal({
         validLines,
         {
           y: "0%",
-          duration: 0.65,
-          stagger: 0.05,
+          duration: 0.8,
+          stagger: 0.06,
           ease,
         },
         textStartTime
@@ -475,10 +424,10 @@ export default function HeroReveal({
         {
           opacity: 1,
           y: 0,
-          duration: 0.42,
+          duration: 0.52,
           ease: "power2.out",
         },
-        textStartTime + 0.1
+        textStartTime + 0.15
       );
     }
 
@@ -488,10 +437,10 @@ export default function HeroReveal({
         {
           opacity: 1,
           y: 0,
-          duration: 0.42,
+          duration: 0.52,
           ease: "power2.out",
         },
-        textStartTime + 0.15
+        textStartTime + 0.22
       );
     }
 
@@ -502,13 +451,13 @@ export default function HeroReveal({
         {
           opacity: 1,
           y: 0,
-          duration: 0.42,
+          duration: 0.52,
           ease: "power2.out",
         },
-        textStartTime + 0.15
+        textStartTime + 0.22
       );
     }
-  }, [setHasPlayedHomeIntro]);
+  }, [setHasPlayedHomeIntro, completeTransition]);
 
   useEffect(() => {
     // If the intro has already played during this session, render immediately in fully revealed state
@@ -523,9 +472,6 @@ export default function HeroReveal({
           scale: 1,
           rotation: 0,
         });
-      }
-      if (progressBarRef.current) {
-        gsap.set(progressBarRef.current, { display: "none" });
       }
       if (heroContentRef.current) {
         gsap.set(heroContentRef.current, { opacity: 1 });
@@ -572,7 +518,7 @@ export default function HeroReveal({
       return;
     }
 
-    // First visit or browser refresh: run full, balanced loading animation!
+    // First visit or browser refresh: run full, deliberate reveal animation!
     runAnimation();
     return () => {
       if (timelineRef.current) timelineRef.current.kill();
@@ -582,12 +528,10 @@ export default function HeroReveal({
   return (
     <div className="relative w-full overflow-x-clip">
       {/* ============================================================== */}
-      {/* 1. PINNED BACKGROUND IMAGE (FIXED TO VIEWPORT, 100VH, Z-0)      */}
-      {/* Goes behind the navbar at top: 0 and stays pinned while scroll */}
-      {/* ============================================================== */}
+      {/* 1. HERO BACKGROUND IMAGE (ABSOLUTE TO HERO CONTAINER, 100VH, Z-0) */}
       <div
         ref={heroRef}
-        className="fixed inset-0 w-full h-screen h-[100dvh] overflow-hidden bg-black z-0 pointer-events-none"
+        className="absolute inset-0 w-full h-full overflow-hidden bg-black z-0 pointer-events-none"
         style={{
           clipPath: hasPlayedHomeIntro
             ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
@@ -603,7 +547,7 @@ export default function HeroReveal({
             willChange: "transform",
             transform: hasPlayedHomeIntro
               ? "none"
-              : "scale(0.18) rotate(-18deg)",
+              : "scale(0.22) rotate(-16deg)",
             transformOrigin: "center center",
           }}
         >
@@ -718,7 +662,7 @@ export default function HeroReveal({
 
       {/* Right-Side Editorial Display Text: Sits on top of background photo (z-0) but BEHIND the hero reveal animation layer (z-20) */}
       <div
-        className="fixed right-6 sm:right-8 md:right-12 lg:right-16 top-1/2 -translate-y-1/2 z-10 hidden min-[1380px]:flex items-center justify-center pointer-events-none select-none text-[#ffd001]"
+        className="absolute right-6 sm:right-8 md:right-12 lg:right-16 top-1/2 -translate-y-1/2 z-10 hidden min-[1380px]:flex items-center justify-center pointer-events-none select-none text-[#ffd001]"
       >
         <div
           ref={editorialTagRef}
@@ -740,29 +684,31 @@ export default function HeroReveal({
       </div>
 
       {/* ============================================================== */}
-      {/* 3. PROGRESS BAR CONTAINER (ANCHORS "LOADING" & "/COUNTER")     */}
+      {/* 3. LOADING LABELS ROW (Cleanly floating across full width, NO line cutting through) */}
       {/* ============================================================== */}
       <div
-        ref={progressBarRef}
-        className="fixed top-1/2 -translate-y-1/2 left-0 h-[10%] min-h-[64px] flex items-center justify-between px-6 md:px-12 z-40 overflow-hidden pointer-events-none w-0"
+        className="fixed top-1/2 -translate-y-1/2 left-0 right-0 w-full flex items-center justify-between px-6 sm:px-10 md:px-16 lg:px-20 z-50 pointer-events-none"
         style={{
-          width: "0%",
-          willChange: "width",
           display: hasPlayedHomeIntro ? "none" : "flex",
-          opacity: hasPlayedHomeIntro ? 0 : 1,
         }}
       >
         <span
           ref={loadingLabelRef}
-          className="flex items-center gap-2.5 text-[#ffd001] font-mono text-xs md:text-sm font-semibold tracking-[0.25em] uppercase whitespace-nowrap shrink-0"
+          className="flex items-center gap-2.5 text-[#ffd001] font-mono text-xs md:text-sm font-semibold tracking-[0.25em] uppercase whitespace-nowrap shrink-0 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+          style={{
+            opacity: hasPlayedHomeIntro ? 0 : 1,
+          }}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#ffd001] animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.8)] animate-pulse" />
           LOADING
         </span>
 
         <span
           ref={counterRef}
-          className="text-[#ffd001] font-mono text-xs md:text-sm font-semibold tracking-[0.25em] whitespace-nowrap shrink-0 text-right"
+          className="text-[#ffd001] font-mono text-xs md:text-sm font-semibold tracking-[0.25em] tabular-nums whitespace-nowrap shrink-0 text-right drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+          style={{
+            opacity: hasPlayedHomeIntro ? 0 : 1,
+          }}
         >
           /{String(counterDisplay).padStart(2, "0")}
         </span>

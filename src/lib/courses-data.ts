@@ -40,7 +40,7 @@ export const ORIGINAL_COURSES: CourseItem[] = [
     discount: "20% off",
     description:
       "Learn professional photography using just your smartphone. This comprehensive course teaches you how to master camera settings, composition, and mobile editing.",
-    coverImage: "/images/course-mobile.jpg",
+    coverImage: "/images/course-mobile.webp",
     featured: true,
     intake: "Rolling Monthly Intake",
     certification: "Official IIP Certificate of Completion",
@@ -127,7 +127,7 @@ export const ORIGINAL_COURSES: CourseItem[] = [
     discount: "20% off",
     description:
       "Start your photography journey with our comprehensive beginner-friendly course covering camera basics, composition, and practical shooting techniques.",
-    coverImage: "/images/course-basic.jpg",
+    coverImage: "/images/course-basic.webp",
     featured: true,
     intake: "Rolling Monthly Intake",
     certification: "Official IIP Certificate of Basic Photography",
@@ -214,7 +214,7 @@ export const ORIGINAL_COURSES: CourseItem[] = [
     discount: "20% off",
     description:
       "A comprehensive foundation course covering every vital topic related to photography along with skill development.",
-    coverImage: "/images/course-foundation.jpg",
+    coverImage: "/images/course-foundation.webp",
     featured: true,
     intake: "Rolling Monthly Intake",
     certification: "Official IIP Certified Foundation Diploma",
@@ -303,7 +303,7 @@ export const ORIGINAL_COURSES: CourseItem[] = [
     payableFee: "Rs. 26,800",
     description:
       "An intensive mentor-led foundation photography course that takes you from beginner to professional level.",
-    coverImage: "/images/course-pro-foundation.jpg",
+    coverImage: "/images/course-pro-foundation.webp",
     featured: true,
     intake: "Rolling Monthly Intake",
     certification: "Official IIP Pro Level Foundation Certificate with Priority Placement",
@@ -387,7 +387,7 @@ export const ORIGINAL_COURSES: CourseItem[] = [
     payableFee: "Rs. 56,000",
     description:
       "An advanced mentor-led course for photographers looking to master advanced techniques, develop their style, and launch a commercial photography career.",
-    coverImage: "/images/course-pro.jpg",
+    coverImage: "/images/course-pro.webp",
     featured: true,
     intake: "Quarterly Intake // Limited Seats",
     certification: "Official IIP Pro Advanced Master Diploma & Career Placement Support",

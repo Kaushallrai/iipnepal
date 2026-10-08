@@ -85,11 +85,17 @@ export function AuthModalProvider({
     const authParam = params.get("auth");
 
     if (authParam === "login") {
-      setMode("login");
-      setIsOpen(true);
+      const timer = setTimeout(() => {
+        setMode("login");
+        setIsOpen(true);
+      }, 0);
+      return () => clearTimeout(timer);
     } else if (authParam === "register") {
-      setMode("register");
-      setIsOpen(true);
+      const timer = setTimeout(() => {
+        setMode("register");
+        setIsOpen(true);
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, []);
 

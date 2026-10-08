@@ -15,7 +15,7 @@ export default function AboutLeadership(): React.JSX.Element {
             <ScrollReveal variant="scale-up" duration={1} distance={20} start="top 88%">
               <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] md:h-[420px] lg:h-[520px] bg-black border border-[#e2e0d2] overflow-hidden">
                 <Image
-                  src="/images/flagship-mentor-darkroom.jpg"
+                  src="/images/flagship-mentor-darkroom.webp"
                   alt="IIP Nepal Faculty Mentorship and Darkroom Printing"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 90vw, 50vw"

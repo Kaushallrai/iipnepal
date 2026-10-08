@@ -5,8 +5,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 
-import { usePageTransition } from "@/components/providers/PageTransitionContext";
-
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -42,7 +40,6 @@ export function LineReveal({
   once = true,
 }: LineRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { isTransitionComplete } = usePageTransition();
 
   useEffect(() => {
     const container = containerRef.current;
@@ -50,12 +47,6 @@ export function LineReveal({
 
     const innerElements = container.querySelectorAll(".line-inner");
     if (innerElements.length === 0) return;
-
-    // If page transition is still active, ensure lines are prepared in masked state
-    if (!isTransitionComplete) {
-      gsap.set(innerElements, { yPercent: 105, opacity: 0 });
-      return;
-    }
 
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -67,28 +58,31 @@ export function LineReveal({
     }
 
     const ctx = gsap.context(() => {
+      const pinnedContainer = container.closest(".pin-spacer");
+
       gsap.fromTo(
         innerElements,
-        { yPercent: 105, opacity: 0 },
+        { yPercent: 105 },
         {
           yPercent: 0,
-          opacity: 1,
           duration,
           delay,
           stagger,
           ease: "power3.out",
+          clearProps: "transform",
           scrollTrigger: {
             trigger: container,
-            start: "top 92%",
+            start: "top 94%",
             toggleActions: "play none none none",
             once,
+            ...(pinnedContainer ? { pinnedContainer: pinnedContainer as Element } : {}),
           },
         }
       );
     }, container);
 
     return () => ctx.revert();
-  }, [isTransitionComplete, delay, duration, stagger, once]);
+  }, [delay, duration, stagger, once]);
 
   return (
     <div

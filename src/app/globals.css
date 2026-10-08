@@ -275,6 +275,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
 html {
@@ -284,6 +286,17 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+/* Hide default scrollbars completely across all browsers like Creative Giants */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
 }
 
 /* Lenis Smooth Scrolling styles */
@@ -301,7 +314,7 @@ html.lenis body {
 }
 
 .lenis.lenis-stopped {
-  overflow: hidden;
+  overflow-y: auto !important;
 }
 
 .lenis.lenis-smooth iframe {

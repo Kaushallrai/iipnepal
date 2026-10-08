@@ -72,12 +72,16 @@ export default function AuthModal(): React.JSX.Element {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Reset form inputs & messages when opening or switching modes
-  useEffect(() => {
+  // Track previous mode & isOpen to reset inputs without cascading renders
+  const [prevMode, setPrevMode] = useState(mode);
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
+  if (prevMode !== mode || prevIsOpen !== isOpen) {
+    setPrevMode(mode);
+    setPrevIsOpen(isOpen);
     setInfoMessage(null);
     setOtpSent(false);
     setOtp("");
-  }, [mode, isOpen]);
+  }
 
   const switchMode = (newMode: AuthMode) => {
     if (newMode === mode) return;
@@ -456,8 +460,8 @@ export default function AuthModal(): React.JSX.Element {
               <Image
                 src={
                   mode === "login"
-                    ? "/images/flagship-mentor-darkroom.jpg"
-                    : "/images/hero-photographer.jpg"
+                    ? "/images/flagship-mentor-darkroom.webp"
+                    : "/images/hero-photographer.webp"
                 }
                 alt="IIP Nepal Photography"
                 fill

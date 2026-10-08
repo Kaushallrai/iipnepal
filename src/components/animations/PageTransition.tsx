@@ -6,8 +6,7 @@ import { gsap } from "gsap";
 import { usePageTransition } from "@/components/providers/PageTransitionContext";
 
 export default function PageTransition() {
-  const { registerTransitionRunner, navigateTo, completeTransition } =
-    usePageTransition();
+  const { registerTransitionRunner, navigateTo } = usePageTransition();
 
   const wrapRef = useRef<HTMLDivElement>(null);
   const curtainRef = useRef<HTMLDivElement>(null);

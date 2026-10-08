@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import LineReveal from "@/components/animations/LineReveal";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 
 export default function PortfolioManifesto(): React.JSX.Element {
@@ -10,7 +9,7 @@ export default function PortfolioManifesto(): React.JSX.Element {
       <div className="w-full max-w-5xl mx-auto px-6 sm:px-8 text-center flex flex-col items-center gap-6 sm:gap-8">
         
         <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#888888]">
-          Curatorial Vision // Kathmandu
+          Curatorial Vision {"//"} Kathmandu
         </span>
 
         <ScrollReveal variant="fade-up" distance={20} duration={0.8}>

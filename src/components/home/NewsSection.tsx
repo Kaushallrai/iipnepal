@@ -30,7 +30,7 @@ const NEWS_ITEMS: NewsItem[] = [
     title: "Annual Photography Exhibition 2026",
     excerpt:
       "Student fieldwork from Langtang, Patan, and Bhaktapur takes center stage at Nepal Art Council, celebrating documentary excellence and living cultural heritage.",
-    image: "/images/portfolio-artisan.jpg",
+    image: "/images/portfolio-artisan.webp",
     slug: "kathmandu-annual-exhibition-2026",
   },
   {
@@ -38,7 +38,7 @@ const NEWS_ITEMS: NewsItem[] = [
     title: "Additya Shrestha on IIP's Vision",
     excerpt:
       "Director and alumnus Additya Shrestha speaks with national media on launching the Indian Institute of Photography in Kathmandu with White Hat Events.",
-    image: "/images/flagship-mentor-darkroom.jpg",
+    image: "/images/flagship-mentor-darkroom.webp",
     slug: "additya-shrestha-vision",
   },
   {
@@ -46,7 +46,7 @@ const NEWS_ITEMS: NewsItem[] = [
     title: "High-Altitude Fieldwork in Everest",
     excerpt:
       "Master class students complete an intensive 14-day high-altitude documentary expedition, capturing glacial recession and remote Sherpa traditions at 4,800m.",
-    image: "/images/portfolio-himalayas.jpg",
+    image: "/images/portfolio-himalayas.webp",
     slug: "high-altitude-fieldwork-everest",
   },
   {
@@ -54,7 +54,7 @@ const NEWS_ITEMS: NewsItem[] = [
     title: "The Mobile Photography Revolution",
     excerpt:
       "How modern smartphone sensor technology and RAW capture workflows are democratizing visual journalism for emerging Nepali creators.",
-    image: "/images/course-mobile.jpg",
+    image: "/images/course-mobile.webp",
     slug: "mobile-photography-revolution",
   },
   {
@@ -62,7 +62,7 @@ const NEWS_ITEMS: NewsItem[] = [
     title: "Preserving Lalitpur's Sacred Crafts",
     excerpt:
       "A long-form photo essay by IIP fellows chronicling three generations of Patan brass artisans, woodcarvers, and temple restorers.",
-    image: "/images/portfolio-devotee.jpg",
+    image: "/images/portfolio-devotee.webp",
     slug: "living-heritage-lalitpur",
   },
   {
@@ -70,7 +70,7 @@ const NEWS_ITEMS: NewsItem[] = [
     title: "Darkroom Craft to Studio Practice",
     excerpt:
       "Inside IIP Nepal's dedicated studio lighting and commercial portfolio labs, preparing students for advertising and editorial commissions.",
-    image: "/images/course-pro.jpg",
+    image: "/images/course-pro.webp",
     slug: "darkroom-to-commercial-production",
   },
 ];

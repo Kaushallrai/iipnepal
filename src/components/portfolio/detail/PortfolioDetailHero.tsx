@@ -65,7 +65,7 @@ export default function PortfolioDetailHero({ item }: PortfolioDetailHeroProps):
 
             <div className="flex items-center gap-2 text-black font-medium">
               <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)]" />
-              <span>Catalog No. {item.number} // {item.year}</span>
+              <span>Catalog No. {item.number} {"//"} {item.year}</span>
             </div>
           </div>
 
@@ -203,7 +203,7 @@ export default function PortfolioDetailHero({ item }: PortfolioDetailHeroProps):
         >
           {/* Top Bar */}
           <div className="flex items-center justify-between text-white font-mono text-xs uppercase tracking-widest pb-4 border-b border-white/10">
-            <span>{item.title} // Plate 01 of 0{item.gallery.length}</span>
+            <span>{item.title} {"//"} Plate 01 of 0{item.gallery.length}</span>
             <button
               type="button"
               onClick={closeLightbox}

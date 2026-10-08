@@ -88,7 +88,10 @@ export default function ContactForm(): React.JSX.Element {
         (c) => c.slug === courseSlug || c.id === courseSlug
       );
       if (match) {
-        setFormData((prev) => ({ ...prev, program: match.id }));
+        const timer = setTimeout(() => {
+          setFormData((prev) => ({ ...prev, program: match.id }));
+        }, 0);
+        return () => clearTimeout(timer);
       }
     }
   }, []);

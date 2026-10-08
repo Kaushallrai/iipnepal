@@ -7,6 +7,7 @@ import { AuthModalProvider } from "@/components/auth/AuthModalContext";
 import AuthModal from "@/components/auth/AuthModal";
 import { PageTransitionProvider } from "@/components/providers/PageTransitionContext";
 import PageTransition from "@/components/animations/PageTransition";
+import PageReveal from "@/components/animations/PageReveal";
 
 const switzer = Inter({
   variable: "--font-switzer",
@@ -81,7 +82,7 @@ export default function RootLayout({
             <SmoothScroll>
               <PageTransition />
               <Navbar />
-              {children}
+              <PageReveal>{children}</PageReveal>
               <AuthModal />
             </SmoothScroll>
           </PageTransitionProvider>

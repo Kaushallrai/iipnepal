@@ -42,7 +42,7 @@ export const COURSES_LIST: CourseItem[] = [
     discount: "-20%",
     description:
       "Master professional camera controls, composition rules, natural lighting, and mobile post-processing using your smartphone.",
-    coverImage: "/images/course-mobile.jpg",
+    coverImage: "/images/course-mobile.webp",
     slug: "mobile-photography-course",
   },
   {
@@ -56,7 +56,7 @@ export const COURSES_LIST: CourseItem[] = [
     discount: "-20%",
     description:
       "Start your photography journey with camera fundamentals, exposure triangle (aperture, shutter, ISO), composition, and practical field assignments.",
-    coverImage: "/images/course-basic.jpg",
+    coverImage: "/images/course-basic.webp",
     slug: "beginners-course",
   },
   {
@@ -70,7 +70,7 @@ export const COURSES_LIST: CourseItem[] = [
     discount: "-20%",
     description:
       "A comprehensive foundation course covering every vital topic in photography with one-on-one mentor critique and systematic skill development.",
-    coverImage: "/images/course-foundation.jpg",
+    coverImage: "/images/course-foundation.webp",
     slug: "foundation-course",
   },
   {
@@ -84,7 +84,7 @@ export const COURSES_LIST: CourseItem[] = [
     discount: "-20%",
     description:
       "An intensive mentor-led foundation course that takes you from beginner to professional level with live critique and real commercial briefs.",
-    coverImage: "/images/course-pro-foundation.jpg",
+    coverImage: "/images/course-pro-foundation.webp",
     slug: "pro-level-foundation-photography-course",
   },
   {
@@ -98,7 +98,7 @@ export const COURSES_LIST: CourseItem[] = [
     discount: "-20%",
     description:
       "An advanced mentor-led masterclass for photographers looking to master studio lighting, commercial productions, and launch an industry career.",
-    coverImage: "/images/course-pro.jpg",
+    coverImage: "/images/course-pro.webp",
     slug: "pro-level-advanced-photography-course",
   },
 ];
@@ -124,7 +124,6 @@ export default function CoursesSection({
   const polaroidColRef = useRef<HTMLDivElement>(null);
   const railRef = useRef<HTMLDivElement>(null);
   const courseRowsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const hasAnimatedStageRef = useRef(false);
 
   const [scrollIndex, setScrollIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -133,8 +132,6 @@ export default function CoursesSection({
   // Swiper state for mobile & tablet peek carousel
   const swiperInstanceRef = useRef<SwiperCore | null>(null);
   const [swiperActiveIndex, setSwiperActiveIndex] = useState(0);
-  const [isBeginning, setIsBeginning] = useState(true);
-  const [isEnd, setIsEnd] = useState(false);
 
   // Active index prioritized by hover, falling back to scroll position on desktop
   const activeIndex = hoveredIndex !== null ? hoveredIndex : scrollIndex;
@@ -223,158 +220,133 @@ export default function CoursesSection({
       };
     });
 
-    const refreshTimer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 250);
-
     return () => {
-      clearTimeout(refreshTimer);
       mm.revert();
     };
   }, [courses.length]);
 
-  // Entrance motion animation for stage elements, Polaroid, and each course list item at 85% viewport
+  // GSAP entrance motion animation for stage elements, Polaroid, and course list
   useEffect(() => {
     const polaroidEl = polaroidColRef.current;
     const railEl = railRef.current;
     const validRows = courseRowsRef.current.filter(Boolean);
     const viewBtn = viewAllBtnRef.current;
+    const section = sectionRef.current;
 
-    if (!polaroidEl && validRows.length === 0) return;
+    if (!section || (!polaroidEl && validRows.length === 0)) return;
 
-    if (hasAnimatedStageRef.current) {
-      if (polaroidEl) gsap.set(polaroidEl, { opacity: 1, y: 0, rotate: 0 });
-      if (railEl) gsap.set(railEl, { opacity: 1, scaleY: 1 });
-      if (viewBtn) gsap.set(viewBtn, { opacity: 1, y: 0 });
-      gsap.set(validRows, { opacity: 1, y: 0 });
-      return;
-    }
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
-    // Initial hidden state
-    if (polaroidEl) gsap.set(polaroidEl, { opacity: 0, y: 40, rotate: -2 });
-    if (railEl) gsap.set(railEl, { opacity: 0, scaleY: 0.75, transformOrigin: "top center" });
-    if (viewBtn) gsap.set(viewBtn, { opacity: 0, y: 15 });
-    if (validRows.length > 0) gsap.set(validRows, { opacity: 0, y: 28 });
+    if (prefersReducedMotion) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting && !hasAnimatedStageRef.current) {
-          hasAnimatedStageRef.current = true;
-          observer.disconnect();
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+      });
 
-          const tl = gsap.timeline();
-
-          // 1. View all courses button entrance
-          if (viewBtn) {
-            tl.to(viewBtn, {
-              opacity: 1,
-              y: 0,
-              duration: 0.95,
-              ease: "power3.out",
-            });
-          }
-
-          // 2. Polaroid entrance animation with child component reveals
-          if (polaroidEl) {
-            tl.to(
-              polaroidEl,
-              {
-                opacity: 1,
-                y: 0,
-                rotate: 0,
-                duration: 1.2,
-                ease: "power3.out",
-              },
-              viewBtn ? "-=0.75" : 0
-            );
-
-            const polaroidMedia = polaroidEl.querySelector(".polaroid-media");
-            const polaroidChin = polaroidEl.querySelector(".polaroid-chin");
-            const polaroidButtons = polaroidEl.querySelector(".polaroid-buttons");
-
-            if (polaroidMedia) {
-              tl.fromTo(
-                polaroidMedia,
-                { scale: 1.05, opacity: 0.7 },
-                { scale: 1, opacity: 1, duration: 1.1, ease: "power2.out" },
-                "-=0.95"
-              );
-            }
-
-            if (polaroidChin) {
-              tl.fromTo(
-                polaroidChin,
-                { opacity: 0, y: 8 },
-                { opacity: 1, y: 0, duration: 0.85, ease: "power3.out" },
-                "-=0.8"
-              );
-            }
-
-            if (polaroidButtons) {
-              tl.fromTo(
-                polaroidButtons,
-                { opacity: 0, scale: 0.92 },
-                { opacity: 1, scale: 1, duration: 0.75, ease: "back.out(1.5)" },
-                "-=0.6"
-              );
-            }
-          }
-
-          // 3. Central rail entrance
-          if (railEl) {
-            tl.to(
-              railEl,
-              {
-                opacity: 1,
-                scaleY: 1,
-                duration: 1.0,
-                ease: "power2.out",
-              },
-              "-=1.0"
-            );
-          }
-
-          // 4. Staggered entrance for EACH component from the course list
-          if (validRows.length > 0) {
-            tl.to(
-              validRows,
-              {
-                opacity: 1,
-                y: 0,
-                duration: 1.0,
-                stagger: 0.1,
-                ease: "power3.out",
-              },
-              "-=0.9"
-            );
-          }
-        }
-      },
-      { rootMargin: "0px 0px -15% 0px", threshold: 0.02 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-      if (hasAnimatedStageRef.current) {
-        if (polaroidEl) gsap.set(polaroidEl, { opacity: 1, y: 0, rotate: 0 });
-        if (railEl) gsap.set(railEl, { opacity: 1, scaleY: 1 });
-        if (viewBtn) gsap.set(viewBtn, { opacity: 1, y: 0 });
-        gsap.set(validRows, { opacity: 1, y: 0 });
+      // 1. View all courses button entrance
+      if (viewBtn) {
+        tl.from(
+          viewBtn,
+          {
+            opacity: 0,
+            y: 15,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          0
+        );
       }
-    };
-  }, []);
+
+      // 2. Polaroid entrance animation
+      if (polaroidEl) {
+        tl.from(
+          polaroidEl,
+          {
+            opacity: 0,
+            y: 35,
+            rotate: -2,
+            duration: 1.0,
+            ease: "power3.out",
+          },
+          0.1
+        );
+
+        const polaroidMedia = polaroidEl.querySelector(".polaroid-media");
+        const polaroidChin = polaroidEl.querySelector(".polaroid-chin");
+        const polaroidButtons = polaroidEl.querySelector(".polaroid-buttons");
+
+        if (polaroidMedia) {
+          tl.from(
+            polaroidMedia,
+            { scale: 1.06, duration: 1.0, ease: "power2.out" },
+            0.15
+          );
+        }
+
+        if (polaroidChin) {
+          tl.from(
+            polaroidChin,
+            { opacity: 0, y: 8, duration: 0.7, ease: "power3.out" },
+            0.25
+          );
+        }
+
+        if (polaroidButtons) {
+          tl.from(
+            polaroidButtons,
+            { opacity: 0, scale: 0.94, duration: 0.6, ease: "back.out(1.5)" },
+            0.35
+          );
+        }
+      }
+
+      // 3. Central rail entrance
+      if (railEl) {
+        tl.from(
+          railEl,
+          {
+            opacity: 0,
+            scaleY: 0.8,
+            transformOrigin: "top center",
+            duration: 0.8,
+            ease: "power2.out",
+          },
+          0.2
+        );
+      }
+
+      // 4. Staggered entrance for course list rows
+      if (validRows.length > 0) {
+        tl.from(
+          validRows,
+          {
+            opacity: 0,
+            y: 24,
+            duration: 0.75,
+            stagger: 0.08,
+            ease: "power3.out",
+          },
+          0.2
+        );
+      }
+    }, section);
+
+    return () => ctx.revert();
+  }, [courses.length]);
 
   return (
     <section
       id="courses"
       data-theme="dark"
       ref={sectionRef}
-      className="relative w-full bg-[#0a0a0a] text-white z-20 py-24 sm:py-28 md:py-32 lg:py-0 overflow-hidden"
+      className="relative w-full bg-[#0a0a0a] text-white z-20 py-24 sm:py-28 md:py-32 lg:py-0 overflow-visible"
       aria-label="Photography Courses"
       style={{ overscrollBehaviorX: "contain" }}
     >
@@ -382,7 +354,7 @@ export default function CoursesSection({
       <div
         ref={pinnedRef}
         data-theme="dark"
-        className="w-full lg:h-screen flex flex-col justify-center lg:justify-between px-6 sm:px-8 md:px-12 lg:px-16 max-w-[105rem] mx-auto overflow-visible lg:overflow-hidden lg:pt-[108px] lg:pb-12"
+        className="w-full lg:h-screen flex flex-col justify-center lg:justify-between px-6 sm:px-8 md:px-12 lg:px-16 max-w-[105rem] mx-auto overflow-visible lg:pt-[108px] lg:pb-12 bg-[#0a0a0a]"
       >
         {/* ============================================================ */}
         {/* ============================================================ */}
@@ -417,7 +389,7 @@ export default function CoursesSection({
 
           {/* Action Row: [ VIEW ALL COURSES ] on Left & Arrows on Right (Mobile & Tablet) */}
           <div className="w-full flex items-center justify-between pt-1 select-none">
-            <div ref={viewAllBtnRef} className="shrink-0 will-change-transform">
+            <div ref={viewAllBtnRef} className="shrink-0">
               <Link
                 href="/courses"
                 className="group/all inline-flex items-center gap-0.5 font-mono text-xs sm:text-[13px] tracking-[0.16em] uppercase text-white hover:bg-[#ffd001] hover:text-black px-2 py-1 transition-all duration-150 font-medium leading-none"
@@ -462,7 +434,7 @@ export default function CoursesSection({
         {/* ============================================================ */}
         {/* 2. MAIN STAGE                                                */}
         {/* ============================================================ */}
-        <div ref={stageElementsRef} className="w-full flex-1 flex flex-col justify-center min-h-0 py-2 sm:py-4 will-change-transform">
+        <div ref={stageElementsRef} className="w-full flex-1 flex flex-col justify-center min-h-0 py-2 sm:py-4">
           {/* ============================================================ */}
           {/* MOBILE & TABLET VIEW (< lg / < 1024px): SWIPER PEEK CAROUSEL */}
           {/* ============================================================ */}
@@ -484,13 +456,9 @@ export default function CoursesSection({
                 mousewheel={{ forceToAxis: true }}
                 onSwiper={(swiper) => {
                   swiperInstanceRef.current = swiper;
-                  setIsBeginning(swiper.isBeginning);
-                  setIsEnd(swiper.isEnd);
                   setSwiperActiveIndex(swiper.activeIndex);
                 }}
                 onSlideChange={(swiper) => {
-                  setIsBeginning(swiper.isBeginning);
-                  setIsEnd(swiper.isEnd);
                   setSwiperActiveIndex(swiper.activeIndex);
                 }}
                 className="w-full !overflow-visible"
@@ -520,7 +488,7 @@ export default function CoursesSection({
                             {course.number}
                           </span>
                           <span className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-black/50 font-semibold leading-none">
-                            IIP • ARCHIVE // 35MM
+                            {"IIP • ARCHIVE // 35MM"}
                           </span>
                         </div>
 
@@ -607,7 +575,7 @@ export default function CoursesSection({
                         {/* Micro-meta row */}
                         <div className="flex items-center justify-between gap-2 text-[11px] font-mono tracking-[0.18em] uppercase">
                           <span className="text-[#ffd001] font-medium">
-                            // SYNOPSIS
+                            {"// SYNOPSIS"}
                           </span>
                           <span className="text-white/50">
                             LEVEL: {course.level.toUpperCase()}
@@ -657,7 +625,7 @@ export default function CoursesSection({
             {/* ======================================================== */}
             {/* COLUMN 1: POLAROID PHOTOGRAPH (MUSEUM ARTIFACT)          */}
             {/* ======================================================== */}
-            <div ref={polaroidColRef} className="w-[300px] lg:w-[360px] xl:w-[390px] 2xl:w-[420px] shrink-0 flex flex-col items-center justify-center my-auto will-change-transform">
+            <div ref={polaroidColRef} className="w-[300px] lg:w-[360px] xl:w-[390px] 2xl:w-[420px] shrink-0 flex flex-col items-center justify-center my-auto">
               {/* The Physical Polaroid Paper Print in Authentic Bone Color */}
               <div
                 className="relative w-full bg-[#fffef7] text-black border border-[#e8e4d8] p-3.5 sm:p-4 pb-5 sm:pb-6 flex flex-col select-none transition-transform duration-300"
@@ -673,7 +641,7 @@ export default function CoursesSection({
                   </span>
 
                   <span className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-black/50 font-semibold leading-none">
-                    IIP • ARCHIVE // 35MM
+                    {"IIP • ARCHIVE // 35MM"}
                   </span>
                 </div>
 

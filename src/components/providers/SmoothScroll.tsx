@@ -5,18 +5,19 @@ import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import { usePageTransition } from "@/components/providers/PageTransitionContext";
-
 export default function SmoothScroll({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const lenisRef = useRef<Lenis | null>(null);
-  const { isTransitionComplete } = usePageTransition();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -58,19 +59,6 @@ export default function SmoothScroll({
       (window as unknown as { lenis: Lenis | null }).lenis = null;
     };
   }, []);
-
-  // Manage Lenis state during page transitions
-  useEffect(() => {
-    const lenis = lenisRef.current;
-    if (!lenis) return;
-
-    if (!isTransitionComplete) {
-      lenis.stop();
-    } else {
-      lenis.start();
-      ScrollTrigger.refresh();
-    }
-  }, [isTransitionComplete]);
 
   return <>{children}</>;
 }

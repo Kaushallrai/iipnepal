@@ -67,12 +67,6 @@ export function PageTransitionProvider({
       (window as unknown as { __pageIntroFinished: boolean }).__pageIntroFinished = true;
       document.dispatchEvent(new CustomEvent("pageIntroFinished"));
       window.dispatchEvent(new CustomEvent("pageIntroFinished"));
-
-      // Re-enable Lenis scroll if present
-      const lenis = (window as unknown as { lenis?: { start: () => void } }).lenis;
-      if (lenis && typeof lenis.start === "function") {
-        lenis.start();
-      }
     }
   }, []);
 
@@ -93,21 +87,23 @@ export function PageTransitionProvider({
       // Mark home intro as played whenever navigating away so return navigation is always instant
       setHasPlayedHomeIntroState(true);
 
-      // Pause Lenis smooth scroll during transition
-      if (typeof window !== "undefined") {
-        const lenis = (window as unknown as { lenis?: { stop: () => void } }).lenis;
-        if (lenis && typeof lenis.stop === "function") {
-          lenis.stop();
-        }
-      }
-
       if (transitionRunnerRef.current) {
         // Step 1: Slide up curtain from bottom (100% -> 0%) to completely cover the screen
         await transitionRunnerRef.current.startEnter();
 
-        // Step 2: Navigate while screen is 100% covered in black
+        // Step 2: While screen is completely covered in black, reset scroll to top immediately
+        window.scrollTo(0, 0);
+        const lenis = (window as unknown as {
+          lenis?: { scrollTo: (target: number, opts?: { immediate: boolean }) => void };
+        }).lenis;
+        if (lenis && typeof lenis.scrollTo === "function") {
+          lenis.scrollTo(0, { immediate: true });
+        }
+
+        // Step 3: Navigate while screen is 100% covered in black
         router.push(url);
       } else {
+        window.scrollTo(0, 0);
         router.push(url);
         completeTransition();
       }
@@ -124,7 +120,16 @@ export function PageTransitionProvider({
 
     if (isTransitioningRef.current) {
       // The new route has mounted behind the curtain.
-      // Wait for next frame so the DOM is rendered behind the black curtain
+      // Ensure scroll is at top before curtain pulls up
+      window.scrollTo(0, 0);
+      const lenis = (window as unknown as {
+        lenis?: { scrollTo: (target: number, opts?: { immediate: boolean }) => void };
+      }).lenis;
+      if (lenis && typeof lenis.scrollTo === "function") {
+        lenis.scrollTo(0, { immediate: true });
+      }
+
+      // Wait a short moment so DOM settles behind the black curtain, then pull up curtain
       requestAnimationFrame(() => {
         setTimeout(async () => {
           if (transitionRunnerRef.current) {
@@ -132,7 +137,7 @@ export function PageTransitionProvider({
             await transitionRunnerRef.current.startExit();
           }
           completeTransition();
-        }, 100);
+        }, 120);
       });
     }
   }, [pathname, completeTransition]);

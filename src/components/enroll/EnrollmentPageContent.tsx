@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -75,7 +75,9 @@ export default function EnrollmentPageContent({
   } | null>(null);
 
   // Sync if URL query param changes
-  useEffect(() => {
+  const [prevQueryCourseSlug, setPrevQueryCourseSlug] = useState(queryCourseSlug);
+  if (prevQueryCourseSlug !== queryCourseSlug) {
+    setPrevQueryCourseSlug(queryCourseSlug);
     if (queryCourseSlug) {
       const match = courses.find(
         (c) => c.slug === queryCourseSlug || c.id === queryCourseSlug
@@ -85,7 +87,7 @@ export default function EnrollmentPageContent({
         setFormData((prev) => ({ ...prev, programSlug: match.slug }));
       }
     }
-  }, [queryCourseSlug, courses]);
+  }
 
   const currentCourse = React.useMemo(() => {
     return courses.find((c) => c.slug === selectedSlug) || courses[0];
@@ -274,7 +276,7 @@ export default function EnrollmentPageContent({
               {/* Master Visual Photo Plate */}
               <div className="relative w-full aspect-[16/10] overflow-hidden bg-black border border-[#e2e0d2] select-none">
                 <Image
-                  src={currentCourse.coverImage || "/images/flagship-mentor-darkroom.jpg"}
+                  src={currentCourse.coverImage || "/images/flagship-mentor-darkroom.webp"}
                   alt={currentCourse.title}
                   fill
                   priority
@@ -289,7 +291,7 @@ export default function EnrollmentPageContent({
 
                 {/* Bottom Left Overlay */}
                 <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white/90 font-mono text-[10px] sm:text-[11px] uppercase tracking-wider bg-black/75 px-3 py-1.5 backdrop-blur-xs">
-                  <span>PROGRAM {currentCourse.number} // {currentCourse.level}</span>
+                  <span>PROGRAM {currentCourse.number} {"//"} {currentCourse.level}</span>
                   <span className="text-[#ffd001]">{currentCourse.duration}</span>
                 </div>
               </div>

@@ -2,9 +2,13 @@
 
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Camera, GraduationCap, Award } from "lucide-react";
 import LineReveal from "@/components/animations/LineReveal";
-import { usePageTransition } from "@/components/providers/PageTransitionContext";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export interface WhatWeDoStat {
   value: string;
@@ -47,53 +51,36 @@ export default function WhatWeDo({
 }: WhatWeDoProps): React.JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
   const statIconsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const hasAnimatedStatsRef = useRef(false);
-  const { isTransitionComplete } = usePageTransition();
 
   useEffect(() => {
-    if (!isTransitionComplete) return;
-
     const validIcons = statIconsRef.current.filter(Boolean);
-    if (validIcons.length === 0) return;
+    const section = sectionRef.current;
+    if (!section || validIcons.length === 0) return;
 
-    if (hasAnimatedStatsRef.current) {
-      gsap.set(validIcons, { opacity: 1, scale: 1, y: 0 });
-      return;
-    }
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReducedMotion) return;
 
-    gsap.set(validIcons, { opacity: 0, scale: 0.85, y: 12 });
+    const ctx = gsap.context(() => {
+      gsap.from(validIcons, {
+        opacity: 0,
+        scale: 0.85,
+        y: 12,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+      });
+    }, section);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting && !hasAnimatedStatsRef.current) {
-          hasAnimatedStatsRef.current = true;
-          observer.disconnect();
+    return () => ctx.revert();
+  }, []);
 
-          gsap.to(validIcons, {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 1.15,
-            stagger: 0.12,
-            ease: "power3.out",
-          });
-        }
-      },
-      { rootMargin: "0px 0px -15% 0px", threshold: 0.02 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-      if (hasAnimatedStatsRef.current) {
-        gsap.set(validIcons, { opacity: 1, scale: 1, y: 0 });
-      }
-    };
-  }, [isTransitionComplete]);
 
   return (
     <section
@@ -162,7 +149,7 @@ export default function WhatWeDo({
                           ref={(el) => {
                             statIconsRef.current[idx] = el;
                           }}
-                          className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 shrink-0 flex items-center justify-center text-black will-change-transform"
+                          className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 shrink-0 flex items-center justify-center text-black"
                         >
                           {stat.icon === "camera" && (
                             <Camera className="w-full h-full text-black" strokeWidth={1.5} />

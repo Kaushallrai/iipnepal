@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { LineReveal } from "@/components/animations/LineReveal";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -90,7 +90,10 @@ export default function ContactSection(): React.JSX.Element {
         (c) => c.slug === courseSlug || c.id === courseSlug
       );
       if (match) {
-        setFormData((prev) => ({ ...prev, program: match.id }));
+        const timer = setTimeout(() => {
+          setFormData((prev) => ({ ...prev, program: match.id }));
+        }, 0);
+        return () => clearTimeout(timer);
       }
     }
   }, []);

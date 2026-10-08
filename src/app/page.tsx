@@ -12,10 +12,10 @@ import Footer from "@/components/layout/Footer";
 
 export default function Home(): React.JSX.Element {
   return (
-    <main className="w-full min-h-screen bg-transparent text-black overflow-x-clip selection:bg-[#ffd001] selection:text-black">
-      {/* 1. Hero Reveal Section (Photo is fixed in background, staying put on scroll) */}
+    <main className="w-full min-h-screen bg-[#fffef7] text-black overflow-x-clip selection:bg-[#ffd001] selection:text-black">
+      {/* 1. Hero Reveal Section */}
       <HeroReveal
-        imageSrc="/images/hero-photographer.jpg"
+        imageSrc="/images/hero-photographer.webp"
         imageAlt="IIP Nepal Master Photographer Darkroom"
         brandPrimary="IIP"
         brandSecondary="NEPAL"

@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LineReveal from "@/components/animations/LineReveal";
-import { usePageTransition } from "@/components/providers/PageTransitionContext";
 
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(useGSAP);
+  gsap.registerPlugin(ScrollTrigger);
 }
 
 export interface TimelineStep {
@@ -63,102 +62,63 @@ export default function HowItWorks({
 }: HowItWorksProps): React.JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
   const spineRef = useRef<HTMLDivElement>(null);
-  const stepsContainerRef = useRef<HTMLDivElement>(null);
   const nodeDotsRef = useRef<(HTMLDivElement | null)[]>([]);
   const connectorsRef = useRef<(HTMLDivElement | null)[]>([]);
   const stepBlocksRef = useRef<(HTMLDivElement | null)[]>([]);
   const apertureMotifRef = useRef<HTMLDivElement>(null);
-  const hasAnimatedRef = useRef(false);
-  const { isTransitionComplete } = usePageTransition();
 
-  useGSAP(
-    () => {
-      if (!isTransitionComplete) return;
+  useEffect(() => {
+    const section = sectionRef.current;
+    const spine = spineRef.current;
+    if (!section || !spine) return;
 
-      const section = sectionRef.current;
-      const spine = spineRef.current;
-      const stepsContainer = stepsContainerRef.current;
-      if (!section || !spine || !stepsContainer) return;
+    const validBlocks = stepBlocksRef.current.filter(Boolean) as HTMLDivElement[];
+    const validDots = nodeDotsRef.current.filter(Boolean) as HTMLDivElement[];
+    const validConnectors = connectorsRef.current.filter(Boolean) as HTMLDivElement[];
 
-      const validBlocks = stepBlocksRef.current.filter(Boolean) as HTMLDivElement[];
-      const validDots = nodeDotsRef.current.filter(Boolean) as HTMLDivElement[];
-      const validConnectors = connectorsRef.current.filter(Boolean) as HTMLDivElement[];
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReducedMotion) return;
 
-      // If already animated, keep fully revealed and never repeat
-      if (hasAnimatedRef.current) {
-        gsap.set(spine, { scaleY: 1 });
-        gsap.set(validDots, { scale: 1, opacity: 1 });
-        gsap.set(validConnectors, { scaleX: 1, opacity: 1 });
-        gsap.set(validBlocks, { opacity: 1, y: 0 });
-        if (apertureMotifRef.current) gsap.set(apertureMotifRef.current, { opacity: 1, rotate: 0, scale: 1 });
-        validBlocks.forEach((block) => {
-          const innerLines = block.querySelectorAll(".step-line-inner");
-          gsap.set(innerLines, { yPercent: 0, opacity: 1 });
-        });
-        return;
-      }
-
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-
-      if (prefersReducedMotion) {
-        gsap.set(spine, { scaleY: 1 });
-        gsap.set(validDots, { scale: 1, opacity: 1 });
-        gsap.set(validConnectors, { scaleX: 1, opacity: 1 });
-        gsap.set(validBlocks, { opacity: 1, y: 0 });
-        if (apertureMotifRef.current) gsap.set(apertureMotifRef.current, { opacity: 1 });
-        hasAnimatedRef.current = true;
-        return;
-      }
-
-      // Initial state: hidden
-      gsap.set(spine, { scaleY: 0, transformOrigin: "top center" });
-      gsap.set(validDots, { scale: 0, opacity: 0 });
-      gsap.set(validConnectors, { scaleX: 0, opacity: 0 });
-      gsap.set(validBlocks, { opacity: 0, y: 16 });
-      if (apertureMotifRef.current) {
-        gsap.set(apertureMotifRef.current, { opacity: 0, scale: 0.88, rotate: -25 });
-      }
-
-      validBlocks.forEach((block) => {
-        const innerLines = block.querySelectorAll(".step-line-inner");
-        gsap.set(innerLines, { yPercent: 105, opacity: 0 });
-      });
-
-      // Master sequential animation timeline (starts paused, plays when user ACTUALLY reaches this section)
+    const ctx = gsap.context(() => {
       const masterTl = gsap.timeline({
-        paused: true,
-        onComplete: () => {
-          hasAnimatedRef.current = true;
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          once: true,
         },
       });
 
       // 1. Reveal aperture design motif
       if (apertureMotifRef.current) {
-        masterTl.to(apertureMotifRef.current, {
-          opacity: 1,
-          scale: 1,
-          rotate: 0,
-          duration: 0.3,
-          ease: "power2.out",
-        });
+        masterTl.from(
+          apertureMotifRef.current,
+          {
+            opacity: 0,
+            scale: 0.88,
+            rotate: -25,
+            duration: 0.45,
+            ease: "power2.out",
+          },
+          0
+        );
       }
 
       // 2. Draw central vertical spine
-      masterTl.to(
+      masterTl.from(
         spine,
         {
-          scaleY: 1,
-          duration: 0.25,
+          scaleY: 0,
+          transformOrigin: "top center",
+          duration: 0.4,
           ease: "power2.inOut",
         },
-        "-=0.2"
+        0.05
       );
 
-      // 3. Reveal steps ONE BY ONE sequentially with short, snappy pacing
+      // 3. Reveal steps sequentially
       steps.forEach((_, idx) => {
-        const isLeft = idx % 2 === 0;
         const dot = validDots[idx];
         const connector = validConnectors[idx];
         const block = validBlocks[idx];
@@ -166,98 +126,49 @@ export default function HowItWorks({
         if (dot && block) {
           const stepTl = gsap.timeline();
 
-          if (connector) {
-            const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
-            gsap.set(connector, {
-              transformOrigin: isDesktop ? (isLeft ? "right center" : "left center") : "left center",
-            });
-          }
-
           // Pop node dot
-          stepTl.to(dot, {
-            scale: 1,
-            opacity: 1,
-            duration: 0.1,
+          stepTl.from(dot, {
+            scale: 0,
+            opacity: 0,
+            duration: 0.15,
             ease: "back.out(2)",
           });
 
           // Draw connector hairline
           if (connector) {
-            stepTl.to(
+            stepTl.from(
               connector,
               {
-                scaleX: 1,
-                opacity: 1,
-                duration: 0.08,
+                scaleX: 0,
+                transformOrigin: idx % 2 === 0 ? "right center" : "left center",
+                opacity: 0,
+                duration: 0.12,
                 ease: "power2.out",
               },
-              "-=0.06"
+              "-=0.08"
             );
           }
 
           // Fade block in
-          stepTl.to(
+          stepTl.from(
             block,
             {
-              opacity: 1,
-              y: 0,
-              duration: 0.15,
+              opacity: 0,
+              y: 16,
+              duration: 0.22,
               ease: "power2.out",
             },
-            "-=0.06"
+            "-=0.08"
           );
 
-          // Masked line reveal for text lines with snappy duration
-          const innerLines = block.querySelectorAll(".step-line-inner");
-          if (innerLines.length > 0) {
-            stepTl.to(
-              innerLines,
-              {
-                yPercent: 0,
-                opacity: 1,
-                duration: 0.2,
-                stagger: 0.02,
-                ease: "power3.out",
-              },
-              "-=0.12"
-            );
-          }
-
-          // ONE BY ONE REVEAL: Fast sequential cadence
-          masterTl.add(stepTl, idx === 0 ? "-=0.1" : "+=0.02");
+          masterTl.add(stepTl, idx === 0 ? "-=0.15" : "+=0.04");
         }
       });
+    }, section);
 
-      // Dedicated IntersectionObserver: triggers ONLY when user has actively scrolled to the timeline (20% in view)
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const [entry] = entries;
-          if (entry.isIntersecting && !hasAnimatedRef.current) {
-            hasAnimatedRef.current = true;
-            observer.disconnect();
-            masterTl.play();
-          }
-        },
-        {
-          threshold: 0.2,
-        }
-      );
+    return () => ctx.revert();
+  }, [steps]);
 
-      observer.observe(stepsContainer);
-
-      return () => {
-        observer.disconnect();
-        if (hasAnimatedRef.current) {
-          gsap.set(spine, { scaleY: 1 });
-          gsap.set(validDots, { scale: 1, opacity: 1 });
-          gsap.set(validConnectors, { scaleX: 1, opacity: 1 });
-          gsap.set(validBlocks, { opacity: 1, y: 0 });
-          if (apertureMotifRef.current) gsap.set(apertureMotifRef.current, { opacity: 1, rotate: 0, scale: 1 });
-        }
-      };
-    },
-    { scope: sectionRef, dependencies: [isTransitionComplete] }
-  );
 
   return (
     <section
@@ -302,7 +213,7 @@ export default function HowItWorks({
           {/* Top-Right: Photography Aperture Iris Diaphragm Motif (Design detail, visible on tablet & desktop) */}
           <div
             ref={apertureMotifRef}
-            className="hidden md:flex items-center gap-3.5 xl:gap-4 text-right will-change-transform shrink-0 md:ml-6"
+            className="hidden md:flex items-center gap-3.5 xl:gap-4 text-right shrink-0 md:ml-6"
           >
             <div className="flex flex-col items-end">
               <span className="font-mono text-[11px] xl:text-xs tracking-[0.2em] uppercase text-black/70 font-semibold">
@@ -349,7 +260,6 @@ export default function HowItWorks({
         {/* Top-Left and Bottom-Right diagonal viewfinder reticles        */}
         {/* ============================================================ */}
         <div
-          ref={stepsContainerRef}
           className="relative w-full max-w-5xl xl:max-w-6xl mx-auto flex-1 flex flex-col justify-center mt-6 sm:mt-8 lg:mt-12 mb-auto px-4 sm:px-8 md:px-12 lg:px-14 xl:px-16 pt-8 pb-8 sm:pt-10 sm:pb-10 lg:pt-8 lg:pb-8"
         >
           {/* DIAGONAL VIEWFINDER FRAMING RETICLES: Positioned outside or with breathing room */}

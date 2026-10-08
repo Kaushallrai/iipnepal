@@ -15,7 +15,6 @@ export interface PortfolioDetailNavProps {
 }
 
 export default function PortfolioDetailNav({
-  currentItem,
   nextItem,
   prevItem,
   relatedItems,
@@ -122,7 +121,7 @@ export default function PortfolioDetailNav({
                     />
 
                     <div className="absolute top-3 left-3 bg-black/85 text-white font-mono text-[9px] uppercase tracking-widest px-2.5 py-1">
-                      ARCHIVE {rel.number} // {rel.year}
+                      ARCHIVE {rel.number} {"//"} {rel.year}
                     </div>
 
                     <div className="absolute bottom-3 left-3 bg-[#ffd001] text-black font-mono text-[9px] font-semibold uppercase tracking-wider px-2 py-0.5">

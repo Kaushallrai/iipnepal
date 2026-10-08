@@ -8,15 +8,22 @@ import React, {
   useCallback,
   useMemo,
 } from "react";
-import { User } from "@supabase/supabase-js";
-import { supabase } from "@/lib/supabase";
 
 export type AuthMode = "login" | "register";
+
+export interface AuthUser {
+  id: string;
+  email?: string;
+  user_metadata?: {
+    full_name?: string;
+    avatar_url?: string;
+  };
+}
 
 interface AuthModalContextType {
   isOpen: boolean;
   mode: AuthMode;
-  user: User | null;
+  user: AuthUser | null;
   isLoadingUser: boolean;
   isAuthenticated: boolean;
   openLogin: () => void;
@@ -25,6 +32,7 @@ interface AuthModalContextType {
   closeModal: () => void;
   setMode: (mode: AuthMode) => void;
   signOut: () => Promise<void>;
+  signInMock: (user?: Partial<AuthUser>) => void;
 }
 
 const AuthModalContext = createContext<AuthModalContextType | undefined>(
@@ -38,44 +46,8 @@ export function AuthModalProvider({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState<AuthMode>("login");
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoadingUser, setIsLoadingUser] = useState(true);
-
-  // Sync Supabase Auth state
-  useEffect(() => {
-    let mounted = true;
-
-    async function checkSession() {
-      try {
-        const {
-          data: { session },
-        } = await supabase.auth.getSession();
-        if (mounted) {
-          setUser(session?.user ?? null);
-          setIsLoadingUser(false);
-        }
-      } catch (err) {
-        console.error("Supabase auth check error:", err);
-        if (mounted) setIsLoadingUser(false);
-      }
-    }
-
-    checkSession();
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (mounted) {
-        setUser(session?.user ?? null);
-        setIsLoadingUser(false);
-      }
-    });
-
-    return () => {
-      mounted = false;
-      subscription.unsubscribe();
-    };
-  }, []);
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const [isLoadingUser, setIsLoadingUser] = useState(false);
 
   // Listen for query params e.g. ?auth=login or ?auth=register on initial load
   useEffect(() => {
@@ -123,12 +95,18 @@ export function AuthModalProvider({
   }, []);
 
   const signOut = useCallback(async () => {
-    try {
-      await supabase.auth.signOut();
-      setUser(null);
-    } catch (error) {
-      console.error("Sign out error:", error);
-    }
+    setUser(null);
+  }, []);
+
+  const signInMock = useCallback((mockUser?: Partial<AuthUser>) => {
+    setUser({
+      id: "mock-fellow-01",
+      email: mockUser?.email || "fellow@iipnepal.com",
+      user_metadata: {
+        full_name: mockUser?.user_metadata?.full_name || "IIP Fellow",
+        ...mockUser?.user_metadata,
+      },
+    });
   }, []);
 
   const value = useMemo(
@@ -144,6 +122,7 @@ export function AuthModalProvider({
       closeModal,
       setMode: handleSetMode,
       signOut,
+      signInMock,
     }),
     [
       isOpen,
@@ -156,6 +135,7 @@ export function AuthModalProvider({
       closeModal,
       handleSetMode,
       signOut,
+      signInMock,
     ]
   );
 

@@ -45,7 +45,7 @@ function GoogleIcon() {
 }
 
 export default function AuthModal(): React.JSX.Element {
-  const { isOpen, closeModal, mode, setMode } = useAuthModal();
+  const { isOpen, closeModal, mode, setMode, signInMock } = useAuthModal();
 
   // Screen width detection: hide image on tablet (< 1024px) & mobile
   const [isDesktop, setIsDesktop] = useState(() =>
@@ -97,8 +97,15 @@ export default function AuthModal(): React.JSX.Element {
     setInfoMessage(null);
     setTimeout(() => {
       setIsLoading(false);
-      setInfoMessage("Google authentication preview. Backend integration pending.");
-    }, 500);
+      signInMock({
+        email: "fellow@iipnepal.com",
+        user_metadata: { full_name: "Creative Fellow" },
+      });
+      setInfoMessage("Signed in successfully with Google.");
+      setTimeout(() => {
+        closeModal();
+      }, 600);
+    }, 450);
   };
 
   // Phone OTP Submission
@@ -136,11 +143,17 @@ export default function AuthModal(): React.JSX.Element {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
+      signInMock({
+        email: phone ? `+977 ${phone}` : "fellow@iipnepal.com",
+        user_metadata: {
+          full_name: firstName ? `${firstName} ${lastName}`.trim() : "IIP Fellow",
+        },
+      });
       setInfoMessage("Verification successful. Welcome to IIP Nepal.");
       setTimeout(() => {
         closeModal();
-      }, 700);
-    }, 600);
+      }, 600);
+    }, 500);
   };
 
   return (

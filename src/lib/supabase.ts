@@ -1,11 +1,19 @@
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+/**
+ * Supabase Client (Disabled for frontend-only mode)
+ * All auth and data are hardcoded on the frontend.
+ */
+export const supabase = {
+  auth: {
+    getSession: async () => ({ data: { session: null }, error: null }),
+    onAuthStateChange: () => ({
+      data: { subscription: { unsubscribe: () => {} } },
+    }),
+    signOut: async () => ({ error: null }),
+  },
+};
 
 export function getServiceSupabase() {
-  const serviceKey = process.env.SUPABASE_SECRET_KEY || "";
-  return createClient(supabaseUrl, serviceKey);
+  return null;
 }
+
+export default supabase;

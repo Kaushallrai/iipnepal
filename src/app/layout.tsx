@@ -3,6 +3,10 @@ import { Inter, Fragment_Mono, Bebas_Neue, Syne, Playfair_Display, Caveat } from
 import "./globals.css";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import Navbar from "@/components/layout/Navbar";
+import { AuthModalProvider } from "@/components/auth/AuthModalContext";
+import AuthModal from "@/components/auth/AuthModal";
+import { PageTransitionProvider } from "@/components/providers/PageTransitionContext";
+import PageTransition from "@/components/animations/PageTransition";
 
 const switzer = Inter({
   variable: "--font-switzer",
@@ -72,11 +76,18 @@ export default function RootLayout({
       className={`${switzer.variable} ${posterFont.variable} ${fragmentMono.variable} ${syne.variable} ${playfair.variable} ${polaroidFont.variable} antialiased`}
     >
       <body className="min-h-screen bg-[var(--color-bone-white)] text-[var(--color-ink-black)] overflow-x-hidden w-full max-w-full">
-        <SmoothScroll>
-          <Navbar />
-          {children}
-        </SmoothScroll>
+        <AuthModalProvider>
+          <PageTransitionProvider>
+            <SmoothScroll>
+              <PageTransition />
+              <Navbar />
+              {children}
+              <AuthModal />
+            </SmoothScroll>
+          </PageTransitionProvider>
+        </AuthModalProvider>
       </body>
     </html>
   );
 }
+

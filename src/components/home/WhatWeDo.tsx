@@ -2,13 +2,14 @@
 
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
-import { Globe, Users, Layers } from "lucide-react";
+import { Camera, GraduationCap, Award } from "lucide-react";
 import LineReveal from "@/components/animations/LineReveal";
+import { usePageTransition } from "@/components/providers/PageTransitionContext";
 
 export interface WhatWeDoStat {
   value: string;
   label: string;
-  icon: "globe" | "audience" | "prism";
+  icon: "camera" | "alumni" | "practical" | "globe" | "audience" | "prism";
   delay?: number;
 }
 
@@ -21,25 +22,25 @@ export interface WhatWeDoProps {
 
 export default function WhatWeDo({
   eyebrow = "What we do",
-  heading = "We are artists, designers, producers, creatives, clients and technicians. We work together to create immersive experiences and bring ideas to life in real-world spaces.",
-  description = "We go beyond the traditional agency model and empower people across different industries to realise their creative ambitions. From the marketing director looking for more impact, to the artist reaching out to new audiences - we have the experience, the dedication, the skills and the resources to make seemingly impossible projects happen. Our clients don’t hire us, they join us. And in doing so, become Creative Giants themselves.",
+  heading = "We train photographers, visual storytellers, and image-makers through manual camera craft, darkroom chemistry, and practical field assignments across Kathmandu.",
+  description = "As the Nepal centre of the Indian Institute of Photography, established with White Hat Events, we offer structured photography courses for beginners and working professionals. Our training combines technical camera controls, studio strobe lighting, monochrome darkroom printing, and individual mentor reviews on every submitted assignment.",
   stats = [
     {
-      value: "100+",
-      label: "Years of combined experience in creative production, design.",
-      icon: "globe",
+      value: "14+",
+      label: "Years of photography education and training heritage.",
+      icon: "camera",
       delay: 0,
     },
     {
-      value: "2.5m",
-      label: "People reached annually through art experiences and installations.",
-      icon: "audience",
+      value: "500+",
+      label: "Alumni working across documentary, commercial, and editorial photography.",
+      icon: "alumni",
       delay: 0.15,
     },
     {
-      value: "20+",
-      label: "Large-scale projects delivered for festivals, agencies, and brands.",
-      icon: "prism",
+      value: "100%",
+      label: "Hands-on field shoots, studio lighting labs, and mentor critique.",
+      icon: "practical",
       delay: 0.3,
     },
   ],
@@ -47,8 +48,11 @@ export default function WhatWeDo({
   const sectionRef = useRef<HTMLElement>(null);
   const statIconsRef = useRef<(HTMLDivElement | null)[]>([]);
   const hasAnimatedStatsRef = useRef(false);
+  const { isTransitionComplete } = usePageTransition();
 
   useEffect(() => {
+    if (!isTransitionComplete) return;
+
     const validIcons = statIconsRef.current.filter(Boolean);
     if (validIcons.length === 0) return;
 
@@ -89,7 +93,7 @@ export default function WhatWeDo({
         gsap.set(validIcons, { opacity: 1, scale: 1, y: 0 });
       }
     };
-  }, []);
+  }, [isTransitionComplete]);
 
   return (
     <section
@@ -160,14 +164,14 @@ export default function WhatWeDo({
                           }}
                           className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 shrink-0 flex items-center justify-center text-black will-change-transform"
                         >
-                          {stat.icon === "globe" && (
-                            <Globe className="w-full h-full text-black" strokeWidth={1.5} />
+                          {stat.icon === "camera" && (
+                            <Camera className="w-full h-full text-black" strokeWidth={1.5} />
                           )}
-                          {stat.icon === "audience" && (
-                            <Users className="w-full h-full text-black" strokeWidth={1.5} />
+                          {(stat.icon === "alumni" || stat.icon === "audience") && (
+                            <GraduationCap className="w-full h-full text-black" strokeWidth={1.5} />
                           )}
-                          {stat.icon === "prism" && (
-                            <Layers className="w-full h-full text-black" strokeWidth={1.5} />
+                          {(stat.icon === "practical" || stat.icon === "prism" || stat.icon === "globe") && (
+                            <Award className="w-full h-full text-black" strokeWidth={1.5} />
                           )}
                         </div>
                         <LineReveal

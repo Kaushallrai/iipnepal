@@ -5,6 +5,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 
+import { usePageTransition } from "@/components/providers/PageTransitionContext";
+
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -27,7 +29,7 @@ export interface LineRevealProps {
 /**
  * Creative Giants Masked Line Reveal Animation
  * Wraps each line in an overflow-hidden mask and animates the inner element up from yPercent: 105 to 0.
- * Utilizes GSAP ScrollTrigger synchronized with Lenis smooth-scroll.
+ * Utilizes GSAP ScrollTrigger synchronized with Lenis smooth-scroll, triggering only after page transition finishes.
  */
 export function LineReveal({
   lines,
@@ -40,6 +42,7 @@ export function LineReveal({
   once = true,
 }: LineRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { isTransitionComplete } = usePageTransition();
 
   useEffect(() => {
     const container = containerRef.current;
@@ -47,6 +50,12 @@ export function LineReveal({
 
     const innerElements = container.querySelectorAll(".line-inner");
     if (innerElements.length === 0) return;
+
+    // If page transition is still active, ensure lines are prepared in masked state
+    if (!isTransitionComplete) {
+      gsap.set(innerElements, { yPercent: 105, opacity: 0 });
+      return;
+    }
 
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -79,7 +88,7 @@ export function LineReveal({
     }, container);
 
     return () => ctx.revert();
-  }, [delay, duration, stagger, once]);
+  }, [isTransitionComplete, delay, duration, stagger, once]);
 
   return (
     <div

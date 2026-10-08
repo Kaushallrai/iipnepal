@@ -4,7 +4,9 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight, User, LogOut } from "lucide-react";
+import { useAuthModal } from "@/components/auth/AuthModalContext";
+import { usePageTransition } from "@/components/providers/PageTransitionContext";
 
 export interface NavItem {
   label: string;
@@ -30,11 +32,15 @@ export default function Navbar({
     { label: "Contact", href: "/contact" },
   ],
   enrollText = "Enroll Now",
-  enrollHref = "/courses",
+  enrollHref = "/enroll",
   activePage,
 }: NavbarProps): React.JSX.Element {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const { hasPlayedHomeIntro } = usePageTransition();
+  const isInitialHomeState = isHome && !hasPlayedHomeIntro;
+
+  const { user, openLogin, signOut } = useAuthModal();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -172,13 +178,13 @@ export default function Navbar({
           }`}
         />
 
-        <div className="w-full max-w-[105rem] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 pl-[max(1.25rem,env(safe-area-inset-left,0px))] pr-[max(1.25rem,env(safe-area-inset-right,0px))] pointer-events-none">
+        <div className="w-full max-w-[105rem] mx-auto px-5 sm:px-8 md:px-10 lg:px-8 xl:px-14 2xl:px-16 pl-[max(1.25rem,env(safe-area-inset-left,0px))] pr-[max(1.25rem,env(safe-area-inset-right,0px))] pointer-events-none">
           <div className="relative w-full h-[60px] sm:h-[68px] md:h-[80px] flex items-center justify-between pointer-events-auto">
             {/* LEFT LOGO: Anchors flush to the left padding gutter */}
             <div
               id="nav-logo-wrapper"
               className={`absolute top-1/2 -translate-y-1/2 h-[40px] sm:h-[44px] md:h-[46px] flex items-center z-50 pointer-events-auto ${
-                isHome ? "left-1/2 -translate-x-1/2" : "left-0 translate-x-0"
+                isInitialHomeState ? "left-1/2 -translate-x-1/2" : "left-0 translate-x-0"
               }`}
             >
               <Link
@@ -190,7 +196,7 @@ export default function Navbar({
                 <div
                   id="nav-initial-text"
                   className={`items-center gap-1.5 sm:gap-2 text-[#111111] ${
-                    isHome ? "flex" : "hidden"
+                    isInitialHomeState ? "flex" : "hidden"
                   }`}
                 >
                   <span className="font-mono font-bold tracking-[0.1em] text-lg sm:text-2xl md:text-3xl">
@@ -205,7 +211,7 @@ export default function Navbar({
                 <div
                   id="nav-official-logo"
                   className={`items-center transition-transform duration-300 group-hover:scale-105 ${
-                    isHome ? "hidden opacity-0 scale-90" : "flex opacity-100 scale-100"
+                    isInitialHomeState ? "hidden opacity-0 scale-90" : "flex opacity-100 scale-100"
                   }`}
                 >
                   <div className="relative w-[42px] sm:w-[50px] md:w-[60px] h-[30px] sm:h-[36px] md:h-[44px] shrink-0">
@@ -238,8 +244,8 @@ export default function Navbar({
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[44px] md:h-[46px] hidden lg:flex items-center justify-center z-50 pointer-events-none">
               <nav
                 id="nav-menu"
-                className={`flex items-center justify-center gap-6 xl:gap-10 ${
-                  isHome
+                className={`flex items-center justify-center gap-5 xl:gap-8 ${
+                  isInitialHomeState
                     ? "opacity-0 -translate-y-3 pointer-events-none"
                     : "opacity-100 translate-y-0 pointer-events-auto"
                 }`}
@@ -262,7 +268,7 @@ export default function Navbar({
                     <Link
                       key={idx}
                       href={resolvedHref}
-                      className={`group relative inline-flex items-center py-1 font-mono text-xs lg:text-[13px] uppercase tracking-[0.2em] font-normal transition-colors duration-300 cursor-pointer leading-none whitespace-nowrap no-underline ${
+                      className={`group relative inline-flex items-center py-1 font-mono text-xs lg:text-[13px] uppercase tracking-[0.15em] xl:tracking-[0.2em] font-normal transition-colors duration-300 cursor-pointer leading-none whitespace-nowrap no-underline ${
                         isDarkSection
                           ? isActive
                             ? "text-[#ffd001] drop-shadow-sm"
@@ -292,16 +298,57 @@ export default function Navbar({
             <div className="absolute top-1/2 -translate-y-1/2 right-0 flex items-center z-50 pointer-events-none">
               <div
                 id="nav-right-actions"
-                className={`flex items-center pointer-events-auto ${
-                  isHome
+                className={`flex items-center gap-2 lg:gap-2.5 pointer-events-auto ${
+                  isInitialHomeState
                     ? "opacity-0 -translate-y-3 pointer-events-none"
                     : "opacity-100 translate-y-0 pointer-events-auto"
                 }`}
               >
-                {/* Desktop-only Enroll button */}
+                {/* Desktop Login / Fellow Account Trigger */}
+                {user ? (
+                  <div className="hidden lg:inline-flex items-center gap-2">
+                    <span
+                      className={`font-mono text-xs tracking-wider max-w-[120px] truncate ${
+                        isDarkSection ? "text-white/80" : "text-black/80"
+                      }`}
+                      title={user.email || ""}
+                    >
+                      {user.user_metadata?.full_name?.split(" ")[0] ||
+                        user.email?.split("@")[0] ||
+                        "Fellow"}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={signOut}
+                      title="Sign Out"
+                      className={`p-1.5 rounded-full transition-colors cursor-pointer border ${
+                        isDarkSection
+                          ? "border-white/20 text-white/70 hover:text-[#ffd001] hover:border-[#ffd001]"
+                          : "border-black/15 text-black/70 hover:text-black hover:border-black"
+                      }`}
+                    >
+                      <LogOut className="w-3.5 h-3.5" strokeWidth={1.5} />
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={openLogin}
+                    className={`hidden lg:inline-flex items-center justify-center gap-1.5 h-9 px-4 lg:px-4.5 rounded-full font-mono text-xs uppercase tracking-[0.14em] transition-all duration-300 cursor-pointer border leading-none shrink-0 ${
+                      isDarkSection
+                        ? "border-white/20 bg-white/5 text-white/90 hover:border-[#ffd001] hover:text-[#ffd001]"
+                        : "border-black/15 bg-black/5 text-black/90 hover:border-black hover:text-black"
+                    }`}
+                  >
+                    <User className="w-3.5 h-3.5" strokeWidth={1.5} />
+                    <span>Login</span>
+                  </button>
+                )}
+
+                {/* Desktop-only Enroll button: Same height and refined proportional size */}
                 <Link
                   href={enrollHref}
-                  className={`hidden lg:inline-flex items-center justify-center px-7 lg:px-9 py-3.5 lg:py-4 rounded-full bg-[#ffd001] text-black font-mono text-xs md:text-sm font-medium tracking-[0.16em] uppercase transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer leading-none shrink-0 ${
+                  className={`hidden lg:inline-flex items-center justify-center h-9 px-4.5 lg:px-5 rounded-full bg-[#ffd001] text-black font-mono text-xs font-semibold tracking-[0.14em] uppercase transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer leading-none shrink-0 ${
                     isDarkSection
                       ? "hover:bg-white hover:text-black"
                       : "hover:bg-black hover:text-[#fffef7]"
@@ -422,8 +469,36 @@ export default function Navbar({
             })}
           </nav>
 
-          {/* Quick Enroll CTA inside menu */}
-          <div className="pt-6 border-t border-white/10 mt-6">
+          {/* Quick Portal & Enroll CTAs inside menu */}
+          <div className="pt-6 border-t border-white/10 mt-6 space-y-3">
+            <button
+              type="button"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                if (user) {
+                  signOut();
+                } else {
+                  openLogin();
+                }
+              }}
+              className="inline-flex w-full items-center justify-center py-3.5 rounded-full border border-white/20 bg-white/5 hover:bg-white/15 active:scale-[0.99] text-white font-mono text-xs sm:text-sm font-medium tracking-[0.16em] uppercase transition-all duration-200 touch-manipulation cursor-pointer"
+            >
+              {user ? (
+                <>
+                  <LogOut className="w-4 h-4 mr-2" strokeWidth={1.5} />
+                  <span>
+                    Sign Out ({user.user_metadata?.full_name?.split(" ")[0] || user.email?.split("@")[0]})
+                  </span>
+                </>
+              ) : (
+                <>
+                  <User className="w-4 h-4 mr-2" strokeWidth={1.5} />
+                  <span>Login</span>
+                </>
+
+              )}
+            </button>
+
             <Link
               href={enrollHref}
               onClick={() => setIsMobileMenuOpen(false)}
@@ -432,6 +507,7 @@ export default function Navbar({
               {enrollText} — Intake 2026
             </Link>
           </div>
+
         </div>
 
         {/* Drawer Bottom Metadata Row (safe area bottom clearance for Home Indicator / Android toolkit) */}

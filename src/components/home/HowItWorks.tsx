@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import LineReveal from "@/components/animations/LineReveal";
+import { usePageTransition } from "@/components/providers/PageTransitionContext";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP);
@@ -68,9 +69,12 @@ export default function HowItWorks({
   const stepBlocksRef = useRef<(HTMLDivElement | null)[]>([]);
   const apertureMotifRef = useRef<HTMLDivElement>(null);
   const hasAnimatedRef = useRef(false);
+  const { isTransitionComplete } = usePageTransition();
 
   useGSAP(
     () => {
+      if (!isTransitionComplete) return;
+
       const section = sectionRef.current;
       const spine = spineRef.current;
       const stepsContainer = stepsContainerRef.current;
@@ -252,7 +256,7 @@ export default function HowItWorks({
         }
       };
     },
-    { scope: sectionRef, dependencies: [] }
+    { scope: sectionRef, dependencies: [isTransitionComplete] }
   );
 
   return (

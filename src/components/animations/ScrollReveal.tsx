@@ -4,6 +4,7 @@ import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
+import { usePageTransition } from "@/components/providers/PageTransitionContext";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -23,7 +24,7 @@ export interface ScrollRevealProps {
 
 /**
  * Creative Giants GSAP ScrollTrigger Entrance Animation
- * Fully synchronized with Lenis smooth-scroll.
+ * Fully synchronized with Lenis smooth-scroll, initializing only after page transition completes.
  */
 export default function ScrollReveal({
   children,
@@ -37,8 +38,13 @@ export default function ScrollReveal({
   once = true,
 }: ScrollRevealProps): React.JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { isTransitionComplete } = usePageTransition();
 
   useEffect(() => {
+    if (!isTransitionComplete) {
+      return;
+    }
+
     const container = containerRef.current;
     if (!container) return;
 
@@ -152,7 +158,7 @@ export default function ScrollReveal({
     }, container);
 
     return () => ctx.revert();
-  }, [variant, delay, duration, distance, stagger, start, once]);
+  }, [isTransitionComplete, variant, delay, duration, distance, stagger, start, once]);
 
   return (
     <div ref={containerRef} className={cn("will-change-transform", className)}>

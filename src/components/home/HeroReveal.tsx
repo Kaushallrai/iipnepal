@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
+import { usePageTransition } from "@/components/providers/PageTransitionContext";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(CustomEase);
@@ -34,6 +35,9 @@ export default function HeroReveal({
   announcementText = "Indian Institute of Photography launches in Kathmandu with White Hat Events — led by alumnus Additya Shrestha.",
   ctaText = "[ EXPLORE COURSES ]",
 }: HeroRevealProps) {
+  const { hasPlayedHomeIntro, setHasPlayedHomeIntro, completeTransition } =
+    usePageTransition();
+
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
@@ -201,6 +205,10 @@ export default function HeroReveal({
 
     const tl = gsap.timeline({
       defaults: { ease },
+      onComplete: () => {
+        setHasPlayedHomeIntro(true);
+        completeTransition();
+      },
     });
     timelineRef.current = tl;
     if (typeof window !== "undefined") {
@@ -209,12 +217,14 @@ export default function HeroReveal({
 
     const counterObj = { val: 0 };
 
-    // --- PHASE 1: Ultra-fast Initial expand (0% to 45% width) ---
+    // --- PHASE 1: Balanced Initial Expand & Loading Progress (0% to 45% width) ---
+    // Smooth start: ~0.5s so the user clearly sees the LOADING label and counter ticking up
     tl.to(
       heroRef.current,
       {
         clipPath: "polygon(0% 45%, 45% 45%, 45% 55%, 0% 55%)",
-        duration: 0.06,
+        duration: 0.52,
+        ease: "power2.inOut",
       },
       0
     );
@@ -223,7 +233,8 @@ export default function HeroReveal({
       progressBarRef.current,
       {
         width: "45%",
-        duration: 0.06,
+        duration: 0.52,
+        ease: "power2.inOut",
       },
       0
     );
@@ -232,61 +243,78 @@ export default function HeroReveal({
       counterObj,
       {
         val: 45,
-        duration: 0.06,
+        duration: 0.52,
+        ease: "power2.inOut",
         onUpdate: () => setCounterDisplay(Math.floor(counterObj.val)),
       },
       0
     );
 
-    // --- PHASE 2: Rapid horizontal stretch across screen (45% to 100%) ---
+    tl.to(
+      mediaRef.current,
+      {
+        scale: 0.28,
+        rotation: -10,
+        duration: 0.52,
+        ease: "power2.inOut",
+      },
+      0
+    );
+
+    // --- PHASE 2: Steady Stretch Across Screen (45% to 100%) ---
+    // Smooth glide to 100% over 0.68s
     tl.to(
       heroRef.current,
       {
         clipPath: "polygon(0% 45%, 100% 45%, 100% 55%, 0% 55%)",
-        duration: 0.08,
+        duration: 0.68,
+        ease: "power2.out",
       },
-      0.06
+      0.52
     );
 
     tl.to(
       progressBarRef.current,
       {
         width: "100%",
-        duration: 0.08,
+        duration: 0.68,
+        ease: "power2.out",
       },
-      0.06
+      0.52
     );
 
     tl.to(
       counterObj,
       {
         val: 100,
-        duration: 0.08,
+        duration: 0.68,
+        ease: "power2.out",
         onUpdate: () => setCounterDisplay(Math.floor(counterObj.val)),
       },
-      0.06
+      0.52
     );
 
-    // Concurrently scale up media during the horizontal stretch
     tl.to(
       mediaRef.current,
       {
-        scale: 0.4,
-        rotation: -5,
-        duration: 0.08,
+        scale: 0.44,
+        rotation: -4,
+        duration: 0.68,
+        ease: "power2.out",
       },
-      0.06
+      0.52
     );
 
-    // --- PHASE 3: The Big Vertical Unfurl (100% reveal) ---
-    const revealTime = 0.14;
+    // --- PHASE 3: Micro-pause & The Big Vertical Unfurl (100% reveal) ---
+    // Confident 0.14s pause at 100% completion before the vertical reveal begins
+    const revealTime = 1.34;
 
-    // Fade out loading progress labels immediately
+    // Fade out loading progress labels smoothly
     tl.to(
       [loadingLabelRef.current, counterRef.current],
       {
         opacity: 0,
-        duration: 0.06,
+        duration: 0.22,
         ease: "power2.out",
       },
       revealTime
@@ -297,7 +325,7 @@ export default function HeroReveal({
       heroRef.current,
       {
         clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        duration: 0.3,
+        duration: 0.72,
         ease,
       },
       revealTime
@@ -309,7 +337,7 @@ export default function HeroReveal({
       {
         scale: 1,
         rotation: 0,
-        duration: 0.32,
+        duration: 0.76,
         ease,
       },
       revealTime
@@ -324,10 +352,10 @@ export default function HeroReveal({
           left: "0%",
           xPercent: 0,
           x: 0,
-          duration: 0.28,
+          duration: 0.65,
           ease,
         },
-        revealTime
+        revealTime + 0.04
       );
     }
 
@@ -337,7 +365,7 @@ export default function HeroReveal({
         initialTextLogo,
         {
           opacity: 0,
-          duration: 0.1,
+          duration: 0.2,
           ease: "power2.out",
           onComplete: () => {
             if (initialTextLogo) {
@@ -345,7 +373,7 @@ export default function HeroReveal({
             }
           },
         },
-        revealTime
+        revealTime + 0.05
       );
     }
 
@@ -357,7 +385,7 @@ export default function HeroReveal({
           opacity: 0,
           scale: 0.94,
         },
-        revealTime + 0.04
+        revealTime + 0.1
       );
 
       tl.to(
@@ -365,10 +393,10 @@ export default function HeroReveal({
         {
           opacity: 1,
           scale: 1,
-          duration: 0.22,
+          duration: 0.35,
           ease: "power2.out",
         },
-        revealTime + 0.06
+        revealTime + 0.12
       );
     }
 
@@ -379,49 +407,49 @@ export default function HeroReveal({
         {
           opacity: 1,
           y: 0,
-          duration: 0.24,
+          duration: 0.42,
           ease: "power2.out",
           onStart: () => {
             if (navMenu) navMenu.style.pointerEvents = "auto";
           },
         },
-        revealTime + 0.08
+        revealTime + 0.18
       );
     }
 
-    // Right actions (Enroll button & Mobile menu trigger) slide down
+    // Right actions slide down smoothly
     if (rightActions) {
       tl.to(
         rightActions,
         {
           opacity: 1,
           y: 0,
-          duration: 0.24,
+          duration: 0.42,
           ease: "power2.out",
           onStart: () => {
             if (rightActions) rightActions.style.pointerEvents = "auto";
           },
         },
-        revealTime + 0.08
+        revealTime + 0.18
       );
     }
 
-    // Right side vertical display text slides in smoothly
+    // Right side editorial vertical display text slides in smoothly
     if (editorialTagRef.current) {
       tl.to(
         editorialTagRef.current,
         {
           opacity: 1,
           y: 0,
-          duration: 0.28,
+          duration: 0.5,
           ease: "power2.out",
         },
-        revealTime + 0.1
+        revealTime + 0.22
       );
     }
 
     // --- PHASE 5: Hero Center Typography Staggered Reveal ---
-    const textStartTime = revealTime + 0.1;
+    const textStartTime = revealTime + 0.25;
 
     if (heroContentRef.current) {
       tl.set(heroContentRef.current, { opacity: 1 }, textStartTime);
@@ -433,8 +461,8 @@ export default function HeroReveal({
         validLines,
         {
           y: "0%",
-          duration: 0.3,
-          stagger: 0.03,
+          duration: 0.65,
+          stagger: 0.05,
           ease,
         },
         textStartTime
@@ -447,10 +475,10 @@ export default function HeroReveal({
         {
           opacity: 1,
           y: 0,
-          duration: 0.24,
+          duration: 0.42,
           ease: "power2.out",
         },
-        textStartTime + 0.04
+        textStartTime + 0.1
       );
     }
 
@@ -460,10 +488,10 @@ export default function HeroReveal({
         {
           opacity: 1,
           y: 0,
-          duration: 0.24,
+          duration: 0.42,
           ease: "power2.out",
         },
-        textStartTime + 0.08
+        textStartTime + 0.15
       );
     }
 
@@ -474,20 +502,82 @@ export default function HeroReveal({
         {
           opacity: 1,
           y: 0,
-          duration: 0.24,
+          duration: 0.42,
           ease: "power2.out",
         },
-        textStartTime + 0.08
+        textStartTime + 0.15
       );
     }
-  }, []);
+  }, [setHasPlayedHomeIntro]);
 
   useEffect(() => {
+    // If the intro has already played during this session, render immediately in fully revealed state
+    if (hasPlayedHomeIntro) {
+      if (heroRef.current) {
+        gsap.set(heroRef.current, {
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        });
+      }
+      if (mediaRef.current) {
+        gsap.set(mediaRef.current, {
+          scale: 1,
+          rotation: 0,
+        });
+      }
+      if (progressBarRef.current) {
+        gsap.set(progressBarRef.current, { display: "none" });
+      }
+      if (heroContentRef.current) {
+        gsap.set(heroContentRef.current, { opacity: 1 });
+      }
+      titleLinesRef.current.forEach((el) => {
+        if (el) gsap.set(el, { y: "0%" });
+      });
+      if (announcementRef.current) {
+        gsap.set(announcementRef.current, { opacity: 1, y: 0 });
+      }
+      if (ctaRef.current) {
+        gsap.set(ctaRef.current, { opacity: 1, y: 0 });
+      }
+      if (bottomBarRef.current) {
+        gsap.set(bottomBarRef.current, { opacity: 1, y: 0 });
+      }
+      if (editorialTagRef.current) {
+        gsap.set(editorialTagRef.current, { opacity: 1, y: 0 });
+      }
+
+      // Ensure Navbar is in its normal resting state
+      const logoWrapper = document.getElementById("nav-logo-wrapper");
+      const initialTextLogo = document.getElementById("nav-initial-text");
+      const officialLogo = document.getElementById("nav-official-logo");
+      const navMenu = document.getElementById("nav-menu");
+      const rightActions = document.getElementById("nav-right-actions");
+
+      if (logoWrapper) {
+        gsap.set(logoWrapper, { left: "0%", xPercent: 0, x: 0, opacity: 1 });
+      }
+      if (initialTextLogo) {
+        gsap.set(initialTextLogo, { display: "none", opacity: 0 });
+      }
+      if (officialLogo) {
+        gsap.set(officialLogo, { display: "flex", opacity: 1, scale: 1 });
+      }
+      if (navMenu) {
+        gsap.set(navMenu, { opacity: 1, y: 0, pointerEvents: "auto" });
+      }
+      if (rightActions) {
+        gsap.set(rightActions, { opacity: 1, y: 0, pointerEvents: "auto" });
+      }
+
+      return;
+    }
+
+    // First visit or browser refresh: run full, balanced loading animation!
     runAnimation();
     return () => {
       if (timelineRef.current) timelineRef.current.kill();
     };
-  }, [runAnimation]);
+  }, [hasPlayedHomeIntro, runAnimation, completeTransition]);
 
   return (
     <div className="relative w-full overflow-x-clip">
@@ -499,7 +589,9 @@ export default function HeroReveal({
         ref={heroRef}
         className="fixed inset-0 w-full h-screen h-[100dvh] overflow-hidden bg-black z-0 pointer-events-none"
         style={{
-          clipPath: "polygon(0% 45%, 0% 45%, 0% 55%, 0% 55%)",
+          clipPath: hasPlayedHomeIntro
+            ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
+            : "polygon(0% 45%, 0% 45%, 0% 55%, 0% 55%)",
           willChange: "clip-path",
         }}
         aria-hidden="true"
@@ -507,7 +599,13 @@ export default function HeroReveal({
         <div
           ref={mediaRef}
           className="relative w-full h-full overflow-hidden"
-          style={{ willChange: "transform" }}
+          style={{
+            willChange: "transform",
+            transform: hasPlayedHomeIntro
+              ? "none"
+              : "scale(0.18) rotate(-18deg)",
+            transformOrigin: "center center",
+          }}
         >
           <Image
             src={imageSrc}
@@ -519,7 +617,7 @@ export default function HeroReveal({
           />
           {/* Ambient cinematic dark gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/85" />
-          <div className="absolute inset-0 bg-black/25 backdrop-brightness-[0.9]" />
+          <div className="absolute inset-0 bg-black/35" />
         </div>
       </div>
 
@@ -537,6 +635,10 @@ export default function HeroReveal({
         <div
           ref={heroContentRef}
           className="my-auto py-4 sm:py-8 md:py-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-12 lg:px-16 pointer-events-auto"
+          style={{
+            opacity: hasPlayedHomeIntro ? 1 : 0,
+            willChange: "opacity",
+          }}
         >
           <div className="max-w-4xl xl:max-w-5xl mx-auto flex flex-col items-center">
             {/* Display Poster Headline: Switzer light weight 300 per DESIGN.md */}
@@ -546,7 +648,10 @@ export default function HeroReveal({
                   titleLinesRef.current[0] = el;
                 }}
                 className="text-white font-sans font-light uppercase text-2xl sm:text-4xl md:text-5xl lg:text-[76px] xl:text-[84px] tracking-[-0.03em] sm:tracking-[-0.04em] leading-[1.12] sm:leading-[1.04] md:leading-[1.0] drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] max-w-5xl break-words"
-                style={{ willChange: "transform" }}
+                style={{
+                  willChange: "transform",
+                  transform: hasPlayedHomeIntro ? "translateY(0%)" : "translateY(115%)",
+                }}
               >
                 {announcementTitle}
               </h1>
@@ -556,7 +661,11 @@ export default function HeroReveal({
             <div
               ref={announcementRef}
               className="max-w-xl mx-auto mb-5 sm:mb-8 px-2 sm:px-0"
-              style={{ willChange: "transform, opacity" }}
+              style={{
+                willChange: "transform, opacity",
+                opacity: hasPlayedHomeIntro ? 1 : 0,
+                transform: hasPlayedHomeIntro ? "translateY(0px)" : "translateY(20px)",
+              }}
             >
               <p className="text-white/85 font-sans font-light text-xs sm:text-base md:text-lg leading-[1.5] sm:leading-[1.55] tracking-[-0.018em] drop-shadow-md">
                 {announcementText}
@@ -567,6 +676,11 @@ export default function HeroReveal({
             <div
               ref={ctaRef}
               className="flex items-center justify-center"
+              style={{
+                willChange: "transform, opacity",
+                opacity: hasPlayedHomeIntro ? 1 : 0,
+                transform: hasPlayedHomeIntro ? "translateY(0px)" : "translateY(20px)",
+              }}
             >
               <a
                 href="#courses"
@@ -582,6 +696,11 @@ export default function HeroReveal({
         <div
           ref={bottomBarRef}
           className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex flex-row items-center justify-between pb-5 sm:pb-8 md:pb-10 pt-3 sm:pt-4 text-white/90 font-mono text-[11px] sm:text-xs md:text-sm tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.22em] uppercase font-medium pointer-events-auto shrink-0"
+          style={{
+            willChange: "transform, opacity",
+            opacity: hasPlayedHomeIntro ? 1 : 0,
+            transform: hasPlayedHomeIntro ? "translateY(0px)" : "translateY(15px)",
+          }}
         >
           {/* LEFT: KATHMANDU STUDIO */}
           <div className="flex items-center gap-1.5 sm:gap-2.5">
@@ -608,6 +727,8 @@ export default function HeroReveal({
             writingMode: "vertical-rl",
             textOrientation: "mixed",
             willChange: "transform, opacity",
+            opacity: hasPlayedHomeIntro ? 1 : 0,
+            transform: hasPlayedHomeIntro ? "translateY(0px)" : "translateY(-20px)",
           }}
         >
           <span>IIP</span>
@@ -627,6 +748,8 @@ export default function HeroReveal({
         style={{
           width: "0%",
           willChange: "width",
+          display: hasPlayedHomeIntro ? "none" : "flex",
+          opacity: hasPlayedHomeIntro ? 0 : 1,
         }}
       >
         <span

@@ -139,18 +139,6 @@ export default function CoursesSection({
   // Active index prioritized by hover, falling back to scroll position on desktop
   const activeIndex = hoveredIndex !== null ? hoveredIndex : scrollIndex;
 
-  const handleNextCourse = useCallback(() => {
-    if (swiperInstanceRef.current) {
-      swiperInstanceRef.current.slideNext();
-    }
-  }, []);
-
-  const handlePrevCourse = useCallback(() => {
-    if (swiperInstanceRef.current) {
-      swiperInstanceRef.current.slidePrev();
-    }
-  }, []);
-
   // Jump smoothly to a specific course
   const handleJumpToCourse = useCallback(
     (index: number) => {
@@ -166,7 +154,7 @@ export default function CoursesSection({
 
         const lenis = (window as unknown as { lenis?: { scrollTo: (target: number, opts?: { duration?: number }) => void } }).lenis;
         if (lenis && typeof lenis.scrollTo === "function") {
-          lenis.scrollTo(targetScroll, { duration: 1.0 });
+          lenis.scrollTo(targetScroll, { duration: 0.5 });
         } else {
           window.scrollTo({
             top: targetScroll,
@@ -177,6 +165,24 @@ export default function CoursesSection({
     },
     [courses.length]
   );
+
+  const handleNextCourse = useCallback(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 1024 && swiperInstanceRef.current) {
+      swiperInstanceRef.current.slideNext();
+    } else {
+      const nextIdx = Math.min(courses.length - 1, activeIndex + 1);
+      handleJumpToCourse(nextIdx);
+    }
+  }, [activeIndex, courses.length, handleJumpToCourse]);
+
+  const handlePrevCourse = useCallback(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 1024 && swiperInstanceRef.current) {
+      swiperInstanceRef.current.slidePrev();
+    } else {
+      const prevIdx = Math.max(0, activeIndex - 1);
+      handleJumpToCourse(prevIdx);
+    }
+  }, [activeIndex, handleJumpToCourse]);
 
   // Set up pinning and scroll-based course progression on desktop screens
   useEffect(() => {
@@ -192,8 +198,8 @@ export default function CoursesSection({
         trigger: sectionRef.current,
         pin: pinnedRef.current,
         start: "top top",
-        end: () => `+=${window.innerHeight * 4.2}`,
-        scrub: 0.5,
+        end: () => `+=${(totalCourses - 1) * 280}`,
+        scrub: 0.25,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const progress = self.progress;
@@ -422,14 +428,14 @@ export default function CoursesSection({
               </Link>
             </div>
 
-            {/* Circular Arrow Nav Buttons (Visible on Mobile & Tablet < lg) */}
-            <div className="flex lg:hidden items-center gap-2.5 shrink-0">
+            {/* Circular Arrow Nav Buttons (Active on Desktop, Mobile & Tablet) */}
+            <div className="flex items-center gap-2.5 shrink-0">
               <button
                 type="button"
                 onClick={handlePrevCourse}
-                disabled={isBeginning}
+                disabled={activeIndex === 0}
                 aria-label="Previous course"
-                className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/20 flex items-center justify-center transition-all duration-200 text-sm ${isBeginning
+                className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/20 flex items-center justify-center transition-all duration-200 text-sm ${activeIndex === 0
                   ? "opacity-25 border-white/10 pointer-events-none cursor-not-allowed text-white/30"
                   : "hover:border-[#ffd001] hover:bg-[#ffd001] hover:text-black active:scale-95 text-white/80 cursor-pointer"
                   }`}
@@ -440,9 +446,9 @@ export default function CoursesSection({
               <button
                 type="button"
                 onClick={handleNextCourse}
-                disabled={isEnd}
+                disabled={activeIndex === courses.length - 1}
                 aria-label="Next course"
-                className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/20 flex items-center justify-center transition-all duration-200 text-sm ${isEnd
+                className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/20 flex items-center justify-center transition-all duration-200 text-sm ${activeIndex === courses.length - 1
                   ? "opacity-25 border-white/10 pointer-events-none cursor-not-allowed text-white/30"
                   : "hover:border-[#ffd001] hover:bg-[#ffd001] hover:text-black active:scale-95 text-white/80 cursor-pointer"
                   }`}

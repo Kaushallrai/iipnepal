@@ -120,7 +120,7 @@ export default function PortfolioSection({
       }).lenis;
 
       if (lenis && typeof lenis.scrollTo === "function") {
-        lenis.scrollTo(targetScroll, { duration: 1.0 });
+        lenis.scrollTo(targetScroll, { duration: 0.5 });
       } else {
         window.scrollTo({
           top: targetScroll,
@@ -130,6 +130,24 @@ export default function PortfolioSection({
     },
     [items.length]
   );
+
+  const handlePrevDesktop = useCallback(() => {
+    const st = scrollTriggerRef.current;
+    if (!st) return;
+    const currentProgress = st.progress;
+    const currentIdx = Math.round(currentProgress * (items.length - 1));
+    const prevIdx = Math.max(0, currentIdx - 1);
+    handleJumpToSlide(prevIdx);
+  }, [handleJumpToSlide, items.length]);
+
+  const handleNextDesktop = useCallback(() => {
+    const st = scrollTriggerRef.current;
+    if (!st) return;
+    const currentProgress = st.progress;
+    const currentIdx = Math.round(currentProgress * (items.length - 1));
+    const nextIdx = Math.min(items.length - 1, currentIdx + 1);
+    handleJumpToSlide(nextIdx);
+  }, [handleJumpToSlide, items.length]);
 
   // Creative Giants Continuous Smooth Horizontal Glide with Multi-Plane Parallax (NO Snapping)
   useEffect(() => {
@@ -167,8 +185,8 @@ export default function PortfolioSection({
           trigger: sectionRef.current,
           pin: pinnedRef.current,
           start: "top top",
-          end: () => `+=${totalScrollDistance * 1.8}`, // generous scroll length for smooth control
-          scrub: 1.0, // pure smooth scrub with Lenis, ZERO snapping
+          end: () => `+=${(cards.length - 1) * 360}`, // calibrated so 1 scroll advances to the next project
+          scrub: 0.25, // responsive, instant scrub without sluggish lag
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             const p = self.progress;
@@ -338,8 +356,8 @@ export default function PortfolioSection({
             />
           </div>
 
-          {/* Top Action: View All Portfolio Button with Signal Yellow Accent */}
-          <div className="shrink-0 pt-1 md:pt-0 select-none">
+          {/* Top Action: View All Portfolio Button with Signal Yellow Accent & Desktop Nav Arrows */}
+          <div className="shrink-0 pt-1 md:pt-0 select-none flex items-center gap-3">
             <Link
               href="/portfolio"
               className="group/all inline-flex items-center gap-0.5 font-mono text-xs sm:text-[13px] tracking-[0.16em] uppercase text-white hover:bg-[#ffd001] hover:text-black px-2 py-1 transition-all duration-150 font-medium leading-none"
@@ -348,6 +366,26 @@ export default function PortfolioSection({
               <span className="px-1">VIEW ALL PORTFOLIO</span>
               <span className="text-[#ffd001] group-hover/all:text-black font-semibold transition-colors">]</span>
             </Link>
+
+            <div className="hidden lg:flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handlePrevDesktop}
+                aria-label="Previous portfolio project"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/20 hover:border-[#ffd001] hover:bg-[#ffd001] hover:text-black active:scale-95 text-white/80 flex items-center justify-center transition-all duration-200 text-sm cursor-pointer"
+              >
+                ←
+              </button>
+
+              <button
+                type="button"
+                onClick={handleNextDesktop}
+                aria-label="Next portfolio project"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/20 hover:border-[#ffd001] hover:bg-[#ffd001] hover:text-black active:scale-95 text-white/80 flex items-center justify-center transition-all duration-200 text-sm cursor-pointer"
+              >
+                →
+              </button>
+            </div>
           </div>
         </div>
 

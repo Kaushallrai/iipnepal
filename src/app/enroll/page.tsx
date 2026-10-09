@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import React, { Suspense } from "react";
-import { getAllCourses } from "@/lib/courses-data";
+import { getAllCourses } from "@/data/courses";
 import EnrollmentPageContent from "@/components/enroll/EnrollmentPageContent";
 import Footer from "@/components/layout/Footer";
+import { enrollData } from "@/data/enroll";
 
 export const metadata: Metadata = {
-  title: "Enroll in Photography Courses | IIP Nepal — Indian Institute of Photography",
-  description:
-    "Enroll in accredited photography courses in Kathmandu, Nepal. 1-on-1 mentor critiques, structured assignments, and professional certification at IIP Nepal.",
+  title: enrollData.meta.title,
+  description: enrollData.meta.description,
   openGraph: {
     title: "Official Admissions & Course Enrollment | IIP Nepal",
     description:

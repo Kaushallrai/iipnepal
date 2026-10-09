@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import React from "react";
-import { getAllCourses } from "@/lib/courses-data";
+import { getAllCourses } from "@/data/courses";
 import CoursesCatalog from "@/components/courses/CoursesCatalog";
 import CoursesCta from "@/components/courses/CoursesCta";
 import Footer from "@/components/layout/Footer";

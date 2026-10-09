@@ -3,6 +3,7 @@
 import React from "react";
 import LineReveal from "@/components/animations/LineReveal";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import { coursesPageData } from "@/data/courses/page";
 
 export interface CoursesHeroProps {
   totalCoursesCount: number;
@@ -26,7 +27,7 @@ export default function CoursesHero({
           <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
           <LineReveal
             as="span"
-            lines={["IIP Nepal // Curricula"]}
+            lines={[coursesPageData.eyebrow]}
             className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-medium"
           />
         </div>
@@ -35,12 +36,12 @@ export default function CoursesHero({
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8 pb-8 sm:pb-10 lg:pb-12">
           <LineReveal
             as="h1"
-            lines={["Courses & Programs."]}
+            lines={[coursesPageData.heading]}
             className="font-sans font-light text-3xl sm:text-4xl md:text-5xl lg:text-[58px] xl:text-[64px] leading-[1.08] tracking-[-0.035em] text-black"
           />
 
           <p className="font-sans font-normal text-sm sm:text-base md:text-lg text-[#555555] max-w-xl leading-relaxed">
-            Five mentor-led photography programs in Kathmandu. Structured modules, practical shooting briefs, and one-on-one critique from working photographers.
+            {coursesPageData.description}
           </p>
         </div>
 

@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowUpRight, Phone } from "lucide-react";
 import LineReveal from "@/components/animations/LineReveal";
-import type { CourseItem } from "@/lib/courses-data";
+import type { CourseItem } from "@/data/courses";
 
 export interface CourseEnrollCtaProps {
   course: CourseItem;

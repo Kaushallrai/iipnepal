@@ -9,6 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ArrowUpRight, Check } from "lucide-react";
+import { contactData } from "@/data/contact";
 
 export interface CourseOption {
   id: string;
@@ -18,43 +19,7 @@ export interface CourseOption {
   slug: string;
 }
 
-export const COURSES: CourseOption[] = [
-  {
-    id: "mobile-photography-course",
-    number: "01",
-    title: "Mobile Photography Course",
-    duration: "1 Month",
-    slug: "mobile-photography-course",
-  },
-  {
-    id: "beginners-course",
-    number: "02",
-    title: "Basic Photography Course",
-    duration: "1 Month",
-    slug: "beginners-course",
-  },
-  {
-    id: "foundation-course",
-    number: "03",
-    title: "Foundation Photography Course",
-    duration: "3 Months",
-    slug: "foundation-course",
-  },
-  {
-    id: "pro-level-foundation-photography-course",
-    number: "04",
-    title: "Pro-Level Foundation Photography Course",
-    duration: "3 Months",
-    slug: "pro-level-foundation-photography-course",
-  },
-  {
-    id: "pro-level-advanced-photography-course",
-    number: "05",
-    title: "Pro-Level Advanced Photography Course",
-    duration: "6 Months",
-    slug: "pro-level-advanced-photography-course",
-  },
-];
+export const COURSES: CourseOption[] = contactData.form.courseOptions;
 
 interface FormData {
   firstName: string;

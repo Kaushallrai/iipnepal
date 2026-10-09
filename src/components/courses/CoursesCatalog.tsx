@@ -1,15 +1,14 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import type { CourseItem } from "@/lib/courses-data";
+import type { CourseItem } from "@/data/courses";
 import CoursesHero from "@/components/courses/CoursesHero";
 import CoursesList from "@/components/courses/CoursesList";
+import { coursesPageData } from "@/data/courses/page";
 
 export interface CoursesCatalogProps {
   initialCourses: CourseItem[];
 }
-
-const FILTERS = ["All", "Beginner", "Foundation", "Advanced"];
 
 export default function CoursesCatalog({ initialCourses }: CoursesCatalogProps): React.JSX.Element {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -29,7 +28,7 @@ export default function CoursesCatalog({ initialCourses }: CoursesCatalogProps):
         totalCoursesCount={initialCourses.length}
         activeFilter={activeFilter}
         onFilterChange={setActiveFilter}
-        filters={FILTERS}
+        filters={coursesPageData.filters}
       />
       <CoursesList courses={filteredCourses} />
     </>

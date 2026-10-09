@@ -4,48 +4,15 @@ import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LineReveal from "@/components/animations/LineReveal";
+import { howItWorksData, type TimelineStep } from "@/data/home/how-it-works";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-export interface TimelineStep {
-  number: string;
-  phase: string;
-  title: string;
-  description: string;
-}
+export type { TimelineStep };
 
-export const HOW_IT_WORKS_STEPS: TimelineStep[] = [
-  {
-    number: "01",
-    phase: "PHASE 01 // ENROLLMENT",
-    title: "Enrollment & Portal Access",
-    description:
-      "After course enrollment, receive your verified login credentials within 24 hours to access your personal student control panel, chapters, and resources.",
-  },
-  {
-    number: "02",
-    phase: "PHASE 02 // LEARNING",
-    title: "Online Modules & Guided Shoots",
-    description:
-      "Access course content through the control panel — read theory chapters, examine real-world photographic examples, and head out to shoot pictures.",
-  },
-  {
-    number: "03",
-    phase: "PHASE 03 // PRACTICE",
-    title: "Assignments & Photo Submissions",
-    description:
-      "Put your knowledge to work by completing practical assignments and uploading your selected 5 best photographs per chapter directly to the portal.",
-  },
-  {
-    number: "04",
-    phase: "PHASE 04 // REVIEW & CERTIFICATE",
-    title: "Mentor Feedback & Certification",
-    description:
-      "Our experienced mentors review and provide actionable feedback on each submitted photograph, leading to your accredited IIP certificate upon completion.",
-  },
-];
+export const HOW_IT_WORKS_STEPS: TimelineStep[] = howItWorksData.steps;
 
 export interface HowItWorksProps {
   eyebrow?: string;
@@ -55,10 +22,10 @@ export interface HowItWorksProps {
 }
 
 export default function HowItWorks({
-  eyebrow = "Curriculum Roadmap",
-  heading = "How This Course Works — From Enrollment to Certification.",
-  subheading = "A structured, mentor-led online learning progression — combining practical shoot assignments, dedicated faculty critiques, and certified completion.",
-  steps = HOW_IT_WORKS_STEPS,
+  eyebrow = howItWorksData.eyebrow,
+  heading = howItWorksData.heading,
+  subheading = howItWorksData.subheading,
+  steps = howItWorksData.steps,
 }: HowItWorksProps): React.JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
   const spineRef = useRef<HTMLDivElement>(null);

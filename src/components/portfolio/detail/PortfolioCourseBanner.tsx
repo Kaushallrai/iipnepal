@@ -3,8 +3,8 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import type { PortfolioItem } from "@/lib/portfolio-data";
-import { getCourseBySlug } from "@/lib/courses-data";
+import type { PortfolioItem } from "@/data/portfolio";
+import { getCourseBySlug } from "@/data/courses";
 import LineReveal from "@/components/animations/LineReveal";
 
 export interface PortfolioCourseBannerProps {

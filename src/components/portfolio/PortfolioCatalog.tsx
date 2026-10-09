@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import type { PortfolioItem } from "@/lib/portfolio-data";
+import type { PortfolioItem } from "@/data/portfolio";
 import PortfolioHero from "@/components/portfolio/PortfolioHero";
 import PortfolioRoster from "@/components/portfolio/PortfolioRoster";
 import PortfolioManifesto from "@/components/portfolio/PortfolioManifesto";

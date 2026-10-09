@@ -25,7 +25,7 @@ export interface CourseItem {
   paymentOptions: string[];
 }
 
-export const ORIGINAL_COURSES: CourseItem[] = [
+export const masterCoursesList: CourseItem[] = [
   {
     id: "course-1",
     number: "01",
@@ -462,24 +462,3 @@ export const ORIGINAL_COURSES: CourseItem[] = [
     ],
   },
 ];
-
-/**
- * Returns all available IIP photography courses.
- */
-export function getAllCourses(): CourseItem[] {
-  return ORIGINAL_COURSES;
-}
-
-/**
- * Returns a specific course by slug.
- */
-export function getCourseBySlug(slug: string): CourseItem | undefined {
-  return ORIGINAL_COURSES.find((course) => course.slug === slug);
-}
-
-/**
- * Returns related courses excluding the current slug.
- */
-export function getRelatedCourses(currentSlug: string, count = 2): CourseItem[] {
-  return ORIGINAL_COURSES.filter((course) => course.slug !== currentSlug).slice(0, count);
-}

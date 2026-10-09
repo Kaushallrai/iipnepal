@@ -9,6 +9,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LineReveal from "@/components/animations/LineReveal";
 import { cn } from "@/lib/utils";
+import { newsData, type NewsItem } from "@/data/home/news";
 
 import "swiper/css";
 
@@ -16,64 +17,9 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-export interface NewsItem {
-  id: string;
-  title: string;
-  excerpt: string;
-  image: string;
-  slug: string;
-}
+export type { NewsItem };
 
-const NEWS_ITEMS: NewsItem[] = [
-  {
-    id: "kathmandu-annual-exhibition-2026",
-    title: "Annual Photography Exhibition 2026",
-    excerpt:
-      "Student fieldwork from Langtang, Patan, and Bhaktapur takes center stage at Nepal Art Council, celebrating documentary excellence and living cultural heritage.",
-    image: "/images/portfolio-artisan.webp",
-    slug: "kathmandu-annual-exhibition-2026",
-  },
-  {
-    id: "additya-shrestha-vision",
-    title: "Additya Shrestha on IIP's Vision",
-    excerpt:
-      "Director and alumnus Additya Shrestha speaks with national media on launching the Indian Institute of Photography in Kathmandu with White Hat Events.",
-    image: "/images/flagship-mentor-darkroom.webp",
-    slug: "additya-shrestha-vision",
-  },
-  {
-    id: "high-altitude-fieldwork-everest",
-    title: "High-Altitude Fieldwork in Everest",
-    excerpt:
-      "Master class students complete an intensive 14-day high-altitude documentary expedition, capturing glacial recession and remote Sherpa traditions at 4,800m.",
-    image: "/images/portfolio-himalayas.webp",
-    slug: "high-altitude-fieldwork-everest",
-  },
-  {
-    id: "mobile-photography-revolution",
-    title: "The Mobile Photography Revolution",
-    excerpt:
-      "How modern smartphone sensor technology and RAW capture workflows are democratizing visual journalism for emerging Nepali creators.",
-    image: "/images/course-mobile.webp",
-    slug: "mobile-photography-revolution",
-  },
-  {
-    id: "living-heritage-lalitpur",
-    title: "Preserving Lalitpur's Sacred Crafts",
-    excerpt:
-      "A long-form photo essay by IIP fellows chronicling three generations of Patan brass artisans, woodcarvers, and temple restorers.",
-    image: "/images/portfolio-devotee.webp",
-    slug: "living-heritage-lalitpur",
-  },
-  {
-    id: "darkroom-to-commercial-production",
-    title: "Darkroom Craft to Studio Practice",
-    excerpt:
-      "Inside IIP Nepal's dedicated studio lighting and commercial portfolio labs, preparing students for advertising and editorial commissions.",
-    image: "/images/course-pro.webp",
-    slug: "darkroom-to-commercial-production",
-  },
-];
+const NEWS_ITEMS: NewsItem[] = newsData.articles;
 
 export default function NewsSection(): React.JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
@@ -130,14 +76,14 @@ export default function NewsSection(): React.JSX.Element {
                 className="eyebrow-wrap flex items-center gap-2.5 text-xs sm:text-[13px] font-mono uppercase tracking-[0.22em] text-black font-semibold"
               >
                 <span className="eyebrow-dot w-2 h-2 rounded-full bg-[#ffd001] shrink-0 inline-block shadow-[0_0_8px_rgba(255,208,1,0.6)]" />
-                <div>News &amp; opinion</div>
+                <div>{newsData.eyebrow}</div>
               </div>
 
               {/* Headline with Decreased Size + Arrow Buttons Beside It (On Mobile, Tablet & Desktop) */}
               <div className="slider-blog_action_row flex items-center justify-between gap-4">
                 <LineReveal
                   as="h2"
-                  lines={["Stay up to date"]}
+                  lines={[newsData.heading]}
                   className="heading-style-h1 font-sans font-light text-2xl sm:text-3xl md:text-4xl lg:text-[46px] xl:text-[54px] leading-[1.08] tracking-[-0.03em] text-black"
                 />
 

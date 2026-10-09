@@ -4,72 +4,11 @@ import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import LineReveal from "@/components/animations/LineReveal";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import { aboutProspectusData, type ProspectusItem } from "@/data/about/prospectus";
 
-export interface ProspectusItem {
-  id: string;
-  code: string;
-  title: string;
-  level: string;
-  description: string;
-  pdfUrl: string;
-}
+export type { ProspectusItem };
 
-export const PROSPECTUS_LIST: ProspectusItem[] = [
-  {
-    id: "mfa",
-    code: "MFA",
-    title: "Master of Fine Arts in Photography",
-    level: "Postgraduate Degree",
-    description:
-      "Advanced research-led curriculum covering visual theory, personal thesis authorship, darkroom printing, and curatorial practice.",
-    pdfUrl: "https://www.iipacademy.edu.in/images/IIPCCA%20PROSPECTUS.pdf",
-  },
-  {
-    id: "bfa",
-    code: "BFA",
-    title: "Bachelor of Fine Arts in Photography",
-    level: "Undergraduate Degree",
-    description:
-      "Comprehensive multi-year program covering camera optics, lighting physics, analog processes, and professional editorial ethics.",
-    pdfUrl: "https://www.iipacademy.edu.in/images/IIPCCA%20PROSPECTUS.pdf",
-  },
-  {
-    id: "ddpc",
-    code: "DDPC",
-    title: "Dual Diploma in Professional Photography",
-    level: "Professional Diploma",
-    description:
-      "Career-focused dual credential emphasizing commercial studio assignments, portraiture, fashion, and business management.",
-    pdfUrl: "https://www.iipacademy.edu.in/images/IIPCCA%20PROSPECTUS.pdf",
-  },
-  {
-    id: "opdp",
-    code: "OPDP",
-    title: "Online Professional Development Program",
-    level: "Distance Learning",
-    description:
-      "Structured remote curriculum with weekly one-on-one virtual critiques, home assignments, and accredited certification.",
-    pdfUrl: "https://www.iipacademy.edu.in/images/IIPCCA%20PROSPECTUS.pdf",
-  },
-  {
-    id: "pro-foundation",
-    code: "FOUNDATION",
-    title: "Pro Foundation & Advanced Course Catalogue",
-    level: "Certificate Track",
-    description:
-      "Intensive 3 to 6-month hands-on modules in manual camera controls, metering, light direction, and creative studio shoots.",
-    pdfUrl: "https://iipnepal.com/files/ONLINE%20CATALOUGE%2022.pdf",
-  },
-  {
-    id: "teenschool",
-    code: "TEENSCHOOL",
-    title: "TeenSchool Creative Arts Prospectus",
-    level: "Youth Immersion",
-    description:
-      "Visual storytelling and photographic fundamentals designed for high-school students and emerging creators.",
-    pdfUrl: "https://iipnepal.com/files/tsatschoolpdf.pdf",
-  },
-];
+export const PROSPECTUS_LIST: ProspectusItem[] = aboutProspectusData.items;
 
 export default function AboutProspectus(): React.JSX.Element {
   return (
@@ -82,19 +21,16 @@ export default function AboutProspectus(): React.JSX.Element {
           <div className="flex items-center gap-2 mb-3 sm:mb-4 select-none">
             <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
             <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-medium">
-              Academic Catalogues
+              {aboutProspectusData.eyebrow}
             </span>
           </div>
           <LineReveal
             as="h2"
             className="font-sans font-light text-2xl sm:text-3xl md:text-4xl lg:text-[44px] leading-[1.12] tracking-[-0.03em] text-black mb-3 sm:mb-4"
-            lines={[
-              "Official Course Prospectuses &",
-              "Syllabus Downloads",
-            ]}
+            lines={aboutProspectusData.headingLines}
           />
           <p className="text-sm sm:text-base md:text-lg text-[#555555] font-normal leading-relaxed">
-            Download detailed curriculum overviews, equipment requirements, faculty credits, and admission schedules in PDF format.
+            {aboutProspectusData.subheading}
           </p>
         </div>
 

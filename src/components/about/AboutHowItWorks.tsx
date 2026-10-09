@@ -5,57 +5,11 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import LineReveal from "@/components/animations/LineReveal";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import { aboutAdmissionsData, type AdmissionsStep } from "@/data/about/admissions";
 
-export interface AdmissionsStep {
-  number: string;
-  title: string;
-  description: string;
-}
+export type { AdmissionsStep };
 
-export const ADMISSIONS_STEPS: AdmissionsStep[] = [
-  {
-    number: "01",
-    title: "Connect with Career Counselling",
-    description:
-      "Direct consultation with our Kathmandu admissions team to identify the course track matching your experience and goals.",
-  },
-  {
-    number: "02",
-    title: "Discovery & Creative Background",
-    description:
-      "A personal discussion exploring your visual interests, technical foundation, and preferred genres.",
-  },
-  {
-    number: "03",
-    title: "Portfolio Submission",
-    description:
-      "Share 5 to 10 photographs for faculty assessment. No previous art experience is required for Foundation modules.",
-  },
-  {
-    number: "04",
-    title: "Application Completion",
-    description:
-      "Standard registration form completed with direct assistance from your assigned personal admissions counselor.",
-  },
-  {
-    number: "05",
-    title: "Tuition & Education Plan",
-    description:
-      "Review transparent fee structures, installment schedules, and equipment requirements.",
-  },
-  {
-    number: "06",
-    title: "Registration & Studio Clearance",
-    description:
-      "Receive student portal credentials, course syllabi, and darkroom safety clearance at Jyoti Bhawan.",
-  },
-  {
-    number: "07",
-    title: "Welcome to the Academy",
-    description:
-      "Begin practical shoots, studio lighting workshops, mentor critique sessions, and accredited certification.",
-  },
-];
+export const ADMISSIONS_STEPS: AdmissionsStep[] = aboutAdmissionsData.steps;
 
 export default function AboutHowItWorks(): React.JSX.Element {
   return (
@@ -69,16 +23,13 @@ export default function AboutHowItWorks(): React.JSX.Element {
             <div className="flex items-center gap-2 mb-3 sm:mb-4 select-none">
               <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
               <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-medium">
-                Admissions Roadmap
+                {aboutAdmissionsData.eyebrow}
               </span>
             </div>
             <LineReveal
               as="h2"
               className="font-sans font-light text-2xl sm:text-3xl md:text-4xl lg:text-[44px] leading-[1.12] tracking-[-0.03em] text-black"
-              lines={[
-                "How It Works: Seven steps from first",
-                "conversation to accredited certification.",
-              ]}
+              lines={aboutAdmissionsData.headingLines}
             />
           </div>
 

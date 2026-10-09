@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import LineReveal from "@/components/animations/LineReveal";
-import type { PortfolioItem } from "@/lib/portfolio-data";
+import type { PortfolioItem } from "@/data/portfolio";
 
 export interface PortfolioRosterProps {
   items: PortfolioItem[];

@@ -11,52 +11,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { homeContactData, type CourseOption } from "@/data/home/contact";
 
-export interface CourseOption {
-  id: string;
-  number: string;
-  title: string;
-  duration: string;
-  slug: string;
-}
+export type { CourseOption };
 
-export const COURSES: CourseOption[] = [
-  {
-    id: "mobile-photography-course",
-    number: "01",
-    title: "Mobile Photography Course",
-    duration: "1 Month",
-    slug: "mobile-photography-course",
-  },
-  {
-    id: "beginners-course",
-    number: "02",
-    title: "Basic Photography Course",
-    duration: "1 Month",
-    slug: "beginners-course",
-  },
-  {
-    id: "foundation-course",
-    number: "03",
-    title: "Foundation Photography Course",
-    duration: "3 Months",
-    slug: "foundation-course",
-  },
-  {
-    id: "pro-level-foundation-photography-course",
-    number: "04",
-    title: "Pro-Level Foundation Photography Course",
-    duration: "3 Months",
-    slug: "pro-level-foundation-photography-course",
-  },
-  {
-    id: "pro-level-advanced-photography-course",
-    number: "05",
-    title: "Pro-Level Advanced Photography Course",
-    duration: "6 Months",
-    slug: "pro-level-advanced-photography-course",
-  },
-];
+export const COURSES: CourseOption[] = homeContactData.courses;
 
 interface FormData {
   firstName: string;
@@ -132,45 +91,43 @@ export default function ContactSection(): React.JSX.Element {
               {/* Eyebrow with glowing Signal Yellow dot */}
               <div className="eyebrow-wrap flex items-center gap-2.5 text-xs sm:text-[13px] font-mono uppercase tracking-[0.22em] text-black font-semibold mb-2 sm:mb-3 md:mb-4">
                 <span className="eyebrow-dot w-2 h-2 rounded-full bg-[#ffd001] shrink-0 inline-block shadow-[0_0_8px_rgba(255,208,1,0.6)]" />
-                <div>Get in touch</div>
+                <div>{homeContactData.eyebrow}</div>
               </div>
 
               {/* Masked Headline in Switzer Light Display */}
               <LineReveal
                 as="h2"
-                lines={["Speak to us."]}
+                lines={[homeContactData.heading]}
                 className="heading-style-h1 font-sans font-light text-3xl sm:text-4xl md:text-5xl lg:text-[72px] xl:text-[80px] leading-[1.05] tracking-[-0.035em] text-black mb-3 sm:mb-4 md:mb-5 lg:mb-6"
               />
 
               {/* Explanatory Narrative */}
               <p className="text-size-regular text-color-secondary font-light text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] leading-[1.55] md:leading-[1.62] text-[#666666] tracking-[-0.018em] max-w-[42ch]">
-                If you want to start a course, share a portfolio idea, or simply
-                schedule a one-on-one darkroom visit in Kathmandu, we want to
-                hear from you.
+                {homeContactData.description}
               </p>
 
               {/* MOBILE ONLY: Ultra-compact, 1-tap quick action pills (Zero unnecessary scrolling) */}
               <div className="md:hidden flex flex-col gap-2 w-full pt-3 pb-1">
                 <div className="grid grid-cols-2 gap-2 w-full">
                   <a
-                    href="tel:+9779802364760"
+                    href={`tel:${homeContactData.phone}`}
                     className="inline-flex items-center justify-center gap-2 py-2 px-3 rounded-full bg-[#f4f2e9] hover:bg-[#ffd001] active:bg-[#ffd001] text-black font-mono text-[11px] tracking-[0.06em] uppercase border border-[#e2e0d2] transition-colors"
-                    aria-label="Call Direct Admissions at +977 9802364760"
+                    aria-label={`Call Direct Admissions at ${homeContactData.phoneDisplay}`}
                   >
                     <Phone className="w-3 h-3 text-[#666666]" aria-hidden="true" />
                     <span>Call Studio</span>
                   </a>
                   <a
-                    href="mailto:info@iipnepal.com"
+                    href={`mailto:${homeContactData.email}`}
                     className="inline-flex items-center justify-center gap-2 py-2 px-3 rounded-full bg-[#f4f2e9] hover:bg-[#ffd001] active:bg-[#ffd001] text-black font-mono text-[11px] tracking-[0.06em] uppercase border border-[#e2e0d2] transition-colors"
-                    aria-label="Email faculty at info@iipnepal.com"
+                    aria-label={`Email faculty at ${homeContactData.email}`}
                   >
                     <Mail className="w-3 h-3 text-[#666666]" aria-hidden="true" />
                     <span>Email Us</span>
                   </a>
                 </div>
                 <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.08em] text-[#777777] px-1 pt-0.5">
-                  <span>Kathmandu Centre</span>
+                  <span>{homeContactData.studioName}</span>
                   <span>Jyoti Bhawan, Kanti Path</span>
                 </div>
               </div>
@@ -180,35 +137,35 @@ export default function ContactSection(): React.JSX.Element {
             <div className="contact-details_wrap hidden md:flex flex-col gap-4 md:gap-5 lg:gap-6 mt-8 md:mt-10 lg:mt-14 pt-6 md:pt-8 lg:pt-10 border-t border-[#e2e0d2]">
               <div className="flex flex-col gap-0.5 md:gap-1">
                 <span className="font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.16em] text-[#888888]">
-                  Kathmandu Centre
+                  {homeContactData.studioName}
                 </span>
                 <span className="font-normal text-[14px] md:text-[15px] lg:text-[16px] text-black">
-                  Jyoti Bhawan, Kanti Path, Kathmandu, Bagmati Province 44600
+                  {homeContactData.studioAddress}
                 </span>
               </div>
 
               <div className="flex flex-col xl:flex-row xl:items-center gap-4 xl:gap-10">
                 <div className="flex flex-col gap-0.5 md:gap-1">
                   <span className="font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.16em] text-[#888888]">
-                    Direct Admissions
+                    {homeContactData.phoneLabel}
                   </span>
                   <a
-                    href="tel:+9779802364760"
+                    href={`tel:${homeContactData.phone}`}
                     className="font-normal text-[14px] md:text-[15px] lg:text-[16px] text-black hover:text-[#ffd001] transition-colors"
                   >
-                    +977 9802364760
+                    {homeContactData.phoneDisplay}
                   </a>
                 </div>
 
                 <div className="flex flex-col gap-0.5 md:gap-1">
                   <span className="font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.16em] text-[#888888]">
-                    Faculty Email
+                    {homeContactData.emailLabel}
                   </span>
                   <a
-                    href="mailto:info@iipnepal.com"
+                    href={`mailto:${homeContactData.email}`}
                     className="font-normal text-[14px] md:text-[15px] lg:text-[16px] text-black hover:text-[#ffd001] transition-colors"
                   >
-                    info@iipnepal.com
+                    {homeContactData.email}
                   </a>
                 </div>
               </div>

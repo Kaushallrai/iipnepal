@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import type { PortfolioItem } from "@/lib/portfolio-data";
+import type { PortfolioItem } from "@/data/portfolio";
 
 export interface PortfolioListProps {
   items: PortfolioItem[];

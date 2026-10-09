@@ -7,7 +7,7 @@ import {
   getNextPortfolioItem,
   getPreviousPortfolioItem,
   getRelatedPortfolioItems,
-} from "@/lib/portfolio-data";
+} from "@/data/portfolio";
 import PortfolioDetailHero from "@/components/portfolio/detail/PortfolioDetailHero";
 import PortfolioDetailGallery from "@/components/portfolio/detail/PortfolioDetailGallery";
 import PortfolioDetailStory from "@/components/portfolio/detail/PortfolioDetailStory";

@@ -2,6 +2,7 @@
 
 import React from "react";
 import LineReveal from "@/components/animations/LineReveal";
+import { portfolioPageData } from "@/data/portfolio/page";
 
 export interface PortfolioHeroProps {
   totalCount: number;
@@ -25,7 +26,7 @@ export default function PortfolioHero({
           <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
           <LineReveal
             as="span"
-            lines={["IIP Nepal // Curatorial Archive"]}
+            lines={[portfolioPageData.eyebrow]}
             className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-medium"
           />
         </div>
@@ -34,12 +35,12 @@ export default function PortfolioHero({
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8 pb-8 sm:pb-10 lg:pb-12">
           <LineReveal
             as="h1"
-            lines={["Student & Alumni Archive."]}
+            lines={[portfolioPageData.heading]}
             className="font-sans font-light text-3xl sm:text-4xl md:text-5xl lg:text-[58px] xl:text-[64px] leading-[1.08] tracking-[-0.035em] text-black"
           />
 
           <p className="font-sans font-normal text-sm sm:text-base md:text-lg text-[#555555] max-w-lg leading-relaxed">
-            Curated documentary fieldwork, high-altitude landscape studies, and wet darkroom silver chemistry produced during mentor-led residencies in Nepal.
+            {portfolioPageData.description}
           </p>
         </div>
 

@@ -7,11 +7,9 @@ import { usePathname } from "next/navigation";
 import { Menu, X, ArrowUpRight, User, LogOut } from "lucide-react";
 import { useAuthModal } from "@/components/auth/AuthModalContext";
 import { usePageTransition } from "@/components/providers/PageTransitionContext";
+import { siteConfig, navigationData, type NavLinkItem } from "@/data/site";
 
-export interface NavItem {
-  label: string;
-  href: string;
-}
+export type NavItem = NavLinkItem;
 
 export interface NavbarProps {
   brandPrimary?: string;
@@ -23,16 +21,11 @@ export interface NavbarProps {
 }
 
 export default function Navbar({
-  brandPrimary = "IIP",
-  brandSecondary = "NEPAL",
-  navItems = [
-    { label: "Courses", href: "/courses" },
-    { label: "Portfolio", href: "/portfolio" },
-    { label: "About Us", href: "/about" },
-    { label: "Contact", href: "/contact" },
-  ],
-  enrollText = "Enroll Now",
-  enrollHref = "/enroll",
+  brandPrimary = siteConfig.brand.primary,
+  brandSecondary = siteConfig.brand.secondary,
+  navItems = navigationData.navItems,
+  enrollText = navigationData.enrollCta.label,
+  enrollHref = navigationData.enrollCta.href,
   activePage,
 }: NavbarProps): React.JSX.Element {
   const pathname = usePathname();
@@ -172,13 +165,13 @@ export default function Navbar({
           className={`absolute inset-0 w-full transition-colors duration-300 pointer-events-none ${
             isScrolled
               ? isDarkSection
-                ? "bg-[#0a0a0a]/90 backdrop-blur-md"
-                : "bg-[#fffef7]/90 backdrop-blur-md"
+                ? "bg-[#0a0a0a]/90 backdrop-blur-md [-webkit-backdrop-filter:blur(12px)]"
+                : "bg-[#fffef7]/90 backdrop-blur-md [-webkit-backdrop-filter:blur(12px)]"
               : "bg-transparent"
           }`}
         />
 
-        <div className="w-full max-w-[105rem] mx-auto px-5 sm:px-8 md:px-10 lg:px-8 xl:px-14 2xl:px-16 pl-[max(1.25rem,env(safe-area-inset-left,0px))] pr-[max(1.25rem,env(safe-area-inset-right,0px))] pointer-events-none">
+        <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pl-[max(1.5rem,env(safe-area-inset-left,0px))] pr-[max(1.5rem,env(safe-area-inset-right,0px))] pointer-events-none">
           <div className="relative w-full h-[60px] sm:h-[68px] md:h-[80px] flex items-center justify-between pointer-events-auto">
             {/* LEFT LOGO: Anchors flush to the left padding gutter */}
             <div
@@ -195,14 +188,14 @@ export default function Navbar({
                 {/* Initial Loading Text: "IIP NEPAL" (Visible initially on homepage loading) */}
                 <div
                   id="nav-initial-text"
-                  className={`items-center gap-1.5 sm:gap-2 text-[#111111] ${
+                  className={`items-center gap-1.5 sm:gap-2 drop-shadow-md ${
                     isInitialHomeState ? "flex" : "hidden"
                   }`}
                 >
-                  <span className="font-mono font-bold tracking-[0.1em] text-lg sm:text-2xl md:text-3xl">
+                  <span className="font-mono font-bold tracking-[0.12em] text-lg sm:text-2xl md:text-3xl text-[#fffef7]">
                     {brandPrimary}
                   </span>
-                  <span className="font-mono font-normal tracking-[0.2em] text-lg sm:text-2xl md:text-3xl text-neutral-800">
+                  <span className="font-mono font-normal tracking-[0.2em] text-lg sm:text-2xl md:text-3xl text-[#ffd001]">
                     {brandSecondary}
                   </span>
                 </div>

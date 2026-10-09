@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ArrowLeft, ArrowRight } from "lucide-react";
-import type { PortfolioItem } from "@/lib/portfolio-data";
+import type { PortfolioItem } from "@/data/portfolio";
 import LineReveal from "@/components/animations/LineReveal";
 
 export interface PortfolioDetailNavProps {

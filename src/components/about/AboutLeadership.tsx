@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import LineReveal from "@/components/animations/LineReveal";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import { aboutLeadershipData } from "@/data/about/leadership";
 
 export default function AboutLeadership(): React.JSX.Element {
   return (
@@ -15,8 +16,8 @@ export default function AboutLeadership(): React.JSX.Element {
             <ScrollReveal variant="scale-up" duration={1} distance={20} start="top 88%">
               <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] md:h-[420px] lg:h-[520px] bg-black border border-[#e2e0d2] overflow-hidden">
                 <Image
-                  src="/images/flagship-mentor-darkroom.webp"
-                  alt="IIP Nepal Faculty Mentorship and Darkroom Printing"
+                  src={aboutLeadershipData.photoSrc}
+                  alt={aboutLeadershipData.photoAlt}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 90vw, 50vw"
                   className="object-cover object-center grayscale contrast-110"
@@ -25,10 +26,10 @@ export default function AboutLeadership(): React.JSX.Element {
                 <div className="absolute bottom-0 inset-x-0 p-3.5 sm:p-4 bg-black/90 backdrop-blur-xs border-t border-white/10 text-white flex items-center justify-between">
                   <div className="flex flex-col pr-2">
                     <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-[#ffd001]">
-                      Kathmandu Studio Director
+                      {aboutLeadershipData.directorBadge}
                     </span>
                     <span className="font-sans text-xs sm:text-sm font-medium text-white mt-0.5 truncate">
-                      Additya Shrestha · IIP Alumnus & Regional Head
+                      {aboutLeadershipData.directorName}
                     </span>
                   </div>
                   <span className="w-2 h-2 rounded-full bg-[#ffd001] shrink-0" />
@@ -42,22 +43,19 @@ export default function AboutLeadership(): React.JSX.Element {
             <div className="flex items-center gap-2 mb-3 sm:mb-4 select-none">
               <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
               <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-medium">
-                Leadership & Vision
+                {aboutLeadershipData.eyebrow}
               </span>
             </div>
 
             <LineReveal
               as="h2"
               className="font-sans font-light text-2xl sm:text-3xl md:text-4xl lg:text-[44px] leading-[1.12] tracking-[-0.03em] text-black mb-3 sm:mb-4"
-              lines={[
-                "Mentoring visual artists and photographers",
-                "without background barriers.",
-              ]}
+              lines={aboutLeadershipData.headingLines}
             />
 
             {/* Official IIP Quote */}
             <blockquote className="w-full my-2 sm:my-3 p-4 sm:p-5 md:p-6 bg-[#f8f7f0] border-l-2 border-[#ffd001] font-sans text-sm sm:text-base md:text-lg text-black/90 italic leading-relaxed">
-              &ldquo;IIP Academy is looking for dedicated students who want to become tomorrow’s art leaders. We seek innovators, storytellers, collaborators, problem solvers, dreamers, leaders. Whatever your background, you are welcome.&rdquo;
+              &ldquo;{aboutLeadershipData.quote}&rdquo;
             </blockquote>
 
             <p className="mt-3 text-xs sm:text-sm md:text-base text-[#555555] font-normal leading-[1.65]">

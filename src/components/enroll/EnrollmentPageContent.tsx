@@ -12,7 +12,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import type { CourseItem } from "@/lib/courses-data";
+import type { CourseItem } from "@/data/courses";
+import { enrollData } from "@/data/enroll";
 
 export interface EnrollmentPageContentProps {
   courses: CourseItem[];
@@ -55,8 +56,8 @@ export default function EnrollmentPageContent({
     email: "",
     phone: "",
     programSlug: initialCourseSlug,
-    batchSchedule: "Flexible Online Mentorship (Weekly 1-on-1 Reviews)",
-    paymentMethod: "eSewa / Khalti QR",
+    batchSchedule: enrollData.batchSchedules[0],
+    paymentMethod: enrollData.paymentMethods[0].title,
     notes: "",
     agreeTerms: true,
   });
@@ -175,8 +176,8 @@ export default function EnrollmentPageContent({
       email: "",
       phone: "",
       programSlug: selectedSlug,
-      batchSchedule: "Flexible Online Mentorship (Weekly 1-on-1 Reviews)",
-      paymentMethod: "eSewa / Khalti QR",
+      batchSchedule: enrollData.batchSchedules[0],
+      paymentMethod: enrollData.paymentMethods[0].title,
       notes: "",
       agreeTerms: true,
     });
@@ -197,10 +198,10 @@ export default function EnrollmentPageContent({
             <div className="md:col-span-7 lg:col-span-6 flex flex-col items-start">
               <div className="eyebrow-wrap flex items-center gap-2 font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-medium mb-3 sm:mb-4 select-none">
                 <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
-                <span>Admissions 2026 // Intake Open</span>
+                <span>{enrollData.eyebrow}</span>
               </div>
               <h1 className="font-sans font-light text-3xl sm:text-4xl md:text-5xl lg:text-[58px] xl:text-[64px] leading-[1.08] tracking-[-0.035em] text-black">
-                Enroll at IIP Nepal and begin your one-on-one mentorship.
+                {enrollData.heading}
               </h1>
             </div>
 
@@ -211,44 +212,44 @@ export default function EnrollmentPageContent({
                 {/* Phone Item */}
                 <div className="flex flex-col gap-1.5">
                   <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#888888]">
-                    Admissions Desk
+                    {enrollData.deskPhone.label}
                   </span>
                   <a
-                    href="tel:+9779802364760"
+                    href={enrollData.deskPhone.href}
                     className="eyebrow-wrap inline-flex items-center gap-2.5 text-base sm:text-lg lg:text-xl font-normal text-black hover:text-[#ca8a04] transition-colors no-underline group"
                   >
                     <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block group-hover:scale-125 transition-transform" />
-                    <span>+977 9802364760</span>
+                    <span>{enrollData.deskPhone.value}</span>
                   </a>
                 </div>
 
                 {/* Email Item */}
                 <div className="flex flex-col gap-1.5">
                   <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#888888]">
-                    Email Enquiries
+                    {enrollData.deskEmail.label}
                   </span>
                   <a
-                    href="mailto:info@iipnepal.com"
+                    href={enrollData.deskEmail.href}
                     className="eyebrow-wrap inline-flex items-center gap-2.5 text-base sm:text-lg lg:text-xl font-normal text-black hover:text-[#ca8a04] transition-colors no-underline group"
                   >
                     <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block group-hover:scale-125 transition-transform" />
-                    <span>info@iipnepal.com</span>
+                    <span>{enrollData.deskEmail.value}</span>
                   </a>
                 </div>
 
                 {/* Location Item */}
                 <div className="sm:col-span-2 flex flex-col gap-1.5 pt-3 border-t border-[#e2e0d2]">
                   <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#888888]">
-                    Studio & Darkroom Location
+                    {enrollData.studioLocation.label}
                   </span>
                   <a
-                    href="https://maps.app.goo.gl/792XAZpWFHjY1zWt6"
+                    href={enrollData.studioLocation.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="eyebrow-wrap inline-flex items-center gap-2.5 text-sm sm:text-[15px] font-normal text-black hover:text-[#ca8a04] transition-colors no-underline group"
                   >
                     <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block group-hover:scale-125 transition-transform" />
-                    <span>Jyoti Bhawan, Kanti Path, Kathmandu, Bagmati 44600</span>
+                    <span>{enrollData.studioLocation.value}</span>
                     <ArrowUpRight className="w-3.5 h-3.5 text-[#888888] group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </a>
                 </div>
@@ -585,24 +586,15 @@ export default function EnrollmentPageContent({
                         <SelectValue placeholder="Select schedule" />
                       </SelectTrigger>
                       <SelectContent className="bg-[#fffef7] border border-[#e2e0d2] shadow-2xl rounded-none">
-                        <SelectItem
-                          value="Flexible Online Mentorship (Weekly 1-on-1 Reviews)"
-                          className="py-2.5 px-3 text-sm rounded-none data-[highlighted]:bg-[#ffd001] data-[highlighted]:text-black"
-                        >
-                          Flexible Online Mentorship (Weekly 1-on-1 Reviews)
-                        </SelectItem>
-                        <SelectItem
-                          value="Weekend Intensive (Sat & Sun Studio / Darkroom)"
-                          className="py-2.5 px-3 text-sm rounded-none data-[highlighted]:bg-[#ffd001] data-[highlighted]:text-black"
-                        >
-                          Weekend Intensive (Sat & Sun Studio / Darkroom)
-                        </SelectItem>
-                        <SelectItem
-                          value="Weekday Evening (Mon/Wed/Fri 5:30 PM)"
-                          className="py-2.5 px-3 text-sm rounded-none data-[highlighted]:bg-[#ffd001] data-[highlighted]:text-black"
-                        >
-                          Weekday Evening (Mon/Wed/Fri 5:30 PM)
-                        </SelectItem>
+                        {enrollData.batchSchedules.map((schedule) => (
+                          <SelectItem
+                            key={schedule}
+                            value={schedule}
+                            className="py-2.5 px-3 text-sm rounded-none data-[highlighted]:bg-[#ffd001] data-[highlighted]:text-black"
+                          >
+                            {schedule}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </div>
@@ -628,24 +620,15 @@ export default function EnrollmentPageContent({
                         <SelectValue placeholder="Select payment method" />
                       </SelectTrigger>
                       <SelectContent className="bg-[#fffef7] border border-[#e2e0d2] shadow-2xl rounded-none">
-                        <SelectItem
-                          value="eSewa / Khalti QR"
-                          className="py-2.5 px-3 text-sm rounded-none data-[highlighted]:bg-[#ffd001] data-[highlighted]:text-black"
-                        >
-                          Digital Wallet (eSewa / Khalti QR)
-                        </SelectItem>
-                        <SelectItem
-                          value="Bank Wire Transfer"
-                          className="py-2.5 px-3 text-sm rounded-none data-[highlighted]:bg-[#ffd001] data-[highlighted]:text-black"
-                        >
-                          Direct Bank Wire (NIMB / Nabil Bank)
-                        </SelectItem>
-                        <SelectItem
-                          value="Campus Counter Payment"
-                          className="py-2.5 px-3 text-sm rounded-none data-[highlighted]:bg-[#ffd001] data-[highlighted]:text-black"
-                        >
-                          In-Person Campus Counter (Jyoti Bhawan, Kanti Path)
-                        </SelectItem>
+                        {enrollData.paymentMethods.map((method) => (
+                          <SelectItem
+                            key={method.id}
+                            value={method.title}
+                            className="py-2.5 px-3 text-sm rounded-none data-[highlighted]:bg-[#ffd001] data-[highlighted]:text-black"
+                          >
+                            {method.title}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </div>

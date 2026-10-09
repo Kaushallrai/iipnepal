@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { Maximize2, X, ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
-import type { PortfolioItem } from "@/lib/portfolio-data";
+import type { PortfolioItem } from "@/data/portfolio";
 import LineReveal from "@/components/animations/LineReveal";
 
 export interface PortfolioDetailGalleryProps {

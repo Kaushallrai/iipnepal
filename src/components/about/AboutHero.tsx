@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import LineReveal from "@/components/animations/LineReveal";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import { aboutHeroData } from "@/data/about/hero";
 
 export interface AboutHeroProps {
   eyebrow?: string;
@@ -13,9 +14,9 @@ export interface AboutHeroProps {
 }
 
 export default function AboutHero({
-  eyebrow = "About IIP Nepal · Kathmandu Centre",
-  heading = "Professional photography education and darkroom mentorship in Kathmandu.",
-  subheading = "Regional partner of the Indian Institute of Photography, launched with White Hat Events and directed by alumnus Additya Shrestha. We bridge fine-art photography, darkroom craftsmanship, and commercial studio practice.",
+  eyebrow = aboutHeroData.eyebrow,
+  heading = aboutHeroData.heading,
+  subheading = aboutHeroData.subheading,
 }: AboutHeroProps): React.JSX.Element {
   const headingLines = React.useMemo(() => {
     if (heading.includes("education and darkroom")) {

@@ -7,6 +7,7 @@ import type { Swiper as SwiperCore } from "swiper";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
+import { testimonialsData, type TestimonialItem } from "@/data/home/testimonials";
 
 import "swiper/css";
 
@@ -14,48 +15,9 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-export interface TestimonialItem {
-  id: string;
-  quote: string;
-  author: string;
-  role: string;
-  location: string;
-}
+export type { TestimonialItem };
 
-const TESTIMONIALS: TestimonialItem[] = [
-  {
-    id: "additya-shrestha",
-    quote:
-      "Studying at IIP gave me more than technical precision—it gave me an artistic voice. Bringing this institute home to Kathmandu has created a space where young Nepali visual storytellers master both fine art discipline and commercial industry readiness.",
-    author: "Additya Shrestha",
-    role: "Director & Alumnus, IIP Nepal",
-    location: "Kathmandu",
-  },
-  {
-    id: "prabin-maharjan",
-    quote:
-      "The mentor-led critique at IIP Nepal transformed my perspective entirely. Rather than simply capturing landscapes, I learned to compose light, patience, and narrative across the Himalayas.",
-    author: "Prabin Maharjan",
-    role: "Expedition & Documentary Photographer",
-    location: "Pokhara / Himalayas",
-  },
-  {
-    id: "sneha-tuladhar",
-    quote:
-      "The one-on-one evaluations on practical assignments pushed my boundaries far beyond camera settings. It gave me the creative confidence to exhibit my fieldwork internationally.",
-    author: "Sneha Tuladhar",
-    role: "Street & Editorial Photographer",
-    location: "Lalitpur",
-  },
-  {
-    id: "kishor-shrestha",
-    quote:
-      "Working with IIP's faculty gave me real-world studio discipline. From lighting ratios to client pitch decks, the academy bridges fine art photography with professional commercial execution.",
-    author: "Kishor Shrestha",
-    role: "Studio & Commercial Photographer",
-    location: "Bhaktapur",
-  },
-];
+const TESTIMONIALS: TestimonialItem[] = testimonialsData.testimonials;
 
 export default function TestimonialsSection(): React.JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
@@ -111,7 +73,7 @@ export default function TestimonialsSection(): React.JSX.Element {
             className="eyebrow-wrap flex items-center gap-2.5 text-xs sm:text-[13px] font-mono uppercase tracking-[0.22em] text-black font-semibold"
           >
             <span className="w-2 h-2 rounded-full bg-[#ffd001] shrink-0 inline-block shadow-[0_0_8px_rgba(255,208,1,0.6)]" />
-            <span>TESTIMONIALS // ALUMNI VOICES</span>
+            <span>{testimonialsData.eyebrow}</span>
           </div>
 
           {/* Slider Navigation Buttons (Clean Creative Giants style circles) */}

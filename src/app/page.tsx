@@ -9,19 +9,21 @@ import BrandSection from "@/components/home/BrandSection";
 import NewsSection from "@/components/home/NewsSection";
 import ContactSection from "@/components/home/ContactSection";
 import Footer from "@/components/layout/Footer";
+import { heroData } from "@/data/home/hero";
 
 export default function Home(): React.JSX.Element {
   return (
     <main className="w-full min-h-screen bg-[#fffef7] text-black overflow-x-clip selection:bg-[#ffd001] selection:text-black">
       {/* 1. Hero Reveal Section */}
       <HeroReveal
-        imageSrc="/images/hero-photographer.webp"
-        imageAlt="IIP Nepal Master Photographer Darkroom"
-        brandPrimary="IIP"
-        brandSecondary="NEPAL"
-        announcementTitle="WELCOME TO THE IIP CENTRE NEPAL"
-        announcementText="Indian Institute of Photography launches in Kathmandu with White Hat Events — led by alumnus Additya Shrestha."
-        ctaText="[ EXPLORE COURSES ]"
+        imageSrc={heroData.imageSrc}
+        imageMobileSrc={heroData.imageMobileSrc}
+        imageAlt={heroData.imageAlt}
+        brandPrimary={heroData.brandPrimary}
+        brandSecondary={heroData.brandSecondary}
+        announcementTitle={heroData.announcementTitle}
+        announcementText={heroData.announcementText}
+        ctaText={heroData.ctaText}
       />
 
       {/* 2. What We Do Section */}

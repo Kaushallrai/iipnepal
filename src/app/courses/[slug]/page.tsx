@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import React from "react";
-import { getAllCourses, getCourseBySlug, getRelatedCourses } from "@/lib/courses-data";
+import { getAllCourses, getCourseBySlug, getRelatedCourses } from "@/data/courses";
 import CourseDetailHero from "@/components/courses/detail/CourseDetailHero";
 import CourseCurriculumSection from "@/components/courses/detail/CourseCurriculumSection";
 import CourseEssentialsSection from "@/components/courses/detail/CourseEssentialsSection";

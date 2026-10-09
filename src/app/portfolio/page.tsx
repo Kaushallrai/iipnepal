@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import React from "react";
-import { getAllPortfolioItems, getPortfolioCategories } from "@/lib/portfolio-data";
+import { getAllPortfolioItems, getPortfolioCategories } from "@/data/portfolio";
 import PortfolioCatalog from "@/components/portfolio/PortfolioCatalog";
 import Footer from "@/components/layout/Footer";
 

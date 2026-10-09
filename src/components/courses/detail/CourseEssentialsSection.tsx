@@ -3,7 +3,7 @@
 import React from "react";
 import LineReveal from "@/components/animations/LineReveal";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import type { CourseItem } from "@/lib/courses-data";
+import type { CourseItem } from "@/data/courses";
 
 export interface CourseEssentialsSectionProps {
   course: CourseItem;

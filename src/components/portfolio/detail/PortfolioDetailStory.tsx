@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import type { PortfolioItem } from "@/lib/portfolio-data";
+import type { PortfolioItem } from "@/data/portfolio";
 import LineReveal from "@/components/animations/LineReveal";
 
 export interface PortfolioDetailStoryProps {

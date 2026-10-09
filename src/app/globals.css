@@ -51,11 +51,9 @@
   --color-quiet-graphite: var(--color-graphite);
   --color-faded-graphite: var(--color-ash);
 
-  /* Typography — Font Families (Switzer takes precedence, razor thin and clean) */
-  --font-switzer: 'Switzer', var(--font-switzer), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-sans: var(--font-switzer);
-  --font-fragment-mono: var(--font-fragment-mono), 'IBM Plex Mono', monospace;
-  --font-mono: var(--font-fragment-mono);
+  /* Typography — Font Families (Switzer webfont takes precedence, then Next.js Inter fallback) */
+  --font-sans: 'Switzer', var(--font-switzer), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-fragment-mono), 'IBM Plex Mono', monospace;
 
   /* Typography — Scale (desktop) */
   --text-caption: 12px;
@@ -214,8 +212,8 @@
   --color-foreground: var(--foreground);
 
   /* Typography */
-  --font-switzer: var(--font-switzer), 'Switzer', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-sans: var(--font-switzer), 'Switzer', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-switzer: 'Switzer', var(--font-switzer), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: 'Switzer', var(--font-switzer), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-poster: var(--font-poster), 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
   --font-mono: var(--font-fragment-mono), 'IBM Plex Mono', monospace;
 

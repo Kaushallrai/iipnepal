@@ -44,7 +44,7 @@ export interface PortfolioItem {
   featured?: boolean;
 }
 
-export const PORTFOLIO_ITEMS: PortfolioItem[] = [
+export const masterPortfolioList: PortfolioItem[] = [
   {
     id: "portfolio-01",
     number: "01",
@@ -472,55 +472,3 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     featured: false,
   },
 ];
-
-// Helper functions
-export function getAllPortfolioItems(): PortfolioItem[] {
-  return PORTFOLIO_ITEMS;
-}
-
-export function getPortfolioItemBySlug(slug: string): PortfolioItem | undefined {
-  return PORTFOLIO_ITEMS.find((item) => item.slug === slug);
-}
-
-export function getRelatedPortfolioItems(currentSlug: string, count = 2): PortfolioItem[] {
-  const currentItem = getPortfolioItemBySlug(currentSlug);
-  if (!currentItem) return PORTFOLIO_ITEMS.slice(0, count);
-
-  // First try to match same category, then fallback to other items
-  const sameCategory = PORTFOLIO_ITEMS.filter(
-    (item) => item.slug !== currentSlug && item.category === currentItem.category
-  );
-  const others = PORTFOLIO_ITEMS.filter(
-    (item) => item.slug !== currentSlug && item.category !== currentItem.category
-  );
-
-  return [...sameCategory, ...others].slice(0, count);
-}
-
-export function getNextPortfolioItem(currentSlug: string): PortfolioItem {
-  const currentIndex = PORTFOLIO_ITEMS.findIndex((item) => item.slug === currentSlug);
-  if (currentIndex === -1 || currentIndex === PORTFOLIO_ITEMS.length - 1) {
-    return PORTFOLIO_ITEMS[0];
-  }
-  return PORTFOLIO_ITEMS[currentIndex + 1];
-}
-
-export function getPreviousPortfolioItem(currentSlug: string): PortfolioItem {
-  const currentIndex = PORTFOLIO_ITEMS.findIndex((item) => item.slug === currentSlug);
-  if (currentIndex <= 0) {
-    return PORTFOLIO_ITEMS[PORTFOLIO_ITEMS.length - 1];
-  }
-  return PORTFOLIO_ITEMS[currentIndex - 1];
-}
-
-export function getPortfolioCategories(): string[] {
-  const categories = Array.from(new Set(PORTFOLIO_ITEMS.map((item) => item.category)));
-  return ["All", ...categories];
-}
-
-export function getFeaturedPortfolioItems(): PortfolioItem[] {
-  return PORTFOLIO_ITEMS.filter((item) => item.featured);
-}
-
-// Backward compatibility export
-export const ORIGINAL_PORTFOLIO_ITEMS = PORTFOLIO_ITEMS;

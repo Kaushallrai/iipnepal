@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import LineReveal from "@/components/animations/LineReveal";
+import { aboutCtaData } from "@/data/about/cta";
 
 export default function AboutCta(): React.JSX.Element {
   return (
@@ -16,49 +17,49 @@ export default function AboutCta(): React.JSX.Element {
         {/* Eyebrow */}
         <div className="inline-flex items-center gap-2 mb-3.5 sm:mb-4 px-3 py-1 rounded-full bg-white/10 text-[#ffd001] font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] select-none">
           <span className="w-1.5 h-1.5 rounded-full bg-[#ffd001]" />
-          <span>Kathmandu Admissions</span>
+          <span>{aboutCtaData.eyebrow}</span>
         </div>
 
         {/* Large Editorial Headline */}
         <LineReveal
           as="h2"
           className="font-sans font-light text-3xl sm:text-4xl md:text-5xl lg:text-[58px] xl:text-[64px] leading-[1.08] tracking-[-0.035em] text-white max-w-4xl mb-3 sm:mb-4"
-          lines={["Start your creative journey in Kathmandu."]}
+          lines={[aboutCtaData.heading]}
         />
 
         {/* Subtext */}
         <p className="font-sans text-sm sm:text-base md:text-lg text-[#aaaaaa] font-normal leading-relaxed max-w-2xl mb-8 sm:mb-10">
-          Admissions are open for upcoming terms at Jyoti Bhawan, Kanti Path. Meet with our counselors to review your portfolio or select a foundation module.
+          {aboutCtaData.subtext}
         </p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-5 mb-10 sm:mb-14 w-full sm:w-auto max-w-sm sm:max-w-none">
           <Link
-            href="/contact"
+            href={aboutCtaData.primaryCtaHref}
             className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#ffd001] text-black hover:bg-white active:scale-[0.98] transition-all duration-200 font-mono text-xs sm:text-[13px] uppercase tracking-[0.16em] font-semibold no-underline min-h-[48px] text-center touch-manipulation"
           >
-            <span>Submit Admissions Enquiry</span>
+            <span>{aboutCtaData.primaryCtaText}</span>
             <ArrowUpRight className="w-4 h-4" />
           </Link>
 
           <Link
-            href="/courses"
+            href={aboutCtaData.secondaryCtaHref}
             className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-transparent text-white border border-white/25 hover:border-[#ffd001] hover:text-[#ffd001] active:scale-[0.98] transition-all duration-200 font-mono text-xs sm:text-[13px] uppercase tracking-[0.16em] no-underline min-h-[48px] text-center touch-manipulation"
           >
-            <span>View All Courses</span>
+            <span>{aboutCtaData.secondaryCtaText}</span>
           </Link>
         </div>
 
         {/* Clean Architectural Contact Bar (Zero Clipart Icons) */}
         <div className="w-full max-w-3xl pt-6 sm:pt-8 border-t border-white/15 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 lg:gap-12 text-[11px] sm:text-xs font-mono tracking-[0.14em] uppercase text-[#888888]">
-          <a href="tel:+9779802364760" className="hover:text-[#ffd001] transition-colors no-underline py-1 touch-manipulation">
-            Phone: +977 9802364760
+          <a href={`tel:${aboutCtaData.phone}`} className="hover:text-[#ffd001] transition-colors no-underline py-1 touch-manipulation">
+            Phone: {aboutCtaData.phoneDisplay}
           </a>
-          <a href="mailto:info@iipnepal.com" className="hover:text-[#ffd001] transition-colors no-underline py-1 touch-manipulation">
-            Email: info@iipnepal.com
+          <a href={`mailto:${aboutCtaData.email}`} className="hover:text-[#ffd001] transition-colors no-underline py-1 touch-manipulation">
+            Email: {aboutCtaData.email}
           </a>
           <Link href="/contact" className="hover:text-[#ffd001] transition-colors no-underline py-1 touch-manipulation">
-            Location: Jyoti Bhawan, Kathmandu
+            Location: {aboutCtaData.addressShort}
           </Link>
         </div>
       </div>

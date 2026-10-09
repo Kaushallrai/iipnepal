@@ -6,14 +6,16 @@ import ContactForm from "@/components/contact/ContactForm";
 import LineReveal from "@/components/animations/LineReveal";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { ArrowUpRight } from "lucide-react";
+import { contactData } from "@/data/contact";
 
 export const metadata: Metadata = {
-  title: "Contact & Admissions | IIP Nepal — Indian Institute of Photography",
-  description:
-    "Contact IIP Nepal in Kathmandu. Reach our admissions director, schedule a darkroom visit at Jyoti Bhawan, Kanti Path, or submit a photography course enquiry.",
+  title: contactData.meta.title,
+  description: contactData.meta.description,
 };
 
 export default function ContactPage(): React.JSX.Element {
+  const { eyebrow, headingLines, channels, map, form } = contactData;
+
   return (
     <main
       className="min-h-screen bg-[#fffef7] text-black overflow-x-clip selection:bg-[#ffd001] selection:text-black"
@@ -34,15 +36,12 @@ export default function ContactPage(): React.JSX.Element {
               <div className="md:col-span-7 lg:col-span-6 flex flex-col items-start">
                 <div className="eyebrow-wrap flex items-center gap-2 font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-medium mb-3 sm:mb-4 select-none">
                   <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
-                  <span>Get in touch</span>
+                  <span>{eyebrow}</span>
                 </div>
                 <LineReveal
                   as="h1"
                   className="font-sans font-light text-3xl sm:text-4xl md:text-5xl lg:text-[58px] xl:text-[64px] leading-[1.08] tracking-[-0.035em] text-black"
-                  lines={[
-                    "Contact us directly or submit a form enquiry",
-                    "and a member of the team will be in touch.",
-                  ]}
+                  lines={headingLines}
                 />
               </div>
 
@@ -53,47 +52,47 @@ export default function ContactPage(): React.JSX.Element {
                     {/* Phone Item */}
                     <div className="scroll-item contact_info-item flex flex-col gap-1.5">
                       <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#888888]">
-                        Phone Number
+                        {channels.phone.label}
                       </span>
                       <a
-                        href="tel:+9779802364760"
+                        href={channels.phone.href}
                         className="eyebrow-wrap inline-flex items-center gap-2.5 text-base sm:text-lg lg:text-xl font-normal text-black hover:text-[#ffd001] transition-colors no-underline group"
-                        aria-label="Call +977 9802364760"
+                        aria-label={`Call ${channels.phone.value}`}
                       >
                         <span className="eyebrow-dot w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block group-hover:scale-125 transition-transform" />
-                        <span>+977 9802364760</span>
+                        <span>{channels.phone.value}</span>
                       </a>
                     </div>
 
                     {/* Email Item */}
                     <div className="scroll-item contact_info-item flex flex-col gap-1.5">
                       <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#888888]">
-                        Email Address
+                        {channels.email.label}
                       </span>
                       <a
-                        href="mailto:info@iipnepal.com"
+                        href={channels.email.href}
                         className="eyebrow-wrap inline-flex items-center gap-2.5 text-base sm:text-lg lg:text-xl font-normal text-black hover:text-[#ffd001] transition-colors no-underline group"
-                        aria-label="Email info@iipnepal.com"
+                        aria-label={`Email ${channels.email.value}`}
                       >
                         <span className="eyebrow-dot w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block group-hover:scale-125 transition-transform" />
-                        <span>info@iipnepal.com</span>
+                        <span>{channels.email.value}</span>
                       </a>
                     </div>
 
                     {/* Location Item (Spans across bottom of info block) */}
                     <div className="scroll-item contact_info-item sm:col-span-2 flex flex-col gap-1.5 pt-3 border-t border-[#e2e0d2]">
                       <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#888888]">
-                        Studio & Darkroom Location
+                        {channels.location.label}
                       </span>
                       <a
-                        href="https://maps.app.goo.gl/792XAZpWFHjY1zWt6"
+                        href={channels.location.href}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="eyebrow-wrap inline-flex items-center gap-2.5 text-sm sm:text-[15px] font-normal text-black hover:text-[#ffd001] transition-colors no-underline group"
-                        aria-label="Open Jyoti Bhawan location in Google Maps"
+                        aria-label={`Open ${channels.location.value} in Google Maps`}
                       >
                         <span className="eyebrow-dot w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block group-hover:scale-125 transition-transform" />
-                        <span>Jyoti Bhawan, Kanti Path, Kathmandu, Bagmati 44600</span>
+                        <span>{channels.location.value}</span>
                         <ArrowUpRight className="w-3.5 h-3.5 text-[#888888] group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                       </a>
                     </div>
@@ -115,9 +114,9 @@ export default function ContactPage(): React.JSX.Element {
               <div className="lg:col-span-6 w-full flex flex-col">
                 <ScrollReveal variant="fade-up" duration={0.9} start="top 85%">
                   <ContactMap
-                    locationName="IIP NEPAL · JYOTI BHAWAN"
-                    address="Jyoti Bhawan, Kanti Path, Kathmandu"
-                    mapsUrl="https://maps.app.goo.gl/792XAZpWFHjY1zWt6"
+                    locationName={map.locationName}
+                    address={map.address}
+                    mapsUrl={map.mapsUrl}
                   />
                 </ScrollReveal>
               </div>
@@ -127,10 +126,10 @@ export default function ContactPage(): React.JSX.Element {
                 <ScrollReveal variant="fade-up" duration={0.9} delay={0.1} start="top 85%">
                   <div className="mb-6 flex items-center justify-between pb-3 border-b border-[#e2e0d2]">
                     <span className="font-mono text-xs uppercase tracking-[0.16em] text-[#888888]">
-                      Admissions Enquiry
+                      {form.title}
                     </span>
                     <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#888888]">
-                      Kathmandu Studio
+                      {form.studioBadge}
                     </span>
                   </div>
                   <ContactForm />

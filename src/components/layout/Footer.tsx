@@ -2,19 +2,9 @@
 
 import React from "react";
 import Link from "next/link";
+import { siteConfig, footerData, type NavLinkItem } from "@/data/site";
 
-interface FooterLinkItem {
-  label: string;
-  href: string;
-}
-
-const FOOTER_NAV_LINKS: FooterLinkItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Courses", href: "/courses" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "About", href: "/about" },
-  { label: "Get In Touch", href: "/contact" },
-];
+const FOOTER_NAV_LINKS: NavLinkItem[] = footerData.links;
 
 export default function Footer(): React.JSX.Element {
   return (
@@ -34,20 +24,15 @@ export default function Footer(): React.JSX.Element {
           {/* Header & Bio Lockup */}
           <div className="footer_heading-wrap flex flex-col gap-4 sm:gap-5">
             <div className="logo_wrapper flex items-center gap-3.5">
-
-
               {/* Top Chrome Micro-Eyebrow in Switzer typography */}
               <div className="logo-text-footer font-normal text-[13px] sm:text-[14px] uppercase tracking-[-0.015em] text-[#fffef7] leading-tight">
-                PHOTOGRAPHY EDUCATION // KATHMANDU CENTRE · EST. 2011
+                {footerData.microEyebrow}
               </div>
             </div>
 
             {/* Institution Statement */}
             <p className="text-size-small text-color-secondary font-light text-[13.5px] sm:text-[14px] leading-[1.62] text-[#888888] tracking-[-0.015em] max-w-[42ch]">
-              Founded in partnership with White Hat Events and led by alumnus
-              Additya Shrestha, IIP Nepal unites decades of photographic
-              heritage and fine art mentorship, redefining visual storytelling in
-              the Himalayan subcontinent.
+              {footerData.institutionStatement}
             </p>
           </div>
 
@@ -56,28 +41,28 @@ export default function Footer(): React.JSX.Element {
             <div className="footer_contact-links flex flex-col items-start gap-2.5">
               {/* Creative Giants Underline Links: NO static underline; only smooth expansion on hover */}
               <a
-                href="https://maps.app.goo.gl/792XAZpWFHjY1zWt6"
+                href={siteConfig.contact.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline-link is-large group relative inline-flex items-center text-[15px] sm:text-[16px] lg:text-[17px] font-normal text-[#aaaaaa] hover:text-[#fffef7] transition-colors duration-300 no-underline"
               >
-                <span>Jyoti Bhawan, Kanti Path, Kathmandu</span>
+                <span>{siteConfig.contact.addressShort}</span>
                 <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 group-hover:origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.625,0.05,0,1)] pointer-events-none" />
               </a>
 
               <a
-                href="mailto:info@iipnepal.com"
+                href={`mailto:${siteConfig.contact.email}`}
                 className="underline-link is-large group relative inline-flex items-center text-[15px] sm:text-[16px] lg:text-[17px] font-normal text-[#aaaaaa] hover:text-[#fffef7] transition-colors duration-300 no-underline"
               >
-                <span>info@iipnepal.com</span>
+                <span>{siteConfig.contact.email}</span>
                 <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 group-hover:origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.625,0.05,0,1)] pointer-events-none" />
               </a>
 
               <a
-                href="tel:+9779802364760"
+                href={`tel:${siteConfig.contact.phone}`}
                 className="underline-link is-large group relative inline-flex items-center text-[15px] sm:text-[16px] lg:text-[17px] font-normal text-[#aaaaaa] hover:text-[#fffef7] transition-colors duration-300 no-underline"
               >
-                <span>+977 9802364760</span>
+                <span>{siteConfig.contact.phoneDisplay}</span>
                 <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 group-hover:origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.625,0.05,0,1)] pointer-events-none" />
               </a>
             </div>
@@ -259,24 +244,23 @@ export default function Footer(): React.JSX.Element {
           {/* Discovery Session Opener */}
           <div className="footer_heading-wrap flex flex-col gap-3.5 sm:gap-4 max-w-[34ch]">
             <h2 className="heading-style-h6 font-normal text-[26px] sm:text-[30px] lg:text-[34px] leading-[1.12] tracking-[-0.03em] text-[#fffef7]">
-              Ready to begin your journey behind the lens?
+              {footerData.discoveryCta.heading}
             </h2>
             <p className="text-size-small text-color-secondary font-light text-[13.5px] sm:text-[14px] leading-[1.62] text-[#888888] tracking-[-0.018em]">
-              Explore our mentor-led photography courses or schedule a
-              one-on-one portfolio review with our Kathmandu faculty.
+              {footerData.discoveryCta.description}
             </p>
           </div>
 
           {/* Copyright & Legal Attribution: NO static underline */}
           <div className="footer_legal-wrap flex flex-wrap items-center justify-between gap-3 pt-6 border-t border-[#222120] lg:border-none">
             <div className="footer-legal font-light text-[12px] sm:text-[13px] uppercase tracking-[-0.018em] text-[#888888]">
-              INSTITUTE OF PHOTOGRAPHY NEPAL © 2026
+              {siteConfig.legal.copyright}
             </div>
             <Link
-              href="/terms"
+              href={siteConfig.legal.termsUrl}
               className="underline-link group relative inline-flex items-center font-normal text-[12px] sm:text-[13px] uppercase tracking-[-0.018em] text-[#888888] hover:text-[#fffef7] transition-colors duration-300 no-underline"
             >
-              <span>Terms & Privacy</span>
+              <span>{siteConfig.legal.termsLabel}</span>
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 group-hover:origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.625,0.05,0,1)] pointer-events-none" />
             </Link>
           </div>

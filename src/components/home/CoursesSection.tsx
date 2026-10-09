@@ -9,6 +9,7 @@ import type { Swiper as SwiperCore } from "swiper";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LineReveal from "@/components/animations/LineReveal";
+import { homeCoursesData, type HomeCourseItem } from "@/data/home/courses";
 
 import "swiper/css";
 
@@ -16,92 +17,9 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-export interface CourseItem {
-  id: string;
-  number: string;
-  title: string;
-  duration: string;
-  level: string;
-  totalFee: string;
-  payableFee: string;
-  discount: string;
-  description: string;
-  coverImage: string;
-  slug: string;
-}
+export type CourseItem = HomeCourseItem;
 
-export const COURSES_LIST: CourseItem[] = [
-  {
-    id: "course-1",
-    number: "01",
-    title: "Mobile Photography Course",
-    duration: "1 Month",
-    level: "Beginner",
-    totalFee: "Rs. 5,200",
-    payableFee: "Rs. 4,160",
-    discount: "-20%",
-    description:
-      "Master professional camera controls, composition rules, natural lighting, and mobile post-processing using your smartphone.",
-    coverImage: "/images/course-mobile.webp",
-    slug: "mobile-photography-course",
-  },
-  {
-    id: "course-2",
-    number: "02",
-    title: "Basic Photography Course",
-    duration: "1 Month",
-    level: "Beginner",
-    totalFee: "Rs. 12,000",
-    payableFee: "Rs. 9,600",
-    discount: "-20%",
-    description:
-      "Start your photography journey with camera fundamentals, exposure triangle (aperture, shutter, ISO), composition, and practical field assignments.",
-    coverImage: "/images/course-basic.webp",
-    slug: "beginners-course",
-  },
-  {
-    id: "course-3",
-    number: "03",
-    title: "Foundation Photography Course",
-    duration: "3 Months",
-    level: "Foundation",
-    totalFee: "Rs. 19,500",
-    payableFee: "Rs. 15,600",
-    discount: "-20%",
-    description:
-      "A comprehensive foundation course covering every vital topic in photography with one-on-one mentor critique and systematic skill development.",
-    coverImage: "/images/course-foundation.webp",
-    slug: "foundation-course",
-  },
-  {
-    id: "course-4",
-    number: "04",
-    title: "Pro-Level Foundation Photography Course",
-    duration: "3 Months",
-    level: "Foundation / Pro",
-    totalFee: "Rs. 56,000",
-    payableFee: "Rs. 32,000",
-    discount: "-20%",
-    description:
-      "An intensive mentor-led foundation course that takes you from beginner to professional level with live critique and real commercial briefs.",
-    coverImage: "/images/course-pro-foundation.webp",
-    slug: "pro-level-foundation-photography-course",
-  },
-  {
-    id: "course-5",
-    number: "05",
-    title: "Pro-Level Advanced Photography Course",
-    duration: "6 Months",
-    level: "Advanced",
-    totalFee: "Rs. 56,000",
-    payableFee: "Rs. 44,800",
-    discount: "-20%",
-    description:
-      "An advanced mentor-led masterclass for photographers looking to master studio lighting, commercial productions, and launch an industry career.",
-    coverImage: "/images/course-pro.webp",
-    slug: "pro-level-advanced-photography-course",
-  },
-];
+export const COURSES_LIST: CourseItem[] = homeCoursesData.courses;
 
 export interface CoursesSectionProps {
   eyebrow?: string;
@@ -111,10 +29,10 @@ export interface CoursesSectionProps {
 }
 
 export default function CoursesSection({
-  eyebrow = "Curriculum & Programs",
-  heading = "Crafted for Serious Photographers.",
-  subheading = "Five intensive, mentor-led programs taking you from raw camera fundamentals to exhibition-grade commercial productions.",
-  courses = COURSES_LIST,
+  eyebrow = homeCoursesData.eyebrow,
+  heading = homeCoursesData.heading,
+  subheading = homeCoursesData.subheading,
+  courses = homeCoursesData.courses,
 }: CoursesSectionProps): React.JSX.Element {
   const sectionRef = useRef<HTMLElement>(null);
   const pinnedRef = useRef<HTMLDivElement>(null);

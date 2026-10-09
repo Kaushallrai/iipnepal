@@ -589,7 +589,7 @@ export default function HeroReveal({
   }, [hasPlayedHomeIntro, runAnimation, completeTransition]);
 
   return (
-    <div className="relative w-full h-[100svh] min-h-[100svh] sm:h-[100dvh] sm:min-h-[100dvh] overflow-x-clip bg-black">
+    <div className="relative w-full h-[100svh] min-h-[100svh] sm:h-[100dvh] sm:min-h-[100dvh] overflow-x-clip bg-[#fffef7]">
       {/* ============================================================== */}
       {/* 1. HERO BACKGROUND IMAGE (SINGLE CRISP PHOTO FOR ALL SCREENS)  */}
       {/* ============================================================== */}
@@ -769,6 +769,7 @@ export default function HeroReveal({
         className="fixed top-1/2 -translate-y-1/2 left-0 h-[10%] min-h-[56px] sm:min-h-[64px] flex items-center justify-between px-6 sm:px-8 md:px-12 lg:px-16 pl-[max(1.5rem,env(safe-area-inset-left,0px))] pr-[max(1.5rem,env(safe-area-inset-right,0px))] z-40 overflow-hidden pointer-events-none"
         style={{
           width: hasPlayedHomeIntro ? "100%" : "0%",
+          opacity: hasPlayedHomeIntro ? 0 : 1,
           display: hasPlayedHomeIntro ? "none" : "flex",
           willChange: "width, opacity",
           WebkitBackfaceVisibility: "hidden",

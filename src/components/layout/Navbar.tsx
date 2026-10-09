@@ -185,17 +185,17 @@ export default function Navbar({
                 className="group flex items-center cursor-pointer"
                 title="IIP Academy Nepal"
               >
-                {/* Initial Loading Text: "IIP NEPAL" (Visible initially on homepage loading) */}
+                {/* Initial Loading Text: "IIP NEPAL" (Visible initially on Bone White canvas) */}
                 <div
                   id="nav-initial-text"
-                  className={`items-center gap-1.5 sm:gap-2 drop-shadow-md ${
+                  className={`items-center gap-1.5 sm:gap-2 text-[#111111] ${
                     isInitialHomeState ? "flex" : "hidden"
                   }`}
                 >
-                  <span className="font-mono font-bold tracking-[0.12em] text-lg sm:text-2xl md:text-3xl text-[#fffef7]">
+                  <span className="font-mono font-bold tracking-[0.1em] text-lg sm:text-2xl md:text-3xl">
                     {brandPrimary}
                   </span>
-                  <span className="font-mono font-normal tracking-[0.2em] text-lg sm:text-2xl md:text-3xl text-[#ffd001]">
+                  <span className="font-mono font-normal tracking-[0.2em] text-lg sm:text-2xl md:text-3xl text-neutral-800">
                     {brandSecondary}
                   </span>
                 </div>

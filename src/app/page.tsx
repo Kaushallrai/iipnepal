@@ -17,7 +17,6 @@ export default function Home(): React.JSX.Element {
       {/* 1. Hero Reveal Section */}
       <HeroReveal
         imageSrc={heroData.imageSrc}
-        imageMobileSrc={heroData.imageMobileSrc}
         imageAlt={heroData.imageAlt}
         brandPrimary={heroData.brandPrimary}
         brandSecondary={heroData.brandSecondary}

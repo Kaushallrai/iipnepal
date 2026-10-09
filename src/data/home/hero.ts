@@ -1,6 +1,6 @@
 export interface HeroData {
   imageSrc: string;
-  imageMobileSrc: string;
+  imageMobileSrc?: string;
   imageAlt: string;
   brandPrimary: string;
   brandSecondary: string;
@@ -21,8 +21,7 @@ export interface HeroData {
 }
 
 export const heroData: HeroData = {
-  imageSrc: "/images/hero-photographer-desk.webp",
-  imageMobileSrc: "/images/hero-photographer-mobile.webp",
+  imageSrc: "/images/hero-photographer.webp",
   imageAlt: "IIP Nepal Master Photographer Darkroom",
   brandPrimary: "IIP",
   brandSecondary: "NEPAL",

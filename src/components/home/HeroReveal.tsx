@@ -18,7 +18,6 @@ export interface NavItem {
 
 export interface HeroRevealProps {
   imageSrc?: string;
-  imageMobileSrc?: string;
   imageAlt?: string;
   brandPrimary?: string;
   brandSecondary?: string;
@@ -32,7 +31,6 @@ export interface HeroRevealProps {
 
 export default function HeroReveal({
   imageSrc = heroData.imageSrc,
-  imageMobileSrc = heroData.imageMobileSrc || "/images/hero-photographer-mobile.webp",
   imageAlt = heroData.imageAlt,
   announcementTitle = heroData.announcementTitle,
   announcementText = heroData.announcementText,
@@ -44,6 +42,7 @@ export default function HeroReveal({
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
+  const progressBarRef = useRef<HTMLDivElement>(null);
   const loadingLabelRef = useRef<HTMLSpanElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
@@ -61,7 +60,7 @@ export default function HeroReveal({
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
   const runAnimation = useCallback(() => {
-    if (!heroRef.current || !mediaRef.current) return;
+    if (!heroRef.current || !mediaRef.current || !progressBarRef.current) return;
 
     if (timelineRef.current) {
       timelineRef.current.kill();
@@ -76,31 +75,6 @@ export default function HeroReveal({
     const ease = "customEase";
     setCounterDisplay(0);
 
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
-    const isTablet =
-      typeof window !== "undefined" &&
-      window.innerWidth >= 640 &&
-      window.innerWidth < 1024;
-
-    // Symmetrical lens aperture: expands from center outwards horizontally
-    const initialClip = isMobile
-      ? "polygon(50% 41%, 50% 41%, 50% 59%, 50% 59%)"
-      : isTablet
-        ? "polygon(50% 43%, 50% 43%, 50% 57%, 50% 57%)"
-        : "polygon(50% 44%, 50% 44%, 50% 56%, 50% 56%)";
-
-    const fullStripClip = isMobile
-      ? "polygon(0% 41%, 100% 41%, 100% 59%, 0% 59%)"
-      : isTablet
-        ? "polygon(0% 43%, 100% 43%, 100% 57%, 0% 57%)"
-        : "polygon(0% 44%, 100% 44%, 100% 56%, 0% 56%)";
-
-    const unfurlClip = "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)";
-
-    // Initial scale & rotation tuned to avoid Safari iOS texture blur and clipping artifacts
-    const initialScale = isMobile ? 0.78 : isTablet ? 0.65 : 0.52;
-    const initialRot = isMobile ? -3 : isTablet ? -6 : -8;
-
     // Target the global Navbar elements by ID
     const logoWrapper = document.getElementById("nav-logo-wrapper");
     const initialTextLogo = document.getElementById("nav-initial-text");
@@ -108,11 +82,25 @@ export default function HeroReveal({
     const navMenu = document.getElementById("nav-menu");
     const rightActions = document.getElementById("nav-right-actions");
 
+    // Initial state:
+    // Pinned image clipped to 0% width horizontal strip at center (45% to 55%)
     // Safari iOS requires explicit webkitClipPath and hardware acceleration flags
+    const initialStripClip = "polygon(0% 45%, 0% 45%, 0% 55%, 0% 55%)";
+    const phase1Clip = "polygon(0% 45%, 45% 45%, 45% 55%, 0% 55%)";
+    const fullStripClip = "polygon(0% 45%, 100% 45%, 100% 55%, 0% 55%)";
+    const unfurlClip = "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)";
+
     gsap.set(heroRef.current, {
-      clipPath: initialClip,
-      webkitClipPath: initialClip,
+      clipPath: initialStripClip,
+      webkitClipPath: initialStripClip,
       force3D: true,
+    });
+
+    // Progress bar container starts at 0% width and anchors "LOADING" and the sliding number
+    gsap.set(progressBarRef.current, {
+      width: "0%",
+      opacity: 1,
+      display: "flex",
     });
 
     if (loadingLabelRef.current) {
@@ -122,15 +110,15 @@ export default function HeroReveal({
       gsap.set(counterRef.current, { opacity: 1 });
     }
 
-    // Media container initially scaled with gentle rotation
+    // Media container initially scaled down with slight rotation
     gsap.set(mediaRef.current, {
-      scale: initialScale,
-      rotation: initialRot,
+      scale: 0.28,
+      rotation: -10,
       transformOrigin: "center center",
       force3D: true,
     });
 
-    // 1. Logo initial state: centered horizontally in the screen with precise yPercent
+    // 1. Logo initial state: centered horizontally in the screen with stable vertical center
     if (logoWrapper) {
       gsap.set(logoWrapper, {
         left: "50%",
@@ -142,7 +130,7 @@ export default function HeroReveal({
       });
     }
 
-    // Initial text visible in dark ink
+    // Initial text visible in Bone White / Signal Yellow
     if (initialTextLogo) {
       gsap.set(initialTextLogo, {
         opacity: 1,
@@ -217,18 +205,26 @@ export default function HeroReveal({
     }
 
     const counterObj = { val: 0 };
-    const sweepDuration = isMobile ? 1.05 : 1.28;
-    const revealTime = sweepDuration + (isMobile ? 0.08 : 0.12);
-    const unfurlDuration = isMobile ? 0.72 : 0.88;
 
-    // --- PHASE 1: Symmetrical Horizontal Aperture Expansion (Center out to 100% width) ---
+    // --- PHASE 1: Initial Expand (0% to 45% width) ---
+    // The strip and progress bar expand together; the counter slides along with the right edge!
     tl.to(
       heroRef.current,
       {
-        clipPath: fullStripClip,
-        webkitClipPath: fullStripClip,
-        duration: sweepDuration,
+        clipPath: phase1Clip,
+        webkitClipPath: phase1Clip,
+        duration: 1.05,
         force3D: true,
+        ease: "power2.inOut",
+      },
+      0
+    );
+
+    tl.to(
+      progressBarRef.current,
+      {
+        width: "45%",
+        duration: 1.05,
         ease: "power2.inOut",
       },
       0
@@ -237,8 +233,8 @@ export default function HeroReveal({
     tl.to(
       counterObj,
       {
-        val: 100,
-        duration: sweepDuration,
+        val: 45,
+        duration: 1.05,
         ease: "power2.inOut",
         onUpdate: () => setCounterDisplay(Math.floor(counterObj.val)),
       },
@@ -248,44 +244,96 @@ export default function HeroReveal({
     tl.to(
       mediaRef.current,
       {
-        scale: isMobile ? 0.92 : 0.85,
-        rotation: 0,
-        duration: sweepDuration,
+        scale: 0.45,
+        rotation: -6,
+        duration: 1.05,
         force3D: true,
         ease: "power2.inOut",
       },
       0
     );
 
-    // --- PHASE 2: Micro-pause & Vertical Unfurl (100% reveal) ---
+    // --- PHASE 2: Steady Stretch Across Full Screen (45% to 100%) ---
+    // The counter continues sliding across the screen to the right margin!
     tl.to(
-      [loadingLabelRef.current, counterRef.current],
+      heroRef.current,
+      {
+        clipPath: fullStripClip,
+        webkitClipPath: fullStripClip,
+        duration: 1.15,
+        force3D: true,
+        ease: "power2.out",
+      },
+      1.05
+    );
+
+    tl.to(
+      progressBarRef.current,
+      {
+        width: "100%",
+        duration: 1.15,
+        ease: "power2.out",
+      },
+      1.05
+    );
+
+    tl.to(
+      counterObj,
+      {
+        val: 100,
+        duration: 1.15,
+        ease: "power2.out",
+        onUpdate: () => setCounterDisplay(Math.floor(counterObj.val)),
+      },
+      1.05
+    );
+
+    tl.to(
+      mediaRef.current,
+      {
+        scale: 0.65,
+        rotation: -2,
+        duration: 1.15,
+        force3D: true,
+        ease: "power2.out",
+      },
+      1.05
+    );
+
+    // --- PHASE 3: Micro-pause & Vertical Unfurl (100% reveal) ---
+    const revealTime = 2.35;
+
+    // Fade out progress bar (loading label + counter)
+    tl.to(
+      progressBarRef.current,
       {
         opacity: 0,
-        duration: 0.22,
+        duration: 0.25,
         ease: "power2.out",
       },
       revealTime
     );
 
+    // Expand pinned hero container from horizontal strip to full viewport
     tl.to(
       heroRef.current,
       {
         clipPath: unfurlClip,
         webkitClipPath: unfurlClip,
-        duration: unfurlDuration,
+        duration: 0.95,
         force3D: true,
         ease,
       },
       revealTime
     );
 
+    // Concurrently scale up and un-rotate the photo
     tl.to(
       mediaRef.current,
       {
         scale: 1,
         rotation: 0,
-        duration: unfurlDuration + 0.1,
+        duration: 1.05,
         force3D: true,
         ease,
       },
@@ -302,7 +350,7 @@ export default function HeroReveal({
           yPercent: -50,
           x: 0,
           y: 0,
-          duration: isMobile ? 0.55 : 0.72,
+          duration: 0.72,
           ease,
         },
         revealTime + 0.08
@@ -399,7 +447,7 @@ export default function HeroReveal({
     }
 
     // --- PHASE 5: Hero Center Typography Reveal ---
-    const textStartTime = revealTime + (isMobile ? 0.25 : 0.32);
+    const textStartTime = revealTime + 0.32;
 
     if (heroContentRef.current) {
       tl.set(heroContentRef.current, { opacity: 1 }, textStartTime);
@@ -411,7 +459,7 @@ export default function HeroReveal({
         validLines,
         {
           y: "0%",
-          duration: isMobile ? 0.65 : 0.78,
+          duration: 0.78,
           stagger: 0.05,
           ease,
         },
@@ -476,6 +524,12 @@ export default function HeroReveal({
           rotation: 0,
         });
       }
+      if (progressBarRef.current) {
+        gsap.set(progressBarRef.current, {
+          display: "none",
+          opacity: 0,
+        });
+      }
       if (heroContentRef.current) {
         gsap.set(heroContentRef.current, { opacity: 1 });
       }
@@ -537,7 +591,7 @@ export default function HeroReveal({
   return (
     <div className="relative w-full h-[100svh] min-h-[100svh] sm:h-[100dvh] sm:min-h-[100dvh] overflow-x-clip bg-black">
       {/* ============================================================== */}
-      {/* 1. HERO BACKGROUND IMAGE (IOS SAFARI COMPOSITING OPTIMIZED)     */}
+      {/* 1. HERO BACKGROUND IMAGE (SINGLE CRISP PHOTO FOR ALL SCREENS)  */}
       {/* ============================================================== */}
       <div
         ref={heroRef}
@@ -545,13 +599,14 @@ export default function HeroReveal({
         style={{
           clipPath: hasPlayedHomeIntro
             ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
-            : "polygon(0% 42%, 0% 42%, 0% 58%, 0% 58%)",
+            : "polygon(0% 45%, 0% 45%, 0% 55%, 0% 55%)",
           WebkitClipPath: hasPlayedHomeIntro
             ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
-            : "polygon(0% 42%, 0% 42%, 0% 58%, 0% 58%)",
+            : "polygon(0% 45%, 0% 45%, 0% 55%, 0% 55%)",
           WebkitBackfaceVisibility: "hidden",
           backfaceVisibility: "hidden",
           transform: "translateZ(0)",
+          WebkitTransform: "translateZ(0)",
           willChange: "clip-path, -webkit-clip-path",
         }}
         aria-hidden="true"
@@ -564,36 +619,24 @@ export default function HeroReveal({
             WebkitBackfaceVisibility: "hidden",
             backfaceVisibility: "hidden",
             transformOrigin: "center center",
+            WebkitTransformOrigin: "center center",
             transform: hasPlayedHomeIntro
               ? "none"
-              : "scale(0.78) rotate(-4deg)",
+              : "scale(0.28) rotate(-10deg)",
           }}
         >
-          {/* Mobile & Tablet Portrait Photo (3:4 ratio, framed perfectly with zero digital blue tint and zero awkward zoom) */}
-          <div className="relative lg:hidden w-full h-full">
-            <Image
-              src={imageMobileSrc}
-              alt={imageAlt}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-[center_35%]"
-            />
-          </div>
+          {/* Exactly one high-resolution photo across all viewports, cropped naturally with crisp focal framing */}
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            priority
+            sizes="(max-width: 768px) 250vw, (max-width: 1200px) 150vw, 100vw"
+            quality={90}
+            className="object-cover object-[70%_center] sm:object-[65%_center] lg:object-center"
+          />
 
-          {/* Desktop Landscape Photo (16:9 ratio, authentic master darkroom workbench) */}
-          <div className="hidden lg:block relative w-full h-full">
-            <Image
-              src={imageSrc}
-              alt={imageAlt}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-          </div>
-
-          {/* Ambient cinematic warm-shadow overlay — preserves rich tungsten warmth while guaranteeing white typography contrast */}
+          {/* Ambient cinematic warm-shadow overlay — preserves rich tungsten warmth while guaranteeing contrast */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/75 pointer-events-none" />
           <div className="absolute inset-0 bg-black/25 pointer-events-none" />
         </div>
@@ -609,7 +652,7 @@ export default function HeroReveal({
         {/* Top spacer for breathing room below fixed header */}
         <div className="w-full h-1 sm:h-3 md:h-5 shrink-0" />
 
-        {/* Center Typography, Announcement & CTA: Exact matching responsive gutters */}
+        {/* Center Typography, Announcement & CTA */}
         <div
           ref={heroContentRef}
           className="my-auto py-2 sm:py-6 md:py-8 flex flex-col items-center justify-center text-center px-6 sm:px-8 md:px-12 lg:px-16 w-full max-w-[105rem] mx-auto pointer-events-auto"
@@ -718,36 +761,34 @@ export default function HeroReveal({
       </div>
 
       {/* ============================================================== */}
-      {/* 3. LOADING LABELS ROW (PRECISE ALIGNMENT WITH NAVBAR GUTTERS)   */}
+      {/* 3. PROGRESS BAR CONTAINER (ANCHORS "LOADING" & SLIDING NUMBER) */}
+      {/* Expands from width: 0% to 100% so the counter slides with the strip */}
       {/* ============================================================== */}
       <div
-        className="fixed top-1/2 -translate-y-1/2 left-0 right-0 w-full z-50 pointer-events-none"
+        ref={progressBarRef}
+        className="fixed top-1/2 -translate-y-1/2 left-0 h-[10%] min-h-[56px] sm:min-h-[64px] flex items-center justify-between px-6 sm:px-8 md:px-12 lg:px-16 pl-[max(1.5rem,env(safe-area-inset-left,0px))] pr-[max(1.5rem,env(safe-area-inset-right,0px))] z-40 overflow-hidden pointer-events-none"
         style={{
-          display: hasPlayedHomeIntro ? "none" : "block",
+          width: hasPlayedHomeIntro ? "100%" : "0%",
+          display: hasPlayedHomeIntro ? "none" : "flex",
+          willChange: "width, opacity",
+          WebkitBackfaceVisibility: "hidden",
+          backfaceVisibility: "hidden",
         }}
       >
-        <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pl-[max(1.5rem,env(safe-area-inset-left,0px))] pr-[max(1.5rem,env(safe-area-inset-right,0px))] flex items-center justify-between">
-          <span
-            ref={loadingLabelRef}
-            className="flex items-center gap-2.5 text-[#ffd001] font-mono text-xs md:text-sm font-semibold tracking-[0.25em] uppercase whitespace-nowrap shrink-0 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
-            style={{
-              opacity: hasPlayedHomeIntro ? 0 : 1,
-            }}
-          >
-            <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.8)] animate-pulse" />
-            {heroData.loadingLabel}
-          </span>
+        <span
+          ref={loadingLabelRef}
+          className="flex items-center gap-2.5 text-[#ffd001] font-mono text-xs md:text-sm font-semibold tracking-[0.25em] uppercase whitespace-nowrap shrink-0 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-[#ffd001] animate-pulse" />
+          {heroData.loadingLabel}
+        </span>
 
-          <span
-            ref={counterRef}
-            className="text-[#ffd001] font-mono text-xs md:text-sm font-semibold tracking-[0.25em] tabular-nums whitespace-nowrap shrink-0 text-right drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
-            style={{
-              opacity: hasPlayedHomeIntro ? 0 : 1,
-            }}
-          >
-            /{String(counterDisplay).padStart(2, "0")}
-          </span>
-        </div>
+        <span
+          ref={counterRef}
+          className="text-[#ffd001] font-mono text-xs md:text-sm font-semibold tracking-[0.25em] whitespace-nowrap shrink-0 text-right drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+        >
+          /{String(counterDisplay).padStart(2, "0")}
+        </span>
       </div>
     </div>
   );

@@ -19,11 +19,8 @@ export default function AboutHero({
   subheading = aboutHeroData.subheading,
 }: AboutHeroProps): React.JSX.Element {
   const headingLines = React.useMemo(() => {
-    if (heading.includes("education and darkroom")) {
-      return [
-        "Professional photography education",
-        "and darkroom mentorship in Kathmandu.",
-      ];
+    if (heading === aboutHeroData.heading) {
+      return aboutHeroData.headingLines;
     }
     return [heading];
   }, [heading]);
@@ -65,10 +62,13 @@ export default function AboutHero({
               </Link>
 
               <a
-                href="tel:+9779802364760"
-                className="inline-flex items-center justify-center font-mono text-xs uppercase tracking-[0.16em] text-black hover:text-[#ffd001] active:scale-[0.99] transition-all py-3 sm:py-2 px-4 rounded-full border border-black/10 sm:border-transparent hover:border-black/20 text-center touch-manipulation min-h-[44px]"
+                href={aboutHeroData.parentUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center font-mono text-xs uppercase tracking-[0.16em] text-black hover:text-[#ca8a04] active:scale-[0.99] transition-all py-3 sm:py-2 px-4 rounded-full border border-black/10 sm:border-transparent hover:border-black/20 text-center touch-manipulation min-h-[44px] gap-1.5"
               >
-                +977 9802364760
+                <span>Parent Institute (IIP)</span>
+                <ArrowUpRight className="w-3 h-3 text-[#888888]" />
               </a>
             </div>
           </div>

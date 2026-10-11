@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import LineReveal from "@/components/animations/LineReveal";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { aboutLeadershipData } from "@/data/about/leadership";
@@ -53,19 +54,14 @@ export default function AboutLeadership(): React.JSX.Element {
               lines={aboutLeadershipData.headingLines}
             />
 
-            {/* Official IIP Quote */}
-            <blockquote className="w-full my-2 sm:my-3 p-4 sm:p-5 md:p-6 bg-[#f8f7f0] border-l-2 border-[#ffd001] font-sans text-sm sm:text-base md:text-lg text-black/90 italic leading-relaxed">
-              &ldquo;{aboutLeadershipData.quote}&rdquo;
-            </blockquote>
-
-            <p className="mt-3 text-xs sm:text-sm md:text-base text-[#555555] font-normal leading-[1.65]">
-              We believe anyone willing to make the commitment deserves access to professional-level training. No prior art or design degree is required. Each student works with a personal counselor to align with the right course track and build a distinctive portfolio.
+            <p className="mt-3 text-sm sm:text-base text-[#444444] font-normal leading-relaxed">
+              {aboutLeadershipData.narrative}
             </p>
 
             <div className="w-full mt-6 pt-5 sm:pt-6 border-t border-[#e2e0d2] grid grid-cols-2 gap-3 sm:gap-4">
               <div>
                 <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-[#888888] block">
-                  Location
+                  Studio Base
                 </span>
                 <span className="text-xs sm:text-sm font-medium text-black mt-1 block">
                   Jyoti Bhawan, Kanti Path
@@ -73,12 +69,27 @@ export default function AboutLeadership(): React.JSX.Element {
               </div>
               <div>
                 <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-[#888888] block">
-                  Affiliation
+                  Academic Provenance
                 </span>
                 <span className="text-xs sm:text-sm font-medium text-black mt-1 block truncate">
-                  Indian Institute of Photography
+                  IIP Alumnus & Regional Director
                 </span>
               </div>
+            </div>
+
+            <div className="mt-6 flex items-center gap-3">
+              <Link
+                href="/courses"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-black text-white hover:bg-[#ffd001] hover:text-black font-mono text-xs uppercase tracking-wider font-semibold transition-all"
+              >
+                <span>Mentored Course Tracks</span>
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-black hover:text-[#ca8a04] py-2 px-3 transition-colors"
+              >
+                <span>Speak with Additya →</span>
+              </Link>
             </div>
           </div>
         </div>

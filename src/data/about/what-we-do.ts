@@ -29,21 +29,21 @@ export const aboutWhatWeDoData: AboutWhatWeDoData = {
   pillars: [
     {
       number: "[ 01 ]",
-      title: "Manual Optics & Camera Craft",
+      title: "Learn Camera Technique",
       description:
-        "Mastering exposure mechanics, focal optics, and visual geometry across 5 structured certificate tracks from beginner foundation to commercial production.",
+        "Master exposure mechanics, lens optics, and manual camera controls across 5 focused tracks—moving past automatic settings into deliberate, creative authority.",
     },
     {
       number: "[ 02 ]",
-      title: "Darkroom & Studio Lighting Labs",
+      title: "Practise Through Guided Assignments",
       description:
-        "Dedicated facilities at Jyoti Bhawan for analog black-and-white film processing, darkroom printing, and commercial strobe light-shaping.",
+        "Step into Kathmandu's morning courtyards, heritage plazas, and studio strobe labs to apply technical lessons through rigorous, real-world assignments.",
     },
     {
       number: "[ 03 ]",
-      title: "1-on-1 Mentorship & Portfolio Review",
+      title: "Receive 1-on-1 Mentor Feedback",
       description:
-        "Individual faculty critique on every single practical field shooting assignment submitted, curating exhibition-grade graduation portfolios.",
+        "Rigorous personal review with faculty on every shoot. Analyze proof sheets, dissect lighting decisions, and refine work toward an exhibition-grade portfolio.",
     },
   ],
 };

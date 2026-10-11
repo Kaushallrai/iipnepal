@@ -5,7 +5,7 @@ import ContactMap from "@/components/contact/ContactMap";
 import ContactForm from "@/components/contact/ContactForm";
 import LineReveal from "@/components/animations/LineReveal";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Phone, MessageSquare, Mail, MapPin } from "lucide-react";
 import { contactData } from "@/data/contact";
 
 export const metadata: Metadata = {
@@ -23,138 +23,160 @@ export default function ContactPage(): React.JSX.Element {
         fontFamily: "'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       }}
     >
-      {/* 2. CREATIVE GIANTS ARCHITECTURAL CONTACT SECTION */}
       <header className="section_contact pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-16 sm:pb-20 md:pb-24">
-        <div className="padding-global w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
-          <div className="contact_component flex flex-col gap-10 sm:gap-12 md:gap-14 lg:gap-16">
+        <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
+          
+          {/* Page Intro Header */}
+          <div className="max-w-4xl pb-8 sm:pb-12 border-b border-[#e2e0d2]">
+            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-medium mb-3 select-none">
+              <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
+              <span>{eyebrow}</span>
+            </div>
+            <LineReveal
+              as="h1"
+              className="font-sans font-light text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-[1.08] tracking-[-0.035em] text-black"
+              lines={headingLines}
+            />
+          </div>
+
+          {/* 2-Column Balanced Layout: Channels & Map Left, Form Right */}
+          <div className="pt-10 sm:pt-14 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 items-start">
             
-            {/* ============================================================== */}
-            {/* TOP ROW: Editorial Statement + Direct Contact Channels         */}
-            {/* ============================================================== */}
-            <div className="contact_content-top grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 md:gap-8 lg:gap-12 items-start">
-              {/* Left Column: Signature Creative Giants Light Display Statement */}
-              <div className="md:col-span-7 lg:col-span-6 flex flex-col items-start">
-                <div className="eyebrow-wrap flex items-center gap-2 font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-medium mb-3 sm:mb-4 select-none">
-                  <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
-                  <span>{eyebrow}</span>
+            {/* LEFT COLUMN: Direct Channels + Location & Map */}
+            <div className="lg:col-span-5 flex flex-col gap-8">
+              
+              {/* Direct Contact Channels Box */}
+              <div className="flex flex-col gap-4">
+                <span className="font-mono text-xs uppercase tracking-[0.18em] text-[#888888] pb-2 border-b border-[#e2e0d2]">
+                  Direct Admissions Channels
+                </span>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
+                  {/* Phone */}
+                  <a
+                    href={channels.phone.href}
+                    className="p-4 bg-white border border-[#e2e0d2] hover:border-black transition-colors flex items-center justify-between group no-underline"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-[#ffd001] text-black flex items-center justify-center shrink-0">
+                        <Phone className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="font-mono text-[10px] uppercase tracking-wider text-[#888888]">
+                          {channels.phone.label}
+                        </span>
+                        <span className="font-sans text-sm font-medium text-black">
+                          {channels.phone.value}
+                        </span>
+                      </div>
+                    </div>
+                    <ArrowUpRight className="w-4 h-4 text-[#888888] group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </a>
+
+                  {/* WhatsApp */}
+                  <a
+                    href={channels.whatsapp.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-4 bg-white border border-[#e2e0d2] hover:border-black transition-colors flex items-center justify-between group no-underline"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-[#25D366] text-white flex items-center justify-center shrink-0">
+                        <MessageSquare className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="font-mono text-[10px] uppercase tracking-wider text-[#888888]">
+                          {channels.whatsapp.label}
+                        </span>
+                        <span className="font-sans text-sm font-medium text-black">
+                          Chat on WhatsApp
+                        </span>
+                      </div>
+                    </div>
+                    <ArrowUpRight className="w-4 h-4 text-[#888888] group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </a>
+
+                  {/* Email */}
+                  <a
+                    href={channels.email.href}
+                    className="p-4 bg-white border border-[#e2e0d2] hover:border-black transition-colors flex items-center justify-between group no-underline sm:col-span-2 lg:col-span-1"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-black text-[#ffd001] flex items-center justify-center shrink-0">
+                        <Mail className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="font-mono text-[10px] uppercase tracking-wider text-[#888888]">
+                          {channels.email.label}
+                        </span>
+                        <span className="font-sans text-sm font-medium text-black truncate">
+                          {channels.email.value}
+                        </span>
+                      </div>
+                    </div>
+                    <ArrowUpRight className="w-4 h-4 text-[#888888] group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </a>
+
+                  {/* Location Card */}
+                  <div className="p-4 bg-white border border-[#e2e0d2] sm:col-span-2 lg:col-span-1 flex flex-col gap-2">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-[#f4f2e9] text-black flex items-center justify-center shrink-0 mt-0.5">
+                        <MapPin className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="font-mono text-[10px] uppercase tracking-wider text-[#888888]">
+                          {channels.location.label}
+                        </span>
+                        <span className="font-sans text-xs sm:text-sm text-black leading-relaxed">
+                          {channels.location.value}
+                        </span>
+                      </div>
+                    </div>
+
+                    <a
+                      href={channels.location.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-wider text-[#ca8a04] hover:text-black transition-colors pt-1 border-t border-[#f0eee3] self-start"
+                    >
+                      <span>Open in Google Maps</span>
+                      <ArrowUpRight className="w-3 h-3" />
+                    </a>
+                  </div>
                 </div>
-                <LineReveal
-                  as="h1"
-                  className="font-sans font-light text-3xl sm:text-4xl md:text-5xl lg:text-[58px] xl:text-[64px] leading-[1.08] tracking-[-0.035em] text-black"
-                  lines={headingLines}
+              </div>
+
+              {/* Map Preview */}
+              <div className="w-full">
+                <ContactMap
+                  locationName={map.locationName}
+                  address={map.address}
+                  mapsUrl={map.mapsUrl}
                 />
               </div>
 
-              {/* Right Column: Direct Channels with Glowing Yellow Eyebrow Dots */}
-              <div className="md:col-span-5 lg:col-start-8 lg:col-span-5 flex flex-col justify-end">
-                <ScrollReveal variant="stagger-children" stagger={0.08} delay={0.15}>
-                  <div className="contact_info-wrap grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-                    {/* Phone Item */}
-                    <div className="scroll-item contact_info-item flex flex-col gap-1.5">
-                      <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#888888]">
-                        {channels.phone.label}
-                      </span>
-                      <a
-                        href={channels.phone.href}
-                        className="eyebrow-wrap inline-flex items-center gap-2.5 text-base sm:text-lg lg:text-xl font-normal text-black hover:text-[#ffd001] transition-colors no-underline group"
-                        aria-label={`Call ${channels.phone.value}`}
-                      >
-                        <span className="eyebrow-dot w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block group-hover:scale-125 transition-transform" />
-                        <span>{channels.phone.value}</span>
-                      </a>
-                    </div>
-
-                    {/* WhatsApp Item */}
-                    <div className="scroll-item contact_info-item flex flex-col gap-1.5">
-                      <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#888888]">
-                        {channels.whatsapp.label}
-                      </span>
-                      <a
-                        href={channels.whatsapp.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="eyebrow-wrap inline-flex items-center gap-2.5 text-base sm:text-lg lg:text-xl font-normal text-black hover:text-[#ffd001] transition-colors no-underline group"
-                        aria-label={`WhatsApp admissions chat at ${channels.whatsapp.value}`}
-                      >
-                        <span className="eyebrow-dot w-2 h-2 rounded-full bg-[#25D366] shadow-[0_0_8px_rgba(37,211,102,0.6)] shrink-0 inline-block group-hover:scale-125 transition-transform" />
-                        <span>Chat on WhatsApp</span>
-                      </a>
-                    </div>
-
-                    {/* Email Item */}
-                    <div className="scroll-item contact_info-item flex flex-col gap-1.5 sm:col-span-2 pt-2 border-t border-[#e2e0d2]">
-                      <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#888888]">
-                        {channels.email.label}
-                      </span>
-                      <a
-                        href={channels.email.href}
-                        className="eyebrow-wrap inline-flex items-center gap-2.5 text-base sm:text-lg lg:text-xl font-normal text-black hover:text-[#ffd001] transition-colors no-underline group"
-                        aria-label={`Email ${channels.email.value}`}
-                      >
-                        <span className="eyebrow-dot w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block group-hover:scale-125 transition-transform" />
-                        <span>{channels.email.value}</span>
-                      </a>
-                    </div>
-
-                    {/* Location Item (Spans across bottom of info block) */}
-                    <div className="scroll-item contact_info-item sm:col-span-2 flex flex-col gap-1.5 pt-3 border-t border-[#e2e0d2]">
-                      <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#888888]">
-                        {channels.location.label}
-                      </span>
-                      <a
-                        href={channels.location.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="eyebrow-wrap inline-flex items-center gap-2.5 text-sm sm:text-[15px] font-normal text-black hover:text-[#ffd001] transition-colors no-underline group"
-                        aria-label={`Open ${channels.location.value} in Google Maps`}
-                      >
-                        <span className="eyebrow-dot w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block group-hover:scale-125 transition-transform" />
-                        <span>{channels.location.value}</span>
-                        <ArrowUpRight className="w-3.5 h-3.5 text-[#888888] group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                      </a>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              </div>
             </div>
 
-            {/* ============================================================== */}
-            {/* FULL-WIDTH HAIRLINE DIVIDER                                     */}
-            {/* ============================================================== */}
-            <div className="line-divide w-full h-[1px] bg-[#e2e0d2]" />
-
-            {/* ============================================================== */}
-            {/* BOTTOM ROW: Left Map (col 1-6) + Right Form (col 8-12)          */}
-            {/* ============================================================== */}
-            <div className="contact_content-bottom grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 lg:gap-12 items-start">
-              {/* LEFT: Clean Creative Giants Map Graphic in Grey-White-Black with Yellow Pin */}
-              <div className="lg:col-span-6 w-full flex flex-col">
-                <ScrollReveal variant="fade-up" duration={0.9} start="top 85%">
-                  <ContactMap
-                    locationName={map.locationName}
-                    address={map.address}
-                    mapsUrl={map.mapsUrl}
-                  />
-                </ScrollReveal>
-              </div>
-
-              {/* RIGHT: Minimalist Creative Giants Enquiry Form */}
-              <div className="lg:col-start-8 lg:col-span-5 w-full flex flex-col">
-                <ScrollReveal variant="fade-up" duration={0.9} delay={0.1} start="top 85%">
+            {/* RIGHT COLUMN: Streamlined Contact Form */}
+            <div className="lg:col-span-7">
+              <ScrollReveal variant="fade-up" duration={0.8}>
+                <div className="bg-white p-6 sm:p-8 md:p-10 border border-[#e2e0d2]">
                   <div className="mb-6 flex items-center justify-between pb-3 border-b border-[#e2e0d2]">
-                    <span className="font-mono text-xs uppercase tracking-[0.16em] text-[#888888]">
+                    <span className="font-mono text-xs uppercase tracking-[0.16em] text-black font-semibold">
                       {form.title}
                     </span>
                     <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#888888]">
                       {form.studioBadge}
                     </span>
                   </div>
+
                   <ContactForm />
-                </ScrollReveal>
-              </div>
+                </div>
+              </ScrollReveal>
             </div>
 
           </div>
+
         </div>
       </header>
 

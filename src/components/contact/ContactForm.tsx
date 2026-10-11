@@ -192,7 +192,7 @@ export default function ContactForm(): React.JSX.Element {
               htmlFor="phone-number"
               className="form_field-label font-mono text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1 sm:mb-1.5"
             >
-              Phone number
+              Phone number (optional)
             </label>
             <input
               id="phone-number"
@@ -247,13 +247,13 @@ export default function ContactForm(): React.JSX.Element {
             </Select>
           </div>
 
-          {/* Project Details */}
+          {/* Question or Message */}
           <div className="form_field-wrapper col-span-2 flex flex-col items-start">
             <label
               htmlFor="project-details"
               className="form_field-label font-mono text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1 sm:mb-1.5"
             >
-              Project or mentorship details
+              Question or message (optional)
             </label>
             <textarea
               id="project-details"
@@ -261,13 +261,13 @@ export default function ContactForm(): React.JSX.Element {
               rows={3}
               value={formData.details}
               onChange={handleChange}
-              placeholder="Tell us about your photographic goals, camera gear, or any questions..."
+              placeholder="Tell us about your photographic goals, camera gear, or any questions regarding admissions..."
               className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[14px] sm:text-[15px] md:text-[16px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none resize-none transition-colors duration-200"
             />
           </div>
 
-          {/* Action Submit Button in Creative Giants Pill Style */}
-          <div className="button-group col-span-2 pt-3 sm:pt-4 flex items-center">
+          {/* Action Submit Button & Fast Channels */}
+          <div className="button-group col-span-2 pt-3 sm:pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <button
               type="submit"
               disabled={isSubmitting}
@@ -280,7 +280,7 @@ export default function ContactForm(): React.JSX.Element {
 
               {/* Text */}
               <span className="btn__text relative z-[2] font-mono text-xs sm:text-[13px] font-bold uppercase tracking-[0.16em] leading-none transition-transform duration-300 group-hover:translate-x-1">
-                {isSubmitting ? "SENDING..." : "SEND ENQUIRY"}
+                {isSubmitting ? "SENDING..." : "SUBMIT ENQUIRY"}
               </span>
 
               {/* Angled Arrow SVG Slot */}
@@ -301,6 +301,29 @@ export default function ContactForm(): React.JSX.Element {
                 </svg>
               </span>
             </button>
+
+            {/* Direct WhatsApp Consultation Link */}
+            <a
+              href="https://wa.me/9779802364760?text=Hello%20IIP%20Nepal%2C%20I%20would%20like%20to%20inquire%20about%20photography%20courses."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[#25D366] hover:text-[#128C7E] transition-colors py-2"
+            >
+              <span className="w-2 h-2 rounded-full bg-[#25D366] shadow-[0_0_6px_rgba(37,211,102,0.6)]" />
+              <span>Direct WhatsApp Chat</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
+
+          {/* Privacy Note */}
+          <div className="col-span-2 pt-2 border-t border-[#eae8dc] text-left">
+            <p className="font-mono text-[11px] text-[#888888]">
+              We respect your privacy. Submissions are reviewed by Kathmandu faculty within 24 hours. View our{" "}
+              <a href="/terms" className="underline hover:text-black transition-colors">
+                admissions policies & terms
+              </a>
+              .
+            </p>
           </div>
         </form>
       )}

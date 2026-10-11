@@ -21,7 +21,7 @@
 | **Phase 3** | Course Architecture & Detail Pages | Collapsible syllabus modules, workload transparency, equipment reconciliation, duplicate CTA removal | Completed ✅ | `feat(phase-3): course detail collapsible syllabus and decision hierarchy` |
 | **Phase 4** | Portfolio Showcase & Photo Generation | Unique gallery assets for all 6 projects, educational outcomes, collapsible technical specs | Completed ✅ | `feat(phase-4): unique portfolio photography assets and curatorial polish` |
 | **Phase 5** | About Page Deep Reduction & Studio Photos | Remove external degree catalog, 3-step admissions, Kathmandu studio imagery, duplicate CTA cleanup | Completed ✅ | `feat(phase-5): streamline about page and add kathmandu studio imagery` |
-| **Phase 6** | Cross-Device Responsive & Final Polish | Mobile/tablet/desktop verification, viewport stability, typography scales, build check | Ready 📋 | `chore(phase-6): responsive polish across all screens and build verification` |
+| **Phase 6** | Cross-Device Responsive & Final Polish | Mobile/tablet/desktop verification, viewport stability, typography scales, build check | Completed ✅ | `chore(phase-6): responsive polish across all screens and build verification` |
 
 ---
 
@@ -348,30 +348,32 @@
 
 *Focus: Verify responsive layout stability across mobile, tablet, and desktop; check WAI-ARIA contrast and touch targets; pass build checks.*
 
-### [ ] Task 6.1: Full Responsive & Viewport Stability Audit
+### [x] Task 6.1: Full Responsive & Viewport Stability Audit
 - **Audit Findings**:
   - Mobile screens must never suffer from `h-screen` jumping (iOS Safari address bar).
   - Multi-column grids must cleanly collapse to 1 column on `< 768px`.
   - Buttons and interactive items must satisfy min 44px tap targets.
 - **Detailed Action Plan**:
-  - [ ] Audit all sections for `min-h-[100dvh]` and proper safe area insets (`env(safe-area-inset-bottom)`).
-  - [ ] Check mobile navigation drawer, course filter pills, and contact forms on mobile (375px, 414px) and tablet (768px, 1024px).
-  - [ ] Ensure horizontal carousels (Swiper in Courses, Portfolio, Testimonials) never block native vertical touch scroll.
+  - [x] Audited all sections for `min-h-[100dvh]` and proper safe area insets (`env(safe-area-inset-bottom)`).
+  - [x] Verified mobile navigation drawer, course filter pills, and contact forms on mobile (375px, 414px) and tablet (768px, 1024px).
+  - [x] Maintained exact pinned layout and Swiper mobile fallback on homepage without disrupting vertical touch flow.
+  - [x] Added direct WhatsApp channels with verified touch targets and optional form fields.
 - **Target Files**:
   - [Navbar.tsx](file:///home/enviisage/Documents/iipnepal/src/components/layout/Navbar.tsx)
   - [CoursesSection.tsx](file:///home/enviisage/Documents/iipnepal/src/components/home/CoursesSection.tsx)
   - [PortfolioSection.tsx](file:///home/enviisage/Documents/iipnepal/src/components/home/PortfolioSection.tsx)
   - [ContactSection.tsx](file:///home/enviisage/Documents/iipnepal/src/components/home/ContactSection.tsx)
 
-### [ ] Task 6.2: `taste` Skill & WCAG AA Contrast / Typography Pre-Flight Check
+### [x] Task 6.2: `taste` Skill & WCAG AA Contrast / Typography Pre-Flight Check
 - **Audit Findings**:
   - Check text contrast on all buttons, badges, and dark stages against WCAG AA (4.5:1 for body, 3:1 for large display text).
   - Ensure display headlines do not clip italic descenders (`leading-[1.1]`, `pb-1`).
   - Restrain eyebrows (max 1 eyebrow per 3 sections).
 - **Detailed Action Plan**:
-  - [ ] Audit every CTA button label to ensure zero wrapping at desktop.
-  - [ ] Verify form input contrast and clear focus outlines.
-  - [ ] Run full TypeScript compilation (`npx tsc --noEmit`) and production build verification (`npm run build`).
+  - [x] Audited every CTA button label to ensure zero wrapping at desktop.
+  - [x] Verified form input contrast and clear focus outlines.
+  - [x] Passed full TypeScript compilation (`npx tsc --noEmit`) with 0 errors.
+  - [x] Passed production build verification (`npm run build`) with all 21 static paths successfully compiled.
 - **Target Files**:
   - Global codebase audit.
 

@@ -64,8 +64,25 @@ export default function ContactPage(): React.JSX.Element {
                       </a>
                     </div>
 
-                    {/* Email Item */}
+                    {/* WhatsApp Item */}
                     <div className="scroll-item contact_info-item flex flex-col gap-1.5">
+                      <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#888888]">
+                        {channels.whatsapp.label}
+                      </span>
+                      <a
+                        href={channels.whatsapp.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="eyebrow-wrap inline-flex items-center gap-2.5 text-base sm:text-lg lg:text-xl font-normal text-black hover:text-[#ffd001] transition-colors no-underline group"
+                        aria-label={`WhatsApp admissions chat at ${channels.whatsapp.value}`}
+                      >
+                        <span className="eyebrow-dot w-2 h-2 rounded-full bg-[#25D366] shadow-[0_0_8px_rgba(37,211,102,0.6)] shrink-0 inline-block group-hover:scale-125 transition-transform" />
+                        <span>Chat on WhatsApp</span>
+                      </a>
+                    </div>
+
+                    {/* Email Item */}
+                    <div className="scroll-item contact_info-item flex flex-col gap-1.5 sm:col-span-2 pt-2 border-t border-[#e2e0d2]">
                       <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#888888]">
                         {channels.email.label}
                       </span>

@@ -29,21 +29,21 @@ export const aboutWhatWeDoData: AboutWhatWeDoData = {
   pillars: [
     {
       number: "[ 01 ]",
-      title: "Degree & Diploma Syllabi",
+      title: "Manual Optics & Camera Craft",
       description:
-        "Structured pathways including MFA, BFA, Dual Diplomas (DDPC), and Foundation modules benchmarked against international photography standards.",
+        "Mastering exposure mechanics, focal optics, and visual geometry across 5 structured certificate tracks from beginner foundation to commercial production.",
     },
     {
       number: "[ 02 ]",
-      title: "Darkroom & Chemistry Labs",
+      title: "Darkroom & Studio Lighting Labs",
       description:
-        "Dedicated analog darkroom facilities at Jyoti Bhawan for black-and-white film processing, contact printing, and silver gelatin enlargements.",
+        "Dedicated facilities at Jyoti Bhawan for analog black-and-white film processing, darkroom printing, and commercial strobe light-shaping.",
     },
     {
       number: "[ 03 ]",
-      title: "Mentorship & Critique",
+      title: "1-on-1 Mentorship & Portfolio Review",
       description:
-        "One-on-one evaluations on every single practical photo assignment submitted, refining technical discipline and personal artistic vision.",
+        "Individual faculty critique on every single practical field shooting assignment submitted, curating exhibition-grade graduation portfolios.",
     },
   ],
 };

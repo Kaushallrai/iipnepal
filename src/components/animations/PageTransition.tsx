@@ -189,7 +189,7 @@ export default function PageTransition() {
             <span>IIP NEPAL</span>
           </div>
           <span className="font-mono text-[10px] sm:text-[11px] tracking-[0.2em] text-white/50 uppercase mt-1">
-            Kathmandu • Est. 2026
+            Kathmandu • Est. 2011
           </span>
         </div>
       </div>

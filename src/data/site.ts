@@ -24,13 +24,15 @@ export const siteConfig = {
     secondary: "NEPAL",
     fullName: "Indian Institute of Photography Nepal",
     tagline: "Photography Education // Kathmandu Centre · Est. 2011",
-    establishedYear: "2026",
+    establishedYear: "2011",
     partner: "White Hat Events",
     director: "Additya Shrestha",
   },
   contact: {
     phone: "+9779802364760",
     phoneDisplay: "+977 9802364760",
+    whatsapp: "+9779802364760",
+    whatsappDisplay: "+977 9802364760",
     email: "info@iipnepal.com",
     address: "Jyoti Bhawan, Kanti Path, Kathmandu, Bagmati Province 44600",
     addressShort: "Jyoti Bhawan, Kanti Path, Kathmandu",
@@ -61,7 +63,11 @@ export const siteConfig = {
   legal: {
     copyright: "INSTITUTE OF PHOTOGRAPHY NEPAL © 2026",
     termsUrl: "/terms",
-    termsLabel: "Terms & Privacy",
+    termsLabel: "Terms of Admission",
+    privacyUrl: "/privacy",
+    privacyLabel: "Privacy Policy",
+    faqUrl: "/faq",
+    faqLabel: "FAQ",
   },
 };
 
@@ -70,6 +76,7 @@ export const navigationData = {
     { label: "Courses", href: "/courses" },
     { label: "Portfolio", href: "/portfolio" },
     { label: "About Us", href: "/about" },
+    { label: "FAQ", href: "/faq" },
     { label: "Contact", href: "/contact" },
   ] as NavLinkItem[],
   enrollCta: {
@@ -91,6 +98,7 @@ export const footerData = {
     { label: "Courses", href: "/courses" },
     { label: "Portfolio", href: "/portfolio" },
     { label: "About", href: "/about" },
+    { label: "FAQ", href: "/faq" },
     { label: "Get In Touch", href: "/contact" },
   ] as NavLinkItem[],
   discoveryCta: {

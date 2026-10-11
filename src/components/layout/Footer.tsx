@@ -252,17 +252,33 @@ export default function Footer(): React.JSX.Element {
           </div>
 
           {/* Copyright & Legal Attribution: NO static underline */}
-          <div className="footer_legal-wrap flex flex-wrap items-center justify-between gap-3 pt-6 border-t border-[#222120] lg:border-none">
+          <div className="footer_legal-wrap flex flex-wrap items-center justify-between gap-y-3 gap-x-6 pt-6 border-t border-[#222120] lg:border-none">
             <div className="footer-legal font-light text-[12px] sm:text-[13px] uppercase tracking-[-0.018em] text-[#888888]">
               {siteConfig.legal.copyright}
             </div>
-            <Link
-              href={siteConfig.legal.termsUrl}
-              className="underline-link group relative inline-flex items-center font-normal text-[12px] sm:text-[13px] uppercase tracking-[-0.018em] text-[#888888] hover:text-[#fffef7] transition-colors duration-300 no-underline"
-            >
-              <span>{siteConfig.legal.termsLabel}</span>
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 group-hover:origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.625,0.05,0,1)] pointer-events-none" />
-            </Link>
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+              <Link
+                href={siteConfig.legal.termsUrl}
+                className="underline-link group relative inline-flex items-center font-normal text-[12px] sm:text-[13px] uppercase tracking-[-0.018em] text-[#888888] hover:text-[#fffef7] transition-colors duration-300 no-underline"
+              >
+                <span>{siteConfig.legal.termsLabel}</span>
+                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 group-hover:origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.625,0.05,0,1)] pointer-events-none" />
+              </Link>
+              <Link
+                href={siteConfig.legal.privacyUrl}
+                className="underline-link group relative inline-flex items-center font-normal text-[12px] sm:text-[13px] uppercase tracking-[-0.018em] text-[#888888] hover:text-[#fffef7] transition-colors duration-300 no-underline"
+              >
+                <span>{siteConfig.legal.privacyLabel}</span>
+                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 group-hover:origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.625,0.05,0,1)] pointer-events-none" />
+              </Link>
+              <Link
+                href={siteConfig.legal.faqUrl}
+                className="underline-link group relative inline-flex items-center font-normal text-[12px] sm:text-[13px] uppercase tracking-[-0.018em] text-[#888888] hover:text-[#fffef7] transition-colors duration-300 no-underline"
+              >
+                <span>{siteConfig.legal.faqLabel}</span>
+                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 group-hover:origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.625,0.05,0,1)] pointer-events-none" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

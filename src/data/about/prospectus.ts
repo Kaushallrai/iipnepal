@@ -46,13 +46,13 @@ export const aboutProspectusData: AboutProspectusData = {
     },
     {
       id: "iip-degree-affiliation",
-      code: "DEGREE AF.",
-      title: "IIP India Higher Education Prospectus",
-      level: "Academic Affiliation (IIP Academy)",
+      code: "INTERNATIONAL AF.",
+      title: "Parent Institute Academic Prospectus",
+      level: "International Degree Programs (IIP India)",
       description:
-        "Official institutional partnership with Indian Institute of Photography. Multi-year undergraduate and postgraduate degree curriculum guide.",
+        "Official curriculum guide for multi-year BFA and MFA university degree programs conducted through parent institute Indian Institute of Photography. Local Nepal students take practical certificate tracks at our Kathmandu centre.",
       pdfUrl: "https://www.iipacademy.edu.in/images/IIPCCA%20PROSPECTUS.pdf",
-      actionLabel: "Download IIP Prospectus",
+      actionLabel: "Parent Institute Prospectus",
     },
   ],
 };

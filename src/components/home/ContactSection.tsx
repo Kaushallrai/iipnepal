@@ -424,9 +424,13 @@ export default function ContactSection(): React.JSX.Element {
                 {/* Privacy Note */}
                 <div className="col-span-2 pt-2 border-t border-[#eae8dc] text-left">
                   <p className="font-mono text-[11px] text-[#888888]">
-                    We respect your privacy. Submissions are reviewed by Kathmandu faculty within 24 hours. View our{" "}
+                    We respect your privacy. Inquiries are reviewed directly by admissions counselors. Read our{" "}
                     <Link href="/terms" className="underline hover:text-black transition-colors">
-                      admissions policies & terms
+                      terms of admission
+                    </Link>{" "}
+                    and{" "}
+                    <Link href="/privacy" className="underline hover:text-black transition-colors">
+                      privacy policy
                     </Link>
                     .
                   </p>

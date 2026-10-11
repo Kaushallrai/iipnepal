@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import type { PortfolioItem } from "@/data/portfolio";
 import LineReveal from "@/components/animations/LineReveal";
 
@@ -59,6 +60,51 @@ export default function PortfolioDetailStory({ item }: PortfolioDetailStoryProps
               </p>
             </div>
 
+            {/* What This Project Demonstrates (Educational Outcome) */}
+            {item.outcomes && (
+              <div className="p-6 sm:p-8 bg-[#fffef7] border border-[#e2e0d2] border-l-4 border-l-[#ffd001] flex flex-col gap-4 shadow-sm">
+                <div className="flex items-center justify-between pb-2.5 border-b border-[#eae8dc]">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_6px_rgba(255,208,1,0.6)]" />
+                    <span className="font-mono text-xs uppercase tracking-[0.16em] text-black font-semibold">
+                      What This Project Demonstrates
+                    </span>
+                  </div>
+                  <span className="font-mono text-[11px] text-[#666666] uppercase tracking-wider">
+                    Educational Outcomes
+                  </span>
+                </div>
+
+                {/* Skills Badges */}
+                <div className="flex flex-wrap gap-2">
+                  {item.outcomes.skills.map((skill, i) => (
+                    <span
+                      key={i}
+                      className="inline-flex items-center font-mono text-[11px] uppercase tracking-wider px-2.5 py-1 bg-[#f4f2e9] text-black border border-[#e2e0d2]"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Takeaway Narrative */}
+                <p className="font-sans font-light text-sm sm:text-[15px] text-[#333333] leading-relaxed">
+                  {item.outcomes.takeaway}
+                </p>
+
+                {/* Link to Course */}
+                <div className="pt-2 flex items-center justify-between font-mono text-xs border-t border-[#eae8dc]">
+                  <span className="text-[#888888]">Mastered through {item.course.split("(")[0].trim()}</span>
+                  <Link
+                    href={`/courses/${item.relatedCourseSlug}`}
+                    className="text-black font-medium hover:text-[#ffd001] transition-colors underline decoration-black/30 underline-offset-4"
+                  >
+                    View Syllabus →
+                  </Link>
+                </div>
+              </div>
+            )}
+
             {/* Technical Specifications Grid (Clean & Scannable) */}
             <div className="flex flex-col gap-4">
               <div className="pb-2.5 border-b border-[#e2e0d2] flex items-center justify-between">
@@ -89,6 +135,29 @@ export default function PortfolioDetailStory({ item }: PortfolioDetailStoryProps
                 </div>
               </dl>
             </div>
+
+            {/* Field Notes Accordion Disclosure */}
+            {item.fieldNotes && item.fieldNotes.length > 0 && (
+              <details className="group border border-[#e2e0d2] bg-[#fdfcf5] p-4 sm:p-5 transition-colors">
+                <summary className="flex items-center justify-between cursor-pointer list-none select-none font-mono text-xs uppercase tracking-wider text-[#666666] group-open:text-black">
+                  <span className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#888888] group-open:bg-[#ffd001]" />
+                    Fieldwork Methodology & Field Notes ({item.fieldNotes.length})
+                  </span>
+                  <span className="text-[#888888] group-open:rotate-180 transition-transform duration-200">
+                    ↓
+                  </span>
+                </summary>
+                <ul className="mt-4 pt-3 border-t border-[#eae8dc] flex flex-col gap-2.5 font-mono text-xs text-[#555555]">
+                  {item.fieldNotes.map((note, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5 leading-relaxed">
+                      <span className="text-black font-semibold">[{String(idx + 1).padStart(2, "0")}]</span>
+                      <span>{note}</span>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            )}
 
           </div>
 

@@ -13,6 +13,11 @@ export interface PortfolioSpecs {
   dimensions: string;
 }
 
+export interface PortfolioOutcome {
+  skills: string[];
+  takeaway: string;
+}
+
 export interface PortfolioItem {
   id: string;
   number: string;
@@ -37,6 +42,7 @@ export interface PortfolioItem {
   description: string; // compatibility alias for summary
   statement: string;
   curatorNotes: string;
+  outcomes: PortfolioOutcome;
   specs: PortfolioSpecs;
   fieldNotes: string[];
   gallery: PortfolioGalleryImage[];
@@ -62,8 +68,8 @@ export const masterPortfolioList: PortfolioItem[] = [
     courseSlug: "pro-level-foundation-photography-course",
     year: "2025",
     location: "Asan Chowk, Old Kathmandu",
-    coverImage: "/images/portfolio-street.webp",
-    image: "/images/portfolio-street.webp",
+    coverImage: "/images/portfolio/asan-market-dawn.jpg",
+    image: "/images/portfolio/asan-market-dawn.jpg",
     aspectRatio: "landscape",
     medium: "35mm Prime · Natural Sunlight · Tri-X 400 Tone",
     summary:
@@ -74,6 +80,10 @@ export const masterPortfolioList: PortfolioItem[] = [
       "In the predawn chill of Asan Chowk, commerce begins long before words are spoken. Between heaps of orange marigolds, hand-beaten brass measuring bowls, and steaming glasses of spiced chiya, there is an unspoken rhythm that has endured for centuries. This body of work was shot exclusively between 04:30 AM and 07:00 AM over an eight-week fieldwork residency, observing that fleeting sliver of time when sacred geometry meets raw street survival.",
     curatorNotes:
       "Suman's project demonstrates an extraordinary command of available ambient light and proximity. Working at arm's length with a 35mm prime lens without intruding on the merchants requires patience, cultural empathy, and sharp reflex timing. The deep contrast tonalities honor classical Magnum documentary traditions while rooted unapologetically in Kathmandu.",
+    outcomes: {
+      skills: ["Predawn Low-Light Metering", "Candid Street Rapport", "Highlight & Shadow Balance"],
+      takeaway: "Mastery of manual exposure in unpredictable morning light without flash, relying on scene patience and prime optics.",
+    },
     specs: {
       camera: "Leica M10-R Monochrome",
       lens: "Summicron-M 35mm f/2 ASPH",
@@ -89,7 +99,7 @@ export const masterPortfolioList: PortfolioItem[] = [
     ],
     gallery: [
       {
-        url: "/images/portfolio-street.webp",
+        url: "/images/portfolio/asan-market-dawn.jpg",
         caption: "Master Frame: Dawn commerce and floral transactions at Asan Chowk crossroads.",
         aspectRatio: "landscape",
         shotLocation: "Asan Chowk Central Junction, 05:40 AM",
@@ -133,8 +143,8 @@ export const masterPortfolioList: PortfolioItem[] = [
     courseSlug: "pro-level-advanced-photography-course",
     year: "2025",
     location: "Annapurna Sanctuary, 4,130m",
-    coverImage: "/images/portfolio-himalayas.webp",
-    image: "/images/portfolio-himalayas.webp",
+    coverImage: "/images/portfolio/himalaya-alpine-ridge.jpg",
+    image: "/images/portfolio/himalaya-alpine-ridge.jpg",
     aspectRatio: "wide",
     medium: "Medium Format · Ansel Adams Zone System V · B+W Optical Filter",
     summary:
@@ -145,6 +155,10 @@ export const masterPortfolioList: PortfolioItem[] = [
       "At 4,000 meters above sea level, sound travels differently. When the wind drops, the only perceptible vibration is the creak of moraine ice and rockfall kilometers away. I did not want to make postcard vistas of tourist peaks; I wanted to render the austere, monolithic silence of stone, cloud, and ice where human scale is reduced to a whisper.",
     curatorNotes:
       "An exemplary application of the Zone System in extreme Himalayan contrasts. Prashant maintained delicate shadow detail in slate scree while preventing the sunlit snowfields from blowing out into pure white. The print carries a physical, tactile weight.",
+    outcomes: {
+      skills: ["High-Altitude Snow Metering", "Deep Tonal Separation", "Atmospheric Scale & Framing"],
+      takeaway: "Handling high-contrast glacial scenes with accurate exposure compensation, capturing monumental Himalayan geography with exceptional dynamic range.",
+    },
     specs: {
       camera: "Fujifilm GFX 100S Medium Format",
       lens: "GF 45-100mm f/4 R LM OIS WR",
@@ -160,7 +174,7 @@ export const masterPortfolioList: PortfolioItem[] = [
     ],
     gallery: [
       {
-        url: "/images/portfolio-himalayas.webp",
+        url: "/images/portfolio/himalaya-alpine-ridge.jpg",
         caption: "Amphitheater Ridge: Mist drifting through alpine valley floor at dawn.",
         aspectRatio: "wide",
         shotLocation: "Annapurna Base Camp, 4,130m, 05:50 AM",
@@ -204,8 +218,8 @@ export const masterPortfolioList: PortfolioItem[] = [
     courseSlug: "pro-level-advanced-photography-course",
     year: "2026",
     location: "Patan Durbar Courtyard, Lalitpur",
-    coverImage: "/images/portfolio-artisan.webp",
-    image: "/images/portfolio-artisan.webp",
+    coverImage: "/images/portfolio/patan-copper-artisan.jpg",
+    image: "/images/portfolio/patan-copper-artisan.jpg",
     aspectRatio: "portrait",
     medium: "85mm Prime · Diffused Courtyard Daylight · Silver Tones",
     summary:
@@ -216,6 +230,10 @@ export const masterPortfolioList: PortfolioItem[] = [
       "The rhythmic sound of steel hammers tapping warm copper sheets has echoed through Patan's courtyards since the Licchavi kings. The master coppersmiths shape sacred iconography without laser measurements or blueprints, guided entirely by iconography passed down through ten generations. My camera entered their workshops not to objectify, but to honor the quiet dignity of their craft.",
     curatorNotes:
       "Aayushree's environmental portraits breathe with dignity. Notice how the metallic sheen of polished copper reflects soft skylight into the eyes and calloused hands of the master artisan. The rendering rejects exoticism in favor of architectural and human truth.",
+    outcomes: {
+      skills: ["Specular Highlight Management", "Environmental Craft Portraiture", "Documentary Narrative Sequencing"],
+      takeaway: "Balancing directional courtyard daylight against reflective copper metallurgy, preserving fine artisanal details and cultural nuance.",
+    },
     specs: {
       camera: "Sony α7R V Full-Frame",
       lens: "FE 85mm f/1.4 GM",
@@ -231,7 +249,7 @@ export const masterPortfolioList: PortfolioItem[] = [
     ],
     gallery: [
       {
-        url: "/images/portfolio-artisan.webp",
+        url: "/images/portfolio/patan-copper-artisan.jpg",
         caption: "Master artisan tooling repoussé copper details with tempered steel chisels.",
         aspectRatio: "portrait",
         shotLocation: "Okubahal Workshop, Patan, 11:30 AM",
@@ -275,8 +293,8 @@ export const masterPortfolioList: PortfolioItem[] = [
     courseSlug: "foundation-course",
     year: "2026",
     location: "Taumadhi Square, Bhaktapur",
-    coverImage: "/images/portfolio-devotee.webp",
-    image: "/images/portfolio-devotee.webp",
+    coverImage: "/images/portfolio/bhaktapur-temple-dawn.jpg",
+    image: "/images/portfolio/bhaktapur-temple-dawn.jpg",
     aspectRatio: "portrait",
     medium: "50mm Prime · Morning Golden Hour · High-Contrast Monochrome",
     summary:
@@ -287,6 +305,10 @@ export const masterPortfolioList: PortfolioItem[] = [
       "At sunrise, Taumadhi Square transforms into an open sanctuary. Devotees circumambulate the ancient brick plinth, butter lamps flicker against red clay, and the colossal stairway of Nyatapola casts forty-meter shadows across the stones. I wanted to capture the quiet, enduring faith that grounds daily life in the ancient Malla city.",
     curatorNotes:
       "Anil uses the massive verticality of the brick pagoda to frame intimate human gestures. The composition guides the eye effortlessly from the folded hands of the devotee to the soaring rooflines without losing human warmth.",
+    outcomes: {
+      skills: ["Architectural Layering", "Golden-Hour Incense Diffusion", "Subject-to-Background Proportions"],
+      takeaway: "Anchoring intimate devotional rituals within monumental Newari pagoda architecture, mastering natural framing and environmental depth.",
+    },
     specs: {
       camera: "Nikon Z7 II",
       lens: "NIKKOR Z 50mm f/1.8 S",
@@ -302,7 +324,7 @@ export const masterPortfolioList: PortfolioItem[] = [
     ],
     gallery: [
       {
-        url: "/images/portfolio-devotee.webp",
+        url: "/images/portfolio/bhaktapur-temple-dawn.jpg",
         caption: "Devotee in contemplation beside the Guardian Statues of Nyatapola.",
         aspectRatio: "portrait",
         shotLocation: "Taumadhi Square Plinth, 06:10 AM",
@@ -346,8 +368,8 @@ export const masterPortfolioList: PortfolioItem[] = [
     courseSlug: "pro-level-advanced-photography-course",
     year: "2026",
     location: "IIP Darkroom, Kanti Path, Kathmandu",
-    coverImage: "/images/flagship-mentor-darkroom.webp",
-    image: "/images/flagship-mentor-darkroom.webp",
+    coverImage: "/images/portfolio/darkroom-safelight-print.jpg",
+    image: "/images/portfolio/darkroom-safelight-print.jpg",
     aspectRatio: "wide",
     medium: "Silver Halide Enlarging · Fiber-Base Baryta · Red Safelight",
     summary:
@@ -358,6 +380,10 @@ export const masterPortfolioList: PortfolioItem[] = [
       "In a world inundated with millions of disposable digital images every second, the wet darkroom demands deliberate slowness, patience, and physical craft. There is an irreplaceable sensory revelation when an exposed sheet of silver paper is submerged into a tray of developer and the image appears under red safelight. This archive honors darkroom craftsmanship as both rigorous science and tactile poetry.",
     curatorNotes:
       "A manifesto in chemical form. These prints demonstrate tonal control, deep velvety d-max blacks, and microscopic highlight gradations that can only be achieved through meticulous analogue craft and chemical mastery.",
+    outcomes: {
+      skills: ["Analog Negative Density Evaluation", "Silver Halide Fiber Printing", "Archival Tonal Preservation"],
+      takeaway: "Translating classical wet-darkroom chemistry principles into rigorous exposure discipline, contrast management, and physical fine-art prints.",
+    },
     specs: {
       camera: "Leica M6 & De Vere 504 Enlarger",
       lens: "Schneider-Kreuznach Componon-S 80mm f/4",
@@ -373,7 +399,7 @@ export const masterPortfolioList: PortfolioItem[] = [
     ],
     gallery: [
       {
-        url: "/images/flagship-mentor-darkroom.webp",
+        url: "/images/portfolio/darkroom-safelight-print.jpg",
         caption: "Master enlarger head and chemical development tray under safelight glow.",
         aspectRatio: "wide",
         shotLocation: "IIP Main Darkroom Suite, Kanti Path",
@@ -417,8 +443,8 @@ export const masterPortfolioList: PortfolioItem[] = [
     courseSlug: "mobile-photography-course",
     year: "2026",
     location: "New Road & Sundhara, Kathmandu",
-    coverImage: "/images/course-mobile.webp",
-    image: "/images/course-mobile.webp",
+    coverImage: "/images/portfolio/kathmandu-monsoon-rain.jpg",
+    image: "/images/portfolio/kathmandu-monsoon-rain.jpg",
     aspectRatio: "landscape",
     medium: "Smartphone Computational RAW · Pro Mode · Ambient Reflections",
     summary:
@@ -429,6 +455,10 @@ export const masterPortfolioList: PortfolioItem[] = [
       "You don't need ten kilograms of heavy camera bodies to tell a profound story. The best camera is truly the one you have with you when a sudden monsoon cloudburst turns New Road into a shimmering mirror of red brake lights and colorful umbrellas. Mobile photography gave me the invisibility to step directly into the downpour without intimidating anyone.",
     curatorNotes:
       "Bikash demonstrates that compositional geometry, timing, and intent transcend equipment costs. The color balance, reflections, and puddle symmetry rival traditional large-sensor street projects.",
+    outcomes: {
+      skills: ["Smartphone Computational RAW Control", "Wet Surface Reflection Geometry", "Kinetic Shutter Precision"],
+      takeaway: "Harnessing mobile sensors and manual RAW controls to capture fast urban monsoon scenes, proving composition and lighting matter far more than gear weight.",
+    },
     specs: {
       camera: "Apple iPhone 15 Pro",
       lens: "24mm f/1.78 Main Camera Lens",
@@ -444,7 +474,7 @@ export const masterPortfolioList: PortfolioItem[] = [
     ],
     gallery: [
       {
-        url: "/images/course-mobile.webp",
+        url: "/images/portfolio/kathmandu-monsoon-rain.jpg",
         caption: "Commuters braving heavy afternoon monsoon rain near New Road Gate.",
         aspectRatio: "landscape",
         shotLocation: "New Road Gate, Kathmandu, 04:30 PM",

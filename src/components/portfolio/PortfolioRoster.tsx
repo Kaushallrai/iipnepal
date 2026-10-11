@@ -114,6 +114,23 @@ export default function PortfolioRoster({ items }: PortfolioRosterProps): React.
                       {item.summary}
                     </p>
 
+                    {/* Key Skills Demonstrated */}
+                    {item.outcomes && (
+                      <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                        <span className="font-mono text-[10px] sm:text-[11px] text-[#888888] uppercase tracking-wider mr-1">
+                          Skills Demonstrated:
+                        </span>
+                        {item.outcomes.skills.map((skill, sIdx) => (
+                          <span
+                            key={sIdx}
+                            className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 bg-[#f4f2e9] text-[#333333] border border-[#e2e0d2]"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
                     {/* Bottom Factsheet Strip & Relocated Understated Action Link */}
                     <div className="pt-6 sm:pt-8 lg:pt-10 border-t border-[#e2e0d2] flex flex-col sm:flex-row sm:items-center justify-between gap-5 sm:gap-6">
                       

@@ -82,12 +82,10 @@ export default function CourseEssentialsSection({
 
               <div className="pt-6 border-t border-[#e2e0d2]">
                 <span className="font-mono text-xs uppercase tracking-wider text-[#888888] block mb-2.5">
-                  Instruction Model:
+                  Instruction Model & Workload:
                 </span>
                 <p className="font-sans font-normal text-xs sm:text-sm md:text-[15px] text-[#555555] leading-relaxed">
-                  Self-paced reading with 5 mandatory practical photo submissions per chapter.
-                  Your mentor provides technical grading and aesthetic recommendations before
-                  you advance to the next module.
+                  Guided chapter modules paired with structured shooting briefs. For each project, you submit your curated photographs to the student portal for one-on-one mentor grading and constructive critique before advancing to the next stage.
                 </p>
               </div>
             </div>

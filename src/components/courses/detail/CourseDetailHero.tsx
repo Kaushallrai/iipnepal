@@ -66,7 +66,7 @@ export default function CourseDetailHero({ course }: CourseDetailHeroProps): Rea
               />
 
               <div className="absolute top-3 left-3 bg-black/85 text-white font-mono text-[9px] uppercase tracking-widest px-2.5 py-1">
-                IIP ARCHIVE // 35MM
+                IIP NEPAL // {course.deliveryMode.toUpperCase()}
               </div>
 
               {course.discount && (
@@ -88,20 +88,20 @@ export default function CourseDetailHero({ course }: CourseDetailHeroProps): Rea
 
               <dl className="grid grid-cols-2 gap-y-5 sm:gap-y-6 gap-x-6 sm:gap-x-8 text-xs sm:text-[13px] font-mono">
                 <div>
+                  <dt className="text-[#888888] uppercase tracking-wider mb-1 text-[11px]">Delivery Mode</dt>
+                  <dd className="font-medium text-[#059669] text-sm sm:text-base">{course.deliveryMode}</dd>
+                </div>
+                <div>
                   <dt className="text-[#888888] uppercase tracking-wider mb-1 text-[11px]">Duration</dt>
                   <dd className="font-medium text-black text-sm sm:text-base">{course.duration}</dd>
                 </div>
                 <div>
-                  <dt className="text-[#888888] uppercase tracking-wider mb-1 text-[11px]">Instruction</dt>
-                  <dd className="font-medium text-black text-sm sm:text-base">1-on-1 Mentor</dd>
+                  <dt className="text-[#888888] uppercase tracking-wider mb-1 text-[11px]">Equipment</dt>
+                  <dd className="font-medium text-black text-sm sm:text-base">{course.equipment}</dd>
                 </div>
                 <div>
                   <dt className="text-[#888888] uppercase tracking-wider mb-1 text-[11px]">Intake</dt>
                   <dd className="font-medium text-black text-sm sm:text-base">{course.intake}</dd>
-                </div>
-                <div>
-                  <dt className="text-[#888888] uppercase tracking-wider mb-1 text-[11px]">Credential</dt>
-                  <dd className="font-medium text-black text-sm sm:text-base">IIP Certificate</dd>
                 </div>
               </dl>
 

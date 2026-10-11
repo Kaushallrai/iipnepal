@@ -7,7 +7,6 @@ import CourseCurriculumSection from "@/components/courses/detail/CourseCurriculu
 import CourseEssentialsSection from "@/components/courses/detail/CourseEssentialsSection";
 import CourseTuitionFaqSection from "@/components/courses/detail/CourseTuitionFaqSection";
 import CourseRelatedSection from "@/components/courses/detail/CourseRelatedSection";
-import CourseEnrollCta from "@/components/courses/detail/CourseEnrollCta";
 import Footer from "@/components/layout/Footer";
 
 interface PageProps {
@@ -86,10 +85,7 @@ export default async function CourseDetailPage({ params }: PageProps): Promise<R
       {/* 5. COMPACT ALTERNATIVE TRACKS */}
       <CourseRelatedSection relatedCourses={relatedCourses} />
 
-      {/* 6. FULL-SPACE ADMISSIONS CTA */}
-      <CourseEnrollCta course={course} />
-
-      {/* 7. ARCHITECTURAL FOOTER */}
+      {/* 6. ARCHITECTURAL FOOTER */}
       <Footer />
     </main>
   );

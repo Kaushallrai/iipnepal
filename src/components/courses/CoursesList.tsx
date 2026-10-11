@@ -50,9 +50,9 @@ export default function CoursesList({ courses }: CoursesListProps): React.JSX.El
                       className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                     />
 
-                    {/* Minimal Archival Stamp */}
+                    {/* Informative Delivery Mode Badge */}
                     <div className="absolute top-2.5 left-2.5 bg-black/85 text-white font-mono text-[9px] uppercase tracking-widest px-2.5 py-1">
-                      35MM ARCHIVE
+                      {course.deliveryMode}
                     </div>
 
                     {course.discount && (
@@ -64,12 +64,14 @@ export default function CoursesList({ courses }: CoursesListProps): React.JSX.El
                 </div>
 
                 {/* 2. Middle: Metadata, Title & Synopsis */}
-                <div className="md:col-span-7 lg:col-span-5 flex flex-col gap-4 sm:gap-5 lg:gap-6">
+                <div className="md:col-span-7 lg:col-span-5 flex flex-col gap-3.5 sm:gap-4 lg:gap-5">
                   {/* Meta Specs */}
-                  <div className="flex flex-wrap items-center gap-3 font-mono text-[11px] sm:text-xs uppercase tracking-wider text-[#777777]">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 font-mono text-[11px] sm:text-xs uppercase tracking-wider text-[#777777]">
                     <span className="text-black font-semibold">[{course.number}]</span>
                     <span>/</span>
-                    <span className="text-black font-medium">{course.level} Level</span>
+                    <span className="text-black font-medium">{course.level}</span>
+                    <span>•</span>
+                    <span className="text-[#059669] font-medium">{course.deliveryMode}</span>
                     <span>•</span>
                     <span>{course.duration}</span>
                   </div>
@@ -92,6 +94,18 @@ export default function CoursesList({ courses }: CoursesListProps): React.JSX.El
                   <p className="font-sans font-normal text-xs sm:text-sm md:text-[15px] lg:text-[16px] text-[#555555] leading-relaxed line-clamp-2 sm:line-clamp-3 max-w-2xl">
                     {course.description}
                   </p>
+
+                  {/* Key Specs for Rapid Comparison */}
+                  <div className="flex flex-col gap-1.5 pt-2 border-t border-[#f0eee3] font-mono text-[11px] sm:text-xs">
+                    <div className="flex items-center gap-2 text-[#555555]">
+                      <span className="text-[#888888] uppercase tracking-wider text-[10px] shrink-0">EQUIPMENT:</span>
+                      <span className="text-black font-medium truncate">{course.equipment}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-[#555555]">
+                      <span className="text-[#888888] uppercase tracking-wider text-[10px] shrink-0">OUTCOME:</span>
+                      <span className="text-black font-normal truncate">{course.keyOutcome}</span>
+                    </div>
+                  </div>
                 </div>
 
                 {/* 3. Right: Pricing & Direct Actions */}

@@ -18,8 +18,8 @@
 | :--- | :--- | :--- | :---: | :---: |
 | **Phase 1** | Accuracy, Truth & Enrolment Flow | Pricing, unverified claims, intake dates, enrolment form fallback | Completed ✅ | `fix(phase-1): reconcile pricing, claims, and enrollment fallback` |
 | **Phase 2** | Homepage Streamlining & Visual Elevation | Hero dual CTAs, What We Do metrics, pinned course integrity, How It Works 4 stages, clutter reduction | Completed ✅ | `feat(phase-2): streamline homepage content and visual elevation` |
-| **Phase 3** | Course Architecture & Detail Pages | Collapsible syllabus modules, workload transparency, equipment reconciliation, duplicate CTA removal | In Progress 🔄 | `feat(phase-3): course detail collapsible syllabus and decision hierarchy` |
-| **Phase 4** | Portfolio Showcase & Photo Generation | Unique gallery assets for all 6 projects, educational outcomes, collapsible technical specs | Ready 📋 | `feat(phase-4): unique portfolio photography assets and curatorial polish` |
+| **Phase 3** | Course Architecture & Detail Pages | Collapsible syllabus modules, workload transparency, equipment reconciliation, duplicate CTA removal | Completed ✅ | `feat(phase-3): course detail collapsible syllabus and decision hierarchy` |
+| **Phase 4** | Portfolio Showcase & Photo Generation | Unique gallery assets for all 6 projects, educational outcomes, collapsible technical specs | In Progress 🔄 | `feat(phase-4): unique portfolio photography assets and curatorial polish` |
 | **Phase 5** | About Page Deep Reduction & Studio Photos | Remove external degree catalog, 3-step admissions, Kathmandu studio imagery, duplicate CTA cleanup | Ready 📋 | `feat(phase-5): streamline about page and add kathmandu studio imagery` |
 | **Phase 6** | Cross-Device Responsive & Final Polish | Mobile/tablet/desktop verification, viewport stability, typography scales, build check | Ready 📋 | `chore(phase-6): responsive polish across all screens and build verification` |
 
@@ -166,39 +166,39 @@
 
 *Focus: Collapsible syllabus modules, transparent workload, clear equipment prerequisites, standard taxonomy, and duplicate CTA removal.*
 
-### [ ] Task 3.1: Course Directory (`/courses`) Uniform Comparison Cards
+### [x] Task 3.1: Course Directory (`/courses`) Uniform Comparison Cards
 - **Audit Findings**:
   - Directory described all 5 programmes as mentor-led in Kathmandu, hiding that some are online.
   - Course-level taxonomy inconsistent ("Foundation / Pro Level" vs "Pro Foundation").
   - Confusing "35MM ARCHIVE" stamp on cards.
 - **Detailed Action Plan**:
-  - [ ] Ensure uniform card anatomy across all 5 courses:
+  - [x] Ensured uniform card anatomy across all 5 courses:
     - Level Badge (`BEGINNER`, `FOUNDATION`, `PRO FOUNDATION`, `ADVANCED`).
     - Delivery Mode (`100% ONLINE`, `KATHMANDU STUDIO & HYBRID`, `STUDIO MASTERCLASS`).
-    - Duration (`1 MONTH`, `3 MONTHS`).
-    - Equipment Requirements (`Smartphone with manual controls`, `DSLR / Mirrorless Camera`).
+    - Duration (`1 MONTH`, `3 MONTHS`, `6 MONTHS`).
+    - Equipment Requirements (`Smartphone (iOS / Android)`, `DSLR or Mirrorless Camera`).
     - Tangible Key Outcome (1 concise sentence).
     - Payable Fee (with valid discount if verified).
     - Clear Action (`View Course Syllabus →`).
-  - [ ] Standardize filter chips to cleanly filter by level.
+  - [x] Standardized filter chips to cleanly filter by level.
 - **Target Files**:
   - [items.ts](file:///home/enviisage/Documents/iipnepal/src/data/courses/items.ts)
   - [CoursesList.tsx](file:///home/enviisage/Documents/iipnepal/src/components/courses/CoursesList.tsx)
 
-### [ ] Task 3.2: Course Detail Syllabus — Interactive Collapsible Module Groups
+### [x] Task 3.2: Course Detail Syllabus — Interactive Collapsible Module Groups
 - **Audit Findings**:
-  - In `CourseCurriculumSection.tsx`, syllabus is currently rendered as a flat list of 8–10 module items.
+  - In `CourseCurriculumSection.tsx`, syllabus was previously rendered as a flat list of 8–10 module items.
   - Prospective students need to scan the course first and expand module groups to see topics, rather than facing a wall of text.
 - **Detailed Action Plan**:
-  - [ ] Refactor `CourseCurriculumSection.tsx` into scan-first expandable module accordions / groups:
-    - Group modules into 3–4 logical phases (e.g. *Phase 1: Camera Mechanics & Optics*, *Phase 2: Light Metering & Composition*, *Phase 3: Field Briefs & Portfolio Review*).
-    - Provide a "Expand All / Collapse All" toggle.
-    - Each module expands with clean WAI-ARIA disclosure attributes (`aria-expanded`, smooth CSS transition).
+  - [x] Re-engineered `CourseCurriculumSection.tsx` into scan-first expandable module accordions:
+    - Grouped modules into 3 structured phases (*Phase 01: Foundations & Camera Craft*, *Phase 02: Light Direction, Exposure & Composition*, *Phase 03: Practical Field Briefs & Portfolio Review*).
+    - Added "Expand All / Collapse All" toggle.
+    - Each phase expands with smooth WAI-ARIA disclosure attributes (`aria-expanded`, search-indexed CSS grid height).
 - **Target Files**:
   - [CourseCurriculumSection.tsx](file:///home/enviisage/Documents/iipnepal/src/components/courses/detail/CourseCurriculumSection.tsx)
   - [items.ts](file:///home/enviisage/Documents/iipnepal/src/data/courses/items.ts)
 
-### [ ] Task 3.3: Specific Program Fixes & Equipment Conflict Resolution
+### [x] Task 3.3: Specific Program Fixes & Equipment Conflict Resolution
 - **Audit Findings**:
   - **Mobile Photography**: had jargon ("professional camera controls", "mobile darkroom editing"). Needs familiar smartphone language.
   - **1-Month Basic**: contradictory equipment note (prerequisite said DSLR, FAQ suggested smartphone).
@@ -207,26 +207,26 @@
   - **Pro Advanced**: prerequisite baseline (prior portfolio or Foundation completion) and quarterly intake need explicit statement.
   - **Workload**: students submitting "5 photos per chapter" for 10 chapters = 50 photos in 1 month! Needs realistic weekly time commitment.
 - **Detailed Action Plan**:
-  - [ ] In `src/data/courses/items.ts`, revise each course:
-    - Mobile: Focus on smartphone camera settings, natural light, composition, and mobile editing apps (Lightroom Mobile, Snapseed). Specify compatible iOS/Android devices.
-    - Basic: Strictly specify DSLR or Mirrorless camera with manual mode; explicitly direct smartphone users to the Mobile course. Workload: 4–6 hrs/week.
-    - Foundation: Emphasize deeper storytelling, visual essays, and guided portfolio development. Workload: 5–7 hrs/week.
-    - Pro Foundation: Surface weekly live mentor sessions, studio lighting equipment, and commercial client simulation briefs. Workload: 6–8 hrs/week.
-    - Pro Advanced: Specify prerequisite portfolio review or IIP Foundation completion. Surface studio masterclasses and exhibition curation. Workload: 8–10 hrs/week.
-  - [ ] In `CourseTuitionFaqSection.tsx`, replace "accredited IIP certification" with "verified IIP Certificate of Completion".
+  - [x] In `src/data/courses/items.ts`, revised each course:
+    - Mobile: Focused on smartphone camera settings, natural light, composition, and mobile editing apps (Lightroom Mobile, Snapseed). Replaced satisfaction guarantee FAQ with transparent academic policy.
+    - Basic: Strictly specified DSLR or Mirrorless camera with manual mode; explicitly directed smartphone users to the Mobile course. Workload: 4–6 hrs/week.
+    - Foundation: Emphasized deeper storytelling, visual essays, and guided portfolio development. Replaced accredited certificate claim with official IIP Certificate of Completion. Workload: 5–7 hrs/week.
+    - Pro Foundation: Surfaced weekly live mentor sessions, studio lighting equipment, and commercial client simulation briefs. Workload: 6–8 hrs/week.
+    - Pro Advanced: Specified prerequisite portfolio review or IIP Foundation completion. Surfaced studio masterclasses and exhibition curation. Workload: 8–10 hrs/week.
+  - [x] In `CourseTuitionFaqSection.tsx`, replaced "accredited IIP certification" with "verified IIP Certificate of Completion".
 - **Target Files**:
   - [items.ts](file:///home/enviisage/Documents/iipnepal/src/data/courses/items.ts)
   - [CourseEssentialsSection.tsx](file:///home/enviisage/Documents/iipnepal/src/components/courses/detail/CourseEssentialsSection.tsx)
   - [CourseTuitionFaqSection.tsx](file:///home/enviisage/Documents/iipnepal/src/components/courses/detail/CourseTuitionFaqSection.tsx)
 
-### [ ] Task 3.4: Remove Duplicate Closing CTA from Course Detail Pages
+### [x] Task 3.4: Remove Duplicate Closing CTA from Course Detail Pages
 - **Audit Findings**:
-  - `CourseDetailPage` has `CourseTuitionFaqSection` with pricing & Enroll CTA, followed by `CourseRelatedSection`, immediately followed by `CourseEnrollCta` ("Ready to Enroll in the ... ? Tuition ... 100% Satisfaction Guarantee").
-  - Back-to-back near-identical CTAs violate `taste` skill rules and the audit recommendations.
+  - `CourseDetailPage` had `CourseTuitionFaqSection` with pricing & Enroll CTA, followed by `CourseRelatedSection`, immediately followed by `CourseEnrollCta` ("Ready to Enroll in the ... ? Tuition ... 100% Satisfaction Guarantee").
+  - Back-to-back near-identical CTAs violated `taste` skill rules and the audit recommendations.
 - **Detailed Action Plan**:
-  - [ ] Consolidate or remove the duplicate `CourseEnrollCta` from `src/app/courses/[slug]/page.tsx`.
-  - [ ] Keep the primary enrolment card cleanly inside `CourseTuitionFaqSection` and provide a sticky / clean secondary mobile CTA bar if needed.
-  - [ ] Remove all remaining references to "100% Satisfaction Guarantee".
+  - [x] Removed duplicate `CourseEnrollCta` from `src/app/courses/[slug]/page.tsx`.
+  - [x] Retained the primary authoritative enrolment card cleanly inside `CourseTuitionFaqSection`.
+  - [x] Eliminated all lingering references to "100% Satisfaction Guarantee".
 - **Target Files**:
   - [page.tsx](file:///home/enviisage/Documents/iipnepal/src/app/courses/%5Bslug%5D/page.tsx)
   - [CourseEnrollCta.tsx](file:///home/enviisage/Documents/iipnepal/src/components/courses/detail/CourseEnrollCta.tsx)

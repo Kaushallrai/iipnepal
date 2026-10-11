@@ -60,7 +60,7 @@ export default function CourseTuitionFaqSection({
               </div>
               <p className="font-sans font-normal text-xs sm:text-sm md:text-base text-[#666666] leading-relaxed">
                 Includes all module guides, individual photo assessments, portal access,
-                and accredited IIP certification.
+                and verified IIP Certificate of Completion.
               </p>
             </div>
 
@@ -105,9 +105,11 @@ export default function CourseTuitionFaqSection({
                     <div key={idx} className="scroll-item py-5 sm:py-6 lg:py-7">
                       <button
                         type="button"
+                        id={`faq-question-${course.id}-${idx}`}
                         onClick={() => toggleAccordion(idx)}
-                        className="w-full flex items-start justify-between gap-6 text-left cursor-pointer group"
+                        className="w-full flex items-start justify-between gap-6 text-left cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffd001]"
                         aria-expanded={isOpen}
+                        aria-controls={`faq-answer-${course.id}-${idx}`}
                       >
                         <span className="font-sans font-light text-base sm:text-lg lg:text-xl text-black group-hover:text-black/75 transition-colors leading-snug">
                           {faq.question}
@@ -121,13 +123,22 @@ export default function CourseTuitionFaqSection({
                         </span>
                       </button>
 
-                      {isOpen && (
-                        <div className="pt-4 pr-6 sm:pr-10">
-                          <p className="font-sans font-normal text-xs sm:text-sm md:text-base text-[#555555] leading-relaxed">
-                            {faq.answer}
-                          </p>
+                      <div
+                        id={`faq-answer-${course.id}-${idx}`}
+                        role="region"
+                        aria-labelledby={`faq-question-${course.id}-${idx}`}
+                        className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
+                          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                        }`}
+                      >
+                        <div className="overflow-hidden min-h-0">
+                          <div className="pt-4 pr-6 sm:pr-10">
+                            <p className="font-sans font-normal text-xs sm:text-sm md:text-base text-[#555555] leading-relaxed">
+                              {faq.answer}
+                            </p>
+                          </div>
                         </div>
-                      )}
+                      </div>
                     </div>
                   );
                 })}

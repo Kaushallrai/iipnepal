@@ -20,6 +20,9 @@ export interface CourseItem {
   prerequisites: string[];
   courseAdvantage: string[];
   courseStructure: string[];
+  deliveryMode: string;
+  equipment: string;
+  keyOutcome: string;
   howThisCourseWorks: string[];
   faqs: { question: string; answer: string }[];
   paymentOptions: string[];
@@ -33,8 +36,11 @@ export const masterCoursesList: CourseItem[] = [
     title: "Online Mobile Photography Course",
     duration: "1 Month",
     level: "Beginner",
+    deliveryMode: "100% Online",
+    equipment: "Smartphone (iOS / Android)",
+    keyOutcome: "Master smartphone manual controls, composition, and mobile editing.",
     courseType: "Online Mobile Photography Course",
-    tagline: "Pocket-Sized Vision, Manual Smartphone Controls & Mobile Darkroom Editing",
+    tagline: "Pocket-Sized Vision, Manual Smartphone Controls & Creative Mobile Editing",
     totalFee: "Rs. 5,200",
     payableFee: "Rs. 4,160",
     discount: "20% off",
@@ -44,18 +50,18 @@ export const masterCoursesList: CourseItem[] = [
     featured: true,
     intake: "Rolling Monthly Intake",
     certification: "Official IIP Certificate of Completion",
-    assignmentsCount: "10 Hands-on Assignments (50 Photographs Submitted for Review)",
+    assignmentsCount: "10 Structured Lessons & 4 Curated Photo Projects",
     whatYoullLearn: [
       "Master all camera settings and manual exposure on your smartphone",
       "Apply professional editorial and documentary composition techniques",
-      "Edit photos using mobile darkroom apps like Snapseed & Lightroom Mobile",
+      "Edit photos using mobile editing apps like Snapseed & Lightroom Mobile",
       "Create a curated, exhibition-ready mobile photography portfolio",
       "Understand natural lighting, shadows, and angle dynamics for punchy shots",
     ],
     prerequisites: [
-      "Smartphone with camera (iOS or Android, any modern device)",
-      "Basic understanding of mobile phone operations",
-      "Willingness to explore outdoor environments and practice daily",
+      "Modern smartphone (iOS or Android) capable of running mobile editing apps (Lightroom Mobile / Snapseed)",
+      "Basic familiarity with mobile phone operations and camera settings",
+      "Estimated commitment of 3–5 hours per week for lessons, practical shooting, and editing",
     ],
     courseAdvantage: [
       "Learn from anywhere, anytime at your own pace",
@@ -75,13 +81,13 @@ export const masterCoursesList: CourseItem[] = [
       "Landscape & Kathmandu Street Photography Practices",
       "Mobile Photo Editing: Colour Grading & Curve Adjustments in Lightroom",
       "Social Media Optimization, Storytelling & Visual Curation",
-      "Practical Field Assignments (5 Curated Frames Per Module)",
+      "Practical Field Assignments (Curated Frames Per Project)",
       "Final Portfolio Review & Mentor Evaluation",
     ],
     howThisCourseWorks: [
       "Enrollment: Receive personal login credentials to the IIP Student Control Panel within 24 hours.",
       "Learning: Read structured chapter materials, study visual breakdowns, and shoot field exercises.",
-      "Practice: Complete assignments by uploading 5 curated photographs per chapter to the dashboard.",
+      "Practice: Complete shooting briefs and upload your curated photographs for mentor critique.",
       "Critique: Your assigned IIP mentor critically examines your photographs on technical and artistic parameters.",
       "Certification: Receive your official IIP certificate upon finishing all modules and portfolio review.",
     ],
@@ -102,9 +108,9 @@ export const masterCoursesList: CourseItem[] = [
           "You receive lifetime access to the digital course materials, student dashboard, and future updates even after graduation.",
       },
       {
-        question: "What is the satisfaction and refund policy?",
+        question: "What is the tuition refund and withdrawal policy?",
         answer:
-          "We offer a 100% satisfaction guarantee. If within the initial chapter you find the course unsuitable, your tuition is refundable according to institute policies.",
+          "Tuition refund and withdrawal requests are governed by official IIP academic regulations. Students may consult the admissions desk prior to course commencement.",
       },
     ],
     paymentOptions: [
@@ -120,6 +126,9 @@ export const masterCoursesList: CourseItem[] = [
     title: "1-Month Online Basic Photography Course",
     duration: "1 Month",
     level: "Beginner",
+    deliveryMode: "100% Online",
+    equipment: "DSLR or Mirrorless Camera",
+    keyOutcome: "Master camera exposure triangle (aperture, shutter, ISO) and creative controls.",
     courseType: "1-Month Online Basic Photography Course",
     tagline: "Master the Exposure Triangle, Manual Camera Controls & Creative Composition",
     totalFee: "Rs. 12,000",
@@ -131,18 +140,18 @@ export const masterCoursesList: CourseItem[] = [
     featured: true,
     intake: "Rolling Monthly Intake",
     certification: "Official IIP Certificate of Basic Photography",
-    assignmentsCount: "10 Structured Shooting Modules (50 Photographs Mentored)",
+    assignmentsCount: "10 Learning Modules & 4 Practical Project Submissions",
     whatYoullLearn: [
       "Understand all camera mechanics, shooting modes (M, Av/A, Tv/S), and sensor dynamics",
       "Master the exposure triangle (Aperture, Shutter Speed, ISO) for deliberate creative intent",
       "Apply composition rules: Rule of Thirds, Golden Ratio, Negative Space, and Symmetry",
       "Capture professional-quality portraits, street documentation, and landscapes",
-      "Foundational RAW image development and darkroom post-processing basics",
+      "Foundational RAW image development and digital post-processing basics",
     ],
     prerequisites: [
-      "DSLR or Mirrorless camera with kit lens (or bridge camera with manual controls)",
-      "Basic computer or smartphone operations to access student portal",
-      "Passion for visual art and dedication to complete weekly shooting briefs",
+      "DSLR or Mirrorless camera with manual exposure modes (or bridge camera with manual M, Av/A, Tv/S dials)",
+      "Computer, tablet, or smartphone to access learning materials and upload assignments",
+      "Estimated commitment of 4–6 hours per week (1–2 hrs theory study, 3–4 hrs shooting & editing)",
     ],
     courseAdvantage: [
       "Step-by-step professional guidance structured by master educators",
@@ -169,19 +178,19 @@ export const masterCoursesList: CourseItem[] = [
       "Step 1 — Read: Log in to your IIP dashboard and master each chapter module at your own pace.",
       "Step 2 — Interact: Connect directly with faculty mentors for questions and technical clarifications.",
       "Step 3 — Shoot: Take your camera into the field and execute the practical assignment brief.",
-      "Step 4 — Submit: Upload 5 high-resolution photographs for each module in the student control panel.",
+      "Step 4 — Submit: Upload your 2–3 best curated photographs for each core project to the student dashboard.",
       "Step 5 — Review: IIP mentors critically examine your work on technical execution and creative merit.",
     ],
     faqs: [
       {
         question: "Can I do this course without a DSLR camera?",
         answer:
-          "While a DSLR or mirrorless camera is recommended, you can also begin with an advanced bridge camera or a smartphone supporting manual exposure controls.",
+          "A DSLR, mirrorless, or bridge camera with manual exposure modes (M, Av/A, Tv/S) is required for this course so you can master aperture, shutter speed, and optical lens controls. If you only shoot on a smartphone, we recommend enrolling in our dedicated Online Mobile Photography Course instead.",
       },
       {
         question: "How many hours per week should I dedicate?",
         answer:
-          "We recommend committing approximately 5 to 7 hours per week for reading course chapters and shooting practical assignments.",
+          "We recommend committing approximately 4 to 6 hours per week: 1–2 hours for module study and 3–4 hours for shooting and editing practical assignments.",
       },
       {
         question: "Will I get an official certificate after completion?",
@@ -207,6 +216,9 @@ export const masterCoursesList: CourseItem[] = [
     title: "3-Month Online Foundation Photography Course",
     duration: "3 Months",
     level: "Foundation",
+    deliveryMode: "100% Online",
+    equipment: "DSLR / Mirrorless Camera + Computer",
+    keyOutcome: "Develop comprehensive photographic technique, light direction, and structured portfolio.",
     courseType: "3-Month Online Foundation Photography Course",
     tagline: "Comprehensive Foundation: Lighting Mastery, Visual Storytelling & Lifelong Mentorship",
     totalFee: "Rs. 19,500",
@@ -229,8 +241,8 @@ export const masterCoursesList: CourseItem[] = [
     ],
     prerequisites: [
       "DSLR or Mirrorless camera with interchangeable lens capabilities",
-      "Basic understanding of computer operations and photo management",
-      "Deep passion for photography and willingness to push visual boundaries",
+      "Computer capable of managing photos and accessing the student portal",
+      "Estimated commitment of 5–7 hours per week for learning modules, field shoots, and mentor reviews",
     ],
     courseAdvantage: [
       "Convenience of flexible learning from home with institutional rigor",
@@ -259,7 +271,7 @@ export const masterCoursesList: CourseItem[] = [
       "READ: Study in-depth chapters, visual case studies, and compositional diagrams in your portal.",
       "INTERACT: Message and consult your personal mentor whenever technical questions arise.",
       "SHOOT: Venture into real shooting environments guided by the chapter's practical assignment.",
-      "SUBMIT: Upload 5 high-resolution photographs to the IIP control panel for each module.",
+      "SUBMIT: Upload your curated assignment photographs to the IIP student dashboard for each module.",
       "GRADE & CRITIQUE: Your mentor grades each photo with line-by-line artistic and technical notes.",
     ],
     faqs: [
@@ -271,7 +283,7 @@ export const masterCoursesList: CourseItem[] = [
       {
         question: "What qualification do I receive upon completion?",
         answer:
-          "You receive an accredited IIP Foundation Photography Certificate backed by the Indian Institute of Photography, recognized for professional admissions.",
+          "You receive an official IIP Foundation Photography Certificate of Completion backed by the Indian Institute of Photography.",
       },
       {
         question: "What benefits do I receive as an IIP alumnus?",
@@ -296,7 +308,10 @@ export const masterCoursesList: CourseItem[] = [
     slug: "pro-level-foundation-photography-course",
     title: "Pro Level Foundation Photography Course (Mentor-led)",
     duration: "3 Months",
-    level: "Foundation / Pro",
+    level: "Pro Foundation",
+    deliveryMode: "Kathmandu Studio & Hybrid",
+    equipment: "DSLR or Mirrorless + External Flash/Hotshoe",
+    keyOutcome: "Bridge fundamentals into commercial briefs with live studio sessions and client simulation.",
     courseType: "Pro Level Foundation Photography Course (Mentor-led)",
     tagline: "Intensive Mentor-Led Accelerator with Weekly Live Critique & Studio Practice",
     totalFee: "Rs. 26,800",
@@ -318,7 +333,7 @@ export const masterCoursesList: CourseItem[] = [
     prerequisites: [
       "DSLR or Mirrorless camera with hot-shoe support and zoom/prime lenses",
       "Laptop or desktop computer capable of running editing software",
-      "Strong motivation and time commitment for weekly assignments and live critique",
+      "Estimated commitment of 6–8 hours per week including weekend practicals and live critiques",
     ],
     courseAdvantage: [
       "Dedicated senior mentor assigned for individual portfolio cultivation",
@@ -381,6 +396,9 @@ export const masterCoursesList: CourseItem[] = [
     title: "Pro Level Advanced Photography Course (Mentor-led)",
     duration: "6 Months",
     level: "Advanced",
+    deliveryMode: "Kathmandu Studio Masterclass",
+    equipment: "Full-Frame / Mirrorless System + Studio Lights",
+    keyOutcome: "Flagship commercial masterclass covering fashion, product, advanced lighting, and studio business.",
     courseType: "Pro Level Advanced Photography Course (Mentor-led)",
     tagline: "Flagship Commercial Masterclass: Fashion, Product, Studio Lighting & Business",
     totalFee: "Rs. 56,000",
@@ -404,6 +422,7 @@ export const masterCoursesList: CourseItem[] = [
       "Completion of an IIP Foundation course or equivalent commercial experience",
       "DSLR or Mirrorless camera system with standard and telephoto/prime lenses",
       "Working knowledge of Adobe Lightroom and Photoshop",
+      "Estimated commitment of 8–10 hours per week for studio lighting, client simulations, and post-production",
     ],
     courseAdvantage: [
       "Direct 1-on-1 mentorship from top commercial and fine art photographers",

@@ -66,12 +66,12 @@ export default function AboutProspectus(): React.JSX.Element {
                 <div className="pt-5 mt-5 border-t border-[#f0eee4]">
                   <a
                     href={item.pdfUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target={item.pdfUrl.startsWith("http") ? "_blank" : undefined}
+                    rel={item.pdfUrl.startsWith("http") ? "noopener noreferrer" : undefined}
                     className="group inline-flex items-center justify-between w-full min-h-[48px] py-2.5 px-4 text-xs font-mono uppercase tracking-[0.14em] font-semibold text-black hover:text-black hover:bg-[#ffd001] active:scale-[0.99] transition-all border border-[#e2e0d2] hover:border-[#ffd001] touch-manipulation select-none"
-                    aria-label={`Download ${item.title} PDF`}
+                    aria-label={`${item.actionLabel || "View"} for ${item.title}`}
                   >
-                    <span>Download PDF</span>
+                    <span>{item.actionLabel || (item.pdfUrl.endsWith(".pdf") ? "Download PDF" : "View Details")}</span>
                     <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </a>
                 </div>

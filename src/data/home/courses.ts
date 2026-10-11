@@ -6,7 +6,7 @@ export interface HomeCourseItem {
   level: string;
   totalFee: string;
   payableFee: string;
-  discount: string;
+  discount?: string;
   description: string;
   coverImage: string;
   slug: string;
@@ -77,9 +77,8 @@ export const homeCoursesData: HomeCoursesData = {
       title: "Pro-Level Foundation Photography Course",
       duration: "3 Months",
       level: "Foundation / Pro",
-      totalFee: "Rs. 56,000",
-      payableFee: "Rs. 32,000",
-      discount: "-20%",
+      totalFee: "Rs. 26,800",
+      payableFee: "Rs. 26,800",
       description:
         "An intensive mentor-led foundation course that takes you from beginner to professional level with live critique and real commercial briefs.",
       coverImage: "/images/course-pro-foundation.webp",
@@ -92,8 +91,7 @@ export const homeCoursesData: HomeCoursesData = {
       duration: "6 Months",
       level: "Advanced",
       totalFee: "Rs. 56,000",
-      payableFee: "Rs. 44,800",
-      discount: "-20%",
+      payableFee: "Rs. 56,000",
       description:
         "An advanced mentor-led masterclass for photographers looking to master studio lighting, commercial productions, and launch an industry career.",
       coverImage: "/images/course-pro.webp",

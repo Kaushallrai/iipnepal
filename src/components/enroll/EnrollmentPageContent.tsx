@@ -76,9 +76,7 @@ export default function EnrollmentPageContent({
   } | null>(null);
 
   // Sync if URL query param changes
-  const [prevQueryCourseSlug, setPrevQueryCourseSlug] = useState(queryCourseSlug);
-  if (prevQueryCourseSlug !== queryCourseSlug) {
-    setPrevQueryCourseSlug(queryCourseSlug);
+  React.useEffect(() => {
     if (queryCourseSlug) {
       const match = courses.find(
         (c) => c.slug === queryCourseSlug || c.id === queryCourseSlug
@@ -88,7 +86,7 @@ export default function EnrollmentPageContent({
         setFormData((prev) => ({ ...prev, programSlug: match.slug }));
       }
     }
-  }
+  }, [queryCourseSlug, courses]);
 
   const currentCourse = React.useMemo(() => {
     return courses.find((c) => c.slug === selectedSlug) || courses[0];
@@ -386,7 +384,7 @@ export default function EnrollmentPageContent({
                   </div>
                   
                   <h3 className="font-light text-2xl sm:text-3xl tracking-[-0.03em] text-[#fffef7]">
-                    Registration logged successfully.
+                    Enrolment enquiry logged successfully.
                   </h3>
                   
                   <div className="font-mono text-xs text-[#ffd001] tracking-wider">
@@ -394,11 +392,11 @@ export default function EnrollmentPageContent({
                   </div>
 
                   <p className="font-light text-[14px] text-[#aaaaaa] leading-[1.65]">
-                    Welcome, <strong>{submittedData.studentName}</strong>. Your enrollment for the <strong>{submittedData.courseTitle}</strong> ({submittedData.payableFee}) has been registered.
+                    Welcome, <strong>{submittedData.studentName}</strong>. Your enrolment enquiry for <strong>{submittedData.courseTitle}</strong> ({submittedData.payableFee}) has been received.
                   </p>
 
                   <p className="font-light text-[13px] text-[#888888] leading-relaxed">
-                    Our admissions director will email your student portal credentials and contact you via phone/WhatsApp within 24 hours to schedule orientation.
+                    Our admissions desk will contact you via phone or WhatsApp within 24 hours to confirm seat availability, schedule your orientation, and provide payment details.
                   </p>
 
                   <button
@@ -603,10 +601,13 @@ export default function EnrollmentPageContent({
                   <div className="col-span-2 flex flex-col items-start w-full">
                     <label
                       htmlFor="payment-select"
-                      className="font-mono text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1 sm:mb-1.5"
+                      className="font-mono text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1"
                     >
                       Payment Settlement Method
                     </label>
+                    <p className="font-mono text-[11px] text-[#777777] mb-2">
+                      Payment is settled after admissions verification. No upfront charge is made on this form.
+                    </p>
                     <Select
                       value={formData.paymentMethod}
                       onValueChange={(val) =>
@@ -666,7 +667,7 @@ export default function EnrollmentPageContent({
                         className="mt-0.5 w-4 h-4 accent-black rounded-none cursor-pointer"
                       />
                       <span className="font-sans text-xs text-[#666666] leading-relaxed">
-                        I confirm that the registration details are accurate and agree to the IIP Nepal academic guidelines. Tuition is protected under the 100% Satisfaction Guarantee.
+                        I confirm that the enquiry details provided are accurate and agree to IIP Nepal&apos;s academic guidelines and admissions policies.
                       </span>
                     </label>
                     {errors.agreeTerms && (
@@ -690,7 +691,7 @@ export default function EnrollmentPageContent({
 
                       {/* Text */}
                       <span className="btn__text relative z-[2] font-mono text-xs sm:text-[13px] font-bold uppercase tracking-[0.16em] leading-none whitespace-nowrap transition-transform duration-300 group-hover:translate-x-1">
-                        {isSubmitting ? "PROCESSING..." : "SUBMIT ENROLLMENT"}
+                        {isSubmitting ? "PROCESSING..." : "SUBMIT ENROLMENT ENQUIRY"}
                       </span>
 
                       {/* Angled Arrow SVG Slot */}
@@ -711,6 +712,9 @@ export default function EnrollmentPageContent({
                         </svg>
                       </span>
                     </button>
+                    <p className="mt-2.5 font-mono text-[11px] text-[#777777] leading-relaxed">
+                      * Submitting registers your priority enquiry. Admissions staff will contact you within 24 hours to confirm seat availability and provide payment details (eSewa / Khalti / Bank Transfer / Studio Cashier).
+                    </p>
                   </div>
 
                 </form>

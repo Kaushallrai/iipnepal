@@ -32,9 +32,9 @@ export const enrollData: EnrollPageData = {
   meta: {
     title: "Enroll in Photography Courses | IIP Nepal — Indian Institute of Photography",
     description:
-      "Enroll in accredited photography courses in Kathmandu, Nepal. 1-on-1 mentor critiques, structured assignments, and professional certification at IIP Nepal.",
+      "Enroll in mentor-led photography courses in Kathmandu, Nepal. 1-on-1 mentor critiques, structured assignments, and professional certification at IIP Nepal.",
   },
-  eyebrow: "Admissions 2026 // Intake Open",
+  eyebrow: "Admissions 2026 // Rolling Intake",
   heading: "Enroll at IIP Nepal and begin your one-on-one mentorship.",
   deskPhone: {
     label: "Admissions Desk",
@@ -47,7 +47,7 @@ export const enrollData: EnrollPageData = {
     href: "mailto:info@iipnepal.com",
   },
   studioLocation: {
-    label: "Studio & Darkroom Location",
+    label: "Kathmandu Centre & Studio",
     value: "Jyoti Bhawan, Kanti Path, Kathmandu, Bagmati 44600",
     href: "https://maps.app.goo.gl/792XAZpWFHjY1zWt6",
   },

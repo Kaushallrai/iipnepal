@@ -5,6 +5,7 @@ export interface ProspectusItem {
   level: string;
   description: string;
   pdfUrl: string;
+  actionLabel?: string;
 }
 
 export interface AboutProspectusData {
@@ -27,46 +28,51 @@ export const aboutProspectusData: AboutProspectusData = {
       id: "mfa",
       code: "MFA",
       title: "Master of Fine Arts in Photography",
-      level: "Postgraduate Degree",
+      level: "Postgraduate Degree (IIP Academy)",
       description:
         "Advanced research-led curriculum covering visual theory, personal thesis authorship, darkroom printing, and curatorial practice.",
       pdfUrl: "https://www.iipacademy.edu.in/images/IIPCCA%20PROSPECTUS.pdf",
+      actionLabel: "Download IIP Prospectus",
     },
     {
       id: "bfa",
       code: "BFA",
       title: "Bachelor of Fine Arts in Photography",
-      level: "Undergraduate Degree",
+      level: "Undergraduate Degree (IIP Academy)",
       description:
         "Comprehensive multi-year program covering camera optics, lighting physics, analog processes, and professional editorial ethics.",
       pdfUrl: "https://www.iipacademy.edu.in/images/IIPCCA%20PROSPECTUS.pdf",
+      actionLabel: "Download IIP Prospectus",
     },
     {
       id: "ddpc",
       code: "DDPC",
       title: "Dual Diploma in Professional Photography",
-      level: "Professional Diploma",
+      level: "Professional Diploma (IIP Academy)",
       description:
         "Career-focused dual credential emphasizing commercial studio assignments, portraiture, fashion, and business management.",
       pdfUrl: "https://www.iipacademy.edu.in/images/IIPCCA%20PROSPECTUS.pdf",
+      actionLabel: "Download IIP Prospectus",
     },
     {
       id: "opdp",
       code: "OPDP",
       title: "Online Professional Development Program",
-      level: "Distance Learning",
+      level: "Distance Learning (IIP Academy)",
       description:
         "Structured remote curriculum with weekly one-on-one virtual critiques, home assignments, and accredited certification.",
       pdfUrl: "https://www.iipacademy.edu.in/images/IIPCCA%20PROSPECTUS.pdf",
+      actionLabel: "Download IIP Prospectus",
     },
     {
       id: "pro-foundation",
       code: "FOUNDATION",
       title: "Pro Foundation & Advanced Course Catalogue",
-      level: "Certificate Track",
+      level: "Kathmandu Certificate Track",
       description:
-        "Intensive 3 to 6-month hands-on modules in manual camera controls, metering, light direction, and creative studio shoots.",
-      pdfUrl: "https://iipnepal.com/files/ONLINE%20CATALOUGE%2022.pdf",
+        "Intensive hands-on modules in manual camera controls, metering, light direction, and creative studio shoots at the Nepal centre.",
+      pdfUrl: "/courses",
+      actionLabel: "View Course Syllabi",
     },
     {
       id: "teenschool",
@@ -75,7 +81,8 @@ export const aboutProspectusData: AboutProspectusData = {
       level: "Youth Immersion",
       description:
         "Visual storytelling and photographic fundamentals designed for high-school students and emerging creators.",
-      pdfUrl: "https://iipnepal.com/files/tsatschoolpdf.pdf",
+      pdfUrl: "/contact",
+      actionLabel: "Request Youth Prospectus",
     },
   ],
 };

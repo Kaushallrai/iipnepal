@@ -51,7 +51,13 @@ export default function CoursesList({ courses }: CoursesListProps): React.JSX.El
                     />
 
                     {/* Informative Delivery Mode Badge */}
-                    <div className="absolute top-2.5 left-2.5 bg-black/85 text-white font-mono text-[9px] uppercase tracking-widest px-2.5 py-1">
+                    <div
+                      className={`absolute top-2.5 left-2.5 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest px-2.5 py-1 ${
+                        course.deliveryMode.toLowerCase().includes("studio")
+                          ? "bg-black text-[#ffd001] border border-[#ffd001]/40 font-semibold"
+                          : "bg-black/85 text-white"
+                      }`}
+                    >
                       {course.deliveryMode}
                     </div>
 
@@ -71,7 +77,15 @@ export default function CoursesList({ courses }: CoursesListProps): React.JSX.El
                     <span>/</span>
                     <span className="text-black font-medium">{course.level}</span>
                     <span>•</span>
-                    <span className="text-[#059669] font-medium">{course.deliveryMode}</span>
+                    <span
+                      className={`font-medium ${
+                        course.deliveryMode.toLowerCase().includes("studio")
+                          ? "text-[#ca8a04]"
+                          : "text-[#059669]"
+                      }`}
+                    >
+                      {course.deliveryMode}
+                    </span>
                     <span>•</span>
                     <span>{course.duration}</span>
                   </div>
@@ -131,7 +145,7 @@ export default function CoursesList({ courses }: CoursesListProps): React.JSX.El
                       href={`/courses/${course.slug}`}
                       className="inline-flex items-center gap-1 font-mono text-[11px] sm:text-xs uppercase tracking-[0.14em] text-black bg-black/5 hover:bg-black hover:text-[#fffef7] px-4 py-2.5 rounded-full transition-colors font-medium whitespace-nowrap leading-none"
                     >
-                      <span>Syllabus</span>
+                      <span>View Course</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
                     </Link>
 
@@ -139,7 +153,7 @@ export default function CoursesList({ courses }: CoursesListProps): React.JSX.El
                       href={`/enroll?course=${course.slug}`}
                       className="inline-flex items-center gap-1 font-mono text-[11px] sm:text-xs uppercase tracking-[0.14em] text-black bg-[#ffd001] hover:bg-black hover:text-[#fffef7] px-4.5 py-2.5 rounded-full transition-colors font-semibold whitespace-nowrap leading-none"
                     >
-                      <span>Enroll</span>
+                      <span>Enroll Now</span>
                     </Link>
                   </div>
                 </div>

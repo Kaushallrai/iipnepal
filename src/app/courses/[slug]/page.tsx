@@ -73,16 +73,16 @@ export default async function CourseDetailPage({ params }: PageProps): Promise<R
       {/* 1. EDITORIAL HERO & PROGRAM SPECIFICATIONS */}
       <CourseDetailHero course={course} />
 
-      {/* 2. STRUCTURED SYLLABUS & MODULES */}
-      <CourseCurriculumSection course={course} />
-
-      {/* 3. LEARNING OUTCOMES & EQUIPMENT PREREQUISITES */}
+      {/* 2. LEARNING OUTCOMES & EQUIPMENT PREREQUISITES */}
       <CourseEssentialsSection course={course} />
+
+      {/* 3. STRUCTURED SYLLABUS & COLLAPSIBLE MODULES */}
+      <CourseCurriculumSection course={course} />
 
       {/* 4. FINANCIAL SUMMARY & FOCUSED COURSE FAQS */}
       <CourseTuitionFaqSection course={course} />
 
-      {/* 5. COMPACT ALTERNATIVE TRACKS */}
+      {/* 5. YOU MIGHT ALSO LIKE (RELATED TRACKS) */}
       <CourseRelatedSection relatedCourses={relatedCourses} />
 
       {/* 6. ARCHITECTURAL FOOTER */}

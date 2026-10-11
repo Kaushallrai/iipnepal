@@ -27,18 +27,18 @@ export default function CourseRelatedSection({
             <div className="flex items-center gap-2 mb-3 sm:mb-4 select-none">
               <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
               <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-medium">
-                Curricular Pathways // Recommended Progression
+                Related Courses // Recommended Progression
               </span>
             </div>
 
             <LineReveal
               as="h2"
-              lines={["Recommended Next Steps."]}
+              lines={["You might also like."]}
               className="font-sans font-light text-2xl sm:text-3xl md:text-4xl lg:text-[44px] leading-[1.12] text-black tracking-[-0.03em] mb-3 sm:mb-4"
             />
 
             <p className="font-sans font-normal text-sm sm:text-base text-[#555555] leading-relaxed max-w-xl">
-              Logical advancement tracks tailored to your photographic goals, conducted with structured assignments and personal mentor critique.
+              Compare alternative tracks tailored to your photographic goals, from beginner camera craft to commercial studio productions.
             </p>
           </div>
 

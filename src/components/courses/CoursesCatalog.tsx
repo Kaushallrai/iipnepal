@@ -12,23 +12,37 @@ export interface CoursesCatalogProps {
 
 export default function CoursesCatalog({ initialCourses }: CoursesCatalogProps): React.JSX.Element {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [activeFormat, setActiveFormat] = useState("All");
 
   const filteredCourses = useMemo(() => {
-    if (activeFilter === "All") return initialCourses;
     return initialCourses.filter((course) => {
-      const levelLower = course.level.toLowerCase();
-      const filterLower = activeFilter.toLowerCase();
-      return levelLower.includes(filterLower);
+      // Level filter match
+      let matchesLevel = true;
+      if (activeFilter !== "All") {
+        matchesLevel = course.level.toLowerCase().includes(activeFilter.toLowerCase());
+      }
+
+      // Delivery Format filter match
+      let matchesFormat = true;
+      if (activeFormat === "Studio") {
+        matchesFormat = course.deliveryMode.toLowerCase().includes("studio");
+      } else if (activeFormat === "Online") {
+        matchesFormat = course.deliveryMode.toLowerCase().includes("online");
+      }
+
+      return matchesLevel && matchesFormat;
     });
-  }, [initialCourses, activeFilter]);
+  }, [initialCourses, activeFilter, activeFormat]);
 
   return (
     <>
       <CoursesHero
-        totalCoursesCount={initialCourses.length}
+        totalCoursesCount={filteredCourses.length}
         activeFilter={activeFilter}
         onFilterChange={setActiveFilter}
         filters={coursesPageData.filters}
+        activeFormat={activeFormat}
+        onFormatChange={setActiveFormat}
       />
       <CoursesList courses={filteredCourses} />
     </>

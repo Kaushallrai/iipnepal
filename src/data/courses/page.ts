@@ -18,10 +18,10 @@ export interface CoursesPageData {
 }
 
 export const coursesPageData: CoursesPageData = {
-  eyebrow: "IIP Nepal // Curricula",
-  heading: "Courses & Programs.",
+  eyebrow: "IIP Nepal // Course Directory",
+  heading: "Find your photography course.",
   description:
-    "Five mentor-led photography programs in Kathmandu. Structured modules, practical shooting briefs, and one-on-one critique from working photographers.",
+    "Compare five mentor-led tracks in Kathmandu — from beginner smartphone photography to comprehensive studio lighting and commercial production.",
   filters: ["All", "Beginner", "Foundation", "Advanced"],
   cta: {
     eyebrow: "Admissions 2026 // Kathmandu Studio",

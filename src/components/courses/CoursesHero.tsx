@@ -10,6 +10,8 @@ export interface CoursesHeroProps {
   activeFilter: string;
   onFilterChange: (filter: string) => void;
   filters: string[];
+  activeFormat: string;
+  onFormatChange: (format: string) => void;
 }
 
 export default function CoursesHero({
@@ -17,9 +19,17 @@ export default function CoursesHero({
   activeFilter,
   onFilterChange,
   filters,
+  activeFormat,
+  onFormatChange,
 }: CoursesHeroProps): React.JSX.Element {
+  const formats = [
+    { id: "All", label: "All Formats" },
+    { id: "Studio", label: "Kathmandu Studio (In-Person)" },
+    { id: "Online", label: "100% Online" },
+  ];
+
   return (
-    <section className="w-full pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-10 sm:pb-12 md:pb-14 border-b border-[#e2e0d2] bg-[#fffef7]">
+    <section className="w-full pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-8 sm:pb-10 md:pb-12 border-b border-[#e2e0d2] bg-[#fffef7]">
       <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
         
         {/* Micro-Eyebrow */}
@@ -33,7 +43,7 @@ export default function CoursesHero({
         </div>
 
         {/* Poster Title & Vision Statement */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8 pb-8 sm:pb-10 lg:pb-12">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8 pb-6 sm:pb-8 lg:pb-10">
           <LineReveal
             as="h1"
             lines={[coursesPageData.heading]}
@@ -45,10 +55,15 @@ export default function CoursesHero({
           </p>
         </div>
 
-        {/* Minimalist Typographic Filter Bar with ScrollReveal */}
+        {/* Dual Filter Bar: Level & Format (Visually Quiet) */}
         <ScrollReveal variant="fade-up" distance={16} duration={0.6} delay={0.15}>
-          <div className="pt-6 sm:pt-8 border-t border-[#e2e0d2] flex items-center justify-between gap-6 overflow-x-auto scrollbar-none">
-            <div className="flex items-center gap-7 sm:gap-10 lg:gap-12 whitespace-nowrap min-w-max">
+          <div className="pt-5 sm:pt-6 border-t border-[#e2e0d2] flex flex-col md:flex-row md:items-center justify-between gap-4">
+            
+            {/* Level Filters */}
+            <div className="flex items-center gap-5 sm:gap-8 overflow-x-auto scrollbar-none whitespace-nowrap min-w-max">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-[#888888] mr-1 hidden sm:inline-block">
+                Level:
+              </span>
               {filters.map((filter) => {
                 const isActive = activeFilter.toLowerCase() === filter.toLowerCase();
                 return (
@@ -56,13 +71,13 @@ export default function CoursesHero({
                     key={filter}
                     type="button"
                     onClick={() => onFilterChange(filter)}
-                    className={`font-mono text-xs sm:text-[13px] uppercase tracking-[0.18em] py-2.5 transition-colors relative cursor-pointer ${
+                    className={`font-mono text-xs sm:text-[13px] uppercase tracking-[0.16em] py-2 transition-colors relative cursor-pointer ${
                       isActive
                         ? "text-black font-semibold"
                         : "text-[#777777] hover:text-black font-normal"
                     }`}
                   >
-                    <span>{filter}</span>
+                    <span>{filter === "All" ? "All Levels" : filter}</span>
                     {isActive && (
                       <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#ffd001]" />
                     )}
@@ -71,9 +86,34 @@ export default function CoursesHero({
               })}
             </div>
 
-            <span className="font-mono text-xs text-[#888888] tracking-wider shrink-0 hidden sm:inline-block">
-              {totalCoursesCount} Programs
-            </span>
+            {/* Delivery Mode Filters & Count */}
+            <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto scrollbar-none">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-[#888888] mr-1 hidden lg:inline-block">
+                Mode:
+              </span>
+              {formats.map((fmt) => {
+                const isActive = activeFormat === fmt.id;
+                return (
+                  <button
+                    key={fmt.id}
+                    type="button"
+                    onClick={() => onFormatChange(fmt.id)}
+                    className={`font-mono text-[11px] uppercase tracking-wider px-3 py-1.5 rounded-full transition-colors whitespace-nowrap cursor-pointer ${
+                      isActive
+                        ? "bg-black text-[#fffef7] font-medium"
+                        : "bg-[#f5f3e9] text-[#666666] hover:text-black hover:bg-[#eae8dc]"
+                    }`}
+                  >
+                    {fmt.label}
+                  </button>
+                );
+              })}
+
+              <span className="font-mono text-xs text-[#888888] tracking-wider shrink-0 pl-2 hidden sm:inline-block">
+                ({totalCoursesCount})
+              </span>
+            </div>
+
           </div>
         </ScrollReveal>
 

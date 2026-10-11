@@ -20,7 +20,7 @@
 | **Phase 2** | Homepage Streamlining & Visual Elevation | Hero dual CTAs, What We Do metrics, pinned course integrity, How It Works 4 stages, clutter reduction | Completed ✅ | `feat(phase-2): streamline homepage content and visual elevation` |
 | **Phase 3** | Course Architecture & Detail Pages | Collapsible syllabus modules, workload transparency, equipment reconciliation, duplicate CTA removal | Completed ✅ | `feat(phase-3): course detail collapsible syllabus and decision hierarchy` |
 | **Phase 4** | Portfolio Showcase & Photo Generation | Unique gallery assets for all 6 projects, educational outcomes, collapsible technical specs | Completed ✅ | `feat(phase-4): unique portfolio photography assets and curatorial polish` |
-| **Phase 5** | About Page Deep Reduction & Studio Photos | Remove external degree catalog, 3-step admissions, Kathmandu studio imagery, duplicate CTA cleanup | Ready 📋 | `feat(phase-5): streamline about page and add kathmandu studio imagery` |
+| **Phase 5** | About Page Deep Reduction & Studio Photos | Remove external degree catalog, 3-step admissions, Kathmandu studio imagery, duplicate CTA cleanup | Completed ✅ | `feat(phase-5): streamline about page and add kathmandu studio imagery` |
 | **Phase 6** | Cross-Device Responsive & Final Polish | Mobile/tablet/desktop verification, viewport stability, typography scales, build check | Ready 📋 | `chore(phase-6): responsive polish across all screens and build verification` |
 
 ---
@@ -290,14 +290,14 @@
 
 *Focus: Audit highlighted About page as the largest content-reduction opportunity. Remove external degree catalogue, consolidate admissions to 3 steps, add Kathmandu studio photos, remove duplicate CTAs.*
 
-### [ ] Task 5.1: Remove External Degree & Diploma Catalogues from Nepal Sales Journey
+### [x] Task 5.1: Remove External Degree & Diploma Catalogues from Nepal Sales Journey
 - **Audit Findings**:
   - About page lists MFA, BFA, DDPC, OPDP, and TeenSchool prospectuses.
   - None of these are offered among the 5 courses in Nepal. Advertising them distorts the Nepal centre's offerings and creates confusion.
 - **Detailed Action Plan**:
-  - [ ] In `src/data/about/prospectus.ts` and `AboutProspectus.tsx`:
-    - Remove the multi-card degree catalogue (MFA, BFA, DDPC, OPDP).
-    - Replace with a concise, elegant **"IIP Academic Affiliation & Higher Education"** note:
+  - [x] In `src/data/about/prospectus.ts` and `AboutProspectus.tsx`:
+    - Removed the multi-card degree catalogue (MFA, BFA, DDPC, OPDP).
+    - Replaced with a concise, elegant **"IIP Academic Affiliation & Higher Education"** note:
       - Explains IIP Nepal's official relationship with the Indian Institute of Photography.
       - Provides a single clear link for students seeking multi-year degree programmes in India.
     - Keeps the main focus 100% on the local Kathmandu certificate and foundation tracks.
@@ -305,38 +305,38 @@
   - [prospectus.ts](file:///home/enviisage/Documents/iipnepal/src/data/about/prospectus.ts)
   - [AboutProspectus.tsx](file:///home/enviisage/Documents/iipnepal/src/components/about/AboutProspectus.tsx)
 
-### [ ] Task 5.2: Streamline Admissions Journey to 3 Realistic Steps
+### [x] Task 5.2: Streamline Admissions Journey to 3 Realistic Steps
 - **Audit Findings**:
   - Previous 7-step playbook included "Studio Clearance", "Tuition Planning", and "Portfolio Assessment" that don't match the online/studio registration flow.
 - **Detailed Action Plan**:
-  - [ ] Confirm `src/data/about/admissions.ts` reflects the 3 real steps:
+  - [x] Confirmed `src/data/about/admissions.ts` reflects the 3 real steps:
     1. **Select Your Course & Inquire** — Review course tracks and submit an online enquiry.
     2. **Advisory Consultation & Registration** — Speak with an admissions advisor regarding camera gear, course schedules, and registration.
     3. **Enrolment & Mentor Onboarding** — Confirm seat, receive student portal credentials, and meet your mentor.
-  - [ ] Ensure `AboutHowItWorks.tsx` renders this cleanly without unverified darkroom accreditation claims.
+  - [x] Ensured `AboutHowItWorks.tsx` renders this cleanly without unverified darkroom accreditation claims.
 - **Target Files**:
   - [admissions.ts](file:///home/enviisage/Documents/iipnepal/src/data/about/admissions.ts)
   - [AboutHowItWorks.tsx](file:///home/enviisage/Documents/iipnepal/src/components/about/AboutHowItWorks.tsx)
 
-### [ ] Task 5.3: Add Authentic Kathmandu Studio & Workshop Imagery to About Page
+### [x] Task 5.3: Add Authentic Kathmandu Studio & Workshop Imagery to About Page
 - **Audit Findings**:
   - Client requested MORE PHOTOS! About page currently only has one photo of director Additya Shrestha.
   - Prospective students need to see the Kathmandu physical centre, studio lighting setups, and practical workshop environment.
 - **Detailed Action Plan**:
-  - [ ] Generate authentic photographic assets for the Kathmandu studio (lighting strobes, studio critique session, camera gear workshop) using `generate_image`.
-  - [ ] Embed visual gallery or studio feature block in `AboutPage` showing where students learn.
+  - [x] Generated authentic photographic assets for the Kathmandu studio (lighting strobes, studio critique session, camera gear workshop) using `generate_image`.
+  - [x] Built and embedded `AboutStudioGallery` in `AboutPage` showing where students learn with 3 rich plates.
 - **Target Files**:
   - `public/images/about/*`
-  - [AboutLeadership.tsx](file:///home/enviisage/Documents/iipnepal/src/components/about/AboutLeadership.tsx)
+  - [AboutStudioGallery.tsx](file:///home/enviisage/Documents/iipnepal/src/components/about/AboutStudioGallery.tsx)
   - [page.tsx](file:///home/enviisage/Documents/iipnepal/src/app/about/page.tsx)
 
-### [ ] Task 5.4: Eliminate Duplicate Closing CTA on About Page
+### [x] Task 5.4: Eliminate Duplicate Closing CTA on About Page
 - **Audit Findings**:
   - `AboutPage` currently renders `AboutHowItWorks` (admissions), followed by `AboutProspectus`, followed by `AboutCta` (admissions sales pitch), followed immediately by `Footer`!
   - `AboutCta` is redundant and adds unnecessary scroll length.
 - **Detailed Action Plan**:
-  - [ ] Remove `AboutCta` from `src/app/about/page.tsx` or consolidate with the admissions consultation button.
-  - [ ] Update page metadata to remove references to the 7-step process and unverified degree prospectuses.
+  - [x] Removed redundant `AboutCta` from `src/app/about/page.tsx`.
+  - [x] Updated page metadata to remove references to the 7-step process and unverified degree prospectuses.
 - **Target Files**:
   - [page.tsx](file:///home/enviisage/Documents/iipnepal/src/app/about/page.tsx)
 

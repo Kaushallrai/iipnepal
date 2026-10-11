@@ -3,19 +3,19 @@ import React from "react";
 import AboutHero from "@/components/about/AboutHero";
 import AboutWhatWeDo from "@/components/about/AboutWhatWeDo";
 import AboutLeadership from "@/components/about/AboutLeadership";
+import AboutStudioGallery from "@/components/about/AboutStudioGallery";
 import AboutHowItWorks from "@/components/about/AboutHowItWorks";
 import AboutProspectus from "@/components/about/AboutProspectus";
-import AboutCta from "@/components/about/AboutCta";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "About Us | IIP Nepal — Indian Institute of Photography",
   description:
-    "Learn about IIP Nepal, the premier photography institute in Kathmandu and official regional partner of the Indian Institute of Photography, led by Additya Shrestha. Explore our admissions playbook, darkroom facilities, and download course prospectuses.",
+    "Learn about IIP Nepal, the premier photography institute in Kathmandu and official regional partner of the Indian Institute of Photography, led by Additya Shrestha. Explore our 3-step admissions process, studio and lighting facilities at Jyoti Bhawan, and course syllabi.",
   openGraph: {
     title: "About Us | IIP Nepal — Indian Institute of Photography",
     description:
-      "Premier photography education in Kathmandu. Explore our 7-step admissions process, studio and darkroom at Jyoti Bhawan, and degree prospectuses.",
+      "Premier photography education in Kathmandu. Explore our 3-step admissions process, studio and lighting labs at Jyoti Bhawan, and course syllabi.",
     type: "website",
     url: "https://iipnepal.com/about",
   },
@@ -35,17 +35,17 @@ export default function AboutPage(): React.JSX.Element {
       {/* 2. WHAT WE DO: ACADEMY PILLARS & KINETIC DISCIPLINES MARQUEE */}
       <AboutWhatWeDo />
 
-      {/* 3. ACADEMIC LEADERSHIP & IIP ETHOS (ADDITYA SHRESTHA & DARKROOM ARCHIVE) */}
+      {/* 3. ACADEMIC LEADERSHIP & IIP ETHOS (ADDITYA SHRESTHA) */}
       <AboutLeadership />
 
-      {/* 4. HERE'S HOW IT WORKS: 7-STEP ADMISSIONS PLAYBOOK */}
+      {/* 4. KATHMANDU STUDIO & FIELDWORK SHOWCASE (MORE PHOTOS) */}
+      <AboutStudioGallery />
+
+      {/* 5. HERE'S HOW IT WORKS: 3-STEP ADMISSIONS PROCESS */}
       <AboutHowItWorks />
 
-      {/* 5. OFFICIAL ACADEMIC CATALOGUES & PROSPECTUS DOWNLOADS */}
+      {/* 6. OFFICIAL COURSE SYLLABI & ACADEMIC AFFILIATION */}
       <AboutProspectus />
-
-      {/* 6. ADMISSIONS CTA (NO MAP) */}
-      <AboutCta />
 
       {/* 7. ARCHITECTURAL DARK FOOTER */}
       <Footer />

@@ -11,53 +11,29 @@ export interface AboutAdmissionsData {
 }
 
 export const aboutAdmissionsData: AboutAdmissionsData = {
-  eyebrow: "Admissions Playbook // 7-Step Journey",
+  eyebrow: "Admissions Process // 3 Simple Steps",
   headingLines: [
-    "Here’s how it works — from your first enquiry",
-    "to darkroom accreditation.",
+    "From your first enquiry to",
+    "one-on-one mentor onboarding.",
   ],
   steps: [
     {
       number: "01",
-      title: "Connect with Career Counselling",
+      title: "Select Your Course & Inquire",
       description:
-        "Direct consultation with our Kathmandu admissions team to identify the course track matching your experience and goals.",
+        "Choose a program that fits your experience level and artistic goals, or contact our admissions desk for personalized track guidance.",
     },
     {
       number: "02",
-      title: "Discovery & Creative Background",
+      title: "Advisory Consultation & Registration",
       description:
-        "A personal discussion exploring your visual interests, technical foundation, and preferred genres.",
+        "Speak directly with an instructor to review equipment requirements, confirm schedule availability, and register your details.",
     },
     {
       number: "03",
-      title: "Portfolio Submission",
+      title: "Enrollment & Mentor Onboarding",
       description:
-        "Share 5 to 10 photographs for faculty assessment. No previous art experience is required for Foundation modules.",
-    },
-    {
-      number: "04",
-      title: "Application Completion",
-      description:
-        "Standard registration form completed with direct assistance from your assigned personal admissions counselor.",
-    },
-    {
-      number: "05",
-      title: "Tuition & Education Plan",
-      description:
-        "Review transparent fee structures, installment schedules, and equipment requirements.",
-    },
-    {
-      number: "06",
-      title: "Registration & Studio Clearance",
-      description:
-        "Receive student portal credentials, course syllabi, and darkroom safety clearance at Jyoti Bhawan.",
-    },
-    {
-      number: "07",
-      title: "Welcome to the Academy",
-      description:
-        "Begin practical shoots, studio lighting workshops, mentor critique sessions, and accredited certification.",
+        "Finalize your registration, receive student portal credentials, and start your one-on-one photography mentorship and practical shooting assignments.",
     },
   ],
 };

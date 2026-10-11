@@ -16,73 +16,43 @@ export interface AboutProspectusData {
 }
 
 export const aboutProspectusData: AboutProspectusData = {
-  eyebrow: "Prospectus & Academic Catalogues",
+  eyebrow: "Course Syllabi & Academic Affiliation",
   headingLines: [
-    "Official syllabi, degree roadmaps,",
-    "and professional curricula.",
+    "Official course syllabi and",
+    "IIP academic affiliation.",
   ],
   subheading:
-    "Review comprehensive curriculum breakdowns, fee structures, faculty profiles, and graduation credentials for upcoming academic terms.",
+    "Review comprehensive Kathmandu curriculum breakdowns and schedules, or access the Indian Institute of Photography academic prospectus for degree programs.",
   items: [
     {
-      id: "mfa",
-      code: "MFA",
-      title: "Master of Fine Arts in Photography",
-      level: "Postgraduate Degree (IIP Academy)",
+      id: "kathmandu-syllabi",
+      code: "SYLLABI",
+      title: "Kathmandu Photography Course Syllabi",
+      level: "5 Certificate Tracks",
       description:
-        "Advanced research-led curriculum covering visual theory, personal thesis authorship, darkroom printing, and curatorial practice.",
-      pdfUrl: "https://www.iipacademy.edu.in/images/IIPCCA%20PROSPECTUS.pdf",
-      actionLabel: "Download IIP Prospectus",
-    },
-    {
-      id: "bfa",
-      code: "BFA",
-      title: "Bachelor of Fine Arts in Photography",
-      level: "Undergraduate Degree (IIP Academy)",
-      description:
-        "Comprehensive multi-year program covering camera optics, lighting physics, analog processes, and professional editorial ethics.",
-      pdfUrl: "https://www.iipacademy.edu.in/images/IIPCCA%20PROSPECTUS.pdf",
-      actionLabel: "Download IIP Prospectus",
-    },
-    {
-      id: "ddpc",
-      code: "DDPC",
-      title: "Dual Diploma in Professional Photography",
-      level: "Professional Diploma (IIP Academy)",
-      description:
-        "Career-focused dual credential emphasizing commercial studio assignments, portraiture, fashion, and business management.",
-      pdfUrl: "https://www.iipacademy.edu.in/images/IIPCCA%20PROSPECTUS.pdf",
-      actionLabel: "Download IIP Prospectus",
-    },
-    {
-      id: "opdp",
-      code: "OPDP",
-      title: "Online Professional Development Program",
-      level: "Distance Learning (IIP Academy)",
-      description:
-        "Structured remote curriculum with weekly one-on-one virtual critiques, home assignments, and accredited certification.",
-      pdfUrl: "https://www.iipacademy.edu.in/images/IIPCCA%20PROSPECTUS.pdf",
-      actionLabel: "Download IIP Prospectus",
-    },
-    {
-      id: "pro-foundation",
-      code: "FOUNDATION",
-      title: "Pro Foundation & Advanced Course Catalogue",
-      level: "Kathmandu Certificate Track",
-      description:
-        "Intensive hands-on modules in manual camera controls, metering, light direction, and creative studio shoots at the Nepal centre.",
+        "Complete curriculum outlines, equipment prerequisites, weekly workloads, and studio shoot schedules for all 5 programs.",
       pdfUrl: "/courses",
       actionLabel: "View Course Syllabi",
     },
     {
-      id: "teenschool",
-      code: "TEENSCHOOL",
-      title: "TeenSchool Creative Arts Prospectus",
-      level: "Youth Immersion",
+      id: "admissions-dossier",
+      code: "ADMISSIONS",
+      title: "Admissions Consultation & Studio Visit",
+      level: "Kathmandu Centre",
       description:
-        "Visual storytelling and photographic fundamentals designed for high-school students and emerging creators.",
+        "Speak directly with faculty regarding gear advice, rolling monthly intakes, or schedule a tour of our studio facilities at Jyoti Bhawan.",
       pdfUrl: "/contact",
-      actionLabel: "Request Youth Prospectus",
+      actionLabel: "Contact Admissions Desk",
+    },
+    {
+      id: "iip-degree-affiliation",
+      code: "DEGREE AF.",
+      title: "IIP India Higher Education Prospectus",
+      level: "Academic Affiliation (IIP Academy)",
+      description:
+        "Official institutional partnership with Indian Institute of Photography. Multi-year undergraduate and postgraduate degree curriculum guide.",
+      pdfUrl: "https://www.iipacademy.edu.in/images/IIPCCA%20PROSPECTUS.pdf",
+      actionLabel: "Download IIP Prospectus",
     },
   ],
 };

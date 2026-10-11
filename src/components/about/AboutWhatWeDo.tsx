@@ -71,15 +71,17 @@ export default function AboutWhatWeDo(): React.JSX.Element {
             </div>
           ))}
 
-          {/* Seamless duplicate set for continuous loop */}
-          {DISCIPLINES.map((item, idx) => (
-            <div key={`d2-${idx}`} className="flex items-center gap-6 sm:gap-8 px-3 sm:px-4 shrink-0">
-              <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] font-semibold text-black whitespace-nowrap">
-                {item}
-              </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ffd001] shrink-0" />
-            </div>
-          ))}
+          {/* Seamless duplicate set for continuous loop (hidden from assistive tech) */}
+          <div className="flex items-center" aria-hidden="true">
+            {DISCIPLINES.map((item, idx) => (
+              <div key={`d2-${idx}`} className="flex items-center gap-6 sm:gap-8 px-3 sm:px-4 shrink-0">
+                <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] font-semibold text-black whitespace-nowrap">
+                  {item}
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#ffd001] shrink-0" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

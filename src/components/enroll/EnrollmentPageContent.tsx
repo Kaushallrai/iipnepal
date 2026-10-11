@@ -349,10 +349,13 @@ export default function EnrollmentPageContent({
                   <p>— Studio lighting and darkroom sessions at Jyoti Bhawan</p>
                 </div>
 
-                {/* Payment Notice */}
-                <p className="font-sans text-[11px] text-[#888888] pt-2 border-t border-[#e2e0d2]">
-                  Tuition can be settled via eSewa, Khalti QR, direct bank transfer (NIMB/Nabil), or at the Jyoti Bhawan admissions counter.
-                </p>
+                {/* What Happens Next Summary */}
+                <div className="pt-3 border-t border-[#e2e0d2] flex flex-col gap-1.5 font-mono text-[11px] text-[#666666]">
+                  <span className="uppercase tracking-wider text-black font-semibold">How enrollment works:</span>
+                  <p>1. Submit your details on this form.</p>
+                  <p>2. Admissions verifies batch seat and contacts you via phone/WhatsApp.</p>
+                  <p>3. Settle tuition via eSewa, Khalti, or bank to begin mentorship.</p>
+                </div>
               </div>
 
             </div>
@@ -373,7 +376,7 @@ export default function EnrollmentPageContent({
               </div>
 
               {submittedData ? (
-                /* Submission Confirmation State (matching ContactForm.tsx) */
+                /* Submission Confirmation State */
                 <div
                   role="status"
                   aria-live="polite"
@@ -384,25 +387,46 @@ export default function EnrollmentPageContent({
                   </div>
                   
                   <h3 className="font-light text-2xl sm:text-3xl tracking-[-0.03em] text-[#fffef7]">
-                    Enrolment enquiry logged successfully.
+                    Enrolment application received.
                   </h3>
                   
-                  <div className="font-mono text-xs text-[#ffd001] tracking-wider">
+                  <div className="font-mono text-xs text-[#ffd001] tracking-wider bg-[#ffd001]/10 px-3 py-1 border border-[#ffd001]/30">
                     APPLICATION REF: {submittedData.referenceId}
                   </div>
 
-                  <p className="font-light text-[14px] text-[#aaaaaa] leading-[1.65]">
-                    Welcome, <strong>{submittedData.studentName}</strong>. Your enrolment enquiry for <strong>{submittedData.courseTitle}</strong> ({submittedData.payableFee}) has been received.
+                  <p className="font-light text-[14px] text-[#cccccc] leading-[1.65]">
+                    Welcome, <strong>{submittedData.studentName}</strong>. Your enrolment application for <strong>{submittedData.courseTitle}</strong> ({submittedData.payableFee}) has been registered in the Kathmandu admissions ledger.
                   </p>
 
-                  <p className="font-light text-[13px] text-[#888888] leading-relaxed">
-                    Our admissions desk will contact you via phone or WhatsApp within 24 hours to confirm seat availability, schedule your orientation, and provide payment details.
-                  </p>
+                  <div className="w-full p-4 bg-white/5 border border-white/10 text-xs font-mono space-y-2 text-[#aaaaaa]">
+                    <div className="text-white uppercase tracking-wider font-semibold">What happens next:</div>
+                    <p>1. Our admissions counselor will review batch seating availability.</p>
+                    <p>2. We will reach out via phone ({submittedData.phone}) or WhatsApp to confirm your schedule and provide payment coordinates (eSewa / Khalti / Bank Transfer / Studio counter).</p>
+                    <p>3. Upon settlement, your official IIP Student Portal credentials and mentor orientation details will be issued.</p>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-3 pt-2">
+                    <a
+                      href="tel:+9779802364760"
+                      className="inline-flex items-center gap-1.5 py-2.5 px-4 rounded-full bg-[#ffd001] text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-white transition-colors"
+                    >
+                      <span>Call Admissions Desk</span>
+                    </a>
+                    <a
+                      href="https://wa.me/9779802364760"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 py-2.5 px-4 rounded-full border border-white/20 text-white font-mono text-xs uppercase tracking-wider hover:border-[#ffd001] hover:text-[#ffd001] transition-colors"
+                    >
+                      <span>WhatsApp Desk</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
 
                   <button
                     type="button"
                     onClick={handleReset}
-                    className="mt-4 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.18em] text-[#ffd001] hover:underline cursor-pointer"
+                    className="mt-3 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.18em] text-[#888888] hover:text-white hover:underline cursor-pointer"
                   >
                     <span>Submit another application</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
@@ -666,8 +690,16 @@ export default function EnrollmentPageContent({
                         }}
                         className="mt-0.5 w-4 h-4 accent-black rounded-none cursor-pointer"
                       />
-                      <span className="font-sans text-xs text-[#666666] leading-relaxed">
-                        I confirm that the enquiry details provided are accurate and agree to IIP Nepal&apos;s academic guidelines and admissions policies.
+                      <span className="font-sans text-xs text-[#555555] leading-relaxed">
+                        I confirm that my application details are accurate and agree to IIP Nepal&apos;s{" "}
+                        <Link href="/terms" target="_blank" className="underline underline-offset-2 text-black hover:text-[#ca8a04]">
+                          terms of admission
+                        </Link>{" "}
+                        and{" "}
+                        <Link href="/privacy" target="_blank" className="underline underline-offset-2 text-black hover:text-[#ca8a04]">
+                          privacy policy
+                        </Link>
+                        .
                       </span>
                     </label>
                     {errors.agreeTerms && (
@@ -678,11 +710,11 @@ export default function EnrollmentPageContent({
                   </div>
 
                   {/* Action Submit Button in Creative Giants Pill Style */}
-                  <div className="button-group col-span-2 pt-3 sm:pt-4 flex items-center">
+                  <div className="col-span-2 pt-3 sm:pt-4 flex flex-col items-start gap-2.5">
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="btn is-icon group relative inline-flex items-center justify-center gap-3.5 bg-black hover:bg-[#ffd001] text-[#fffef7] hover:text-black py-4 px-9 sm:px-11 rounded-full transition-colors duration-300 overflow-hidden cursor-pointer select-none w-full sm:w-auto"
+                      className="btn is-icon group relative inline-flex items-center justify-center gap-3.5 bg-black hover:bg-[#ffd001] text-[#fffef7] hover:text-black py-4 px-9 sm:px-11 rounded-full transition-colors duration-300 overflow-hidden cursor-pointer select-none w-full sm:w-auto min-h-[48px]"
                     >
                       {/* Sliding Signal Yellow Box on Hover */}
                       <span className="btn__circle-wrap absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
@@ -691,29 +723,16 @@ export default function EnrollmentPageContent({
 
                       {/* Text */}
                       <span className="btn__text relative z-[2] font-mono text-xs sm:text-[13px] font-bold uppercase tracking-[0.16em] leading-none whitespace-nowrap transition-transform duration-300 group-hover:translate-x-1">
-                        {isSubmitting ? "PROCESSING..." : "SUBMIT ENROLMENT ENQUIRY"}
+                        {isSubmitting ? "PROCESSING..." : "SUBMIT ENROLMENT APPLICATION"}
                       </span>
 
-                      {/* Angled Arrow SVG Slot */}
+                      {/* Angled Arrow */}
                       <span className="btn__icon-slot relative z-[2] w-3.5 h-3.5 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 14 14"
-                          fill="none"
-                          className="w-3.5 h-3.5"
-                          aria-hidden="true"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M1.86031 0.00280762H14V12.1417H12.8189V2.01904L0.83515 14.0028L0 13.1677L11.9838 1.18389H1.86031V0.00280762Z"
-                            fill="currentColor"
-                          />
-                        </svg>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
                       </span>
                     </button>
-                    <p className="mt-2.5 font-mono text-[11px] text-[#777777] leading-relaxed">
-                      * Submitting registers your priority enquiry. Admissions staff will contact you within 24 hours to confirm seat availability and provide payment details (eSewa / Khalti / Bank Transfer / Studio Cashier).
+                    <p className="font-mono text-[11px] text-[#777777] leading-relaxed">
+                      * Submitting registers your priority application. Admissions staff will verify batch capacity and contact you directly with orientation and payment coordinates.
                     </p>
                   </div>
 

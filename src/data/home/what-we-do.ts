@@ -17,11 +17,11 @@ export const whatWeDoData: WhatWeDoData = {
   heading:
     "We train photographers, visual storytellers, and image-makers through manual camera craft, lighting control, and practical field assignments across Kathmandu.",
   description:
-    "As the Nepal centre of the Indian Institute of Photography, established in partnership with White Hat Events, we offer structured photography courses for beginners and working professionals. Our training combines technical camera controls, studio strobe lighting, digital darkroom post-production, and individual mentor reviews on every submitted assignment.",
+    "Official Kathmandu centre of the Indian Institute of Photography, delivering 5 mentor-led certificate tracks, studio strobe lighting, and 1-on-1 critiques at Jyoti Bhawan, Kanti Path.",
   stats: [
     {
       value: "14+",
-      label: "Years of IIP photographic training heritage across South Asia.",
+      label: "Years of IIP photographic training heritage (Est. 2011 in Kathmandu).",
       icon: "camera",
       delay: 0,
     },

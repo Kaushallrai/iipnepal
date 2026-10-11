@@ -94,8 +94,8 @@ export const footerData = {
     { label: "Get In Touch", href: "/contact" },
   ] as NavLinkItem[],
   discoveryCta: {
-    heading: "Ready to begin your journey behind the lens?",
+    heading: "Kathmandu Admissions Desk & Studio",
     description:
-      "Explore our mentor-led photography courses or schedule a one-on-one portfolio review with our Kathmandu faculty.",
+      "Open Sunday through Friday, 10:00 AM – 5:00 PM at Jyoti Bhawan, Kanti Path. Walk-in consultations and course portfolio reviews by prior appointment.",
   },
 };

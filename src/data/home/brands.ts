@@ -14,7 +14,7 @@ export interface BrandsData {
 }
 
 export const brandsData: BrandsData = {
-  eyebrow: "INDUSTRY STANDARDS // GEAR & HERITAGE",
+  eyebrow: "CREATIVE TOOLS // HARDWARE, OPTICS & SYSTEMS MASTERED BY OUR STUDENTS",
   brands: [
     {
       id: "nikon",

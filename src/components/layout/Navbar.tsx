@@ -497,7 +497,7 @@ export default function Navbar({
               onClick={() => setIsMobileMenuOpen(false)}
               className="inline-flex w-full items-center justify-center py-3.5 rounded-full bg-[#ffd001] hover:bg-white active:scale-[0.99] text-black font-mono text-xs sm:text-sm font-semibold tracking-[0.16em] uppercase transition-all duration-200 touch-manipulation"
             >
-              {enrollText} — Intake 2026
+              {enrollText} — Rolling Intakes
             </Link>
           </div>
 

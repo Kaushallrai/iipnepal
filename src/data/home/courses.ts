@@ -76,7 +76,7 @@ export const homeCoursesData: HomeCoursesData = {
       number: "04",
       title: "Pro-Level Foundation Photography Course",
       duration: "3 Months",
-      level: "Foundation / Pro",
+      level: "Pro Foundation",
       totalFee: "Rs. 26,800",
       payableFee: "Rs. 26,800",
       description:

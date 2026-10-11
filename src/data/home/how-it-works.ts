@@ -13,38 +13,38 @@ export interface HowItWorksData {
 }
 
 export const howItWorksData: HowItWorksData = {
-  eyebrow: "Curriculum Roadmap",
-  heading: "How This Course Works — From Enrollment to Certification.",
+  eyebrow: "Learning Process",
+  heading: "How Learning Works — From Choice to Certification.",
   subheading:
-    "A structured, mentor-led online learning progression — combining practical shoot assignments, dedicated faculty critiques, and certified completion.",
+    "A structured, mentor-led progression combining guided lesson modules, practical field assignments, and dedicated mentor critique.",
   steps: [
     {
       number: "01",
-      phase: "PHASE 01 // ENROLLMENT",
-      title: "Enrollment & Portal Access",
+      phase: "STAGE 01 // SELECTION",
+      title: "Choose Your Course",
       description:
-        "After course enrollment, receive your verified login credentials within 24 hours to access your personal student control panel, chapters, and resources.",
+        "Select a programme that fits your camera experience, schedule, and creative photographic goals.",
     },
     {
       number: "02",
-      phase: "PHASE 02 // LEARNING",
-      title: "Online Modules & Guided Shoots",
+      phase: "STAGE 02 // PRACTICE",
+      title: "Learn & Practise",
       description:
-        "Access course content through the control panel — read theory chapters, examine real-world photographic examples, and head out to shoot pictures.",
+        "Study core optical theory, examine real-world examples, and complete practical field shooting briefs.",
     },
     {
       number: "03",
-      phase: "PHASE 03 // PRACTICE",
-      title: "Assignments & Photo Submissions",
+      phase: "STAGE 03 // MENTORSHIP",
+      title: "Receive Feedback",
       description:
-        "Put your knowledge to work by completing practical assignments and uploading your selected 5 best photographs per chapter directly to the portal.",
+        "Submit your project work for individual mentor review, personalized critique, and improvement guidance.",
     },
     {
       number: "04",
-      phase: "PHASE 04 // REVIEW & CERTIFICATE",
-      title: "Mentor Feedback & Certification",
+      phase: "STAGE 04 // CERTIFICATE",
+      title: "Complete Your Course",
       description:
-        "Our experienced mentors review and provide actionable feedback on each submitted photograph, leading to your accredited IIP certificate upon completion.",
+        "Finalize your coursework and portfolio to receive your verified IIP Course Certificate.",
     },
   ],
 };

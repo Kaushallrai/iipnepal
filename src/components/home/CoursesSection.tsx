@@ -406,7 +406,7 @@ export default function CoursesSection({
                             {course.number}
                           </span>
                           <span className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-black/50 font-semibold leading-none">
-                            {"IIP • ARCHIVE // 35MM"}
+                            {"IIP • MENTOR-LED"}
                           </span>
                         </div>
 
@@ -561,7 +561,7 @@ export default function CoursesSection({
                   </span>
 
                   <span className="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-black/50 font-semibold leading-none">
-                    {"IIP • ARCHIVE // 35MM"}
+                    {"IIP • MENTOR-LED"}
                   </span>
                 </div>
 

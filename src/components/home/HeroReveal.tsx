@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { usePageTransition } from "@/components/providers/PageTransitionContext";
@@ -693,10 +694,10 @@ export default function HeroReveal({
               </p>
             </div>
 
-            {/* Single CTA Link: "[ EXPLORE COURSES ]" */}
+            {/* Action CTAs: Explore Courses + Talk to Admissions */}
             <div
               ref={ctaRef}
-              className="flex items-center justify-center"
+              className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 pt-1"
               style={{
                 willChange: "transform, opacity",
                 opacity: hasPlayedHomeIntro ? 1 : 0,
@@ -705,15 +706,21 @@ export default function HeroReveal({
             >
               <a
                 href="#courses"
-                className="text-[#ffd001] hover:text-white font-mono text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.24em] uppercase transition-colors duration-200 cursor-pointer py-2 px-4 leading-none no-underline"
+                className="text-[#ffd001] hover:text-white font-mono text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.24em] uppercase transition-colors duration-200 cursor-pointer py-2 px-3 leading-none no-underline"
               >
                 {ctaText}
               </a>
+              <Link
+                href="/contact"
+                className="text-white/80 hover:text-[#ffd001] font-mono text-xs sm:text-sm tracking-[0.18em] sm:tracking-[0.22em] uppercase transition-colors duration-200 cursor-pointer py-2 px-3 leading-none no-underline border-b border-white/20 hover:border-[#ffd001]"
+              >
+                Talk to Admissions →
+              </Link>
             </div>
           </div>
         </div>
 
-        {/* Bottom Information Bar (Kathmandu Studio & Est. 2026): Exact same padding as navbar */}
+        {/* Bottom Information Bar (Kathmandu Studio & Est. 2011): Exact same padding as navbar */}
         <div
           ref={bottomBarRef}
           className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pl-[max(1.5rem,env(safe-area-inset-left,0px))] pr-[max(1.5rem,env(safe-area-inset-right,0px))] flex flex-row items-center justify-between pt-2 pb-0 text-white/90 font-mono text-[11px] sm:text-xs md:text-sm tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.22em] uppercase font-medium pointer-events-auto shrink-0"

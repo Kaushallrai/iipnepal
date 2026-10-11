@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { LineReveal } from "@/components/animations/LineReveal";
-import { Phone, Mail } from "lucide-react";
+import { Phone, Mail, MessageSquare, ArrowUpRight } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -108,22 +108,32 @@ export default function ContactSection(): React.JSX.Element {
 
               {/* MOBILE ONLY: Ultra-compact, 1-tap quick action pills (Zero unnecessary scrolling) */}
               <div className="md:hidden flex flex-col gap-2 w-full pt-3 pb-1">
-                <div className="grid grid-cols-2 gap-2 w-full">
+                <div className="grid grid-cols-3 gap-2 w-full">
                   <a
                     href={`tel:${homeContactData.phone}`}
-                    className="inline-flex items-center justify-center gap-2 py-2 px-3 rounded-full bg-[#f4f2e9] hover:bg-[#ffd001] active:bg-[#ffd001] text-black font-mono text-[11px] tracking-[0.06em] uppercase border border-[#e2e0d2] transition-colors"
-                    aria-label={`Call Direct Admissions at ${homeContactData.phoneDisplay}`}
+                    className="inline-flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-full bg-[#f4f2e9] hover:bg-[#ffd001] active:bg-[#ffd001] text-black font-mono text-[11px] tracking-[0.04em] uppercase border border-[#e2e0d2] transition-colors"
+                    aria-label={`Call Admissions at ${homeContactData.phoneDisplay}`}
                   >
                     <Phone className="w-3 h-3 text-[#666666]" aria-hidden="true" />
-                    <span>Call Studio</span>
+                    <span>Call</span>
+                  </a>
+                  <a
+                    href="https://wa.me/9779802364760?text=Hello%20IIP%20Nepal%2C%20I%20would%20like%20to%20inquire%20about%20photography%20courses."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-full bg-[#f4f2e9] hover:bg-[#25D366] hover:text-white active:bg-[#25D366] active:text-white text-black font-mono text-[11px] tracking-[0.04em] uppercase border border-[#e2e0d2] transition-colors"
+                    aria-label="Chat on WhatsApp"
+                  >
+                    <MessageSquare className="w-3 h-3 text-[#666666]" aria-hidden="true" />
+                    <span>WhatsApp</span>
                   </a>
                   <a
                     href={`mailto:${homeContactData.email}`}
-                    className="inline-flex items-center justify-center gap-2 py-2 px-3 rounded-full bg-[#f4f2e9] hover:bg-[#ffd001] active:bg-[#ffd001] text-black font-mono text-[11px] tracking-[0.06em] uppercase border border-[#e2e0d2] transition-colors"
+                    className="inline-flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-full bg-[#f4f2e9] hover:bg-[#ffd001] active:bg-[#ffd001] text-black font-mono text-[11px] tracking-[0.04em] uppercase border border-[#e2e0d2] transition-colors"
                     aria-label={`Email faculty at ${homeContactData.email}`}
                   >
                     <Mail className="w-3 h-3 text-[#666666]" aria-hidden="true" />
-                    <span>Email Us</span>
+                    <span>Email</span>
                   </a>
                 </div>
                 <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.08em] text-[#777777] px-1 pt-0.5">
@@ -292,7 +302,7 @@ export default function ContactSection(): React.JSX.Element {
                     htmlFor="Phone-Number"
                     className="form_field-label font-mono text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1 sm:mb-1.5"
                   >
-                    Phone number
+                    Phone number (optional)
                   </label>
                   <input
                     id="Phone-Number"
@@ -344,13 +354,13 @@ export default function ContactSection(): React.JSX.Element {
                   </Select>
                 </div>
 
-                {/* Project / Inquiry Details */}
+                {/* Question or Message */}
                 <div className="form_field-wrapper col-span-2 flex flex-col items-start">
                   <label
                     htmlFor="Project-Details"
                     className="form_field-label font-mono text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.14em] text-[#666666] mb-1 sm:mb-1.5"
                   >
-                    Project or mentorship details
+                    Question or message (optional)
                   </label>
                   <textarea
                     id="Project-Details"
@@ -358,13 +368,13 @@ export default function ContactSection(): React.JSX.Element {
                     rows={2}
                     value={formData.details}
                     onChange={handleChange}
-                    placeholder="Tell us about your photographic experience or questions..."
+                    placeholder="Tell us about your photographic goals, camera gear, or any questions regarding admissions..."
                     className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[14px] sm:text-[15px] md:text-[16px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none resize-none transition-colors duration-200"
                   />
                 </div>
 
-                {/* Action Submit Button */}
-                <div className="button-group col-span-2 pt-2 sm:pt-4 flex items-center">
+                {/* Action Submit Button & Fast WhatsApp Action */}
+                <div className="button-group col-span-2 pt-2 sm:pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <button
                     type="submit"
                     disabled={isSubmitting}
@@ -377,7 +387,7 @@ export default function ContactSection(): React.JSX.Element {
 
                     {/* Text */}
                     <span className="btn__text relative z-[2] font-mono text-xs sm:text-[13px] font-bold uppercase tracking-[0.16em] leading-none transition-transform duration-300 group-hover:translate-x-1">
-                      {isSubmitting ? "SENDING..." : "SEND ENQUIRY"}
+                      {isSubmitting ? "SENDING..." : "SUBMIT ENQUIRY"}
                     </span>
 
                     {/* Arrow Icon */}
@@ -398,6 +408,28 @@ export default function ContactSection(): React.JSX.Element {
                       </svg>
                     </span>
                   </button>
+
+                  <a
+                    href="https://wa.me/9779802364760?text=Hello%20IIP%20Nepal%2C%20I%20would%20like%20to%20inquire%20about%20photography%20courses."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[#25D366] hover:text-[#128C7E] transition-colors py-2"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-[#25D366] shadow-[0_0_6px_rgba(37,211,102,0.6)]" />
+                    <span>Direct WhatsApp Chat</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
+                {/* Privacy Note */}
+                <div className="col-span-2 pt-2 border-t border-[#eae8dc] text-left">
+                  <p className="font-mono text-[11px] text-[#888888]">
+                    We respect your privacy. Submissions are reviewed by Kathmandu faculty within 24 hours. View our{" "}
+                    <Link href="/terms" className="underline hover:text-black transition-colors">
+                      admissions policies & terms
+                    </Link>
+                    .
+                  </p>
                 </div>
               </form>
             )}

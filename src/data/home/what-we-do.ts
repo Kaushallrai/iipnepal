@@ -15,13 +15,13 @@ export interface WhatWeDoData {
 export const whatWeDoData: WhatWeDoData = {
   eyebrow: "What we do",
   heading:
-    "We train photographers, visual storytellers, and image-makers through manual camera craft, darkroom chemistry, and practical field assignments across Kathmandu.",
+    "We train photographers, visual storytellers, and image-makers through manual camera craft, lighting control, and practical field assignments across Kathmandu.",
   description:
-    "As the Nepal centre of the Indian Institute of Photography, established with White Hat Events, we offer structured photography courses for beginners and working professionals. Our training combines technical camera controls, studio strobe lighting, monochrome darkroom printing, and individual mentor reviews on every submitted assignment.",
+    "As the Nepal centre of the Indian Institute of Photography, established in partnership with White Hat Events, we offer structured photography courses for beginners and working professionals. Our training combines technical camera controls, studio strobe lighting, digital darkroom post-production, and individual mentor reviews on every submitted assignment.",
   stats: [
     {
       value: "14+",
-      label: "Years of photography education and training heritage.",
+      label: "Years of IIP photographic training heritage across South Asia.",
       icon: "camera",
       delay: 0,
     },
@@ -33,7 +33,7 @@ export const whatWeDoData: WhatWeDoData = {
     },
     {
       value: "100%",
-      label: "Hands-on field shoots, studio lighting labs, and mentor critique.",
+      label: "Practical field shoots, studio lighting labs, and 1-on-1 mentor critiques.",
       icon: "practical",
       delay: 0.3,
     },

@@ -22,17 +22,17 @@ export interface HeroData {
 
 export const heroData: HeroData = {
   imageSrc: "/images/hero-photographer.webp",
-  imageAlt: "IIP Nepal Master Photographer Darkroom",
+  imageAlt: "IIP Nepal Photography Studio & Education",
   brandPrimary: "IIP",
   brandSecondary: "NEPAL",
-  announcementTitle: "WELCOME TO THE IIP CENTRE NEPAL",
+  announcementTitle: "LEARN PHOTOGRAPHY THROUGH GUIDED PRACTICE",
   announcementText:
-    "Indian Institute of Photography launches in Kathmandu with White Hat Events — led by alumnus Additya Shrestha.",
+    "Master your craft through structured assignments, field shooting briefs, and personal 1-on-1 mentor feedback at the IIP Kathmandu centre.",
   ctaText: "[ EXPLORE COURSES ]",
   ctaHref: "#courses",
   bottomBar: {
-    leftText: "KATHMANDU STUDIO",
-    rightText: "EST. 2026",
+    leftText: "KATHMANDU CENTRE",
+    rightText: "EST. 2011",
   },
   editorialTag: {
     primary: "IIP",

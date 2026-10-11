@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import type { PortfolioItem } from "@/data/portfolio";
 
@@ -13,7 +14,7 @@ export interface PortfolioListProps {
 export default function PortfolioList({ items }: PortfolioListProps): React.JSX.Element {
   if (items.length === 0) {
     return (
-      <div className="py-20 text-center">
+      <div className="py-24 text-center">
         <p className="font-mono text-xs text-[#888888] uppercase tracking-wider">
           No exhibition bodies of work found in this category.
         </p>
@@ -21,7 +22,7 @@ export default function PortfolioList({ items }: PortfolioListProps): React.JSX.
     );
   }
 
-  // Determine asymmetric grid span per index
+  // Determine asymmetric grid span per index for gallery flow
   const getGridSpanClass = (index: number) => {
     switch (index % 6) {
       case 0:
@@ -35,7 +36,7 @@ export default function PortfolioList({ items }: PortfolioListProps): React.JSX.
       case 4:
         return "col-span-12 md:col-span-7"; // Inverted 7-column
       case 5:
-        return "col-span-12"; // Cinematic full-width frame
+        return "col-span-12"; // Full-width cinematic frame
       default:
         return "col-span-12 md:col-span-6";
     }
@@ -61,130 +62,90 @@ export default function PortfolioList({ items }: PortfolioListProps): React.JSX.
   };
 
   return (
-    <section id="portfolio-roster" className="w-full py-10 sm:py-14 md:py-18 bg-[#fffef7]">
-      <div className="w-full max-w-[105rem] mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
+    <section id="portfolio-roster" className="w-full py-12 sm:py-16 md:py-20 bg-[#fffef7]">
+      <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
         
         {/* Asymmetric Exhibition Bento Grid */}
-        <div className="grid grid-cols-12 gap-x-6 sm:gap-x-8 lg:gap-x-12 gap-y-14 sm:gap-y-18 lg:gap-y-24">
+        <div className="grid grid-cols-12 gap-x-6 sm:gap-x-8 lg:gap-x-12 gap-y-12 sm:gap-y-16 lg:gap-y-20">
           {items.map((item, idx) => {
             const spanClass = getGridSpanClass(idx);
             const aspectClass = getImageAspectClass(idx);
-            const isFeaturedMaster = idx === 0;
+            const isFullWidth = (idx % 6 === 0) || (idx % 6 === 5);
 
             return (
               <article
                 key={item.id}
-                className={`${spanClass} flex flex-col gap-4 border-b border-[#e2e0d2] pb-12 sm:pb-16`}
+                className={`${spanClass} flex flex-col gap-4 border-b border-[#e2e0d2] pb-10 sm:pb-14`}
               >
                 <ScrollReveal
                   variant="fade-up"
                   distance={20}
                   duration={0.7}
-                  delay={(idx % 2) * 0.06}
+                  delay={(idx % 2) * 0.05}
                 >
                   <Link
                     href={`/portfolio/${item.slug}`}
                     className="group block overflow-hidden no-underline text-inherit select-none"
                   >
-                    {/* 1. Sharp 0px Archival Frame (No Tag Overlays on the Image) */}
-                    <div className={`relative w-full ${aspectClass} overflow-hidden bg-black`}>
+                    {/* 1. Sharp 0px Archival Frame with Micro Badges */}
+                    <div className={`relative w-full ${aspectClass} overflow-hidden bg-black border border-[#e2e0d2]`}>
                       <Image
                         src={item.coverImage}
                         alt={`${item.title} by ${item.photographer}`}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 95vw"
                         priority={idx === 0}
-                        className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-103"
+                        className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-102"
                       />
-                    </div>
 
-                    {/* Quiet Caption Strip Directly Below Image */}
-                    <div className="pt-2.5 pb-1 flex items-center justify-between font-mono text-[11px] text-[#777777] uppercase tracking-[0.16em] border-b border-[#f0eee3]">
-                      <span>{item.location}</span>
-                      <span>Series {item.number} / {item.category}</span>
-                    </div>
-
-                    {/* 2. Rich Editorial Details */}
-                    {isFeaturedMaster ? (
-                      /* Featured Project 01 Detailed 2-Column Presentation */
-                      <div className="pt-5 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start">
-                        
-                        {/* Left: Title, Tagline & Deep Narrative (col 1-7) */}
-                        <div className="lg:col-span-7 flex flex-col gap-3">
-                          <h2 className="font-sans font-light text-2xl sm:text-3xl lg:text-4xl text-black leading-tight group-hover:opacity-75 transition-opacity">
-                            {item.title}
-                          </h2>
-
-                          <p className="font-mono text-xs sm:text-[13px] text-[#555555] uppercase tracking-wider font-medium">
-                            {item.tagline}
-                          </p>
-
-                          <p className="font-sans font-normal text-xs sm:text-sm text-[#555555] leading-relaxed pt-1">
-                            {item.statement}
-                          </p>
-                        </div>
-
-                        {/* Right: Technical Factsheet & Action (col 8-12) */}
-                        <div className="lg:col-span-5 flex flex-col justify-between gap-6 pt-2 lg:pt-0">
-                          <div className="p-5 bg-white border border-[#e2e0d2] flex flex-col gap-3 text-xs font-mono">
-                            <div className="flex flex-col gap-0.5">
-                              <span className="text-[#999999] uppercase text-[10px] tracking-wider">Photographer & Track</span>
-                              <span className="font-medium text-black text-sm">{item.photographer}</span>
-                              <span className="text-[#666666] text-[11px]">{item.course}</span>
-                            </div>
-
-                            <div className="pt-2 border-t border-[#f0eee3] flex flex-col gap-0.5">
-                              <span className="text-[#999999] uppercase text-[10px] tracking-wider">Curatorial Mentor</span>
-                              <span className="text-black">{item.mentor}</span>
-                            </div>
-
-                            <div className="pt-2 border-t border-[#f0eee3] flex flex-col gap-0.5">
-                              <span className="text-[#999999] uppercase text-[10px] tracking-wider">Medium & Technique</span>
-                              <span className="text-[#444444] text-[11px] leading-relaxed">{item.medium}</span>
-                            </div>
-                          </div>
-
-                          <div className="flex items-center justify-between">
-                            <span className="font-mono text-xs uppercase tracking-[0.16em] text-black group-hover:underline decoration-[#ffd001] underline-offset-4 font-semibold transition-all whitespace-nowrap">
-                              Explore Complete Exhibition (4 Frames) →
-                            </span>
-                          </div>
-                        </div>
-
+                      {/* Archival Negative Stamp */}
+                      <div className="absolute top-3 left-3 bg-black/85 text-white font-mono text-[9px] uppercase tracking-widest px-2.5 py-1">
+                        ARCHIVE {item.number}
                       </div>
-                    ) : (
-                      /* Standard Asymmetric Roster Cards */
-                      <div className="pt-4 flex flex-col gap-2">
-                        
-                        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-4">
-                          <h2 className="font-sans font-light text-xl sm:text-2xl text-black leading-snug group-hover:opacity-75 transition-opacity">
+
+                      <div className="absolute top-3 right-3 bg-[#ffd001] text-black font-mono text-[10px] uppercase tracking-wider px-2.5 py-0.5 font-semibold">
+                        {item.category}
+                      </div>
+                    </div>
+
+                    {/* 2. Micro Metadata Strip Directly Below Image */}
+                    <div className="pt-3 pb-1.5 flex items-center justify-between font-mono text-[11px] text-[#777777] uppercase tracking-[0.16em] border-b border-[#f0eee3]">
+                      <span>{item.location}</span>
+                      <span>Series {item.number} · {item.year}</span>
+                    </div>
+
+                    {/* 3. Concise Editorial Caption Strip */}
+                    <div className={`pt-4 flex flex-col ${isFullWidth ? "md:flex-row md:items-start md:justify-between gap-4 md:gap-10" : "gap-3"}`}>
+                      
+                      <div className="flex-1 flex flex-col gap-1.5">
+                        <div className="flex items-center gap-2">
+                          <h2 className="font-sans font-light text-2xl sm:text-3xl text-black leading-tight group-hover:opacity-75 transition-opacity">
                             {item.title}
                           </h2>
-
-                          <span className="font-mono text-xs uppercase tracking-[0.16em] text-black group-hover:underline decoration-[#ffd001] underline-offset-4 font-semibold transition-all whitespace-nowrap shrink-0 pt-1 sm:pt-0">
-                            Explore Story →
-                          </span>
                         </div>
 
-                        {/* Summary & Photographer Details */}
-                        <p className="font-sans font-normal text-xs sm:text-sm text-[#555555] leading-relaxed line-clamp-3">
+                        <div className="font-mono text-xs text-[#666666] flex flex-wrap items-center gap-x-2 gap-y-1">
+                          <span>Photographer:</span>
+                          <span className="text-black font-medium">{item.photographer}</span>
+                          <span className="text-[#cccccc]">•</span>
+                          <span className="text-[#777777]">{item.discipline}</span>
+                        </div>
+
+                        {/* Brief 1-sentence caption */}
+                        <p className="font-sans font-normal text-xs sm:text-sm text-[#555555] leading-relaxed max-w-2xl line-clamp-2 pt-1">
                           {item.summary}
                         </p>
-
-                        <div className="pt-2 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] text-[#777777] border-t border-[#f0eee3]">
-                          <div>
-                            <span className="text-[#999999]">Photographer: </span>
-                            <span className="text-black font-medium">{item.photographer}</span>
-                          </div>
-
-                          <div className="hidden sm:inline-block">
-                            <span className="text-[#999999]">Discipline: </span>
-                            <span className="text-[#444444]">{item.discipline}</span>
-                          </div>
-                        </div>
-
                       </div>
-                    )}
+
+                      {/* Click-through Action */}
+                      <div className="pt-2 md:pt-1 shrink-0 self-start md:self-auto">
+                        <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.16em] text-black group-hover:text-[#ca8a04] transition-colors font-medium">
+                          <span>Explore Story</span>
+                          <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        </span>
+                      </div>
+
+                    </div>
                   </Link>
                 </ScrollReveal>
               </article>

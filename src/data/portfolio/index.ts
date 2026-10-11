@@ -46,8 +46,7 @@ export function getPreviousPortfolioItem(currentSlug: string): PortfolioItem {
 }
 
 export function getPortfolioCategories(): string[] {
-  const categories = Array.from(new Set(masterPortfolioList.map((item) => item.category)));
-  return ["All", ...categories];
+  return ["All", "Street", "Landscape", "Culture", "Portraits", "Darkroom"];
 }
 
 export function getFeaturedPortfolioItems(): PortfolioItem[] {

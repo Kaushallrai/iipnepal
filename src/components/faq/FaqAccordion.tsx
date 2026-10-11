@@ -13,11 +13,8 @@ export interface FaqAccordionProps {
 export default function FaqAccordion({ categories }: FaqAccordionProps): React.JSX.Element {
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
-  // Track open state by unique key: `category-index`
-  const [openItems, setOpenItems] = useState<Record<string, boolean>>({
-    "courses-0": true,
-    "format-0": true,
-  });
+  // Track open state by unique key: `category-index` (all closed initially)
+  const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
 
   const toggleItem = (key: string) => {
     setOpenItems((prev) => ({

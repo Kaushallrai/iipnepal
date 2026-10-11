@@ -10,8 +10,6 @@ export interface CoursesHeroProps {
   activeFilter: string;
   onFilterChange: (filter: string) => void;
   filters: string[];
-  activeFormat: string;
-  onFormatChange: (format: string) => void;
 }
 
 export default function CoursesHero({
@@ -19,15 +17,7 @@ export default function CoursesHero({
   activeFilter,
   onFilterChange,
   filters,
-  activeFormat,
-  onFormatChange,
 }: CoursesHeroProps): React.JSX.Element {
-  const formats = [
-    { id: "All", label: "All Formats" },
-    { id: "Studio", label: "Kathmandu Studio (In-Person)" },
-    { id: "Online", label: "100% Online" },
-  ];
-
   return (
     <section className="w-full pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-8 sm:pb-10 md:pb-12 border-b border-[#e2e0d2] bg-[#fffef7]">
       <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
@@ -55,12 +45,12 @@ export default function CoursesHero({
           </p>
         </div>
 
-        {/* Dual Filter Bar: Level & Format (Visually Quiet) */}
+        {/* Clean Filter Bar: Level Selection & Course Count */}
         <ScrollReveal variant="fade-up" distance={16} duration={0.6} delay={0.15}>
-          <div className="pt-5 sm:pt-6 border-t border-[#e2e0d2] flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="pt-5 sm:pt-6 border-t border-[#e2e0d2] flex items-center justify-between gap-4">
             
             {/* Level Filters */}
-            <div className="flex items-center gap-5 sm:gap-8 overflow-x-auto scrollbar-none whitespace-nowrap min-w-max">
+            <div className="flex items-center gap-4 sm:gap-6 md:gap-8 overflow-x-auto scrollbar-none whitespace-nowrap max-w-full pb-1">
               <span className="font-mono text-[11px] uppercase tracking-wider text-[#888888] mr-1 hidden sm:inline-block">
                 Level:
               </span>
@@ -86,31 +76,10 @@ export default function CoursesHero({
               })}
             </div>
 
-            {/* Delivery Mode Filters & Count */}
-            <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto scrollbar-none">
-              <span className="font-mono text-[11px] uppercase tracking-wider text-[#888888] mr-1 hidden lg:inline-block">
-                Mode:
-              </span>
-              {formats.map((fmt) => {
-                const isActive = activeFormat === fmt.id;
-                return (
-                  <button
-                    key={fmt.id}
-                    type="button"
-                    onClick={() => onFormatChange(fmt.id)}
-                    className={`font-mono text-[11px] uppercase tracking-wider px-3 py-1.5 rounded-full transition-colors whitespace-nowrap cursor-pointer ${
-                      isActive
-                        ? "bg-black text-[#fffef7] font-medium"
-                        : "bg-[#f5f3e9] text-[#666666] hover:text-black hover:bg-[#eae8dc]"
-                    }`}
-                  >
-                    {fmt.label}
-                  </button>
-                );
-              })}
-
-              <span className="font-mono text-xs text-[#888888] tracking-wider shrink-0 pl-2 hidden sm:inline-block">
-                ({totalCoursesCount})
+            {/* Total Courses Count Badge */}
+            <div className="shrink-0 pl-2">
+              <span className="font-mono text-xs text-[#666666] tracking-wider whitespace-nowrap">
+                ({totalCoursesCount} {totalCoursesCount === 1 ? "Program" : "Programs"})
               </span>
             </div>
 

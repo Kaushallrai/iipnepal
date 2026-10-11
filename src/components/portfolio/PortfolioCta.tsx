@@ -39,17 +39,17 @@ export default function PortfolioCta(): React.JSX.Element {
 
           {/* Actions */}
           <ScrollReveal variant="fade-up" distance={16} duration={0.6}>
-            <div className="flex flex-col sm:flex-row gap-4 shrink-0">
+            <div className="flex flex-col sm:flex-row gap-3.5 sm:gap-4 shrink-0 w-full sm:w-auto">
               <Link
                 href={cta.primaryCtaHref}
-                className="inline-flex items-center justify-center font-mono text-xs sm:text-sm font-semibold tracking-[0.16em] uppercase bg-[#ffd001] text-black px-9 py-4 rounded-full hover:bg-white transition-all text-center leading-none shadow-md"
+                className="inline-flex items-center justify-center font-mono text-xs sm:text-sm font-semibold tracking-[0.16em] uppercase bg-[#ffd001] text-black px-8 sm:px-9 py-4 rounded-full hover:bg-white transition-all text-center leading-none shadow-md w-full sm:w-auto"
               >
                 {cta.primaryCtaText}
               </Link>
 
               <Link
                 href={cta.secondaryCtaHref}
-                className="inline-flex items-center justify-center font-mono text-xs sm:text-sm font-normal tracking-[0.16em] uppercase bg-transparent text-[#fffef7] border border-white/20 px-9 py-4 rounded-full hover:border-[#ffd001] hover:text-[#ffd001] transition-all text-center leading-none"
+                className="inline-flex items-center justify-center font-mono text-xs sm:text-sm font-normal tracking-[0.16em] uppercase bg-transparent text-[#fffef7] border border-white/20 px-8 sm:px-9 py-4 rounded-full hover:border-[#ffd001] hover:text-[#ffd001] transition-all text-center leading-none w-full sm:w-auto"
               >
                 {cta.secondaryCtaText}
               </Link>

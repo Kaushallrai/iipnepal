@@ -55,10 +55,10 @@ export default function PortfolioCourseBanner({ item }: PortfolioCourseBannerPro
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row lg:flex-col gap-3.5 shrink-0">
+          <div className="flex flex-col sm:flex-row lg:flex-col gap-3.5 shrink-0 w-full sm:w-auto">
             <Link
               href={`/courses/${course.slug}`}
-              className="inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-semibold tracking-[0.16em] uppercase bg-[#ffd001] text-black px-8 py-3.5 rounded-full hover:bg-white transition-all text-center leading-none shadow-sm whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-semibold tracking-[0.16em] uppercase bg-[#ffd001] text-black px-7 sm:px-8 py-3.5 rounded-full hover:bg-white transition-all text-center leading-none shadow-sm whitespace-nowrap w-full sm:w-auto"
             >
               <span>Explore Course Syllabus</span>
               <ArrowUpRight className="w-4 h-4" />
@@ -66,7 +66,7 @@ export default function PortfolioCourseBanner({ item }: PortfolioCourseBannerPro
 
             <Link
               href={`/enroll?course=${course.slug}`}
-              className="inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-normal tracking-[0.16em] uppercase bg-transparent text-[#fffef7] border border-white/20 px-8 py-3.5 rounded-full hover:border-[#ffd001] hover:text-[#ffd001] transition-all text-center leading-none whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-normal tracking-[0.16em] uppercase bg-transparent text-[#fffef7] border border-white/20 px-7 sm:px-8 py-3.5 rounded-full hover:border-[#ffd001] hover:text-[#ffd001] transition-all text-center leading-none whitespace-nowrap w-full sm:w-auto"
             >
               <span>Direct Enrollment</span>
             </Link>

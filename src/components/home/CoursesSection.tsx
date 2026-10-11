@@ -385,7 +385,7 @@ export default function CoursesSection({
                   return (
                     <SwiperSlide
                       key={course.id}
-                      className="!w-[76vw] sm:!w-[340px] md:!w-[420px] max-w-[440px] !h-auto flex flex-col cursor-pointer"
+                      className="!w-[82vw] sm:!w-[340px] md:!w-[380px] max-w-[400px] !h-auto flex flex-col cursor-pointer"
                       onClick={() => {
                         if (swiperActiveIndex !== idx) {
                           swiperInstanceRef.current?.slideTo(idx);
@@ -490,35 +490,19 @@ export default function CoursesSection({
                         </div>
                       </div>
 
-                      {/* Minimal & Elegant Detail Section (Clean, Structured & Borderless) */}
-                      <div className="w-full pt-3.5 pb-1 px-1 text-left flex flex-col gap-2 select-none">
-                        {/* Micro-meta row */}
-                        <div className="flex items-center justify-between gap-2 text-[11px] font-mono tracking-[0.18em] uppercase">
-                          <span className="text-[#ffd001] font-medium">
-                            {"// SYNOPSIS"}
-                          </span>
-                          <span className="text-white/50">
-                            LEVEL: {course.level.toUpperCase()}
-                          </span>
-                        </div>
-
-                        {/* Description Paragraph */}
-                        <p className="font-sans font-light text-xs sm:text-[13px] text-white/75 leading-relaxed line-clamp-2 sm:line-clamp-3">
-                          {course.description}
-                        </p>
-
-                        {/* Subtle Explore Link */}
-                        <div className="pt-0.5">
-                          <Link
-                            href={`/courses/${course.slug}`}
-                            onClick={(e) => e.stopPropagation()}
-                            className=" group/detail inline-flex items-center gap-1.5 font-mono text-[11.5px] uppercase tracking-[0.16em] text-white/60 hover:text-[#ffd001] transition-colors"
-                          >
-
-                            <span className="underline underline-offset-4">Explore Curriculum</span>
-                            <span className="transition-transform duration-150 group-hover/detail:translate-x-1 text-[#ffd001]">→</span>
-                          </Link>
-                        </div>
+                      {/* Minimal & Elegant Meta Row Below Polaroid (Synopsis & Description Removed for Mobile/Tablet) */}
+                      <div className="w-full pt-2.5 pb-1 px-1 text-left flex items-center justify-between select-none font-mono text-[11px] uppercase tracking-[0.16em]">
+                        <span className="text-white/60">
+                          LEVEL: <span className="text-white font-medium">{course.level.toUpperCase()}</span>
+                        </span>
+                        <Link
+                          href={`/courses/${course.slug}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="group/detail inline-flex items-center gap-1 text-white/70 hover:text-[#ffd001] transition-colors"
+                        >
+                          <span className="underline underline-offset-4">Curriculum</span>
+                          <span className="transition-transform duration-150 group-hover/detail:translate-x-1 text-[#ffd001]">→</span>
+                        </Link>
                       </div>
                     </SwiperSlide>
                   );

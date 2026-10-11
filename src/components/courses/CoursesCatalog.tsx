@@ -12,27 +12,13 @@ export interface CoursesCatalogProps {
 
 export default function CoursesCatalog({ initialCourses }: CoursesCatalogProps): React.JSX.Element {
   const [activeFilter, setActiveFilter] = useState("All");
-  const [activeFormat, setActiveFormat] = useState("All");
 
   const filteredCourses = useMemo(() => {
     return initialCourses.filter((course) => {
-      // Level filter match
-      let matchesLevel = true;
-      if (activeFilter !== "All") {
-        matchesLevel = course.level.toLowerCase().includes(activeFilter.toLowerCase());
-      }
-
-      // Delivery Format filter match
-      let matchesFormat = true;
-      if (activeFormat === "Studio") {
-        matchesFormat = course.deliveryMode.toLowerCase().includes("studio");
-      } else if (activeFormat === "Online") {
-        matchesFormat = course.deliveryMode.toLowerCase().includes("online");
-      }
-
-      return matchesLevel && matchesFormat;
+      if (activeFilter === "All") return true;
+      return course.level.toLowerCase().includes(activeFilter.toLowerCase());
     });
-  }, [initialCourses, activeFilter, activeFormat]);
+  }, [initialCourses, activeFilter]);
 
   return (
     <>
@@ -41,8 +27,6 @@ export default function CoursesCatalog({ initialCourses }: CoursesCatalogProps):
         activeFilter={activeFilter}
         onFilterChange={setActiveFilter}
         filters={coursesPageData.filters}
-        activeFormat={activeFormat}
-        onFormatChange={setActiveFormat}
       />
       <CoursesList courses={filteredCourses} />
     </>

@@ -122,10 +122,10 @@ export default function CoursesList({ courses }: CoursesListProps): React.JSX.El
                   </div>
                 </div>
 
-                {/* 3. Right: Pricing & Direct Actions */}
-                <div className="md:col-span-12 lg:col-span-3 flex items-center justify-between lg:flex-col lg:items-end lg:justify-center gap-5 sm:gap-6 lg:gap-7 pt-4 md:pt-0 border-t border-[#f0eee3] sm:border-t-0">
-                  <div className="flex flex-col lg:items-end shrink-0">
-                    <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider text-[#888888] mb-0.5">
+                {/* 3. Right: Pricing & Direct Actions (Mobile Stack & Desktop Aligned) */}
+                <div className="md:col-span-12 lg:col-span-3 flex flex-col sm:flex-row items-start sm:items-center justify-between lg:flex-col lg:items-end lg:justify-center gap-4 sm:gap-6 lg:gap-7 pt-4 md:pt-0 border-t border-[#f0eee3] sm:border-t-0 w-full">
+                  <div className="flex sm:flex-col items-baseline sm:items-start lg:items-end justify-between w-full sm:w-auto shrink-0">
+                    <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider text-[#888888] sm:mb-0.5">
                       Tuition
                     </span>
                     <div className="flex items-baseline gap-2.5 whitespace-nowrap shrink-0">
@@ -140,10 +140,10 @@ export default function CoursesList({ courses }: CoursesListProps): React.JSX.El
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2.5 shrink-0">
+                  <div className="flex items-center gap-2.5 w-full sm:w-auto shrink-0">
                     <Link
                       href={`/courses/${course.slug}`}
-                      className="inline-flex items-center gap-1 font-mono text-[11px] sm:text-xs uppercase tracking-[0.14em] text-black bg-black/5 hover:bg-black hover:text-[#fffef7] px-4 py-2.5 rounded-full transition-colors font-medium whitespace-nowrap leading-none"
+                      className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1 font-mono text-[11px] sm:text-xs uppercase tracking-[0.14em] text-black bg-black/5 hover:bg-black hover:text-[#fffef7] px-4 py-2.5 rounded-full transition-colors font-medium whitespace-nowrap leading-none text-center"
                     >
                       <span>View Course</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -151,7 +151,7 @@ export default function CoursesList({ courses }: CoursesListProps): React.JSX.El
 
                     <Link
                       href={`/enroll?course=${course.slug}`}
-                      className="inline-flex items-center gap-1 font-mono text-[11px] sm:text-xs uppercase tracking-[0.14em] text-black bg-[#ffd001] hover:bg-black hover:text-[#fffef7] px-4.5 py-2.5 rounded-full transition-colors font-semibold whitespace-nowrap leading-none"
+                      className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1 font-mono text-[11px] sm:text-xs uppercase tracking-[0.14em] text-black bg-[#ffd001] hover:bg-black hover:text-[#fffef7] px-4.5 py-2.5 rounded-full transition-colors font-semibold whitespace-nowrap leading-none text-center"
                     >
                       <span>Enroll Now</span>
                     </Link>

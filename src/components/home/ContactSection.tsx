@@ -136,7 +136,7 @@ export default function ContactSection(): React.JSX.Element {
                     <span>Email</span>
                   </a>
                 </div>
-                <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.08em] text-[#777777] px-1 pt-0.5">
+                <div className="flex flex-wrap items-center justify-between gap-1 text-[11px] font-mono uppercase tracking-[0.08em] text-[#777777] px-1 pt-0.5">
                   <span>{homeContactData.studioName}</span>
                   <span>Jyoti Bhawan, Kanti Path</span>
                 </div>
@@ -413,7 +413,7 @@ export default function ContactSection(): React.JSX.Element {
                     href="https://wa.me/9779802364760?text=Hello%20IIP%20Nepal%2C%20I%20would%20like%20to%20inquire%20about%20photography%20courses."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[#25D366] hover:text-[#128C7E] transition-colors py-2"
+                    className="inline-flex items-center justify-center sm:justify-start gap-2 font-mono text-xs uppercase tracking-wider text-[#25D366] hover:text-[#128C7E] transition-colors py-2"
                   >
                     <span className="w-2 h-2 rounded-full bg-[#25D366] shadow-[0_0_6px_rgba(37,211,102,0.6)]" />
                     <span>Direct WhatsApp Chat</span>

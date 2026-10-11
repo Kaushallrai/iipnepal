@@ -44,9 +44,9 @@ export default function CourseCurriculumSection({
     },
   ];
 
-  // State: track which chapters are open (Chapter 1 open by default)
+  // State: track which chapters are open (all closed initially)
   const [openChapters, setOpenChapters] = useState<Record<string, boolean>>({
-    "chapter-1": true,
+    "chapter-1": false,
     "chapter-2": false,
     "chapter-3": false,
   });

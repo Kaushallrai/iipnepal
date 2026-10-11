@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Camera, User, Calendar, MapPin } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import type { PortfolioItem } from "@/data/portfolio";
 
@@ -16,141 +16,194 @@ export default function PortfolioList({ items }: PortfolioListProps): React.JSX.
     return (
       <div className="py-24 text-center">
         <p className="font-mono text-xs text-[#888888] uppercase tracking-wider">
-          No exhibition bodies of work found in this category.
+          No student bodies of work found in this category.
         </p>
       </div>
     );
   }
 
-  // Determine asymmetric grid span per index for gallery flow
-  const getGridSpanClass = (index: number) => {
-    switch (index % 6) {
-      case 0:
-        return "col-span-12"; // Full-width master feature
-      case 1:
-        return "col-span-12 md:col-span-7"; // Asymmetric 7-column
-      case 2:
-        return "col-span-12 md:col-span-5"; // Asymmetric 5-column
-      case 3:
-        return "col-span-12 md:col-span-5"; // Inverted 5-column
-      case 4:
-        return "col-span-12 md:col-span-7"; // Inverted 7-column
-      case 5:
-        return "col-span-12"; // Full-width cinematic frame
-      default:
-        return "col-span-12 md:col-span-6";
-    }
-  };
-
-  const getImageAspectClass = (index: number) => {
-    switch (index % 6) {
-      case 0:
-        return "aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/9]";
-      case 1:
-        return "aspect-[16/10] sm:aspect-[16/11]";
-      case 2:
-        return "aspect-[4/3] sm:aspect-[4/3.5]";
-      case 3:
-        return "aspect-[4/3] sm:aspect-[4/3.5]";
-      case 4:
-        return "aspect-[16/10] sm:aspect-[16/11]";
-      case 5:
-        return "aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/9]";
-      default:
-        return "aspect-[16/10]";
-    }
-  };
+  const [leadItem, ...rosterItems] = items;
 
   return (
-    <section id="portfolio-roster" className="w-full py-12 sm:py-16 md:py-20 bg-[#fffef7]">
+    <section id="student-portfolio-roster" className="w-full py-12 sm:py-16 md:py-20 bg-[#fffef7]">
       <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
         
-        {/* Asymmetric Exhibition Bento Grid */}
-        <div className="grid grid-cols-12 gap-x-6 sm:gap-x-8 lg:gap-x-12 gap-y-12 sm:gap-y-16 lg:gap-y-20">
-          {items.map((item, idx) => {
-            const spanClass = getGridSpanClass(idx);
-            const aspectClass = getImageAspectClass(idx);
-            const isFullWidth = (idx % 6 === 0) || (idx % 6 === 5);
-
-            return (
-              <article
-                key={item.id}
-                className={`${spanClass} flex flex-col gap-4 border-b border-[#e2e0d2] pb-10 sm:pb-14`}
-              >
-                <ScrollReveal
-                  variant="fade-up"
-                  distance={20}
-                  duration={0.7}
-                  delay={(idx % 2) * 0.05}
-                >
+        {/* ============================================================== */}
+        {/* 1. FEATURED STUDENT SPOTLIGHT (FLAGSHIP EXHIBITION SPREAD)      */}
+        {/* ============================================================== */}
+        {leadItem && (
+          <ScrollReveal variant="fade-up" distance={20} duration={0.8}>
+            <article className="mb-14 sm:mb-18 md:mb-22 border border-[#e2e0d2] bg-[#fdfcf5] p-5 sm:p-7 md:p-9 lg:p-11 group">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center">
+                
+                {/* Large Visual Frame */}
+                <div className="lg:col-span-7">
                   <Link
-                    href={`/portfolio/${item.slug}`}
-                    className="group block overflow-hidden no-underline text-inherit select-none"
+                    href={`/portfolio/${leadItem.slug}`}
+                    className="relative block w-full aspect-[16/10] sm:aspect-[16/10] overflow-hidden bg-black border border-[#e2e0d2] select-none"
                   >
-                    {/* 1. Sharp 0px Archival Frame with Micro Badges */}
-                    <div className={`relative w-full ${aspectClass} overflow-hidden bg-black border border-[#e2e0d2]`}>
-                      <Image
-                        src={item.coverImage}
-                        alt={`${item.title} by ${item.photographer}`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 95vw"
-                        priority={idx === 0}
-                        className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-102"
-                      />
+                    <Image
+                      src={leadItem.coverImage}
+                      alt={`${leadItem.title} by student photographer ${leadItem.photographer}`}
+                      fill
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 60vw"
+                      className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                    />
 
-                      {/* Archival Negative Stamp */}
-                      <div className="absolute top-3 left-3 bg-black/85 text-white font-mono text-[9px] uppercase tracking-widest px-2.5 py-1">
-                        ARCHIVE {item.number}
-                      </div>
-
-                      <div className="absolute top-3 right-3 bg-[#ffd001] text-black font-mono text-[10px] uppercase tracking-wider px-2.5 py-0.5 font-semibold">
-                        {item.category}
-                      </div>
+                    {/* Darkroom Negative Badge */}
+                    <div className="absolute top-3 left-3 bg-black/85 text-white font-mono text-[9px] uppercase tracking-widest px-2.5 py-1">
+                      STUDENT FELLOW // ARCHIVE {leadItem.number}
                     </div>
 
-                    {/* 2. Micro Metadata Strip Directly Below Image */}
-                    <div className="pt-3 pb-1.5 flex items-center justify-between font-mono text-[11px] text-[#777777] uppercase tracking-[0.16em] border-b border-[#f0eee3]">
-                      <span>{item.location}</span>
-                      <span>Series {item.number} · {item.year}</span>
+                    <div className="absolute top-3 right-3 bg-[#ffd001] text-black font-mono text-[10px] uppercase tracking-wider px-2.5 py-1 font-semibold">
+                      {leadItem.category}
                     </div>
 
-                    {/* 3. Concise Editorial Caption Strip */}
-                    <div className={`pt-4 flex flex-col ${isFullWidth ? "md:flex-row md:items-start md:justify-between gap-4 md:gap-10" : "gap-3"}`}>
-                      
-                      <div className="flex-1 flex flex-col gap-1.5">
-                        <div className="flex items-center gap-2">
-                          <h2 className="font-sans font-light text-2xl sm:text-3xl text-black leading-tight group-hover:opacity-75 transition-opacity">
-                            {item.title}
-                          </h2>
-                        </div>
-
-                        <div className="font-mono text-xs text-[#666666] flex flex-wrap items-center gap-x-2 gap-y-1">
-                          <span>Photographer:</span>
-                          <span className="text-black font-medium">{item.photographer}</span>
-                          <span className="text-[#cccccc]">•</span>
-                          <span className="text-[#777777]">{item.discipline}</span>
-                        </div>
-
-                        {/* Brief 1-sentence caption */}
-                        <p className="font-sans font-normal text-xs sm:text-sm text-[#555555] leading-relaxed max-w-2xl line-clamp-2 pt-1">
-                          {item.summary}
-                        </p>
-                      </div>
-
-                      {/* Click-through Action */}
-                      <div className="pt-2 md:pt-1 shrink-0 self-start md:self-auto">
-                        <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.16em] text-black group-hover:text-[#ca8a04] transition-colors font-medium">
-                          <span>Explore Story</span>
-                          <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                        </span>
-                      </div>
-
+                    {/* Gear / Rig strip */}
+                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-white/90 bg-black/80 backdrop-blur-xs px-3 py-1.5 border border-white/10">
+                      <span className="truncate">{leadItem.specs.camera} · {leadItem.specs.lens}</span>
+                      <span className="hidden sm:inline-block text-[#ffd001] shrink-0 pl-2">{leadItem.specs.exposure}</span>
                     </div>
                   </Link>
-                </ScrollReveal>
+                </div>
+
+                {/* Editorial Student Credentials & Story */}
+                <div className="lg:col-span-5 flex flex-col justify-between gap-6">
+                  <div className="flex flex-col gap-3.5">
+                    
+                    {/* Student Byline Badge */}
+                    <div className="flex flex-wrap items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#777777]">
+                      <span className="inline-flex items-center gap-1.5 text-black font-semibold bg-[#eae8dc] px-2.5 py-1 rounded-full">
+                        <User className="w-3 h-3 text-[#ca8a04]" />
+                        <span>{leadItem.photographer}</span>
+                      </span>
+                      <span>•</span>
+                      <span>Class of {leadItem.year}</span>
+                    </div>
+
+                    {/* Story Title */}
+                    <h2 className="font-sans font-light text-2xl sm:text-3xl lg:text-4xl text-black leading-tight tracking-[-0.03em]">
+                      <Link
+                        href={`/portfolio/${leadItem.slug}`}
+                        className="hover:opacity-75 transition-opacity no-underline text-inherit"
+                      >
+                        {leadItem.title}
+                      </Link>
+                    </h2>
+
+                    {/* Course Provenance */}
+                    <p className="font-mono text-xs text-[#666666] tracking-[0.06em] uppercase">
+                      Curriculum: <span className="text-black font-medium">{leadItem.course.split("(")[0].trim()}</span>
+                    </p>
+
+                    {/* Summary Excerpt */}
+                    <p className="font-sans font-normal text-sm sm:text-[15px] text-[#555555] leading-relaxed">
+                      {leadItem.summary}
+                    </p>
+
+                    {/* Student Artist Statement Snippet */}
+                    <blockquote className="border-l-2 border-[#ffd001] pl-3.5 py-0.5 text-xs sm:text-sm font-sans italic text-[#333333] leading-relaxed">
+                      “{leadItem.statement.split(". ").slice(0, 2).join(". ")}.”
+                    </blockquote>
+
+                  </div>
+
+                  {/* Actions & Meta */}
+                  <div className="pt-4 border-t border-[#e2e0d2] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="flex items-center gap-2 font-mono text-xs text-[#777777] uppercase tracking-wider">
+                      <MapPin className="w-3.5 h-3.5 text-[#ca8a04]" />
+                      <span className="truncate">{leadItem.location}</span>
+                    </div>
+
+                    <Link
+                      href={`/portfolio/${leadItem.slug}`}
+                      className="inline-flex items-center justify-center gap-2 font-mono text-xs uppercase tracking-[0.16em] bg-black text-white hover:bg-[#ffd001] hover:text-black py-3 px-6 rounded-full transition-all duration-200 font-medium shrink-0 leading-none text-center"
+                    >
+                      <span>View Exhibition Plates</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+
+                </div>
+
+              </div>
+            </article>
+          </ScrollReveal>
+        )}
+
+        {/* ============================================================== */}
+        {/* 2. CURATED STUDENT EXHIBITION ROSTER (BALANCED 2-COL GRID)     */}
+        {/* ============================================================== */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 xl:gap-14">
+          {rosterItems.map((item, idx) => (
+            <ScrollReveal
+              key={item.id}
+              variant="fade-up"
+              distance={20}
+              duration={0.7}
+              delay={(idx % 2) * 0.1}
+            >
+              <article className="border-b border-[#e2e0d2] pb-10 sm:pb-12 flex flex-col justify-between h-full group">
+                <Link
+                  href={`/portfolio/${item.slug}`}
+                  className="block no-underline text-inherit select-none"
+                >
+                  {/* Photo Frame */}
+                  <div className="relative w-full aspect-[16/10] sm:aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-black border border-[#e2e0d2] mb-4 sm:mb-5">
+                    <Image
+                      src={item.coverImage}
+                      alt={`${item.title} by student photographer ${item.photographer}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                    />
+
+                    {/* Negative stamp */}
+                    <div className="absolute top-2.5 left-2.5 bg-black/85 text-white font-mono text-[9px] uppercase tracking-widest px-2 py-0.5">
+                      PLATE // {item.number}
+                    </div>
+
+                    <div className="absolute top-2.5 right-2.5 bg-[#ffd001] text-black font-mono text-[9.5px] uppercase tracking-wider px-2 py-0.5 font-semibold">
+                      {item.category}
+                    </div>
+
+                    {/* Bottom gear tag */}
+                    <div className="absolute bottom-2.5 left-2.5 bg-black/85 text-white/90 font-mono text-[9.5px] uppercase tracking-wider px-2.5 py-0.5 border border-white/10 max-w-[85%] truncate">
+                      {item.specs.camera} · {item.specs.lens}
+                    </div>
+                  </div>
+
+                  {/* Student Byline & Location */}
+                  <div className="flex items-center justify-between text-xs font-mono uppercase tracking-wider text-[#777777] pb-2 border-b border-[#f0eee3] mb-3">
+                    <span className="text-black font-medium">{item.photographer}</span>
+                    <span className="truncate">{item.location.split(",")[0]}</span>
+                  </div>
+
+                  {/* Project Title */}
+                  <h3 className="font-sans font-light text-xl sm:text-2xl text-black leading-snug tracking-[-0.025em] mb-2 group-hover:opacity-75 transition-opacity">
+                    {item.title}
+                  </h3>
+
+                  {/* Course Name */}
+                  <p className="font-mono text-[11px] text-[#888888] uppercase tracking-[0.08em] mb-2.5">
+                    Track: {item.course.split("(")[0].trim()}
+                  </p>
+
+                  {/* Summary */}
+                  <p className="font-sans font-normal text-xs sm:text-sm text-[#555555] leading-relaxed line-clamp-2 mb-4">
+                    {item.summary}
+                  </p>
+
+                  {/* Footer Action */}
+                  <div className="pt-2 flex items-center justify-between font-mono text-xs uppercase tracking-[0.16em] text-black group-hover:text-[#ca8a04] transition-colors">
+                    <span className="font-medium">Explore Student Story</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </div>
+                </Link>
               </article>
-            );
-          })}
+            </ScrollReveal>
+          ))}
         </div>
 
       </div>

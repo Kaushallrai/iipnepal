@@ -149,7 +149,7 @@ export default function WhatWeDo({
                       <LineReveal
                         as="p"
                         lines={[stat.label]}
-                        className="text-xs sm:text-[13px] md:text-sm text-[#666666] leading-snug font-normal max-w-[28ch]"
+                        className="text-xs sm:text-[13px] md:text-sm text-[#666666] leading-snug font-normal max-w-[32ch]"
                       />
                     </div>
                   );

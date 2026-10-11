@@ -14,7 +14,7 @@ export interface CourseTuitionFaqSectionProps {
 export default function CourseTuitionFaqSection({
   course,
 }: CourseTuitionFaqSectionProps): React.JSX.Element {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);

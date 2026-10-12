@@ -55,23 +55,23 @@
 
 ---
 
-### [ ] Phase 4: Courses Directory (`/courses`) & Course Details (`/courses/[slug]`)
-- [ ] **Courses Directory (`/courses`)**:
-  - [ ] Compact hero (display title ≤ 2 lines, ≤ 20 words sub-copy, numbered eyebrow preserved).
-  - [ ] Horizontal scrollable filter pills on mobile.
-  - [ ] Asymmetric masonry-style grid of course cards (varied image ratios, title 20px 300, 1-line outcome, duration & mode, price, single `View course` pill).
-  - [ ] Desktop-only `Compare` toggle table (Duration, Mode, Camera, Price, Level).
-- [ ] **Course Detail Page (`/courses/[slug]`)**:
-  - [ ] Section 1: Hero (`pt-24`, split 7/5) with numbered level eyebrow, 4:5 cover photo, `Enroll` pill + `Contact` link.
-  - [ ] Section 2: Navy Ink price band (the page's single dark field): duration, mode, hours/week, intake, price, struck old price, next intake, `Enroll` pill.
-  - [ ] Section 3: Outcomes asymmetric 3-cell bento (large mint outcome card, image cell, cream cell).
-  - [ ] Section 4: "How it works" 3 stacked steps (Learn, Shoot, Get feedback) + mentor feedback sample image.
-  - [ ] Section 5: Syllabus with phase tabs on desktop/tablet (2-column modules), accordion on mobile. Shortened module titles.
-  - [ ] Section 6: Student work snap row of 4 photos linked to portfolio stories.
-  - [ ] Section 7: Details + FAQ (equipment, payment, refund clusters left; 4 course-specific FAQs right).
-  - [ ] Section 8: Progression cards (previous & next course) + closing `Enroll` pill.
-- [ ] **Verification**: Run `npm run build`.
-- [ ] **Git Commit**: `Phase 4: Redesign courses directory and course detail pages with Navy price band and syllabus tabs`.
+### [x] Phase 4: Courses Directory (`/courses`) & Course Details (`/courses/[slug]`)
+- [x] **Courses Directory (`/courses`)**:
+  - [x] Compact hero (display title ≤ 2 lines, ≤ 20 words sub-copy, numbered eyebrow preserved).
+  - [x] Horizontal scrollable filter pills on mobile.
+  - [x] Asymmetric masonry-style grid of course cards (varied image ratios, title 20px 300, 1-line outcome, duration & mode, price, single `View course` pill).
+  - [x] Desktop-only `Compare` toggle table (Duration, Mode, Camera, Price, Level).
+- [x] **Course Detail Page (`/courses/[slug]`)**:
+  - [x] Section 1: Hero (`pt-24`, split 7/5) with numbered level eyebrow, 4:5 cover photo, `Enroll` pill + `Contact` link.
+  - [x] Section 2: Navy Ink price band (the page's single dark field): duration, mode, hours/week, intake, price, struck old price, next intake, `Enroll` pill.
+  - [x] Section 3: Outcomes asymmetric 3-cell bento (large mint outcome card, image cell, cream cell).
+  - [x] Section 4: "How it works" 3 stacked steps (Learn, Shoot, Get feedback) + mentor feedback sample image.
+  - [x] Section 5: Syllabus with phase tabs on desktop/tablet (2-column modules), accordion on mobile. Shortened module titles.
+  - [x] Section 6: Student work snap row of 4 photos linked to portfolio stories.
+  - [x] Section 7: Details + FAQ (equipment, payment, refund clusters left; 4 course-specific FAQs right).
+  - [x] Section 8: Progression cards (previous & next course) + closing `Enroll` pill.
+- [x] **Verification**: Run `npm run build`.
+- [x] **Git Commit**: `Phase 4: Redesign courses directory and course detail pages with Navy price band and syllabus tabs`.
 
 ---
 

@@ -5,134 +5,151 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { CourseItem } from "@/data/courses";
-import LineReveal from "@/components/animations/LineReveal";
-import ScrollReveal from "@/components/animations/ScrollReveal";
 
 export interface CourseRelatedSectionProps {
   relatedCourses: CourseItem[];
+  currentCourseSlug: string;
+  currentCourseTitle: string;
 }
 
 export default function CourseRelatedSection({
   relatedCourses,
+  currentCourseSlug,
+  currentCourseTitle,
 }: CourseRelatedSectionProps): React.JSX.Element {
   if (relatedCourses.length === 0) return <></>;
 
+  const [prevTrack, nextTrack] = relatedCourses.slice(0, 2);
+
   return (
-    <section id="related-programs" className="w-full py-16 sm:py-20 md:py-24 lg:py-28 bg-[#fffef7] border-b border-[#e2e0d2]">
+    <section id="progression" className="w-full py-16 sm:py-20 md:py-24 bg-[#fffef7]">
       <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
         
-        {/* Editorial Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8 pb-6 sm:pb-8 mb-10 sm:mb-12 border-b border-[#e2e0d2]">
-          <div className="max-w-2xl flex flex-col items-start">
-            <div className="flex items-center gap-2 mb-3 sm:mb-4 select-none">
-              <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
-              <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-medium">
-                Related Courses // Recommended Progression
-              </span>
-            </div>
+        {/* Header */}
+        <div className="flex flex-col items-start mb-10 sm:mb-12">
+          <div className="flex items-center gap-2 mb-3 select-none">
+            <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
+            <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-semibold">
+              08 // ACADEMIC PROGRESSION
+            </span>
+          </div>
+          <h2 className="font-sans font-light text-3xl sm:text-4xl md:text-5xl text-black tracking-[-0.03em] leading-tight">
+            Next Steps in Your Craft.
+          </h2>
+        </div>
 
-            <LineReveal
-              as="h2"
-              lines={["You might also like."]}
-              className="font-sans font-light text-2xl sm:text-3xl md:text-4xl lg:text-[44px] leading-[1.12] text-black tracking-[-0.03em] mb-3 sm:mb-4"
-            />
+        {/* 2 Large Cards (One Pastel, One Bone White) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-16 sm:mb-20">
+          
+          {/* Card 1: Pastel Card */}
+          {prevTrack && (
+            <Link
+              href={`/courses/${prevTrack.slug}`}
+              className="group flex flex-col justify-between bg-[#fbf9f0] border border-[#e8e6d9] hover:border-black transition-all p-6 sm:p-8 no-underline text-inherit"
+            >
+              <div>
+                <div className="flex items-center justify-between font-mono text-xs uppercase tracking-[0.16em] text-[#777777] mb-4">
+                  <span className="font-semibold text-black">
+                    COURSE {prevTrack.number} // {prevTrack.level.toUpperCase()}
+                  </span>
+                  <span>ALTERNATIVE TRACK</span>
+                </div>
 
-            <p className="font-sans font-normal text-sm sm:text-base text-[#555555] leading-relaxed max-w-xl">
-              Compare alternative tracks tailored to your photographic goals, from beginner camera craft to commercial studio productions.
-            </p>
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-black border border-[#e2e0d2] mb-5">
+                  <Image
+                    src={prevTrack.coverImage}
+                    alt={prevTrack.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover object-center grayscale contrast-105 group-hover:scale-104 transition-transform duration-500"
+                  />
+                </div>
+
+                <h3 className="font-sans font-light text-2xl text-black mb-2 group-hover:text-black">
+                  {prevTrack.title}
+                </h3>
+                <p className="font-sans text-sm text-[#666666] leading-relaxed line-clamp-2 mb-4">
+                  {prevTrack.keyOutcome}
+                </p>
+              </div>
+
+              <div className="flex items-center justify-between pt-4 border-t border-[#e8e6d9] font-mono text-xs uppercase tracking-wider">
+                <span className="text-[#666666]">
+                  {prevTrack.duration} • {prevTrack.deliveryMode}
+                </span>
+                <span className="inline-flex items-center gap-1 font-semibold text-black group-hover:text-[#ca8a04]">
+                  <span>View course</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </span>
+              </div>
+            </Link>
+          )}
+
+          {/* Card 2: Bone White Card */}
+          {nextTrack && (
+            <Link
+              href={`/courses/${nextTrack.slug}`}
+              className="group flex flex-col justify-between bg-[#fffef7] border border-[#e8e6d9] hover:border-black transition-all p-6 sm:p-8 no-underline text-inherit"
+            >
+              <div>
+                <div className="flex items-center justify-between font-mono text-xs uppercase tracking-[0.16em] text-[#777777] mb-4">
+                  <span className="font-semibold text-black">
+                    COURSE {nextTrack.number} // {nextTrack.level.toUpperCase()}
+                  </span>
+                  <span>ADVANCED PROGRESSION</span>
+                </div>
+
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-black border border-[#e2e0d2] mb-5">
+                  <Image
+                    src={nextTrack.coverImage}
+                    alt={nextTrack.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover object-center grayscale contrast-105 group-hover:scale-104 transition-transform duration-500"
+                  />
+                </div>
+
+                <h3 className="font-sans font-light text-2xl text-black mb-2 group-hover:text-black">
+                  {nextTrack.title}
+                </h3>
+                <p className="font-sans text-sm text-[#666666] leading-relaxed line-clamp-2 mb-4">
+                  {nextTrack.keyOutcome}
+                </p>
+              </div>
+
+              <div className="flex items-center justify-between pt-4 border-t border-[#e8e6d9] font-mono text-xs uppercase tracking-wider">
+                <span className="text-[#666666]">
+                  {nextTrack.duration} • {nextTrack.deliveryMode}
+                </span>
+                <span className="inline-flex items-center gap-1 font-semibold text-black group-hover:text-[#ca8a04]">
+                  <span>View course</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </span>
+              </div>
+            </Link>
+          )}
+
+        </div>
+
+        {/* Closing Enroll Pill Block */}
+        <div className="w-full pt-10 sm:pt-12 border-t border-[#e2e0d2] flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div className="flex flex-col">
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#888888] mb-1">
+              Ready to Begin Mentorship?
+            </span>
+            <span className="font-sans font-light text-2xl sm:text-3xl text-black">
+              {currentCourseTitle}
+            </span>
           </div>
 
           <Link
-            href="/courses"
-            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-black hover:text-[#ca8a04] transition-colors py-2 group self-start lg:self-end shrink-0"
+            href={`/enroll?course=${currentCourseSlug}`}
+            className="inline-flex items-center justify-center gap-2 py-4 px-9 rounded-full bg-black hover:bg-[#ffd001] hover:text-black text-[#fffef7] font-mono text-xs sm:text-[13px] uppercase tracking-[0.16em] font-semibold transition-all active:scale-[0.98] shadow-md leading-none whitespace-nowrap self-start sm:self-auto"
           >
-            <span>All Courses Directory</span>
-            <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <span>Enroll in This Track</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
         </div>
-
-        {/* Architectural 2-Column Showcase (Anti-Slop: No Nested Border Cards) */}
-        <ScrollReveal variant="stagger-children" stagger={0.12} start="top 88%">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-20 xl:gap-24">
-            {relatedCourses.map((rel) => (
-              <article
-                key={rel.id}
-                className="scroll-item group flex flex-col justify-between"
-              >
-                {/* 1. Large Crisp Photographic Frame with Archival Framing */}
-                <Link
-                  href={`/courses/${rel.slug}`}
-                  className="relative block w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden bg-black mb-6 sm:mb-8 border border-[#e2e0d2]"
-                >
-                  <Image
-                    src={rel.coverImage}
-                    alt={rel.title}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-104 grayscale contrast-105 group-hover:grayscale-0 transition-all"
-                  />
-
-                  {/* Archival Stamp Header */}
-                  <div className="absolute top-3.5 left-3.5 bg-black/85 backdrop-blur-xs text-white font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] px-2.5 py-1">
-                    {rel.level} {"//"} Track {rel.number}
-                  </div>
-
-                  {rel.discount && (
-                    <div className="absolute top-3.5 right-3.5 bg-[#ffd001] text-black font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 shadow-sm">
-                      {rel.discount}
-                    </div>
-                  )}
-
-                  {/* Corner Vignette Accent on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                </Link>
-
-                {/* 2. Typographic Metadata & Title */}
-                <div className="flex flex-col gap-3.5">
-                  <div className="flex items-center justify-between font-mono text-xs uppercase tracking-wider text-[#777777] pb-2.5 border-b border-[#e2e0d2]">
-                    <span className="text-black font-medium truncate mr-2">
-                      Duration: {rel.duration}
-                    </span>
-                    <span className="font-sans font-light text-base sm:text-lg lg:text-xl text-black whitespace-nowrap tabular-nums shrink-0">
-                      {rel.payableFee}
-                    </span>
-                  </div>
-
-                  <h3 className="font-sans font-light text-xl sm:text-2xl lg:text-[28px] leading-snug text-black tracking-[-0.025em]">
-                    <Link
-                      href={`/courses/${rel.slug}`}
-                      className="group-hover:opacity-75 transition-opacity no-underline text-inherit"
-                    >
-                      {rel.title}
-                    </Link>
-                  </h3>
-
-                  <p className="font-sans font-normal text-xs sm:text-sm md:text-[15px] text-[#555555] leading-relaxed line-clamp-2">
-                    {rel.description}
-                  </p>
-
-                  {/* 3. Action Row */}
-                  <div className="pt-4 sm:pt-5 flex items-center justify-between">
-                    <Link
-                      href={`/courses/${rel.slug}`}
-                      className="inline-flex items-center gap-1.5 font-mono text-xs sm:text-[13px] uppercase tracking-[0.16em] font-medium text-black group-hover:text-[#ca8a04] transition-colors"
-                    >
-                      <span>Explore Syllabus</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </Link>
-
-                    <Link
-                      href={`/enroll?course=${rel.slug}`}
-                      className="font-mono text-xs uppercase tracking-[0.14em] text-black/70 hover:text-black py-1.5 px-4 rounded-full border border-black/15 hover:border-black transition-all"
-                    >
-                      Enroll Now
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </ScrollReveal>
 
       </div>
     </section>

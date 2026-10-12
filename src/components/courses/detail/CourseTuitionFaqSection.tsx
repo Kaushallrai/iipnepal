@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Plus, Minus, ArrowUpRight } from "lucide-react";
-import LineReveal from "@/components/animations/LineReveal";
-import ScrollReveal from "@/components/animations/ScrollReveal";
 import type { CourseItem } from "@/data/courses";
 
 export interface CourseTuitionFaqSectionProps {
@@ -14,136 +12,129 @@ export interface CourseTuitionFaqSectionProps {
 export default function CourseTuitionFaqSection({
   course,
 }: CourseTuitionFaqSectionProps): React.JSX.Element {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  // Ensure 4 course-specific FAQs
+  const displayFaqs = course.faqs.slice(0, 4);
+
   return (
-    <section className="w-full py-16 sm:py-20 md:py-24 lg:py-28 border-b border-[#e2e0d2] bg-[#fffef7]">
+    <section className="w-full py-16 sm:py-20 md:py-24 border-b border-[#e2e0d2] bg-[#fffef7]">
       <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        {/* Section Header */}
+        <div className="flex flex-col items-start mb-10 sm:mb-14">
+          <div className="flex items-center gap-2 mb-3 select-none">
+            <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
+            <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-semibold">
+              07 // DETAILS & ADMISSIONS FAQ
+            </span>
+          </div>
+          <h2 className="font-sans font-light text-3xl sm:text-4xl md:text-5xl text-black tracking-[-0.03em] leading-tight">
+            Key Logistics & Answers.
+          </h2>
+        </div>
+
+        {/* 2-Column Grid: Left 3 Grouped Clusters + Right 4 FAQ Accordions */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column: Tuition & Payment Methods */}
-          <div className="lg:col-span-5 flex flex-col gap-8 sm:gap-10">
-            <div className="pb-4 sm:pb-5 border-b border-[#e2e0d2]">
-              <div className="flex items-center gap-2 mb-2.5 select-none">
-                <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
-                <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-medium">
-                  Tuition & Enrollment
-                </span>
-              </div>
-              <LineReveal
-                as="h2"
-                lines={["Program Investment."]}
-                className="font-sans font-light text-2xl sm:text-3xl md:text-4xl lg:text-[44px] text-black tracking-[-0.03em] leading-[1.12]"
-              />
-            </div>
-
-            <div>
-              <div className="flex flex-wrap items-baseline gap-3 mb-2.5 whitespace-nowrap">
-                <span className="font-sans font-light text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-black whitespace-nowrap tabular-nums">
-                  {course.payableFee}
-                </span>
-                {course.totalFee !== course.payableFee && (
-                  <span className="font-mono text-sm sm:text-base md:text-lg text-[#999999] line-through whitespace-nowrap tabular-nums">
-                    {course.totalFee}
-                  </span>
-                )}
-                {course.discount && (
-                  <span className="font-mono text-xs sm:text-sm font-semibold text-[#dc2626] whitespace-nowrap">
-                    ({course.discount})
-                  </span>
-                )}
-              </div>
-              <p className="font-sans font-normal text-xs sm:text-sm md:text-base text-[#666666] leading-relaxed">
-                Includes all module guides, individual photo assessments, portal access,
-                and verified IIP Certificate of Completion.
-              </p>
-            </div>
-
-            {/* Approved channels */}
-            <div className="pt-6 border-t border-[#e2e0d2]">
-              <span className="font-mono text-xs uppercase tracking-wider text-[#888888] block mb-2.5">
-                Accepted Channels:
+          {/* Left Column (5 Cols): 3 Grouped Clusters with One Divider Each */}
+          <div className="lg:col-span-5 flex flex-col">
+            
+            {/* Cluster 1: Equipment */}
+            <div className="flex flex-col gap-2">
+              <span className="font-mono text-xs uppercase tracking-[0.18em] text-[#888888] font-semibold">
+                01 / Equipment Requirements
               </span>
-              <p className="font-mono text-xs sm:text-[13px] text-[#555555] leading-relaxed">
-                eSewa • Khalti • Bank Transfer (NIMB / Nabil) • Cash / Card at Jyoti Bhawan Desk
+              <h3 className="font-sans font-normal text-lg sm:text-xl text-black">
+                {course.equipment}
+              </h3>
+              <p className="font-sans text-sm text-[#555555] leading-relaxed">
+                Students need a working camera body, basic zoom or prime lens, and a computer capable of running editing software for project submissions. Studio flash units are provided on campus.
               </p>
             </div>
 
-            <div className="pt-2">
+            <div className="w-full border-b border-[#e2e0d2] my-8" />
+
+            {/* Cluster 2: Payment */}
+            <div className="flex flex-col gap-2">
+              <span className="font-mono text-xs uppercase tracking-[0.18em] text-[#888888] font-semibold">
+                02 / Accepted Payment Methods
+              </span>
+              <h3 className="font-sans font-normal text-lg sm:text-xl text-black">
+                eSewa, Khalti, Bank & In-Person
+              </h3>
+              <p className="font-sans text-sm text-[#555555] leading-relaxed">
+                Direct transfers accepted through eSewa, Khalti, NIMB, and Nabil Bank. Cash and card payments can be settled at the Jyoti Bhawan front desk during studio hours.
+              </p>
+            </div>
+
+            <div className="w-full border-b border-[#e2e0d2] my-8" />
+
+            {/* Cluster 3: Policies & Refund */}
+            <div className="flex flex-col gap-2">
+              <span className="font-mono text-xs uppercase tracking-[0.18em] text-[#888888] font-semibold">
+                03 / Enrollment & Policies
+              </span>
+              <h3 className="font-sans font-normal text-lg sm:text-xl text-black">
+                Rolling Cohorts & Rescheduling
+              </h3>
+              <p className="font-sans text-sm text-[#555555] leading-relaxed">
+                Seats are strictly limited to maintain 1-on-1 critique quality. If you need to reschedule your intake, notify admissions up to 7 days before orientation without penalty.
+              </p>
+            </div>
+
+          </div>
+
+          {/* Right Column (7 Cols): 4 Course-Specific FAQ Accordions */}
+          <div className="lg:col-span-7 flex flex-col">
+            <div className="flex flex-col divide-y divide-[#e2e0d2] border-y border-[#e2e0d2]">
+              {displayFaqs.map((faq, idx) => {
+                const isOpen = openIndex === idx;
+                return (
+                  <div key={idx} className="py-5 sm:py-6">
+                    <button
+                      type="button"
+                      onClick={() => toggleAccordion(idx)}
+                      className="w-full flex items-center justify-between text-left cursor-pointer group"
+                      aria-expanded={isOpen}
+                    >
+                      <h4 className="font-sans font-light text-lg sm:text-xl md:text-[22px] text-black group-hover:text-[#ca8a04] transition-colors pr-6">
+                        {faq.question}
+                      </h4>
+                      <span className="w-8 h-8 rounded-full border border-[#d8d6c8] flex items-center justify-center shrink-0 text-black group-hover:border-black transition-colors">
+                        {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                      </span>
+                    </button>
+
+                    {isOpen && (
+                      <div className="pt-4 pr-10">
+                        <p className="font-sans text-sm sm:text-base text-[#555555] leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Link to Contact / Support */}
+            <div className="pt-8 flex items-center justify-between">
+              <span className="font-mono text-xs text-[#888888] uppercase tracking-wider">
+                Need more information?
+              </span>
               <Link
-                href={`/enroll?course=${course.slug}`}
-                className="inline-flex items-center gap-2 py-4 px-8 rounded-full bg-[#ffd001] hover:bg-black hover:text-[#fffef7] text-black font-mono text-xs sm:text-[13px] uppercase tracking-[0.16em] font-semibold transition-all shadow-sm leading-none"
+                href="/contact"
+                className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.16em] text-black hover:text-[#ca8a04] font-semibold transition-colors"
               >
-                <span>Enroll in This Program</span>
+                <span>Contact Admissions Team</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </Link>
             </div>
-          </div>
-
-          {/* Right Column: Key FAQs */}
-          <div className="lg:col-span-7 flex flex-col gap-6 sm:gap-8">
-            <div className="pb-4 sm:pb-5 border-b border-[#e2e0d2]">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#888888]">
-                Common Questions
-              </span>
-              <h3 className="font-sans font-light text-2xl sm:text-3xl md:text-4xl text-black mt-2 tracking-[-0.03em]">
-                Frequently Asked.
-              </h3>
-            </div>
-
-            <ScrollReveal variant="stagger-children" stagger={0.06} start="top 88%">
-              <div className="flex flex-col divide-y divide-[#e2e0d2]">
-                {course.faqs.map((faq, idx) => {
-                  const isOpen = openIndex === idx;
-
-                  return (
-                    <div key={idx} className="scroll-item py-5 sm:py-6 lg:py-7">
-                      <button
-                        type="button"
-                        id={`faq-question-${course.id}-${idx}`}
-                        onClick={() => toggleAccordion(idx)}
-                        className="w-full flex items-start justify-between gap-6 text-left cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffd001]"
-                        aria-expanded={isOpen}
-                        aria-controls={`faq-answer-${course.id}-${idx}`}
-                      >
-                        <span className="font-sans font-light text-base sm:text-lg lg:text-xl text-black group-hover:text-black/75 transition-colors leading-snug">
-                          {faq.question}
-                        </span>
-                        <span className="w-7 h-7 rounded-full border border-black/20 flex items-center justify-center shrink-0 mt-0.5 text-black group-hover:border-black transition-colors">
-                          {isOpen ? (
-                            <Minus className="w-3.5 h-3.5" strokeWidth={1.5} />
-                          ) : (
-                            <Plus className="w-3.5 h-3.5" strokeWidth={1.5} />
-                          )}
-                        </span>
-                      </button>
-
-                      <div
-                        id={`faq-answer-${course.id}-${idx}`}
-                        role="region"
-                        aria-labelledby={`faq-question-${course.id}-${idx}`}
-                        className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
-                          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                        }`}
-                      >
-                        <div className="overflow-hidden min-h-0">
-                          <div className="pt-4 pr-6 sm:pr-10">
-                            <p className="font-sans font-normal text-xs sm:text-sm md:text-base text-[#555555] leading-relaxed">
-                              {faq.answer}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </ScrollReveal>
           </div>
 
         </div>

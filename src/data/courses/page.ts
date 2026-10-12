@@ -18,20 +18,20 @@ export interface CoursesPageData {
 }
 
 export const coursesPageData: CoursesPageData = {
-  eyebrow: "IIP Nepal // Course Directory",
+  eyebrow: "01 // PROGRAMMES",
   heading: "Find your photography course.",
   description:
-    "Compare five mentor-led tracks in Kathmandu — from beginner smartphone photography to comprehensive studio lighting and commercial production.",
+    "Five mentor-led tracks in Kathmandu, from smartphone craft to studio strobe lighting and commercial production.",
   filters: ["All", "Beginner", "Foundation", "Advanced"],
   cta: {
-    eyebrow: "Admissions 2026 // Kathmandu Studio",
+    eyebrow: "02 // ADMISSIONS",
     heading: "Ready to Master the Craft of Photography?",
     description:
-      "Enroll online to receive personal portal credentials and begin one-on-one mentorship, or visit our darkroom facilities at Jyoti Bhawan, Kanti Path.",
+      "Enroll online for one-on-one mentorship, or visit our studio facilities at Jyoti Bhawan, Kanti Path.",
     address: "Jyoti Bhawan, Kanti Path, Kathmandu",
     phone: "+9779802364760",
     phoneDisplay: "+977 9802364760",
-    enrollText: "Enroll in Course",
+    enrollText: "Enroll",
     enrollHref: "/enroll",
     contactText: "Contact Admissions",
     contactHref: "/contact",

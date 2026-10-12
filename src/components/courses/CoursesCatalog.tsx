@@ -12,6 +12,7 @@ export interface CoursesCatalogProps {
 
 export default function CoursesCatalog({ initialCourses }: CoursesCatalogProps): React.JSX.Element {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [isCompareMode, setIsCompareMode] = useState(false);
 
   const filteredCourses = useMemo(() => {
     return initialCourses.filter((course) => {
@@ -27,8 +28,10 @@ export default function CoursesCatalog({ initialCourses }: CoursesCatalogProps):
         activeFilter={activeFilter}
         onFilterChange={setActiveFilter}
         filters={coursesPageData.filters}
+        isCompareMode={isCompareMode}
+        onToggleCompare={() => setIsCompareMode((prev) => !prev)}
       />
-      <CoursesList courses={filteredCourses} />
+      <CoursesList courses={filteredCourses} isCompareMode={isCompareMode} />
     </>
   );
 }

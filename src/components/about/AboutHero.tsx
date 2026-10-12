@@ -78,55 +78,31 @@ export default function AboutHero({
         {/* ARCHITECTURAL METRICS (CLEAN TYPOGRAPHY, ZERO ICONS)              */}
         {/* ================================================================= */}
         <ScrollReveal variant="stagger-children" stagger={0.08} start="top 92%">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-4 lg:gap-8 pt-8 border-t border-[#e2e0d2]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl pt-8 border-t border-[#e2e0d2]">
             <div className="scroll-item flex flex-col gap-1 sm:gap-1.5">
-            <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-[#888888]">
-              Heritage
-            </span>
-            <div className="font-sans font-light text-2xl sm:text-3xl md:text-[28px] lg:text-4xl text-black tracking-[-0.03em] whitespace-nowrap">
-              14+ Years
+              <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-[#888888]">
+                Heritage
+              </span>
+              <div className="font-sans font-light text-2xl sm:text-3xl md:text-[28px] lg:text-4xl text-black tracking-[-0.03em] whitespace-nowrap">
+                14+ Years
+              </div>
+              <p className="font-sans text-xs text-[#666666] leading-relaxed">
+                Regional photographic education partner in Kathmandu since 2011.
+              </p>
             </div>
-            <p className="font-sans text-xs text-[#666666] leading-relaxed">
-              Regional training partner since 2011.
-            </p>
-          </div>
 
-          <div className="scroll-item flex flex-col gap-1 sm:gap-1.5">
-            <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-[#888888]">
-              Community
-            </span>
-            <div className="font-sans font-light text-2xl sm:text-3xl md:text-[28px] lg:text-4xl text-black tracking-[-0.03em] whitespace-nowrap">
-              500+ Alumni
+            <div className="scroll-item flex flex-col gap-1 sm:gap-1.5">
+              <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-[#888888]">
+                Community
+              </span>
+              <div className="font-sans font-light text-2xl sm:text-3xl md:text-[28px] lg:text-4xl text-black tracking-[-0.03em] whitespace-nowrap">
+                500+ Alumni
+              </div>
+              <p className="font-sans text-xs text-[#666666] leading-relaxed">
+                Practicing across documentary, studio, and commercial media.
+              </p>
             </div>
-            <p className="font-sans text-xs text-[#666666] leading-relaxed">
-              Working across documentary and fashion.
-            </p>
           </div>
-
-          <div className="scroll-item flex flex-col gap-1 sm:gap-1.5">
-            <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-[#888888]">
-              Curriculum
-            </span>
-            <div className="font-sans font-light text-2xl sm:text-3xl md:text-[28px] lg:text-4xl text-black tracking-[-0.03em] whitespace-nowrap">
-              100% Practical
-            </div>
-            <p className="font-sans text-xs text-[#666666] leading-relaxed">
-              Darkroom printing and strobe labs.
-            </p>
-          </div>
-
-          <div className="scroll-item flex flex-col gap-1 sm:gap-1.5">
-            <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-[#888888]">
-              Admissions
-            </span>
-            <div className="font-sans font-light text-2xl sm:text-3xl md:text-[28px] lg:text-4xl text-black tracking-[-0.03em] whitespace-nowrap">
-              1 : 1 Advisory
-            </div>
-            <p className="font-sans text-xs text-[#666666] leading-relaxed">
-              Dedicated counselor for every student.
-            </p>
-          </div>
-        </div>
         </ScrollReveal>
       </div>
     </section>

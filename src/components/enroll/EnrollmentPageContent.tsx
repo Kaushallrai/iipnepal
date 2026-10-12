@@ -456,7 +456,7 @@ export default function EnrollmentPageContent({
                       onChange={handleInputChange}
                       placeholder="Aarav"
                       className={`w-full bg-transparent border-0 border-b text-black text-[15px] sm:text-[16px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none transition-colors duration-200 ${
-                        errors.firstName ? "border-red-600" : "border-[#cccccc] focus:border-black"
+                        errors.firstName ? "border-red-600" : "border-[#666666] focus:border-black"
                       }`}
                     />
                     {errors.firstName && (
@@ -483,7 +483,7 @@ export default function EnrollmentPageContent({
                       onChange={handleInputChange}
                       placeholder="Shrestha"
                       className={`w-full bg-transparent border-0 border-b text-black text-[15px] sm:text-[16px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none transition-colors duration-200 ${
-                        errors.lastName ? "border-red-600" : "border-[#cccccc] focus:border-black"
+                        errors.lastName ? "border-red-600" : "border-[#666666] focus:border-black"
                       }`}
                     />
                     {errors.lastName && (
@@ -510,7 +510,7 @@ export default function EnrollmentPageContent({
                       onChange={handleInputChange}
                       placeholder="aarav@example.com"
                       className={`w-full bg-transparent border-0 border-b text-black text-[15px] sm:text-[16px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none transition-colors duration-200 ${
-                        errors.email ? "border-red-600" : "border-[#cccccc] focus:border-black"
+                        errors.email ? "border-red-600" : "border-[#666666] focus:border-black"
                       }`}
                     />
                     {errors.email && (
@@ -537,7 +537,7 @@ export default function EnrollmentPageContent({
                       onChange={handleInputChange}
                       placeholder="+977"
                       className={`w-full bg-transparent border-0 border-b text-black text-[15px] sm:text-[16px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none transition-colors duration-200 ${
-                        errors.phone ? "border-red-600" : "border-[#cccccc] focus:border-black"
+                        errors.phone ? "border-red-600" : "border-[#666666] focus:border-black"
                       }`}
                     />
                     {errors.phone && (
@@ -561,7 +561,7 @@ export default function EnrollmentPageContent({
                     >
                       <SelectTrigger
                         id="program-select"
-                        className="w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[14px] sm:text-[15px] md:text-[16px] font-normal py-2 sm:py-2.5 px-0 outline-none transition-colors duration-200 cursor-pointer rounded-none shadow-none ring-0 focus:ring-0"
+                        className="w-full bg-transparent border-0 border-b border-[#666666] focus:border-black text-black text-[14px] sm:text-[15px] md:text-[16px] font-normal py-2 sm:py-2.5 px-0 outline-none transition-colors duration-200 cursor-pointer rounded-none shadow-none ring-0 focus:ring-0"
                       >
                         <SelectValue placeholder="Select a photography program" />
                       </SelectTrigger>
@@ -603,7 +603,7 @@ export default function EnrollmentPageContent({
                     >
                       <SelectTrigger
                         id="batch-select"
-                        className="w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[14px] sm:text-[15px] md:text-[16px] font-normal py-2 sm:py-2.5 px-0 outline-none transition-colors duration-200 cursor-pointer rounded-none shadow-none ring-0 focus:ring-0"
+                        className="w-full bg-transparent border-0 border-b border-[#666666] focus:border-black text-black text-[14px] sm:text-[15px] md:text-[16px] font-normal py-2 sm:py-2.5 px-0 outline-none transition-colors duration-200 cursor-pointer rounded-none shadow-none ring-0 focus:ring-0"
                       >
                         <SelectValue placeholder="Select schedule" />
                       </SelectTrigger>
@@ -640,7 +640,7 @@ export default function EnrollmentPageContent({
                     >
                       <SelectTrigger
                         id="payment-select"
-                        className="w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[14px] sm:text-[15px] md:text-[16px] font-normal py-2 sm:py-2.5 px-0 outline-none transition-colors duration-200 cursor-pointer rounded-none shadow-none ring-0 focus:ring-0"
+                        className="w-full bg-transparent border-0 border-b border-[#666666] focus:border-black text-black text-[14px] sm:text-[15px] md:text-[16px] font-normal py-2 sm:py-2.5 px-0 outline-none transition-colors duration-200 cursor-pointer rounded-none shadow-none ring-0 focus:ring-0"
                       >
                         <SelectValue placeholder="Select payment method" />
                       </SelectTrigger>
@@ -673,7 +673,7 @@ export default function EnrollmentPageContent({
                       value={formData.notes}
                       onChange={handleInputChange}
                       placeholder="e.g. Shooting with Sony A7III, focused on documentary portraiture..."
-                      className="w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[14px] sm:text-[15px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none resize-none transition-colors duration-200"
+                      className="w-full bg-transparent border-0 border-b border-[#666666] focus:border-black text-black text-[14px] sm:text-[15px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none resize-none transition-colors duration-200"
                     />
                   </div>
 

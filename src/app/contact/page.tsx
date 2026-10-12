@@ -5,7 +5,7 @@ import ContactMap from "@/components/contact/ContactMap";
 import ContactForm from "@/components/contact/ContactForm";
 import LineReveal from "@/components/animations/LineReveal";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import { ArrowUpRight, Phone, MessageSquare, Mail, MapPin } from "lucide-react";
+import { Phone, MessageSquare, Mail, Navigation } from "lucide-react";
 import { contactData } from "@/data/contact";
 
 export const metadata: Metadata = {
@@ -39,7 +39,7 @@ export default function ContactPage(): React.JSX.Element {
           
           {/* Page Intro Header */}
           <div className="max-w-4xl pb-8 sm:pb-12 border-b border-[#e2e0d2]">
-            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-medium mb-3 select-none">
+            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-semibold mb-3 select-none">
               <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
               <span>{eyebrow}</span>
             </div>
@@ -50,125 +50,10 @@ export default function ContactPage(): React.JSX.Element {
             />
           </div>
 
-          {/* 2-Column Balanced Layout: Channels & Map Left, Form Right */}
+          {/* 2-Column Desktop Layout: Form Left, Address / Hours / Map Right */}
           <div className="pt-10 sm:pt-14 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 items-start">
             
-            {/* LEFT COLUMN: Direct Channels + Location & Map */}
-            <div className="lg:col-span-5 flex flex-col gap-8">
-              
-              {/* Direct Contact Channels Box */}
-              <div className="flex flex-col gap-4">
-                <span className="font-mono text-xs uppercase tracking-[0.18em] text-[#888888] pb-2 border-b border-[#e2e0d2]">
-                  Direct Admissions Channels
-                </span>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
-                  {/* Phone */}
-                  <a
-                    href={channels.phone.href}
-                    className="p-4 bg-white border border-[#e2e0d2] hover:border-black transition-colors flex items-center justify-between group no-underline"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-[#ffd001] text-black flex items-center justify-center shrink-0">
-                        <Phone className="w-3.5 h-3.5" />
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="font-mono text-[10px] uppercase tracking-wider text-[#888888]">
-                          {channels.phone.label}
-                        </span>
-                        <span className="font-sans text-sm font-medium text-black">
-                          {channels.phone.value}
-                        </span>
-                      </div>
-                    </div>
-                    <ArrowUpRight className="w-4 h-4 text-[#888888] group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </a>
-
-                  {/* WhatsApp */}
-                  <a
-                    href={channels.whatsapp.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-4 bg-white border border-[#e2e0d2] hover:border-black transition-colors flex items-center justify-between group no-underline"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-[#25D366] text-white flex items-center justify-center shrink-0">
-                        <MessageSquare className="w-3.5 h-3.5" />
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="font-mono text-[10px] uppercase tracking-wider text-[#888888]">
-                          {channels.whatsapp.label}
-                        </span>
-                        <span className="font-sans text-sm font-medium text-black">
-                          Chat on WhatsApp
-                        </span>
-                      </div>
-                    </div>
-                    <ArrowUpRight className="w-4 h-4 text-[#888888] group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </a>
-
-                  {/* Email */}
-                  <a
-                    href={channels.email.href}
-                    className="p-4 bg-white border border-[#e2e0d2] hover:border-black transition-colors flex items-center justify-between group no-underline sm:col-span-2 lg:col-span-1"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-black text-[#ffd001] flex items-center justify-center shrink-0">
-                        <Mail className="w-3.5 h-3.5" />
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="font-mono text-[10px] uppercase tracking-wider text-[#888888]">
-                          {channels.email.label}
-                        </span>
-                        <span className="font-sans text-sm font-medium text-black truncate">
-                          {channels.email.value}
-                        </span>
-                      </div>
-                    </div>
-                    <ArrowUpRight className="w-4 h-4 text-[#888888] group-hover:text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </a>
-
-                  {/* Location Card */}
-                  <div className="p-4 bg-white border border-[#e2e0d2] sm:col-span-2 lg:col-span-1 flex flex-col gap-2">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-[#f4f2e9] text-black flex items-center justify-center shrink-0 mt-0.5">
-                        <MapPin className="w-3.5 h-3.5" />
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="font-mono text-[10px] uppercase tracking-wider text-[#888888]">
-                          {channels.location.label}
-                        </span>
-                        <span className="font-sans text-xs sm:text-sm text-black leading-relaxed">
-                          {channels.location.value}
-                        </span>
-                      </div>
-                    </div>
-
-                    <a
-                      href={channels.location.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-wider text-[#ca8a04] hover:text-black transition-colors pt-1 border-t border-[#f0eee3] self-start"
-                    >
-                      <span>Open in Google Maps</span>
-                      <ArrowUpRight className="w-3 h-3" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Map Preview */}
-              <div className="w-full">
-                <ContactMap
-                  locationName={map.locationName}
-                  address={map.address}
-                  mapsUrl={map.mapsUrl}
-                />
-              </div>
-
-            </div>
-
-            {/* RIGHT COLUMN: Streamlined Contact Form */}
+            {/* LEFT COLUMN (7 cols): Admissions Inquiry Form */}
             <div className="lg:col-span-7">
               <ScrollReveal variant="fade-up" duration={0.8}>
                 <div className="bg-white p-6 sm:p-8 md:p-10 border border-[#e2e0d2]">
@@ -186,12 +71,102 @@ export default function ContactPage(): React.JSX.Element {
               </ScrollReveal>
             </div>
 
+            {/* RIGHT COLUMN (5 cols): Direct Action Pills + Address + Hours + Map */}
+            <div className="lg:col-span-5 flex flex-col gap-8">
+              
+              {/* Direct Action Pills Row */}
+              <div className="flex flex-col gap-3">
+                <span className="font-mono text-xs uppercase tracking-[0.18em] text-[#888888] font-semibold pb-2 border-b border-[#e2e0d2]">
+                  Direct Action Channels
+                </span>
+
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <a
+                    href={channels.phone.href}
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#f4f2e9] hover:bg-[#ffd001] text-black font-mono text-xs uppercase tracking-[0.14em] font-semibold transition-all border border-[#e2e0d2] no-underline"
+                    aria-label={`Call ${channels.phone.value}`}
+                  >
+                    <Phone className="w-3.5 h-3.5" />
+                    <span>Call</span>
+                  </a>
+
+                  <a
+                    href={channels.whatsapp.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#f4f2e9] hover:bg-[#25D366] hover:text-white text-black font-mono text-xs uppercase tracking-[0.14em] font-semibold transition-all border border-[#e2e0d2] no-underline"
+                    aria-label="WhatsApp"
+                  >
+                    <MessageSquare className="w-3.5 h-3.5" />
+                    <span>WhatsApp</span>
+                  </a>
+
+                  <a
+                    href={channels.email.href}
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#f4f2e9] hover:bg-black hover:text-white text-black font-mono text-xs uppercase tracking-[0.14em] font-semibold transition-all border border-[#e2e0d2] no-underline"
+                    aria-label="Email"
+                  >
+                    <Mail className="w-3.5 h-3.5" />
+                    <span>Email</span>
+                  </a>
+
+                  <a
+                    href={channels.location.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#f4f2e9] hover:bg-[#ffd001] text-black font-mono text-xs uppercase tracking-[0.14em] font-semibold transition-all border border-[#e2e0d2] no-underline"
+                    aria-label="Directions"
+                  >
+                    <Navigation className="w-3.5 h-3.5" />
+                    <span>Directions</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Studio Location & Hours Card */}
+              <div className="bg-[#fdfcf5] border border-[#e2e0d2] p-6 sm:p-7 flex flex-col gap-5">
+                <div>
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-[#888888] block mb-1">
+                    Kathmandu Studio & Darkroom
+                  </span>
+                  <div className="font-sans font-medium text-base text-black">
+                    Jyoti Bhawan, 1st Floor, Kanti Path, Kathmandu
+                  </div>
+                  <div className="font-mono text-xs text-[#666666] mt-0.5">
+                    Near Jamal / Durbar Marg Intersection
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-[#ece9dc]">
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-[#888888] block mb-1">
+                    Studio & Admissions Hours
+                  </span>
+                  <div className="font-sans text-sm text-[#333333]">
+                    Sunday - Friday: 10:00 AM - 5:00 PM
+                  </div>
+                  <div className="font-mono text-xs text-[#777777] mt-0.5">
+                    Saturday: Closed for darkroom processing
+                  </div>
+                </div>
+              </div>
+
+              {/* Map Preview */}
+              <div className="w-full">
+                <ContactMap
+                  locationName={map.locationName}
+                  address={map.address}
+                  mapsUrl={map.mapsUrl}
+                />
+              </div>
+
+            </div>
+
           </div>
 
         </div>
       </header>
 
-      {/* 3. SITE FOOTER */}
+      {/* ARCHITECTURAL FOOTER */}
       <Footer />
     </main>
   );

@@ -94,22 +94,22 @@
 
 ---
 
-### [ ] Phase 6: Admissions & Forms Optimization (`/enroll`, `/contact`, Footer)
-- [ ] **Admissions Page (`/enroll`)**:
-  - [ ] 3-step structured progression: 1) Choose course (selectable cards, pre-selected from `?course=`), 2) Your details, 3) Pay or confirm (eSewa, Khalti, bank transfer, centre).
-  - [ ] Inline course summary on desktop right column / collapsed mobile card.
-  - [ ] Accessible form states: empty, loading skeleton, field validation errors (WCAG AA), success confirmation.
-- [ ] **Contact Page (`/contact`)**:
-  - [ ] 2-column desktop layout (form left; address, hours, map right); stacked on mobile with map toggle.
-  - [ ] Form contrast fix: use Graphite (`#666666`) border tokens instead of light ash.
-  - [ ] Direct action pills: Call, WhatsApp, Email, Maps directions.
-- [ ] **Architectural Footer**:
-  - [ ] 4-column desktop layout (Brand + bio, Explore links, Contact + hours, Social channels).
-  - [ ] Remove 3x repeated address strings; mobile contact-first actions + links.
-  - [ ] Legal bottom row with Terms, Privacy, and copyright.
-- [ ] **About Page (`/about`)**:
-  - [ ] 2 stats instead of 4 (avoid home repetition); 3 pillars (Learn, Practise, Get feedback).
-  - [ ] Staggered facilities photo composition (Print Lab, Studio B, Field Lab).
-  - [ ] Team section featuring Additya Shrestha + darkroom heritage series.
-- [ ] **Verification**: Run `npm run build`.
-- [ ] **Git Commit**: `Phase 6: Optimize admissions flow, contact form contrast, about page, and footer architecture`.
+### [x] Phase 6: Admissions & Forms Optimization (`/enroll`, `/contact`, Footer)
+- [x] **Admissions Page (`/enroll`)**:
+  - [x] 3-step structured progression: 1) Choose course (selectable cards, pre-selected from `?course=`), 2) Your details, 3) Pay or confirm (eSewa, Khalti, bank transfer, centre).
+  - [x] Inline course summary on desktop right column / collapsed mobile card.
+  - [x] Accessible form states: empty, loading skeleton, field validation errors (WCAG AA), success confirmation.
+- [x] **Contact Page (`/contact`)**:
+  - [x] 2-column desktop layout (form left; address, hours, map right); stacked on mobile with map toggle.
+  - [x] Form contrast fix: use Graphite (`#666666`) border tokens instead of light ash.
+  - [x] Direct action pills: Call, WhatsApp, Email, Maps directions.
+- [x] **Architectural Footer**:
+  - [x] 4-column desktop layout (Brand + bio, Explore links, Contact + hours, Social channels).
+  - [x] Remove 3x repeated address strings; mobile contact-first actions + links.
+  - [x] Legal bottom row with Terms, Privacy, and copyright.
+- [x] **About Page (`/about`)**:
+  - [x] 2 stats instead of 4 (avoid home repetition); 3 pillars (Learn, Practise, Get feedback).
+  - [x] Staggered facilities photo composition (Print Lab, Studio B, Field Lab).
+  - [x] Team section featuring Additya Shrestha + darkroom heritage series.
+- [x] **Verification**: Run `npm run build`.
+- [x] **Git Commit**: `Phase 6: Optimize admissions flow, contact form contrast, about page, and footer architecture`.

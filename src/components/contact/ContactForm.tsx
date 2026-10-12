@@ -142,7 +142,7 @@ export default function ContactForm(): React.JSX.Element {
               value={formData.firstName}
               onChange={handleChange}
               placeholder="Aarav"
-              className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[15px] sm:text-[16px] md:text-[17px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none transition-colors duration-200"
+              className="form_input w-full bg-transparent border-0 border-b border-[#666666] focus:border-black text-black text-[15px] sm:text-[16px] md:text-[17px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#888888] outline-none transition-colors duration-200"
             />
           </div>
 
@@ -162,7 +162,7 @@ export default function ContactForm(): React.JSX.Element {
               value={formData.lastName}
               onChange={handleChange}
               placeholder="Shrestha"
-              className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[15px] sm:text-[16px] md:text-[17px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none transition-colors duration-200"
+              className="form_input w-full bg-transparent border-0 border-b border-[#666666] focus:border-black text-black text-[15px] sm:text-[16px] md:text-[17px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#888888] outline-none transition-colors duration-200"
             />
           </div>
 
@@ -182,7 +182,7 @@ export default function ContactForm(): React.JSX.Element {
               value={formData.email}
               onChange={handleChange}
               placeholder="aarav@example.com"
-              className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[15px] sm:text-[16px] md:text-[17px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none transition-colors duration-200"
+              className="form_input w-full bg-transparent border-0 border-b border-[#666666] focus:border-black text-black text-[15px] sm:text-[16px] md:text-[17px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#888888] outline-none transition-colors duration-200"
             />
           </div>
 
@@ -201,7 +201,7 @@ export default function ContactForm(): React.JSX.Element {
               value={formData.phone}
               onChange={handleChange}
               placeholder="+977"
-              className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[15px] sm:text-[16px] md:text-[17px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none transition-colors duration-200"
+              className="form_input w-full bg-transparent border-0 border-b border-[#666666] focus:border-black text-black text-[15px] sm:text-[16px] md:text-[17px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#888888] outline-none transition-colors duration-200"
             />
           </div>
 
@@ -221,7 +221,7 @@ export default function ContactForm(): React.JSX.Element {
             >
               <SelectTrigger
                 id="program-select"
-                className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[14px] sm:text-[15px] md:text-[16px] font-normal py-2 sm:py-2.5 px-0 outline-none transition-colors duration-200 cursor-pointer rounded-none shadow-none ring-0 focus:ring-0"
+                className="form_input w-full bg-transparent border-0 border-b border-[#666666] focus:border-black text-black text-[14px] sm:text-[15px] md:text-[16px] font-normal py-2 sm:py-2.5 px-0 outline-none transition-colors duration-200 cursor-pointer rounded-none shadow-none ring-0 focus:ring-0"
               >
                 <SelectValue placeholder="Select a photography program" />
               </SelectTrigger>
@@ -262,7 +262,7 @@ export default function ContactForm(): React.JSX.Element {
               value={formData.details}
               onChange={handleChange}
               placeholder="Tell us about your photographic goals, camera gear, or any questions regarding admissions..."
-              className="form_input w-full bg-transparent border-0 border-b border-[#cccccc] focus:border-black text-black text-[14px] sm:text-[15px] md:text-[16px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#aaaaaa] outline-none resize-none transition-colors duration-200"
+              className="form_input w-full bg-transparent border-0 border-b border-[#666666] focus:border-black text-black text-[14px] sm:text-[15px] md:text-[16px] font-normal py-2 sm:py-2.5 px-0 placeholder:text-[#888888] outline-none resize-none transition-colors duration-200"
             />
           </div>
 

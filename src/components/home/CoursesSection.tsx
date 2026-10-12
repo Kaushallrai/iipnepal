@@ -467,22 +467,12 @@ export default function CoursesSection({
 
                             <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 select-none font-mono text-xs sm:text-[12.5px] tracking-[0.12em] uppercase">
                               <Link
-                                href={`/enroll?course=${course.slug}`}
-                                onClick={(e) => e.stopPropagation()}
-                                className="group/enroll inline-flex items-center gap-0.5 text-black hover:bg-[#ffd001] hover:text-black px-1.5 py-1 transition-all duration-150 font-medium leading-none"
-                              >
-                                <span className="text-[#ca8a04] group-hover/enroll:text-black font-semibold transition-colors">[</span>
-                                <span className="px-0.5">ENROLL</span>
-                                <span className="text-[#ca8a04] group-hover/enroll:text-black font-semibold transition-colors">]</span>
-                              </Link>
-
-                              <Link
                                 href={`/courses/${course.slug}`}
                                 onClick={(e) => e.stopPropagation()}
-                                className="group/view inline-flex items-center gap-0.5 text-black/70 hover:bg-[#ffd001] hover:text-black px-1.5 py-1 transition-all duration-150 font-medium leading-none"
+                                className="group/view inline-flex items-center gap-0.5 text-black hover:bg-[#ffd001] hover:text-black px-1.5 py-1 transition-all duration-150 font-medium leading-none"
                               >
                                 <span className="text-[#ca8a04] group-hover/view:text-black font-semibold transition-colors">[</span>
-                                <span className="px-0.5">VIEW</span>
+                                <span className="px-0.5">VIEW COURSE</span>
                                 <span className="text-[#ca8a04] group-hover/view:text-black font-semibold transition-colors">]</span>
                               </Link>
                             </div>
@@ -490,19 +480,14 @@ export default function CoursesSection({
                         </div>
                       </div>
 
-                      {/* Minimal & Elegant Meta Row Below Polaroid (Synopsis & Description Removed for Mobile/Tablet) */}
+                      {/* Meta Row Below Polaroid */}
                       <div className="w-full pt-2.5 pb-1 px-1 text-left flex items-center justify-between select-none font-mono text-[11px] uppercase tracking-[0.16em]">
                         <span className="text-white/60">
                           LEVEL: <span className="text-white font-medium">{course.level.toUpperCase()}</span>
                         </span>
-                        <Link
-                          href={`/courses/${course.slug}`}
-                          onClick={(e) => e.stopPropagation()}
-                          className="group/detail inline-flex items-center gap-1 text-white/70 hover:text-[#ffd001] transition-colors"
-                        >
-                          <span className="underline underline-offset-4">View course</span>
-                          <span className="transition-transform duration-150 group-hover/detail:translate-x-1 text-[#ffd001]">→</span>
-                        </Link>
+                        <span className="text-white/40">
+                          {course.duration.toUpperCase()}
+                        </span>
                       </div>
                     </SwiperSlide>
                   );
@@ -799,7 +784,7 @@ export default function CoursesSection({
                               className="group/link inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.18em] text-[#ffd001] hover:text-white font-semibold transition-colors whitespace-nowrap"
                               onClick={(e) => e.stopPropagation()}
                             >
-                              <span>View Course</span>
+                              <span>View course</span>
                               <span className="text-sm transition-transform duration-200 group-hover/link:translate-x-1">→</span>
                             </Link>
                           </div>

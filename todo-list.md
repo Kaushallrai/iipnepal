@@ -41,17 +41,17 @@
 
 ---
 
-### [ ] Phase 3: Homepage (`/`) Optimization & Single DOM Architecture
-- [ ] **Pinned vs Mobile Architecture**:
-  - [ ] Refactor Courses and Portfolio sections to avoid duplicate DOM trees: single markup set, pinned scroll only at `lg:` (1024px+), mobile/tablet smooth snap swipe.
-  - [ ] Honor `prefers-reduced-motion` cleanly across pinned ScrollTriggers.
-- [ ] **Content & CTAs**:
-  - [ ] Course slide actions: primary `View course` pill + clean `Enroll` link (drop "Curriculum→").
-  - [ ] Simplify "What we do" section: 1 clear sentence followed by key statistics ("5 programmes" instead of repetitive claims).
-  - [ ] Replace full home contact form with quick action strip (`Call`, `WhatsApp`, `Contact`) linking directly to `/contact`.
-  - [ ] Verify WCAG AA contrast on hero CTAs against background media (soft scrim protection).
-- [ ] **Verification**: Run `npm run build`.
-- [ ] **Git Commit**: `Phase 3: Refactor home pinned sections to single DOM and optimize CTAs`.
+### [x] Phase 3: Homepage (`/`) Optimization & Single DOM Architecture
+- [x] **Pinned vs Mobile Architecture**:
+  - [x] Refactor Courses and Portfolio sections to avoid duplicate DOM trees: single markup set, pinned scroll only at `lg:` (1024px+), mobile/tablet smooth snap swipe.
+  - [x] Honor `prefers-reduced-motion` cleanly across pinned ScrollTriggers.
+- [x] **Content & CTAs**:
+  - [x] Course slide actions: primary `View course` pill + clean `Enroll` link (drop redundant third link).
+  - [x] Simplify "What we do" section: 1 clear sentence followed by key statistics ("5 dedicated programmes").
+  - [x] Replace full home contact form with quick action strip (`Call`, `WhatsApp`, `Contact Admissions`) linking directly to `/contact`.
+  - [x] Verify WCAG AA contrast on hero CTAs against background media (soft scrim protection).
+- [x] **Verification**: Run `npm run build`.
+- [x] **Git Commit**: `Phase 3: Refactor home contact strip and section responsiveness`.
 
 ---
 

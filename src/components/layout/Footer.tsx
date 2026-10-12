@@ -271,6 +271,7 @@ export default function Footer(): React.JSX.Element {
                 <span>{siteConfig.legal.privacyLabel}</span>
                 <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 group-hover:origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.625,0.05,0,1)] pointer-events-none" />
               </Link>
+              {/* Hidden for now:
               <Link
                 href={siteConfig.legal.faqUrl}
                 className="underline-link group relative inline-flex items-center font-normal text-[12px] sm:text-[13px] uppercase tracking-[-0.018em] text-[#888888] hover:text-[#fffef7] transition-colors duration-300 no-underline"
@@ -278,6 +279,7 @@ export default function Footer(): React.JSX.Element {
                 <span>{siteConfig.legal.faqLabel}</span>
                 <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 group-hover:origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.625,0.05,0,1)] pointer-events-none" />
               </Link>
+              */}
             </div>
           </div>
         </div>

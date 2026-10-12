@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import HeroReveal from "@/components/home/HeroReveal";
 import WhatWeDo from "@/components/home/WhatWeDo";
 import CoursesSection from "@/components/home/CoursesSection";
@@ -10,6 +11,35 @@ import NewsSection from "@/components/home/NewsSection";
 import ContactSection from "@/components/home/ContactSection";
 import Footer from "@/components/layout/Footer";
 import { heroData } from "@/data/home/hero";
+
+export const metadata: Metadata = {
+  title: "IIP Nepal — Indian Institute of Photography Kathmandu",
+  description:
+    "Kathmandu's premier photography academy. Mentor-led courses, darkroom chemistry, and studio lighting labs at Jyoti Bhawan, Kanti Path.",
+  openGraph: {
+    title: "IIP Nepal — Indian Institute of Photography Kathmandu",
+    description:
+      "Kathmandu's premier photography academy. Mentor-led courses, darkroom chemistry, and studio lighting labs at Jyoti Bhawan, Kanti Path.",
+    url: "https://iipnepal.com",
+    siteName: "IIP Nepal",
+    images: [
+      {
+        url: "/images/hero-reveal.webp",
+        width: 1600,
+        height: 900,
+        alt: "IIP Nepal Indian Institute of Photography",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "IIP Nepal — Indian Institute of Photography Kathmandu",
+    description:
+      "Kathmandu's premier photography academy. Mentor-led courses, darkroom chemistry, and studio lighting labs.",
+    images: ["/images/hero-reveal.webp"],
+  },
+};
 
 export default function Home(): React.JSX.Element {
   return (

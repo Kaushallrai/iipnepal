@@ -11,6 +11,17 @@ import { contactData } from "@/data/contact";
 export const metadata: Metadata = {
   title: contactData.meta.title,
   description: contactData.meta.description,
+  openGraph: {
+    title: contactData.meta.title,
+    description: contactData.meta.description,
+    url: "https://iipnepal.com/contact",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: contactData.meta.title,
+    description: contactData.meta.description,
+  },
 };
 
 export default function ContactPage(): React.JSX.Element {

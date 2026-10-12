@@ -223,9 +223,9 @@ export const masterPortfolioList: PortfolioItem[] = [
     aspectRatio: "portrait",
     medium: "85mm Prime · Diffused Courtyard Daylight · Silver Tones",
     summary:
-      "Intimate medium-format portraiture examining Newari copper repoussé craftsmanship, hand chisels, and centuries-old metallurgical heritage in Lalitpur.",
+      "Intimate high-resolution portraiture examining Newari copper repoussé craftsmanship, hand chisels, and centuries-old metallurgical heritage in Lalitpur.",
     description:
-      "Intimate medium-format portraiture examining Newari copper repoussé craftsmanship, hand chisels, and centuries-old metallurgical heritage in Lalitpur.",
+      "Intimate high-resolution portraiture examining Newari copper repoussé craftsmanship, hand chisels, and centuries-old metallurgical heritage in Lalitpur.",
     statement:
       "The rhythmic sound of steel hammers tapping warm copper sheets has echoed through Patan's courtyards since the Licchavi kings. The master coppersmiths shape sacred iconography without laser measurements or blueprints, guided entirely by iconography passed down through ten generations. My camera entered their workshops not to objectify, but to honor the quiet dignity of their craft.",
     curatorNotes:

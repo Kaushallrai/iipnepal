@@ -74,6 +74,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${switzer.variable} ${posterFont.variable} ${fragmentMono.variable} ${syne.variable} ${playfair.variable} ${polaroidFont.variable} antialiased`}
     >
       <body className="min-h-screen bg-[var(--color-bone-white)] text-[var(--color-ink-black)] overflow-x-hidden w-full max-w-full">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import React from "react";
+import { notFound } from "next/navigation";
 import Footer from "@/components/layout/Footer";
 import FaqAccordion from "@/components/faq/FaqAccordion";
 import { faqData } from "@/data/faq";
@@ -18,6 +19,9 @@ export const metadata: Metadata = {
 };
 
 export default function FaqPage(): React.JSX.Element {
+  // Hide FAQ route for now:
+  notFound();
+
   return (
     <main
       className="min-h-screen bg-[#fffef7] text-black overflow-x-clip selection:bg-[#ffd001] selection:text-black"

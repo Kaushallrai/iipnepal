@@ -76,7 +76,8 @@ export const navigationData = {
     { label: "Courses", href: "/courses" },
     { label: "Portfolio", href: "/portfolio" },
     { label: "About Us", href: "/about" },
-    { label: "FAQ", href: "/faq" },
+    // Hidden for now:
+    // { label: "FAQ", href: "/faq" },
     { label: "Contact", href: "/contact" },
   ] as NavLinkItem[],
   enrollCta: {
@@ -98,7 +99,8 @@ export const footerData = {
     { label: "Courses", href: "/courses" },
     { label: "Portfolio", href: "/portfolio" },
     { label: "About", href: "/about" },
-    { label: "FAQ", href: "/faq" },
+    // Hidden for now:
+    // { label: "FAQ", href: "/faq" },
     { label: "Get In Touch", href: "/contact" },
   ] as NavLinkItem[],
   discoveryCta: {

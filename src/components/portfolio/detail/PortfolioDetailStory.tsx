@@ -192,7 +192,7 @@ export default function PortfolioDetailStory({ item }: PortfolioDetailStoryProps
                 </div>
                 <div>
                   <dt className="text-[#888888] uppercase tracking-wider text-[10.5px]">Print Dimension</dt>
-                  <dd className="font-medium text-black mt-0.5 truncate">{item.specs.dimensions.split(" ")[0]} {item.specs.dimensions.split(" ")[1]}</dd>
+                  <dd className="font-medium text-black mt-0.5 truncate">{item.specs.dimensions}</dd>
                 </div>
               </dl>
             </div>

@@ -632,8 +632,8 @@ export default function HeroReveal({
             alt={imageAlt}
             fill
             priority
-            sizes="(max-width: 768px) 250vw, (max-width: 1200px) 150vw, 100vw"
-            quality={90}
+            sizes="100vw"
+            quality={85}
             className="object-cover object-[70%_center] sm:object-[65%_center] lg:object-center"
           />
 

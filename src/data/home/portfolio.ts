@@ -76,7 +76,7 @@ export const homePortfolioData: HomePortfolioData = {
       image: "/images/portfolio-artisan.webp",
       medium: "85mm Prime · Diffused Daylight",
       description:
-        "Intimate medium-format portraiture examining Newari copper repoussé craftsmanship, hand chisels, and centuries-old metallurgical heritage in Lalitpur.",
+        "Intimate high-resolution portraiture examining Newari copper repoussé craftsmanship, hand chisels, and centuries-old metallurgical heritage in Lalitpur.",
       slug: "masters-of-copper-repousse",
     },
   ],

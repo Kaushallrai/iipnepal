@@ -61,7 +61,7 @@ export const masterCoursesList: CourseItem[] = [
     prerequisites: [
       "Modern smartphone (iOS or Android) capable of running mobile editing apps (Lightroom Mobile / Snapseed)",
       "Basic familiarity with mobile phone operations and camera settings",
-      "Estimated commitment of 3–5 hours per week for lessons, practical shooting, and editing",
+      "Estimated commitment of 3-5 hours per week for lessons, practical shooting, and editing",
     ],
     courseAdvantage: [
       "Learn from anywhere, anytime at your own pace",
@@ -151,7 +151,7 @@ export const masterCoursesList: CourseItem[] = [
     prerequisites: [
       "DSLR or Mirrorless camera with manual exposure modes (or bridge camera with manual dials)",
       "Computer, tablet, or smartphone to access learning materials and upload assignments",
-      "Estimated commitment of 4–6 hours per week (1–2 hrs theory study, 3–4 hrs shooting & editing)",
+      "Estimated commitment of 4-6 hours per week (1-2 hrs theory study, 3-4 hrs shooting and editing)",
     ],
     courseAdvantage: [
       "Step-by-step professional guidance structured by master educators",
@@ -178,7 +178,7 @@ export const masterCoursesList: CourseItem[] = [
       "Read: Log in to your IIP dashboard and master each chapter module at your own pace.",
       "Interact: Connect directly with faculty mentors for questions and technical clarifications.",
       "Shoot: Take your camera into the field and execute the practical assignment brief.",
-      "Submit: Upload your 2–3 best curated photographs for each core project to the student dashboard.",
+      "Submit: Upload your 2-3 best curated photographs for each core project to the student dashboard.",
       "Review: IIP mentors critically examine your work on technical execution and creative merit.",
     ],
     faqs: [
@@ -190,7 +190,7 @@ export const masterCoursesList: CourseItem[] = [
       {
         question: "How many hours per week should I dedicate?",
         answer:
-          "We recommend committing approximately 4 to 6 hours per week: 1–2 hours for module study and 3–4 hours for shooting and editing practical assignments.",
+          "We recommend committing approximately 4 to 6 hours per week: 1-2 hours for module study and 3-4 hours for shooting and editing practical assignments.",
       },
       {
         question: "Will I get an official certificate after completion?",
@@ -204,7 +204,7 @@ export const masterCoursesList: CourseItem[] = [
       },
     ],
     paymentOptions: [
-      "Online Payment — eSewa, Khalti, Debit / Credit Card, Net Banking",
+      "Online Payment (eSewa, Khalti, Debit / Credit Card, Net Banking)",
       "Direct Bank Transfer (Nepal Investment Mega Bank / Nabil Bank)",
       "Counter Payment at Jyoti Bhawan, Kanti Path, Kathmandu",
     ],
@@ -242,7 +242,7 @@ export const masterCoursesList: CourseItem[] = [
     prerequisites: [
       "DSLR or Mirrorless camera with interchangeable lens capabilities",
       "Computer capable of managing photos and accessing the student portal",
-      "Estimated commitment of 5–7 hours per week for learning modules, field shoots, and mentor reviews",
+      "Estimated commitment of 5-7 hours per week for learning modules, field shoots, and mentor reviews",
     ],
     courseAdvantage: [
       "Convenience of flexible learning from home with institutional rigor",
@@ -333,7 +333,7 @@ export const masterCoursesList: CourseItem[] = [
     prerequisites: [
       "DSLR or Mirrorless camera with hot-shoe support and zoom/prime lenses",
       "Laptop or desktop computer capable of running editing software",
-      "Estimated commitment of 6–8 hours per week including weekend practicals and live critiques",
+      "Estimated commitment of 6-8 hours per week including weekend practicals and live critiques",
     ],
     courseAdvantage: [
       "Dedicated senior mentor assigned for individual portfolio cultivation",
@@ -384,7 +384,7 @@ export const masterCoursesList: CourseItem[] = [
       },
     ],
     paymentOptions: [
-      "Online Payment — eSewa, Khalti, Debit / Credit Card, Net Banking",
+      "Online Payment (eSewa, Khalti, Debit / Credit Card, Net Banking)",
       "Direct Bank Transfer (Nepal Investment Mega Bank / Nabil Bank)",
       "Counter Payment at Jyoti Bhawan, Kanti Path, Kathmandu",
     ],
@@ -422,7 +422,7 @@ export const masterCoursesList: CourseItem[] = [
       "Completion of an IIP Foundation course or equivalent commercial experience",
       "DSLR or Mirrorless camera system with standard and telephoto/prime lenses",
       "Working knowledge of Adobe Lightroom and Photoshop",
-      "Estimated commitment of 8–10 hours per week for studio lighting, client simulations, and post-production",
+      "Estimated commitment of 8-10 hours per week for studio lighting, client simulations, and post-production",
     ],
     courseAdvantage: [
       "Direct 1-on-1 mentorship from top commercial and fine art photographers",
@@ -446,8 +446,8 @@ export const masterCoursesList: CourseItem[] = [
       "Final Major Project: Full Campaign Execution & Industry Portfolio Defense",
     ],
     howThisCourseWorks: [
-      "Phase 1 (Months 1–2): Master advanced technical lighting, modifiers, and tethered studio workflows.",
-      "Phase 2 (Months 3–4): Execute real commercial briefs covering fashion, product, and architectural documentation.",
+      "Phase 1 (Months 1-2): Master advanced technical lighting, modifiers, and tethered studio workflows.",
+      "Phase 2 (Months 3-4): Execute real commercial briefs covering fashion, product, and architectural documentation.",
       "Phase 3 (Month 5): Build your personal studio identity, pricing structures, and client acquisition framework.",
       "Phase 4 (Month 6): Produce and defend your final major campaign portfolio under mentor review.",
     ],
@@ -474,7 +474,7 @@ export const masterCoursesList: CourseItem[] = [
       },
     ],
     paymentOptions: [
-      "Online Payment — eSewa, Khalti, Debit / Credit Card, Net Banking",
+      "Online Payment (eSewa, Khalti, Debit / Credit Card, Net Banking)",
       "Direct Bank Transfer (Nepal Investment Mega Bank / Nabil Bank)",
       "Flexible Installment Plan (Inquire via Admissions)",
       "Counter Payment at Jyoti Bhawan, Kanti Path, Kathmandu",

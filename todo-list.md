@@ -24,20 +24,20 @@
 
 ---
 
-### [ ] Phase 2: Copy Hygiene & Taste Standards (Preserving Eyebrow Numbers)
-- [ ] **Visible Copy Clean-up**:
-  - [ ] Eliminate all en-dashes (`–`) and em-dashes (`—`) in visible user-facing copy (replace with periods, hyphens `-`, or commas).
-  - [ ] Shorten wordy headlines (max 8 words) and sub-copy (max 25 words).
-  - [ ] Standardize CTA labels by intent: `Enroll`, `Contact`, `View course`, `View story`, `View all`.
-  - [ ] Ensure CTAs fit within 3 words and do not wrap on desktop.
-- [ ] **AI Tells & Visual Clutter Removal**:
-  - [ ] Remove badges/pills overlaid on raw photo emulsions (`100% ONLINE`, `20% off`, etc., moved to price/info blocks; retain number-preserving eyebrows like `COURSE 01`).
-  - [ ] Replace generic step labels (`STAGE 01 // SELECTION`) with active verbs (`Choose`, `Practise`, `Get feedback`, `Graduate`) while keeping numbering intact (`01 Choose`, etc.).
-  - [ ] Remove fake/decorative EXIF captions under images (keep clean functional credits, EXIF in lightbox).
-  - [ ] Fix brand marquee: remove Magnum and National Geographic logos; relabel to "Cameras & optics we teach on".
-  - [ ] Update news cards with explicit dates and links.
-- [ ] **Verification**: Run `npm run build`.
-- [ ] **Git Commit**: `Phase 2: Copy polish, action label unification, and brand trust cleanup`.
+### [x] Phase 2: Copy Hygiene & Taste Standards (Preserving Eyebrow Numbers)
+- [x] **Visible Copy Clean-up**:
+  - [x] Eliminate all en-dashes (`–`) and em-dashes (`—`) in visible user-facing copy (replace with periods, hyphens `-`, or commas).
+  - [x] Shorten wordy headlines (max 8 words) and sub-copy (max 25 words).
+  - [x] Standardize CTA labels by intent: `Enroll`, `Contact`, `View course`, `View story`, `View all`.
+  - [x] Ensure CTAs fit within 3 words and do not wrap on desktop.
+- [x] **AI Tells & Visual Clutter Removal**:
+  - [x] Cleaned up badges/pills overlaid on raw photo emulsions; retain number-preserving eyebrows like `COURSE 01`.
+  - [x] Replace generic step labels (`STAGE 01 // SELECTION`) with active verbs (`01 // CHOOSE`, `02 // PRACTISE`, etc.) while keeping numbering intact.
+  - [x] Remove fake/decorative EXIF captions under images (keep clean functional credits, EXIF in lightbox).
+  - [x] Fix brand marquee: remove Magnum and National Geographic logos; relabel to "CAMERAS & OPTICS WE TEACH ON".
+  - [x] Update news cards with explicit dates and links.
+- [x] **Verification**: Run `npm run build`.
+- [x] **Git Commit**: `Phase 2: Copy polish, action label unification, and brand trust cleanup`.
 
 ---
 

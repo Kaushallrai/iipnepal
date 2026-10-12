@@ -69,7 +69,7 @@ export default function PortfolioDetailGallery({ item }: PortfolioDetailGalleryP
               <div className="flex items-center gap-2 mb-3 sm:mb-4 select-none">
                 <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
                 <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-medium">
-                  Exhibition Sequence // Plates 02 — 0{item.gallery.length}
+                  Exhibition Sequence // Plates 02 - 0{item.gallery.length}
                 </span>
               </div>
               <LineReveal

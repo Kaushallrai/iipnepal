@@ -389,7 +389,7 @@ export default function PortfolioSection({
                         className="group/story inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.18em] text-[#ffd001] hover:text-white font-semibold transition-colors"
                       >
                         <span className="border-b border-[#ffd001]/50 group-hover/story:border-white pb-0.5 transition-colors">
-                          Explore Story
+                          View story
                         </span>
                         <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover/story:translate-x-0.5 group-hover/story:-translate-y-0.5" />
                       </Link>

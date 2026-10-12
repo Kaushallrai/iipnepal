@@ -343,10 +343,10 @@ export default function EnrollmentPageContent({
 
                 {/* Key Course Inclusions */}
                 <div className="space-y-1.5 font-sans text-xs sm:text-[13px] text-[#555555]">
-                  <p>— 1-on-1 assigned faculty mentor for weekly individual photo critiques</p>
-                  <p>— {currentCourse.assignmentsCount}</p>
-                  <p>— {currentCourse.certification}</p>
-                  <p>— Studio lighting and darkroom sessions at Jyoti Bhawan</p>
+                  <p>• 1-on-1 assigned faculty mentor for weekly individual photo critiques</p>
+                  <p>• {currentCourse.assignmentsCount}</p>
+                  <p>• {currentCourse.certification}</p>
+                  <p>• Studio lighting and darkroom sessions at Jyoti Bhawan</p>
                 </div>
 
                 {/* What Happens Next Summary */}

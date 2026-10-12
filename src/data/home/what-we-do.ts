@@ -14,10 +14,9 @@ export interface WhatWeDoData {
 
 export const whatWeDoData: WhatWeDoData = {
   eyebrow: "What we do",
-  heading:
-    "We train photographers and visual storytellers through manual camera craft, lighting control, and practical field assignments.",
+  heading: "We train photographers through manual camera craft and mentor critique.",
   description:
-    "Kathmandu's premier mentor-led institute delivering studio strobe labs, field masterclasses, and 1-on-1 portfolio critiques.",
+    "Kathmandu's premier mentor-led institute delivering studio strobe labs, field masterclasses, and portfolio critiques.",
   stats: [
     {
       value: "14+",
@@ -32,8 +31,8 @@ export const whatWeDoData: WhatWeDoData = {
       delay: 0.15,
     },
     {
-      value: "100%",
-      label: "Hands-on field shoots, studio lighting labs, and mentor critiques.",
+      value: "5",
+      label: "Dedicated programmes from smartphone craft to commercial production.",
       icon: "practical",
       delay: 0.3,
     },

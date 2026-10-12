@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Keyboard, Mousewheel } from "swiper/modules";
 import type { Swiper as SwiperCore } from "swiper";
@@ -12,7 +13,6 @@ import { cn } from "@/lib/utils";
 import { newsData, type NewsItem } from "@/data/home/news";
 
 import "swiper/css";
-
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -189,7 +189,10 @@ export default function NewsSection(): React.JSX.Element {
                     key={item.id}
                     className="slider-blog_cms_item !w-[86vw] sm:!w-[calc((100%-28px)/2)] lg:!w-[calc((100%-56px)/3)] !h-auto flex flex-col"
                   >
-                    <article className="group flex flex-col h-full cursor-pointer select-none">
+                    <Link
+                      href={item.link}
+                      className="group flex flex-col h-full select-none no-underline text-inherit"
+                    >
                       {/* 3:2 Aspect Ratio Image Wrap with smooth subtle zoom on hover */}
                       <div className="news-cta_image-wrap relative w-full aspect-[3/2] overflow-hidden bg-[#e8e6df]">
                         <Image
@@ -202,15 +205,18 @@ export default function NewsSection(): React.JSX.Element {
                       </div>
 
                       {/* Text Wrap (Exact Creative Giants Switzer Light 300 typography with breathing room) */}
-                      <div className="news-cta_text-wrap mt-5 sm:mt-6 flex flex-col gap-3.5 sm:gap-4 max-w-[42ch]">
-                        <h3 className="news-cta_heading font-sans font-light text-[19px] sm:text-[20px] md:text-[21px] leading-[1.35] tracking-[-0.02em] text-black">
+                      <div className="news-cta_text-wrap mt-5 sm:mt-6 flex flex-col gap-2.5 sm:gap-3 max-w-[42ch]">
+                        <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#888888]">
+                          {item.date}
+                        </span>
+                        <h3 className="news-cta_heading font-sans font-light text-[19px] sm:text-[20px] md:text-[21px] leading-[1.35] tracking-[-0.02em] text-black group-hover:text-[#ffd001] transition-colors">
                           {item.title}
                         </h3>
                         <p className="text-size-small text-color-secondary font-sans font-light text-[13.5px] sm:text-[14px] leading-[1.62] tracking-normal text-[#666666] line-clamp-3">
                           {item.excerpt}
                         </p>
                       </div>
-                    </article>
+                    </Link>
                   </SwiperSlide>
                 ))}
               </Swiper>

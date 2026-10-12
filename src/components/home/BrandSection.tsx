@@ -20,7 +20,7 @@ export default function BrandSection(): React.JSX.Element {
         <div className="flex items-center justify-center sm:justify-start gap-2 select-none">
           <span className="w-1.5 h-1.5 rounded-full bg-[#ffd001] shadow-[0_0_6px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
           <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-[#888888] font-medium">
-            Creative Tools // Systems & Optics Mastered by Students
+            {brandsData.eyebrow}
           </span>
         </div>
       </div>

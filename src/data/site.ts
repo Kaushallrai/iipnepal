@@ -106,6 +106,6 @@ export const footerData = {
   discoveryCta: {
     heading: "Kathmandu Admissions Desk & Studio",
     description:
-      "Open Sunday through Friday, 10:00 AM – 5:00 PM at Jyoti Bhawan, Kanti Path. Walk-in consultations and course portfolio reviews by prior appointment.",
+      "Open Sunday through Friday, 10:00 AM to 5:00 PM at Jyoti Bhawan, Kanti Path. Walk-in consultations and course portfolio reviews by prior appointment.",
   },
 };

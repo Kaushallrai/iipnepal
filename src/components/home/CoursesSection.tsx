@@ -500,7 +500,7 @@ export default function CoursesSection({
                           onClick={(e) => e.stopPropagation()}
                           className="group/detail inline-flex items-center gap-1 text-white/70 hover:text-[#ffd001] transition-colors"
                         >
-                          <span className="underline underline-offset-4">Curriculum</span>
+                          <span className="underline underline-offset-4">View course</span>
                           <span className="transition-transform duration-150 group-hover/detail:translate-x-1 text-[#ffd001]">→</span>
                         </Link>
                       </div>

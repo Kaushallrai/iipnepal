@@ -167,7 +167,7 @@ export default function PortfolioDetailHero({ item }: PortfolioDetailHeroProps):
                   “{item.statement.split(". ").slice(0, 3).join(". ")}.”
                 </blockquote>
                 <span className="font-mono text-[11px] text-[#777777] uppercase tracking-wider pt-1 border-t border-[#eae8dc]">
-                  — {item.photographer}, {item.discipline}
+                  {item.photographer}, {item.discipline}
                 </span>
               </div>
 

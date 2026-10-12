@@ -14,7 +14,7 @@ export interface BrandsData {
 }
 
 export const brandsData: BrandsData = {
-  eyebrow: "CREATIVE TOOLS // HARDWARE, OPTICS & SYSTEMS MASTERED BY OUR STUDENTS",
+  eyebrow: "CAMERAS & OPTICS WE TEACH ON",
   brands: [
     {
       id: "nikon",
@@ -69,24 +69,6 @@ export const brandsData: BrandsData = {
       className: "h-5 sm:h-5.5 md:h-[26px]",
       width: 201,
       height: 19,
-    },
-    {
-      id: "national-geographic",
-      name: "National Geographic",
-      src: "/images/brands/national-geographic.svg",
-      alt: "National Geographic Storytelling & Documentary",
-      className: "h-8 sm:h-9 md:h-[38px]",
-      width: 1000,
-      height: 379,
-    },
-    {
-      id: "magnum-photos",
-      name: "Magnum Photos",
-      src: "/images/brands/magnum-photos.svg",
-      alt: "Magnum Photos Photographic Cooperative",
-      className: "h-8 sm:h-9 md:h-[38px]",
-      width: 57,
-      height: 57,
     },
     {
       id: "ilford-photo",

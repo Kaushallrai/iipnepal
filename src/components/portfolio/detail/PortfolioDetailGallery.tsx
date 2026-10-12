@@ -2,231 +2,255 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { Maximize2, X, ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { PortfolioItem } from "@/data/portfolio";
-import LineReveal from "@/components/animations/LineReveal";
 
 export interface PortfolioDetailGalleryProps {
   item: PortfolioItem;
+  externalLightboxIndex?: number | null;
+  onCloseLightbox?: () => void;
 }
 
-export default function PortfolioDetailGallery({ item }: PortfolioDetailGalleryProps): React.JSX.Element {
-  const [activeLightboxIndex, setActiveLightboxIndex] = useState<number | null>(null);
+export default function PortfolioDetailGallery({
+  item,
+  externalLightboxIndex,
+  onCloseLightbox,
+}: PortfolioDetailGalleryProps): React.JSX.Element {
+  const [internalLightboxIndex, setInternalLightboxIndex] = useState<number | null>(null);
+
+  // Sync with external or internal index
+  const activeIndex = externalLightboxIndex !== undefined ? externalLightboxIndex : internalLightboxIndex;
 
   const openLightbox = (index: number) => {
-    setActiveLightboxIndex(index);
+    setInternalLightboxIndex(index);
     if (typeof document !== "undefined") {
       document.body.style.overflow = "hidden";
     }
   };
 
   const closeLightbox = useCallback(() => {
-    setActiveLightboxIndex(null);
+    setInternalLightboxIndex(null);
+    if (onCloseLightbox) onCloseLightbox();
     if (typeof document !== "undefined") {
       document.body.style.overflow = "";
     }
-  }, []);
+  }, [onCloseLightbox]);
+
+  // Construct a sequence of 8 rhythmic photos using available documentary gallery images
+  const fallbackGallery = [
+    item.coverImage,
+    item.gallery[0]?.url || item.coverImage,
+    item.gallery[1]?.url || "/images/portfolio-artisan.webp",
+    item.gallery[2]?.url || "/images/portfolio-street.webp",
+    item.gallery[3]?.url || "/images/portfolio-himalayas.webp",
+    "/images/portfolio/bhaktapur-temple-dawn.jpg",
+    "/images/portfolio/patan-copper-artisan.jpg",
+    "/images/portfolio/asan-market-dawn.jpg",
+  ];
+
+  const photoList = fallbackGallery.slice(0, 8).map((url, idx) => ({
+    url,
+    caption: item.gallery[idx % item.gallery.length]?.caption || `Exhibition Frame 0${idx + 1} — ${item.title}`,
+    aspect: idx % 3 === 0 ? "wide" : idx % 2 === 0 ? "portrait" : "standard",
+  }));
 
   const handlePrev = useCallback(() => {
-    if (activeLightboxIndex === null) return;
-    setActiveLightboxIndex((prev) =>
-      prev === 0 ? item.gallery.length - 1 : (prev as number) - 1
-    );
-  }, [activeLightboxIndex, item.gallery.length]);
+    if (activeIndex === null) return;
+    const newIdx = activeIndex === 0 ? photoList.length - 1 : activeIndex - 1;
+    setInternalLightboxIndex(newIdx);
+  }, [activeIndex, photoList.length]);
 
   const handleNext = useCallback(() => {
-    if (activeLightboxIndex === null) return;
-    setActiveLightboxIndex((prev) =>
-      prev === item.gallery.length - 1 ? 0 : (prev as number) + 1
-    );
-  }, [activeLightboxIndex, item.gallery.length]);
+    if (activeIndex === null) return;
+    const newIdx = activeIndex === photoList.length - 1 ? 0 : activeIndex + 1;
+    setInternalLightboxIndex(newIdx);
+  }, [activeIndex, photoList.length]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (activeLightboxIndex === null) return;
+      if (activeIndex === null) return;
       if (e.key === "Escape") closeLightbox();
       if (e.key === "ArrowLeft") handlePrev();
       if (e.key === "ArrowRight") handleNext();
     };
 
-    if (activeLightboxIndex !== null) {
+    if (activeIndex !== null) {
       window.addEventListener("keydown", handleKeyDown);
     }
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeLightboxIndex, closeLightbox, handlePrev, handleNext]);
+  }, [activeIndex, closeLightbox, handlePrev, handleNext]);
 
   return (
     <>
-      <section
-        id="gallery"
-        className="w-full py-16 sm:py-20 md:py-24 lg:py-28 border-b border-[#e2e0d2] bg-[#fffef7]"
-      >
-        <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex flex-col gap-10 sm:gap-14">
+      {/* Photo Sequence: The Core of the Page (90% Photographs) */}
+      <section className="w-full py-16 sm:py-20 md:py-24 border-b border-[#e2e0d2] bg-[#fffef7]">
+        <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex flex-col gap-14 sm:gap-18 md:gap-24">
           
-          {/* Section Header */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 sm:pb-8 border-b border-[#e2e0d2]">
-            <div>
-              <div className="flex items-center gap-2 mb-3 sm:mb-4 select-none">
-                <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
-                <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-medium">
-                  Exhibition Sequence // Plates 02 - 0{item.gallery.length}
-                </span>
-              </div>
-              <LineReveal
-                as="h2"
-                lines={["Archival Plates."]}
-                className="font-sans font-light text-2xl sm:text-3xl md:text-4xl lg:text-[44px] leading-[1.12] text-black tracking-[-0.03em]"
+          {/* Header */}
+          <div className="flex flex-col items-start max-w-2xl">
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#888888] font-semibold mb-2">
+              02 // PHOTO SEQUENCE
+            </span>
+            <h2 className="font-sans font-light text-2xl sm:text-3xl md:text-4xl text-black tracking-[-0.03em]">
+              The Visual Narrative.
+            </h2>
+          </div>
+
+          {/* 1. Full-Bleed Wide Master Frame */}
+          <div className="w-full">
+            <div
+              onClick={() => openLightbox(0)}
+              className="relative aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden bg-black border border-[#e2e0d2] cursor-pointer group"
+            >
+              <Image
+                src={photoList[0].url}
+                alt={photoList[0].caption}
+                fill
+                sizes="(max-width: 1440px) 100vw, 1680px"
+                className="object-cover object-center grayscale contrast-110 group-hover:scale-[1.01] transition-transform duration-700"
               />
             </div>
-
-            <div className="flex items-center gap-4 shrink-0">
-              <button
-                type="button"
-                onClick={() => openLightbox(0)}
-                className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-black hover:text-[#ca8a04] transition-colors py-1 cursor-pointer"
-              >
-                <span>Browse All 0{item.gallery.length} in Fullscreen</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </button>
+            <div className="pt-2 text-right">
+              <span className="font-sans text-xs text-[#777777] italic">
+                {photoList[0].caption}
+              </span>
             </div>
           </div>
 
-          {/* Rhythmic Editorial Photo Spread */}
-          <div className="flex flex-col gap-10 sm:gap-14 lg:gap-16">
-            
-            {/* 1. Diptych: Plates 02 & 03 (Complementary Frames) */}
-            {item.gallery.length >= 3 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
-                {[1, 2].map((idx) => {
-                  const frame = item.gallery[idx];
-                  if (!frame) return null;
-                  return (
-                    <figure
-                      key={idx}
-                      className="group flex flex-col gap-3 cursor-pointer"
-                      onClick={() => openLightbox(idx)}
-                    >
-                      <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] overflow-hidden bg-black border border-[#e2e0d2]">
-                        <Image
-                          src={frame.url}
-                          alt={frame.caption}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-102"
-                        />
-
-                        <div className="absolute top-3 left-3 bg-black/85 text-white font-mono text-[9px] uppercase tracking-widest px-2.5 py-1">
-                          PLATE 0{idx + 1}
-                        </div>
-
-                        <div className="absolute bottom-3 right-3 bg-black/85 text-white font-mono text-[10px] uppercase tracking-wider px-2.5 py-1 flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
-                          <Maximize2 className="w-3 h-3 text-[#ffd001]" />
-                          <span>Inspect</span>
-                        </div>
-                      </div>
-
-                      <figcaption className="flex items-baseline justify-between gap-3 text-xs font-mono text-[#666666] pt-1">
-                        <span className="font-sans text-sm text-[#222222] font-normal leading-snug line-clamp-1">
-                          {frame.caption}
-                        </span>
-                        <span className="text-[11px] text-[#888888] uppercase tracking-wider shrink-0">
-                          0{idx + 1} / 0{item.gallery.length}
-                        </span>
-                      </figcaption>
-                    </figure>
-                  );
-                })}
-              </div>
-            )}
-
-            {/* 2. Concluding Detail / Archival Study: Plate 04 */}
-            {item.gallery.length > 3 && (
-              <figure
-                className="group flex flex-col gap-3 cursor-pointer"
-                onClick={() => openLightbox(3)}
+          {/* 2. 7/5 Asymmetric Pair */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center">
+            {/* 7 Columns */}
+            <div className="md:col-span-7">
+              <div
+                onClick={() => openLightbox(1)}
+                className="relative aspect-[16/10] w-full overflow-hidden bg-black border border-[#e2e0d2] cursor-pointer group"
               >
-                <div className="relative w-full aspect-[16/9] sm:aspect-[21/10] max-h-[500px] overflow-hidden bg-black border border-[#e2e0d2]">
+                <Image
+                  src={photoList[1].url}
+                  alt={photoList[1].caption}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 58vw"
+                  className="object-cover object-center grayscale contrast-110 group-hover:scale-[1.02] transition-transform duration-500"
+                />
+              </div>
+              <div className="pt-2 text-left">
+                <span className="font-sans text-xs text-[#777777] italic">
+                  {photoList[1].caption}
+                </span>
+              </div>
+            </div>
+
+            {/* 5 Columns */}
+            <div className="md:col-span-5">
+              <div
+                onClick={() => openLightbox(2)}
+                className="relative aspect-[4/5] w-full overflow-hidden bg-black border border-[#e2e0d2] cursor-pointer group"
+              >
+                <Image
+                  src={photoList[2].url}
+                  alt={photoList[2].caption}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 42vw"
+                  className="object-cover object-center grayscale contrast-110 group-hover:scale-[1.02] transition-transform duration-500"
+                />
+              </div>
+              <div className="pt-2 text-left">
+                <span className="font-sans text-xs text-[#777777] italic">
+                  {photoList[2].caption}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* 3. Centered Portrait with Caption */}
+          <div className="w-full max-w-3xl mx-auto flex flex-col items-center">
+            <div
+              onClick={() => openLightbox(3)}
+              className="relative aspect-[4/5] w-full overflow-hidden bg-black border border-[#e2e0d2] cursor-pointer group"
+            >
+              <Image
+                src={photoList[3].url}
+                alt={photoList[3].caption}
+                fill
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="object-cover object-center grayscale contrast-110 group-hover:scale-[1.02] transition-transform duration-500"
+              />
+            </div>
+            <div className="pt-3 text-center">
+              <span className="font-sans text-xs sm:text-sm text-[#666666] italic">
+                {photoList[3].caption}
+              </span>
+            </div>
+          </div>
+
+          {/* 4. Rhythmic Triptych (3 Frames) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {[4, 5, 6].map((photoIdx) => (
+              <div key={photoIdx} className="flex flex-col">
+                <div
+                  onClick={() => openLightbox(photoIdx)}
+                  className="relative aspect-[4/5] sm:aspect-[3/2] md:aspect-[4/5] w-full overflow-hidden bg-black border border-[#e2e0d2] cursor-pointer group"
+                >
                   <Image
-                    src={item.gallery[3].url}
-                    alt={item.gallery[3].caption}
+                    src={photoList[photoIdx].url}
+                    alt={photoList[photoIdx].caption}
                     fill
-                    sizes="(max-width: 1024px) 100vw, 85vw"
-                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-102"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover object-center grayscale contrast-110 group-hover:scale-[1.02] transition-transform duration-500"
                   />
-
-                  <div className="absolute top-3 left-3 bg-black/85 text-white font-mono text-[9px] uppercase tracking-widest px-2.5 py-1">
-                    PLATE 04 // ARCHIVAL STUDY
-                  </div>
-
-                  <div className="absolute bottom-3 right-3 bg-black/85 text-white font-mono text-[10px] uppercase tracking-wider px-2.5 py-1 flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
-                    <Maximize2 className="w-3 h-3 text-[#ffd001]" />
-                    <span>Inspect</span>
-                  </div>
                 </div>
-
-                <figcaption className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 text-xs font-mono text-[#666666] pt-1">
-                  <span className="font-sans text-sm text-[#222222] font-normal leading-snug">
-                    {item.gallery[3].caption}
+                <div className="pt-2 text-left">
+                  <span className="font-sans text-[11px] text-[#777777] italic line-clamp-1">
+                    {photoList[photoIdx].caption}
                   </span>
-                  {item.gallery[3].shotLocation && (
-                    <span className="text-[11px] text-[#888888] uppercase tracking-wider shrink-0">
-                      {item.gallery[3].shotLocation}
-                    </span>
-                  )}
-                </figcaption>
-              </figure>
-            )}
-
+                </div>
+              </div>
+            ))}
           </div>
 
         </div>
       </section>
 
-      {/* Interactive Fullscreen Lightbox Modal */}
-      {activeLightboxIndex !== null && (
+      {/* 8. Lightbox: Clean, Swipable, Arrow Keys, Captions + Gear Info */}
+      {activeIndex !== null && (
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="Exhibition Lightbox"
-          className="fixed inset-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-8 select-none"
+          className="fixed inset-0 z-50 bg-black/95 flex flex-col justify-between p-4 sm:p-6 md:p-8 select-none"
         >
-          {/* Top Bar */}
-          <div className="flex items-center justify-between text-white font-mono text-xs uppercase tracking-widest pb-4 border-b border-white/10">
-            <span className="truncate max-w-[240px] sm:max-w-none">
-              {item.title} {"//"} Plate 0{activeLightboxIndex + 1} of 0{item.gallery.length}
-            </span>
-            <div className="flex items-center gap-4">
-              <span className="text-[#ffd001] hidden sm:inline-block text-[11px]">Use Arrow Keys to Navigate</span>
-              <button
-                type="button"
-                onClick={closeLightbox}
-                className="p-2 -m-2 hover:text-[#ffd001] transition-colors cursor-pointer flex items-center gap-1.5"
-                aria-label="Close Lightbox"
-              >
-                <span>Close</span>
-                <X className="w-5 h-5" />
-              </button>
+          {/* Top Bar: Counter & Close */}
+          <div className="w-full flex items-center justify-between text-white font-mono text-xs uppercase tracking-wider z-20">
+            <div>
+              [ {activeIndex + 1} / {photoList.length} ]
             </div>
+            <button
+              type="button"
+              onClick={closeLightbox}
+              className="p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-colors cursor-pointer"
+              aria-label="Close Lightbox"
+            >
+              <X className="w-6 h-6" />
+            </button>
           </div>
 
-          {/* Center Display with Previous / Next Controls */}
-          <div className="relative w-full h-[68vh] sm:h-[74vh] flex items-center justify-center my-auto">
+          {/* Main Stage: Image with Left & Right Arrows */}
+          <div className="relative flex-1 flex items-center justify-center my-4 overflow-hidden">
             <button
               type="button"
               onClick={handlePrev}
-              className="absolute left-2 sm:left-4 z-10 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-black/60 hover:bg-[#ffd001] hover:text-black text-white flex items-center justify-center transition-all cursor-pointer"
-              aria-label="Previous plate"
+              className="absolute left-2 sm:left-4 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-[#ffd001] hover:text-black text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer"
+              aria-label="Previous photo"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-6 h-6" />
             </button>
 
-            <div className="relative w-full h-full max-w-5xl">
+            <div className="relative w-full h-full max-w-5xl max-h-[75vh]">
               <Image
-                src={item.gallery[activeLightboxIndex].url}
-                alt={item.gallery[activeLightboxIndex].caption}
+                src={photoList[activeIndex].url}
+                alt={photoList[activeIndex].caption}
                 fill
-                className="object-contain"
                 sizes="100vw"
+                className="object-contain"
                 priority
               />
             </div>
@@ -234,23 +258,21 @@ export default function PortfolioDetailGallery({ item }: PortfolioDetailGalleryP
             <button
               type="button"
               onClick={handleNext}
-              className="absolute right-2 sm:right-4 z-10 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-black/60 hover:bg-[#ffd001] hover:text-black text-white flex items-center justify-center transition-all cursor-pointer"
-              aria-label="Next plate"
+              className="absolute right-2 sm:right-4 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-[#ffd001] hover:text-black text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer"
+              aria-label="Next photo"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-6 h-6" />
             </button>
           </div>
 
-          {/* Bottom Bar: Frame Caption & Location */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left font-mono text-xs text-[#aaaaaa] pt-4 border-t border-white/10">
-            <span className="font-sans text-sm text-white font-light">
-              {item.gallery[activeLightboxIndex].caption}
+          {/* Bottom Bar: Caption + Gear Specs */}
+          <div className="w-full max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-white/80 text-center sm:text-left z-20 border-t border-white/15 pt-3">
+            <span className="font-sans text-xs sm:text-sm text-white/90">
+              {photoList[activeIndex].caption}
             </span>
-            {item.gallery[activeLightboxIndex].shotLocation && (
-              <span className="text-[11px] uppercase tracking-wider text-[#ffd001]">
-                {item.gallery[activeLightboxIndex].shotLocation}
-              </span>
-            )}
+            <span className="font-mono text-[11px] uppercase tracking-wider text-[#ffd001] shrink-0">
+              {item.specs.camera} · {item.specs.lens}
+            </span>
           </div>
         </div>
       )}

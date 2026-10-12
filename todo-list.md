@@ -75,22 +75,22 @@
 
 ---
 
-### [ ] Phase 5: Portfolio Archive (`/portfolio`) & Photo-First Story (`/portfolio/[slug]`)
-- [ ] **Portfolio Archive (`/portfolio`)**:
-  - [ ] Photo-first editorial layout: varied aspect ratios (4:5, 1:1, 3:2), title (20px 300), student name (14px Graphite).
-  - [ ] 3-column desktop masonry (first story spans 2 columns), 2-column tablet, 1-column mobile.
-  - [ ] Relocate director darkroom series to `/about` (keep student stories exclusively).
-- [ ] **Portfolio Project Details (`/portfolio/[slug]`)**:
-  - [ ] Section 1: Cover image band (85vh desktop, 70svh mobile) with location and title over scrim, back link.
-  - [ ] Section 2: Intro (≤ 60 words) + 4-line credits block (student, place, year, course link).
-  - [ ] Section 3: Photo story sequence (8-14 photos in rhythmic groups: full-bleed wide, 7/5 pair, centered portrait with caption, triptych).
-  - [ ] Section 4: Voices block (artist statement with 3-line clamp + mentor evaluation line, names without dashes).
-  - [ ] Section 5: Behind the shoot snap row.
-  - [ ] Section 6: Photographer bio card + other stories.
-  - [ ] Section 7: Next exhibition banner + `View course` link to their studied program.
-  - [ ] Interactive swipeable lightbox for all photos.
-- [ ] **Verification**: Run `npm run build`.
-- [ ] **Git Commit**: `Phase 5: Redesign portfolio archive and photo-first project details with editorial rhythm and lightbox`.
+### [x] Phase 5: Portfolio Archive (`/portfolio`) & Photo-First Story (`/portfolio/[slug]`)
+- [x] **Portfolio Archive (`/portfolio`)**:
+  - [x] Photo-first editorial layout: varied aspect ratios (4:5, 1:1, 3:2), title (20px 300), student name (14px Graphite).
+  - [x] 3-column desktop masonry (first story spans 2 columns), 2-column tablet, 1-column mobile.
+  - [x] Relocate director darkroom series to `/about` (keep student stories exclusively).
+- [x] **Portfolio Project Details (`/portfolio/[slug]`)**:
+  - [x] Section 1: Cover image band (85vh desktop, 70svh mobile) with location and title over scrim, back link.
+  - [x] Section 2: Intro (≤ 60 words) + 4-line credits block (student, place, year, course link).
+  - [x] Section 3: Photo story sequence (8-14 photos in rhythmic groups: full-bleed wide, 7/5 pair, centered portrait with caption, triptych).
+  - [x] Section 4: Voices block (artist statement with 3-line clamp + mentor evaluation line, names without dashes).
+  - [x] Section 5: Behind the shoot snap row.
+  - [x] Section 6: Photographer bio card + other stories.
+  - [x] Section 7: Next exhibition banner + `View course` link to their studied program.
+  - [x] Interactive swipeable lightbox for all photos.
+- [x] **Verification**: Run `npm run build`.
+- [x] **Git Commit**: `Phase 5: Redesign portfolio archive and photo-first project details with editorial rhythm and lightbox`.
 
 ---
 

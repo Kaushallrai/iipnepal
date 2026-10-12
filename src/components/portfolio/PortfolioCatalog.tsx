@@ -4,7 +4,6 @@ import React, { useState, useMemo } from "react";
 import type { PortfolioItem } from "@/data/portfolio";
 import PortfolioHero from "@/components/portfolio/PortfolioHero";
 import PortfolioList from "@/components/portfolio/PortfolioList";
-import PortfolioManifesto from "@/components/portfolio/PortfolioManifesto";
 import PortfolioCta from "@/components/portfolio/PortfolioCta";
 
 export interface PortfolioCatalogProps {
@@ -29,7 +28,6 @@ export default function PortfolioCatalog({
       if (f === "landscape") return cat.includes("landscape") || tag.includes("landscape") || disc.includes("landscape");
       if (f === "culture") return cat.includes("culture") || cat.includes("heritage") || tag.includes("culture");
       if (f === "portraits" || f === "portrait") return cat.includes("portrait") || tag.includes("portrait");
-      if (f === "darkroom") return cat.includes("darkroom") || cat.includes("archive") || disc.includes("darkroom");
       return cat.includes(f);
     });
   }, [initialItems, activeFilter]);
@@ -43,7 +41,6 @@ export default function PortfolioCatalog({
         categories={categories}
       />
       <PortfolioList items={filteredItems} />
-      <PortfolioManifesto />
       <PortfolioCta />
     </>
   );

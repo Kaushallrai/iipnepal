@@ -30,8 +30,8 @@ export default function PortfolioCourseBanner({ item }: PortfolioCourseBannerPro
           <div className="max-w-3xl flex flex-col items-start">
             <div className="flex items-center gap-2 mb-3 sm:mb-4 select-none">
               <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
-              <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-medium">
-                Academic Provenance // IIP Curriculum
+              <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-semibold">
+                07 // ACADEMIC PROVENANCE
               </span>
             </div>
 
@@ -42,7 +42,7 @@ export default function PortfolioCourseBanner({ item }: PortfolioCourseBannerPro
             />
 
             <p className="font-sans font-normal text-sm sm:text-base md:text-lg text-[#aaaaaa] max-w-2xl leading-relaxed mb-4">
-              Authored under 1-on-1 mentorship at IIP Nepal. Learn camera optics, light observation, and editorial visual storytelling under working photographers in Kathmandu.
+              Authored under 1-on-1 mentorship at IIP Nepal. Next cohort begins 1st of every month at Jyoti Bhawan, Kanti Path.
             </p>
 
             <div className="font-mono text-xs text-[#888888] uppercase tracking-wider flex items-center gap-3 flex-wrap">
@@ -54,21 +54,14 @@ export default function PortfolioCourseBanner({ item }: PortfolioCourseBannerPro
             </div>
           </div>
 
-          {/* Action Buttons */}
+          {/* Action Buttons: View course pill button */}
           <div className="flex flex-col sm:flex-row lg:flex-col gap-3.5 shrink-0 w-full sm:w-auto">
             <Link
               href={`/courses/${course.slug}`}
-              className="inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-semibold tracking-[0.16em] uppercase bg-[#ffd001] text-black px-7 sm:px-8 py-3.5 rounded-full hover:bg-white transition-all text-center leading-none shadow-sm whitespace-nowrap w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-semibold tracking-[0.16em] uppercase bg-[#ffd001] text-black px-8 py-4 rounded-full hover:bg-white transition-all text-center leading-none shadow-sm whitespace-nowrap w-full sm:w-auto"
             >
-              <span>Explore Course Syllabus</span>
+              <span>View course</span>
               <ArrowUpRight className="w-4 h-4" />
-            </Link>
-
-            <Link
-              href={`/enroll?course=${course.slug}`}
-              className="inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-normal tracking-[0.16em] uppercase bg-transparent text-[#fffef7] border border-white/20 px-7 sm:px-8 py-3.5 rounded-full hover:border-[#ffd001] hover:text-[#ffd001] transition-all text-center leading-none whitespace-nowrap w-full sm:w-auto"
-            >
-              <span>Direct Enrollment</span>
             </Link>
           </div>
 

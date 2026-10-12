@@ -7,14 +7,25 @@ import ScrollReveal from "@/components/animations/ScrollReveal";
 import { portfolioPageData } from "@/data/portfolio/page";
 
 export default function PortfolioCta(): React.JSX.Element {
-  const { cta } = portfolioPageData;
+  const { cta, manifesto } = portfolioPageData;
 
   return (
     <section
       data-theme="dark"
-      className="section_portfolio-cta w-full bg-[#0a0a0a] text-[#fffef7] py-20 sm:py-24 md:py-28 lg:py-32 select-none border-t border-[#222222]"
+      className="section_portfolio-cta w-full bg-[#0a0a0a] text-[#fffef7] py-20 sm:py-24 md:py-28 select-none border-t border-[#222222]"
     >
       <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
+        
+        {/* Curatorial Quote: 3 lines max, author on its own line */}
+        <div className="max-w-3xl pb-12 sm:pb-16 mb-12 sm:mb-16 border-b border-white/10">
+          <p className="font-sans font-light text-lg sm:text-xl md:text-2xl text-white/80 leading-relaxed italic">
+            &ldquo;{manifesto.quote}&rdquo;
+          </p>
+          <div className="font-mono text-xs uppercase tracking-[0.18em] text-[#ffd001] mt-3">
+            {manifesto.author}
+          </div>
+        </div>
+
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 lg:gap-16">
           
           {/* Statement */}
@@ -22,14 +33,14 @@ export default function PortfolioCta(): React.JSX.Element {
             <div className="flex items-center gap-2 mb-3 sm:mb-4 select-none">
               <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
               <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-medium">
-                {cta.eyebrow}
+                02 // ENROLLMENT & EXHIBITIONS
               </span>
             </div>
 
             <LineReveal
               as="h2"
               lines={[cta.heading]}
-              className="font-sans font-light text-3xl sm:text-4xl md:text-5xl lg:text-[58px] xl:text-[64px] leading-[1.08] tracking-[-0.035em] text-[#fffef7] mb-3 sm:mb-4"
+              className="font-sans font-light text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-[1.08] tracking-[-0.035em] text-[#fffef7] mb-3 sm:mb-4"
             />
 
             <p className="font-sans font-normal text-sm sm:text-base md:text-lg text-[#aaaaaa] max-w-xl leading-relaxed">

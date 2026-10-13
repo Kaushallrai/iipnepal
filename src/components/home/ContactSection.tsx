@@ -41,7 +41,7 @@ export default function ContactSection(): React.JSX.Element {
           <div className="flex flex-wrap items-center gap-3 sm:gap-4 shrink-0">
             <a
               href={`tel:${homeContactData.phone}`}
-              className="inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-[#f4f2e9] hover:bg-[#ffd001] active:scale-[0.98] text-black font-mono text-xs uppercase tracking-[0.14em] font-medium border border-[#e2e0d2] transition-all no-underline"
+              className="inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-[#f4f2e9] hover:bg-[#ffd001] active:scale-[0.98] text-black font-mono text-xs uppercase tracking-[0.14em] font-medium border border-[#e2e0d2] transition-all no-underline whitespace-nowrap min-h-[44px]"
               aria-label={`Call Admissions at ${homeContactData.phoneDisplay}`}
             >
               <Phone className="w-3.5 h-3.5 text-black" aria-hidden="true" />
@@ -52,7 +52,7 @@ export default function ContactSection(): React.JSX.Element {
               href="https://wa.me/9779802364760?text=Hello%20IIP%20Nepal%2C%20I%20would%20like%20to%20inquire%20about%20photography%20courses."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-[#f4f2e9] hover:bg-[#25D366] hover:text-white active:scale-[0.98] text-black font-mono text-xs uppercase tracking-[0.14em] font-medium border border-[#e2e0d2] transition-all no-underline"
+              className="inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-[#f4f2e9] hover:bg-[#25D366] hover:text-white active:scale-[0.98] text-black font-mono text-xs uppercase tracking-[0.14em] font-medium border border-[#e2e0d2] transition-all no-underline whitespace-nowrap min-h-[44px]"
               aria-label="Chat on WhatsApp"
             >
               <MessageSquare className="w-3.5 h-3.5" aria-hidden="true" />
@@ -61,7 +61,7 @@ export default function ContactSection(): React.JSX.Element {
 
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 py-3.5 px-7 rounded-full bg-black hover:bg-[#ffd001] hover:text-black active:scale-[0.98] text-[#fffef7] font-mono text-xs uppercase tracking-[0.16em] font-semibold transition-all no-underline"
+              className="inline-flex items-center justify-center gap-2 py-3.5 px-7 rounded-full bg-black hover:bg-[#ffd001] hover:text-black active:scale-[0.98] text-[#fffef7] font-mono text-xs uppercase tracking-[0.16em] font-semibold transition-all no-underline whitespace-nowrap min-h-[44px] w-full sm:w-auto"
             >
               <span>Contact Admissions</span>
               <ArrowUpRight className="w-4 h-4" />

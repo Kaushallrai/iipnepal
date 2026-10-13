@@ -271,7 +271,7 @@ export default function ContactForm(): React.JSX.Element {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="btn is-icon group relative inline-flex items-center justify-center gap-3.5 bg-black hover:bg-[#ffd001] text-[#fffef7] hover:text-black py-4 px-9 sm:px-11 rounded-full transition-colors duration-300 overflow-hidden cursor-pointer select-none w-full sm:w-auto"
+              className="btn is-icon group relative inline-flex items-center justify-center gap-3.5 bg-black hover:bg-[#ffd001] text-[#fffef7] hover:text-black py-4 px-9 sm:px-11 rounded-full transition-colors duration-300 overflow-hidden cursor-pointer select-none w-full sm:w-auto whitespace-nowrap min-h-[44px]"
             >
               {/* Sliding Signal Yellow Box on Hover */}
               <span className="btn__circle-wrap absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
@@ -279,7 +279,7 @@ export default function ContactForm(): React.JSX.Element {
               </span>
 
               {/* Text */}
-              <span className="btn__text relative z-[2] font-mono text-xs sm:text-[13px] font-bold uppercase tracking-[0.16em] leading-none transition-transform duration-300 group-hover:translate-x-1">
+              <span className="btn__text relative z-[2] font-mono text-xs sm:text-[13px] font-bold uppercase tracking-[0.16em] leading-none transition-transform duration-300 group-hover:translate-x-1 whitespace-nowrap">
                 {isSubmitting ? "SENDING..." : "SUBMIT ENQUIRY"}
               </span>
 

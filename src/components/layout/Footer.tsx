@@ -188,7 +188,7 @@ export default function Footer(): React.JSX.Element {
                 >
                   <Link
                     href={link.href}
-                    className="btn is-footer group relative z-10 flex items-center justify-between w-full h-full py-6 px-6 sm:py-7 sm:px-8 lg:py-8 lg:px-10 overflow-hidden cursor-pointer no-underline text-[#fffef7] transition-colors duration-300 hover:text-black hover:z-20"
+                    className="btn is-footer group relative z-10 flex items-center justify-between w-full h-full py-6 px-6 sm:py-7 sm:px-8 lg:py-8 lg:px-10 overflow-hidden cursor-pointer no-underline text-[#fffef7] transition-colors duration-300 hover:text-black hover:z-20 whitespace-nowrap"
                   >
                     {/* The Creative Giants Sliding Yellow Rectangle Animation (Exclusive Signal Yellow #ffd001) */}
                     <div className="btn__circle-wrap absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-[1]">
@@ -198,8 +198,8 @@ export default function Footer(): React.JSX.Element {
                     </div>
 
                     {/* Link Text with Creative Giants smooth x-axis nudge & Switzer Uppercase Typography */}
-                    <div className="btn__text relative z-[2] flex items-center transition-transform duration-500 ease-[cubic-bezier(0.625,0.05,0,1)] group-hover:translate-x-2.5">
-                      <p className="btn-text-p font-normal text-[16px] sm:text-[17px] lg:text-[18px] uppercase tracking-[0.035em] leading-none m-0 text-inherit select-none">
+                    <div className="btn__text relative z-[2] flex items-center transition-transform duration-500 ease-[cubic-bezier(0.625,0.05,0,1)] group-hover:translate-x-2.5 min-w-0">
+                      <p className="btn-text-p font-normal text-[16px] sm:text-[17px] lg:text-[18px] uppercase tracking-[0.035em] leading-none m-0 text-inherit select-none whitespace-nowrap truncate">
                         {link.label}
                       </p>
                     </div>

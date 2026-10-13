@@ -223,14 +223,14 @@ export default function CoursesList({
                     <div className="flex items-center gap-2 shrink-0">
                       <Link
                         href={`/courses/${course.slug}`}
-                        className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.14em] px-3.5 py-2 rounded-full border border-black/20 hover:border-black bg-transparent text-black hover:bg-black hover:text-[#fffef7] transition-all font-medium text-center"
+                        className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.14em] px-3.5 py-2 rounded-full border border-black/20 hover:border-black bg-transparent text-black hover:bg-black hover:text-[#fffef7] transition-all font-medium text-center whitespace-nowrap min-h-[44px]"
                       >
                         <span>View</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
                       </Link>
                       <Link
                         href={`/enroll?course=${course.slug}`}
-                        className="inline-flex items-center justify-center font-mono text-xs uppercase tracking-[0.14em] px-3.5 py-2 rounded-full bg-[#ffd001] hover:bg-black hover:text-[#fffef7] text-black font-semibold transition-all text-center leading-none shadow-xs"
+                        className="inline-flex items-center justify-center font-mono text-xs uppercase tracking-[0.14em] px-3.5 py-2 rounded-full bg-[#ffd001] hover:bg-black hover:text-[#fffef7] text-black font-semibold transition-all text-center leading-none shadow-xs whitespace-nowrap min-h-[44px]"
                       >
                         <span>Enroll</span>
                       </Link>

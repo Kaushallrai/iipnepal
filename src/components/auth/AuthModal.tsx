@@ -251,7 +251,7 @@ export default function AuthModal(): React.JSX.Element {
                         type="button"
                         onClick={handleGoogleAuth}
                         disabled={isLoading}
-                        className="w-full py-2.5 px-4 rounded-full border border-[#cccccc] hover:border-black bg-transparent text-black font-mono text-[11px] uppercase tracking-[0.14em] transition-all flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-50"
+                        className="w-full py-2.5 px-4 rounded-full border border-[#cccccc] hover:border-black bg-transparent text-black font-mono text-[11px] uppercase tracking-[0.14em] transition-all flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-50 whitespace-nowrap min-h-[44px]"
                       >
                         <GoogleIcon />
                         <span>
@@ -370,7 +370,7 @@ export default function AuthModal(): React.JSX.Element {
                         <button
                           type="submit"
                           disabled={isLoading}
-                          className="w-full mt-2.5 py-2.5 px-6 rounded-full bg-black text-[#fffef7] font-mono text-xs uppercase tracking-[0.16em] font-medium transition-colors hover:bg-[#ffd001] hover:text-black cursor-pointer shadow-sm disabled:opacity-50"
+                          className="w-full mt-2.5 py-2.5 px-6 rounded-full bg-black text-[#fffef7] font-mono text-xs uppercase tracking-[0.16em] font-medium transition-colors hover:bg-[#ffd001] hover:text-black cursor-pointer shadow-sm disabled:opacity-50 whitespace-nowrap min-h-[44px]"
                         >
                           {isLoading
                             ? "Sending..."
@@ -406,7 +406,7 @@ export default function AuthModal(): React.JSX.Element {
                       <button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full py-2.5 px-6 rounded-full bg-black text-[#fffef7] font-mono text-xs uppercase tracking-[0.16em] font-medium transition-colors hover:bg-[#ffd001] hover:text-black cursor-pointer shadow-sm disabled:opacity-50"
+                        className="w-full py-2.5 px-6 rounded-full bg-black text-[#fffef7] font-mono text-xs uppercase tracking-[0.16em] font-medium transition-colors hover:bg-[#ffd001] hover:text-black cursor-pointer shadow-sm disabled:opacity-50 whitespace-nowrap min-h-[44px]"
                       >
                         {isLoading ? "Verifying..." : "Verify & Enter"}
                       </button>

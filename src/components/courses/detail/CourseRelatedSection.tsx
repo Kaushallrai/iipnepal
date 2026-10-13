@@ -81,7 +81,7 @@ export default function CourseRelatedSection({
                   </span>
                   <Link
                     href={`/courses/${prevTrack.slug}`}
-                    className="inline-flex items-center gap-1 font-semibold text-black group-hover:text-[#ca8a04] transition-colors text-[11px] uppercase tracking-wider"
+                    className="inline-flex items-center gap-1 font-semibold text-black group-hover:text-[#ca8a04] transition-colors text-[11px] uppercase tracking-wider whitespace-nowrap min-h-[44px]"
                   >
                     <span>View Track</span>
                     <ArrowUpRight className="w-3 h-3" />
@@ -134,7 +134,7 @@ export default function CourseRelatedSection({
                   </span>
                   <Link
                     href={`/courses/${nextTrack.slug}`}
-                    className="inline-flex items-center gap-1 font-semibold text-black group-hover:text-[#ca8a04] transition-colors text-[11px] uppercase tracking-wider"
+                    className="inline-flex items-center gap-1 font-semibold text-black group-hover:text-[#ca8a04] transition-colors text-[11px] uppercase tracking-wider whitespace-nowrap min-h-[44px]"
                   >
                     <span>View Track</span>
                     <ArrowUpRight className="w-3 h-3" />

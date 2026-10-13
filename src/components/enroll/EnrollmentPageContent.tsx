@@ -714,7 +714,7 @@ export default function EnrollmentPageContent({
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="btn is-icon group relative inline-flex items-center justify-center gap-3.5 bg-black hover:bg-[#ffd001] text-[#fffef7] hover:text-black py-4 px-9 sm:px-11 rounded-full transition-colors duration-300 overflow-hidden cursor-pointer select-none w-full sm:w-auto min-h-[48px]"
+                      className="btn is-icon group relative inline-flex items-center justify-center gap-2 sm:gap-3.5 bg-black hover:bg-[#ffd001] text-[#fffef7] hover:text-black py-3.5 sm:py-4 px-5 sm:px-9 rounded-full transition-colors duration-300 overflow-hidden cursor-pointer select-none w-full sm:w-auto max-w-full min-h-[48px] whitespace-nowrap"
                     >
                       {/* Sliding Signal Yellow Box on Hover */}
                       <span className="btn__circle-wrap absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
@@ -722,7 +722,7 @@ export default function EnrollmentPageContent({
                       </span>
 
                       {/* Text */}
-                      <span className="btn__text relative z-[2] font-mono text-xs sm:text-[13px] font-bold uppercase tracking-[0.16em] leading-none whitespace-nowrap transition-transform duration-300 group-hover:translate-x-1">
+                      <span className="btn__text relative z-[2] font-mono text-[11px] sm:text-xs md:text-[13px] font-bold uppercase tracking-[0.12em] sm:tracking-[0.16em] leading-none whitespace-nowrap transition-transform duration-300 group-hover:translate-x-1 truncate">
                         {isSubmitting ? "PROCESSING..." : "SUBMIT ENROLMENT APPLICATION"}
                       </span>
 

@@ -76,7 +76,7 @@ export default function CourseTuitionSection({
             <div className="flex flex-wrap items-center gap-3">
               <Link
                 href={`/enroll?course=${course.slug}`}
-                className="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-[#ffd001] hover:bg-white text-black font-mono text-xs uppercase tracking-[0.14em] font-semibold transition-all leading-none cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-[#ffd001] hover:bg-white text-black font-mono text-xs uppercase tracking-[0.14em] font-semibold transition-all leading-none cursor-pointer whitespace-nowrap min-h-[44px]"
               >
                 <span>Enroll in Track</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -84,7 +84,7 @@ export default function CourseTuitionSection({
 
               <a
                 href="tel:+9779802364760"
-                className="inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-transparent hover:bg-white/10 text-white border border-white/20 font-mono text-xs uppercase tracking-wider transition-all leading-none"
+                className="inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-transparent hover:bg-white/10 text-white border border-white/20 font-mono text-xs uppercase tracking-wider transition-all leading-none whitespace-nowrap min-h-[44px]"
               >
                 <Phone className="w-3.5 h-3.5 text-[#ffd001]" />
                 <span>+977 9802364760</span>

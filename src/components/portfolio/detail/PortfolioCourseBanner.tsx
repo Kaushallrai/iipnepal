@@ -52,7 +52,7 @@ export default function PortfolioCourseBanner({ item }: PortfolioCourseBannerPro
           <div className="flex flex-col sm:flex-row lg:flex-col gap-3.5 shrink-0 w-full sm:w-auto">
             <Link
               href={`/courses/${course.slug}`}
-              className="inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-semibold tracking-[0.16em] uppercase bg-black text-[#fffef7] hover:bg-[#ffd001] hover:text-black px-8 py-4 rounded-full transition-colors text-center leading-none whitespace-nowrap w-full sm:w-auto cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-semibold tracking-[0.16em] uppercase bg-black text-[#fffef7] hover:bg-[#ffd001] hover:text-black px-8 py-4 rounded-full transition-colors text-center leading-none whitespace-nowrap w-full sm:w-auto cursor-pointer min-h-[44px]"
             >
               <span>View course syllabus</span>
               <ArrowUpRight className="w-4 h-4" />

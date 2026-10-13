@@ -120,7 +120,7 @@ export default function PortfolioList({ items }: PortfolioListProps): React.JSX.
                   <div className="pt-3.5 border-t border-[#f0eee3] flex items-center justify-between mt-auto">
                     <Link
                       href={`/portfolio/${item.slug}`}
-                      className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.16em] text-black group-hover:text-[#ca8a04] font-medium transition-colors"
+                      className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.16em] text-black group-hover:text-[#ca8a04] font-medium transition-colors whitespace-nowrap min-h-[44px]"
                     >
                       <span>Explore Story</span>
                       <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

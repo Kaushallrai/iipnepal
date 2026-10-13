@@ -513,7 +513,7 @@ export default function PortfolioSection({
           <div className="flex items-center justify-between sm:justify-end gap-3 pt-1 sm:pt-0 shrink-0">
             <Link
               href="/portfolio"
-              className="group/all inline-flex items-center gap-0.5 font-mono text-xs uppercase tracking-[0.16em] text-white hover:bg-[#ffd001] hover:text-black px-2 py-1 transition-all duration-150 font-medium leading-none"
+              className="group/all inline-flex items-center gap-0.5 font-mono text-xs uppercase tracking-[0.16em] text-white hover:bg-[#ffd001] hover:text-black px-2 py-1 transition-all duration-150 font-medium leading-none whitespace-nowrap min-h-[44px]"
             >
               <span className="text-[#ffd001] group-hover/all:text-black font-semibold transition-colors">[</span>
               <span className="px-1">ARCHIVE</span>

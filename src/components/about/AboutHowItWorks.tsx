@@ -34,7 +34,7 @@ export default function AboutHowItWorks(): React.JSX.Element {
 
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center gap-2 py-3 sm:py-2.5 px-5 rounded-full bg-black text-white hover:bg-[#ffd001] hover:text-black active:scale-[0.99] transition-all duration-200 font-mono text-xs uppercase tracking-[0.14em] font-semibold self-start sm:self-auto shrink-0 w-full sm:w-auto text-center touch-manipulation min-h-[44px]"
+            className="inline-flex items-center justify-center gap-2 py-3 sm:py-2.5 px-5 rounded-full bg-black text-white hover:bg-[#ffd001] hover:text-black active:scale-[0.99] transition-all duration-200 font-mono text-xs uppercase tracking-[0.14em] font-semibold self-start sm:self-auto shrink-0 w-full sm:w-auto text-center touch-manipulation min-h-[44px] whitespace-nowrap"
           >
             <span>Speak to an Advisor</span>
             <ArrowUpRight className="w-3.5 h-3.5" />

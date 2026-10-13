@@ -706,13 +706,13 @@ export default function HeroReveal({
             >
               <a
                 href="#courses"
-                className="text-[#ffd001] hover:text-white font-mono text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.24em] uppercase transition-colors duration-200 cursor-pointer py-2 px-3 leading-none no-underline"
+                className="text-[#ffd001] hover:text-white font-mono text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.24em] uppercase transition-colors duration-200 cursor-pointer py-2 px-3 leading-none no-underline whitespace-nowrap min-h-[44px] inline-flex items-center"
               >
                 {ctaText}
               </a>
               <Link
                 href="/contact"
-                className="text-white/80 hover:text-[#ffd001] font-mono text-xs sm:text-sm tracking-[0.18em] sm:tracking-[0.22em] uppercase transition-colors duration-200 cursor-pointer py-2 px-3 leading-none no-underline border-b border-white/20 hover:border-[#ffd001]"
+                className="text-white/80 hover:text-[#ffd001] font-mono text-xs sm:text-sm tracking-[0.18em] sm:tracking-[0.22em] uppercase transition-colors duration-200 cursor-pointer py-2 px-3 leading-none no-underline border-b border-white/20 hover:border-[#ffd001] whitespace-nowrap min-h-[44px] inline-flex items-center"
               >
                 Contact →
               </Link>

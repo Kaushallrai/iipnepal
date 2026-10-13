@@ -327,7 +327,7 @@ export default function Navbar({
                   <button
                     type="button"
                     onClick={openLogin}
-                    className={`hidden lg:inline-flex items-center justify-center gap-1.5 h-9 px-4 lg:px-4.5 rounded-full font-mono text-xs uppercase tracking-[0.14em] transition-all duration-300 cursor-pointer border leading-none shrink-0 ${
+                    className={`hidden lg:inline-flex items-center justify-center gap-1.5 h-9 px-4 lg:px-4.5 rounded-full font-mono text-xs uppercase tracking-[0.14em] transition-all duration-300 cursor-pointer border leading-none shrink-0 whitespace-nowrap ${
                       isDarkSection
                         ? "border-white/20 bg-white/5 text-white/90 hover:border-[#ffd001] hover:text-[#ffd001]"
                         : "border-black/15 bg-black/5 text-black/90 hover:border-black hover:text-black"
@@ -341,7 +341,7 @@ export default function Navbar({
                 {/* Desktop-only Enroll button: Same height and refined proportional size */}
                 <Link
                   href={enrollHref}
-                  className={`hidden lg:inline-flex items-center justify-center h-9 px-4.5 lg:px-5 rounded-full bg-[#ffd001] text-black font-mono text-xs font-semibold tracking-[0.14em] uppercase transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer leading-none shrink-0 ${
+                  className={`hidden lg:inline-flex items-center justify-center h-9 px-4.5 lg:px-5 rounded-full bg-[#ffd001] text-black font-mono text-xs font-semibold tracking-[0.14em] uppercase transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer leading-none shrink-0 whitespace-nowrap ${
                     isDarkSection
                       ? "hover:bg-white hover:text-black"
                       : "hover:bg-black hover:text-[#fffef7]"
@@ -474,7 +474,7 @@ export default function Navbar({
                   openLogin();
                 }
               }}
-              className="inline-flex w-full items-center justify-center py-3.5 rounded-full border border-white/20 bg-white/5 hover:bg-white/15 active:scale-[0.99] text-white font-mono text-xs sm:text-sm font-medium tracking-[0.16em] uppercase transition-all duration-200 touch-manipulation cursor-pointer"
+              className="inline-flex w-full items-center justify-center py-3.5 px-4 rounded-full border border-white/20 bg-white/5 hover:bg-white/15 active:scale-[0.99] text-white font-mono text-xs sm:text-sm font-medium tracking-[0.16em] uppercase transition-all duration-200 touch-manipulation cursor-pointer whitespace-nowrap min-h-[44px]"
             >
               {user ? (
                 <>
@@ -495,7 +495,7 @@ export default function Navbar({
             <Link
               href={enrollHref}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="inline-flex w-full items-center justify-center py-3.5 rounded-full bg-[#ffd001] hover:bg-white active:scale-[0.99] text-black font-mono text-xs sm:text-sm font-semibold tracking-[0.16em] uppercase transition-all duration-200 touch-manipulation"
+              className="inline-flex w-full items-center justify-center py-3.5 px-4 rounded-full bg-[#ffd001] hover:bg-white active:scale-[0.99] text-black font-mono text-xs sm:text-sm font-semibold tracking-[0.16em] uppercase transition-all duration-200 touch-manipulation whitespace-nowrap min-h-[44px]"
             >
               {enrollText} • Rolling Intakes
             </Link>

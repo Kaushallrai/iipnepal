@@ -57,7 +57,7 @@ export default function CoursesCta(): React.JSX.Element {
           <div className="flex flex-col sm:flex-row lg:flex-col gap-4 shrink-0">
             <Link
               href={cta.enrollHref}
-              className="inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-semibold tracking-[0.16em] uppercase bg-[#ffd001] text-black px-9 py-4 rounded-full hover:bg-white transition-all shadow-md text-center leading-none"
+              className="inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-semibold tracking-[0.16em] uppercase bg-[#ffd001] text-black px-9 py-4 rounded-full hover:bg-white transition-all shadow-md text-center leading-none whitespace-nowrap min-h-[44px]"
             >
               <span>{cta.enrollText}</span>
               <ArrowUpRight className="w-4 h-4" />
@@ -65,7 +65,7 @@ export default function CoursesCta(): React.JSX.Element {
 
             <Link
               href={cta.contactHref}
-              className="inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-normal tracking-[0.16em] uppercase bg-transparent text-[#fffef7] border border-white/20 px-9 py-4 rounded-full hover:border-[#ffd001] hover:text-[#ffd001] transition-all text-center leading-none"
+              className="inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-normal tracking-[0.16em] uppercase bg-transparent text-[#fffef7] border border-white/20 px-9 py-4 rounded-full hover:border-[#ffd001] hover:text-[#ffd001] transition-all text-center leading-none whitespace-nowrap min-h-[44px]"
             >
               <span>{cta.contactText}</span>
             </Link>

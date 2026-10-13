@@ -36,7 +36,7 @@ export default function AboutCta(): React.JSX.Element {
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-5 mb-10 sm:mb-14 w-full sm:w-auto max-w-sm sm:max-w-none">
           <Link
             href={aboutCtaData.primaryCtaHref}
-            className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#ffd001] text-black hover:bg-white active:scale-[0.98] transition-all duration-200 font-mono text-xs sm:text-[13px] uppercase tracking-[0.16em] font-semibold no-underline min-h-[48px] text-center touch-manipulation"
+            className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#ffd001] text-black hover:bg-white active:scale-[0.98] transition-all duration-200 font-mono text-xs sm:text-[13px] uppercase tracking-[0.16em] font-semibold no-underline min-h-[48px] text-center touch-manipulation whitespace-nowrap"
           >
             <span>{aboutCtaData.primaryCtaText}</span>
             <ArrowUpRight className="w-4 h-4" />
@@ -44,7 +44,7 @@ export default function AboutCta(): React.JSX.Element {
 
           <Link
             href={aboutCtaData.secondaryCtaHref}
-            className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-transparent text-white border border-white/25 hover:border-[#ffd001] hover:text-[#ffd001] active:scale-[0.98] transition-all duration-200 font-mono text-xs sm:text-[13px] uppercase tracking-[0.16em] no-underline min-h-[48px] text-center touch-manipulation"
+            className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-transparent text-white border border-white/25 hover:border-[#ffd001] hover:text-[#ffd001] active:scale-[0.98] transition-all duration-200 font-mono text-xs sm:text-[13px] uppercase tracking-[0.16em] no-underline min-h-[48px] text-center touch-manipulation whitespace-nowrap"
           >
             <span>{aboutCtaData.secondaryCtaText}</span>
           </Link>

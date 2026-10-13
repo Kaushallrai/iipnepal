@@ -177,7 +177,7 @@ export default function TestimonialsSection(): React.JSX.Element {
               >
                 {/* Simple Creative Giants Card: Flat uniform #f4f2ea surface, NO borders, NO separator, NO highlights, identical size */}
                 <div
-                  className="slider_card w-full h-[380px] sm:h-[400px] md:h-[430px] lg:h-[440px] flex flex-col justify-between bg-[#f4f2ea] p-8 sm:p-10 md:p-12 lg:p-14 select-none"
+                  className="slider_card w-full min-h-[340px] sm:min-h-[380px] md:h-[430px] lg:h-[440px] flex flex-col justify-between bg-[#f4f2ea] p-6 sm:p-10 md:p-12 lg:p-14 select-none"
                   onClick={() => {
                     if (activeIndex !== idx) {
                       swiperInstanceRef.current?.slideTo(idx);

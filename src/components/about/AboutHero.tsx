@@ -54,7 +54,7 @@ export default function AboutHero({
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-6 border-t border-[#e2e0d2]">
               <Link
                 href="/courses"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:py-3 rounded-full bg-black text-white hover:bg-[#ffd001] hover:text-black active:scale-[0.99] transition-all duration-200 no-underline font-mono text-xs uppercase tracking-[0.16em] font-semibold text-center touch-manipulation min-h-[44px]"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:py-3 rounded-full bg-black text-white hover:bg-[#ffd001] hover:text-black active:scale-[0.99] transition-all duration-200 no-underline font-mono text-xs uppercase tracking-[0.16em] font-semibold text-center touch-manipulation min-h-[44px] whitespace-nowrap"
               >
                 <span>Explore Courses</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -62,7 +62,7 @@ export default function AboutHero({
 
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center font-mono text-xs uppercase tracking-[0.16em] text-black hover:text-[#ca8a04] active:scale-[0.99] transition-all py-3 sm:py-2 px-4 rounded-full border border-black/10 sm:border-transparent hover:border-black/20 text-center touch-manipulation min-h-[44px] gap-1.5"
+                className="inline-flex items-center justify-center font-mono text-xs uppercase tracking-[0.16em] text-black hover:text-[#ca8a04] active:scale-[0.99] transition-all py-3 sm:py-2 px-4 rounded-full border border-black/10 sm:border-transparent hover:border-black/20 text-center touch-manipulation min-h-[44px] gap-1.5 whitespace-nowrap"
               >
                 <span>Admissions Desk</span>
                 <ArrowUpRight className="w-3 h-3 text-[#888888]" />

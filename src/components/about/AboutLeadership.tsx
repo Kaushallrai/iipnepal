@@ -77,13 +77,13 @@ export default function AboutLeadership(): React.JSX.Element {
             <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto">
               <Link
                 href="/courses"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-black text-white hover:bg-[#ffd001] hover:text-black font-mono text-xs uppercase tracking-wider font-semibold transition-all text-center min-h-[44px] touch-manipulation"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-black text-white hover:bg-[#ffd001] hover:text-black font-mono text-xs uppercase tracking-wider font-semibold transition-all text-center min-h-[44px] touch-manipulation whitespace-nowrap"
               >
                 <span>Mentored Course Tracks</span>
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-1.5 font-mono text-xs uppercase tracking-wider text-black hover:text-[#ca8a04] py-3 px-4 transition-colors text-center min-h-[44px] touch-manipulation"
+                className="inline-flex items-center justify-center gap-1.5 font-mono text-xs uppercase tracking-wider text-black hover:text-[#ca8a04] py-3 px-4 transition-colors text-center min-h-[44px] touch-manipulation whitespace-nowrap"
               >
                 <span>Speak with Additya →</span>
               </Link>

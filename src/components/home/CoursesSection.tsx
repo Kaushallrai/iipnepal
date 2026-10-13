@@ -469,7 +469,7 @@ export default function CoursesSection({
                               <Link
                                 href={`/courses/${course.slug}`}
                                 onClick={(e) => e.stopPropagation()}
-                                className="group/view inline-flex items-center gap-0.5 text-black hover:bg-[#ffd001] hover:text-black px-1.5 py-1 transition-all duration-150 font-medium leading-none"
+                                className="group/view inline-flex items-center gap-0.5 text-black hover:bg-[#ffd001] hover:text-black px-1.5 py-1 transition-all duration-150 font-medium leading-none whitespace-nowrap min-h-[44px]"
                               >
                                 <span className="text-[#ca8a04] group-hover/view:text-black font-semibold transition-colors">[</span>
                                 <span className="px-0.5">VIEW COURSE</span>

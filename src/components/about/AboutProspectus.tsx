@@ -68,20 +68,20 @@ export default function AboutProspectus(): React.JSX.Element {
                     href={item.pdfUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center justify-between w-full min-h-[44px] py-2.5 px-4 text-xs font-mono uppercase tracking-[0.14em] font-semibold text-black hover:text-black hover:bg-[#ffd001] active:scale-[0.99] transition-all border border-[#e2e0d2] hover:border-[#ffd001] touch-manipulation select-none"
+                    className="group inline-flex items-center justify-between w-full min-h-[44px] py-2.5 px-4 text-xs font-mono uppercase tracking-[0.14em] font-semibold text-black hover:text-black hover:bg-[#ffd001] active:scale-[0.99] transition-all border border-[#e2e0d2] hover:border-[#ffd001] touch-manipulation select-none whitespace-nowrap"
                     aria-label={`${item.actionLabel || "View"} for ${item.title}`}
                   >
                     <span>{item.actionLabel || "Download Prospectus"}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
                   </a>
                 ) : (
                   <Link
                     href={item.pdfUrl}
-                    className="group inline-flex items-center justify-between w-full min-h-[44px] py-2.5 px-4 text-xs font-mono uppercase tracking-[0.14em] font-semibold text-black hover:text-black hover:bg-[#ffd001] active:scale-[0.99] transition-all border border-[#e2e0d2] hover:border-[#ffd001] touch-manipulation select-none"
+                    className="group inline-flex items-center justify-between w-full min-h-[44px] py-2.5 px-4 text-xs font-mono uppercase tracking-[0.14em] font-semibold text-black hover:text-black hover:bg-[#ffd001] active:scale-[0.99] transition-all border border-[#e2e0d2] hover:border-[#ffd001] touch-manipulation select-none whitespace-nowrap"
                     aria-label={`${item.actionLabel || "View"} for ${item.title}`}
                   >
                     <span>{item.actionLabel || "View Details"}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
                   </Link>
                 )}
               </div>

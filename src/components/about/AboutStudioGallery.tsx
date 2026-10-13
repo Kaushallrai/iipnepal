@@ -23,7 +23,7 @@ const STUDIO_PLATES: StudioFeaturePlate[] = [
     title: "1-on-1 Print & Proof Critiques",
     description:
       "One-on-one reviews of physical prints and contact sheets. Dissect tonal separation, contrast, and sequencing with faculty.",
-    imageSrc: "/images/about/studio-critique-session.jpg",
+    imageSrc: "/images/about/studio-critique-session.webp",
     imageAlt: "Photography mentor reviewing physical black and white prints and contact sheets with a student in Kathmandu studio",
     meta: "Kanti Path Studio · Weekly Sessions",
   },
@@ -33,7 +33,7 @@ const STUDIO_PLATES: StudioFeaturePlate[] = [
     title: "Commercial Strobe & Lighting Lab",
     description:
       "Master commercial strobes, octaboxes, and C-stands. Learn light shaping, direction, and falloff for studio portraiture.",
-    imageSrc: "/images/about/studio-lighting-setup.jpg",
+    imageSrc: "/images/about/studio-lighting-setup.webp",
     imageAlt: "Photography students adjusting studio strobe lighting with octabox modifier on C-stand in Kathmandu academy",
     meta: "Kathmandu Academy · Lighting Workshops",
   },
@@ -43,7 +43,7 @@ const STUDIO_PLATES: StudioFeaturePlate[] = [
     title: "Guided Heritage Fieldwork",
     description:
       "Guided field shooting in Kathmandu's historic gallis and squares. Practice street rapport and rapid manual exposure.",
-    imageSrc: "/images/about/fieldwork-mentoring-session.jpg",
+    imageSrc: "/images/about/fieldwork-mentoring-session.webp",
     imageAlt: "Photography mentor and students analyzing camera playback during historic courtyard shooting masterclass in Kathmandu Valley",
     meta: "Valley Fieldwork · Morning & Twilight",
   },

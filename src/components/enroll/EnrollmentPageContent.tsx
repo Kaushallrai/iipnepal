@@ -76,17 +76,19 @@ export default function EnrollmentPageContent({
   } | null>(null);
 
   // Sync if URL query param changes
-  React.useEffect(() => {
+  const [prevQuerySlug, setPrevQuerySlug] = useState(queryCourseSlug);
+  if (queryCourseSlug !== prevQuerySlug) {
+    setPrevQuerySlug(queryCourseSlug);
     if (queryCourseSlug) {
       const match = courses.find(
         (c) => c.slug === queryCourseSlug || c.id === queryCourseSlug
       );
-      if (match) {
+      if (match && match.slug !== selectedSlug) {
         setSelectedSlug(match.slug);
         setFormData((prev) => ({ ...prev, programSlug: match.slug }));
       }
     }
-  }, [queryCourseSlug, courses]);
+  }
 
   const currentCourse = React.useMemo(() => {
     return courses.find((c) => c.slug === selectedSlug) || courses[0];

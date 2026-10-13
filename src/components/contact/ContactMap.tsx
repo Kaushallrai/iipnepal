@@ -26,7 +26,7 @@ export default function ContactMap({
         target="_blank"
         rel="noopener noreferrer"
         className="block relative w-full h-full cursor-pointer no-underline"
-        aria-label={`Open ${locationName} location in Google Maps`}
+        aria-label={`Open ${locationName} (${address}) in Google Maps`}
       >
         {/* 1. EMBEDDED GOOGLE MAP */}
         <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#ebe9e1]">

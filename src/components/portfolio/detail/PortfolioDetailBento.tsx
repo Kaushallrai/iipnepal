@@ -337,7 +337,7 @@ export default function PortfolioDetailBento({ item }: PortfolioDetailBentoProps
             <div className="flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-[#ffd001]" />
               <span>
-                Plate 0{activeLightboxIndex + 1} of 0{plates.length} // {item.title}
+                Plate 0{activeLightboxIndex + 1} of 0{plates.length} {"//"} {item.title}
               </span>
             </div>
 

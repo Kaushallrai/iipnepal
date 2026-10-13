@@ -17,9 +17,10 @@ export default function CourseRelatedSection({
   currentCourseSlug,
   currentCourseTitle,
 }: CourseRelatedSectionProps): React.JSX.Element {
-  if (relatedCourses.length === 0) return <></>;
+  const filtered = relatedCourses.filter((c) => c.slug !== currentCourseSlug);
+  if (filtered.length === 0) return <></>;
 
-  const [prevTrack, nextTrack] = relatedCourses.slice(0, 2);
+  const [prevTrack, nextTrack] = filtered.slice(0, 2);
 
   return (
     <section id="progression" className="w-full py-14 sm:py-18 bg-[#fffef7]">
@@ -31,7 +32,7 @@ export default function CourseRelatedSection({
             Related Tracks.
           </h2>
           <span className="font-mono text-xs uppercase tracking-wider text-[#888888]">
-            Progression Pathways
+            Progression Pathways · From {currentCourseTitle}
           </span>
         </div>
 

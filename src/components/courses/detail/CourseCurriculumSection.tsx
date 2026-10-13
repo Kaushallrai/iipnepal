@@ -7,14 +7,6 @@ export interface CourseCurriculumSectionProps {
   course: CourseItem;
 }
 
-interface SyllabusPhase {
-  phaseNumber: string;
-  title: string;
-  description: string;
-  modules: { number: string; title: string }[];
-  milestone: string;
-}
-
 export default function CourseCurriculumSection({
   course,
 }: CourseCurriculumSectionProps): React.JSX.Element {

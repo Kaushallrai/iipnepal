@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import type { CourseItem } from "@/data/courses";
 
 export interface CourseHowItWorksSectionProps {
@@ -48,7 +47,7 @@ export default function CourseHowItWorksSection({
             How You Learn.
           </h2>
           <span className="font-mono text-xs uppercase tracking-wider text-[#888888]">
-            The 4-Step IIP Mentorship Loop
+            The 4-Step Mentorship Loop · {course.title}
           </span>
         </div>
 

@@ -68,8 +68,8 @@ export const masterPortfolioList: PortfolioItem[] = [
     courseSlug: "pro-level-foundation-photography-course",
     year: "2025",
     location: "Asan Chowk, Old Kathmandu",
-    coverImage: "/images/portfolio/asan-market-dawn.jpg",
-    image: "/images/portfolio/asan-market-dawn.jpg",
+    coverImage: "/images/portfolio/asan-market-dawn.webp",
+    image: "/images/portfolio/asan-market-dawn.webp",
     aspectRatio: "landscape",
     medium: "35mm Prime · Natural Sunlight · Tri-X 400 Tone",
     summary:
@@ -99,7 +99,7 @@ export const masterPortfolioList: PortfolioItem[] = [
     ],
     gallery: [
       {
-        url: "/images/portfolio/asan-market-dawn.jpg",
+        url: "/images/portfolio/asan-market-dawn.webp",
         caption: "Master Frame: Dawn commerce and floral transactions at Asan Chowk crossroads.",
         aspectRatio: "landscape",
         shotLocation: "Asan Chowk Central Junction, 05:40 AM",
@@ -129,19 +129,19 @@ export const masterPortfolioList: PortfolioItem[] = [
         shotLocation: "Makhan Galli Gateway, 05:55 AM",
       },
       {
-        url: "/images/portfolio/bhaktapur-temple-dawn.jpg",
+        url: "/images/portfolio/bhaktapur-temple-dawn.webp",
         caption: "Light analysis: Low-angle sunrise cutting through timber eaves into the central square.",
         aspectRatio: "landscape",
         shotLocation: "Asan Square West, 06:30 AM",
       },
       {
-        url: "/images/portfolio/kathmandu-monsoon-rain.jpg",
+        url: "/images/portfolio/kathmandu-monsoon-rain.webp",
         caption: "Ambient tone: Early morning damp stones reflecting sodium lamplight across the market.",
         aspectRatio: "landscape",
         shotLocation: "Indra Chowk Passage, 06:05 AM",
       },
       {
-        url: "/images/portfolio/darkroom-safelight-print.jpg",
+        url: "/images/portfolio/darkroom-safelight-print.webp",
         caption: "Archival print inspection: Evaluating midtone silver gradations in the IIP studio.",
         aspectRatio: "wide",
         shotLocation: "IIP Print Lab, 08:30 AM",
@@ -167,8 +167,8 @@ export const masterPortfolioList: PortfolioItem[] = [
     courseSlug: "pro-level-advanced-photography-course",
     year: "2025",
     location: "Annapurna Sanctuary, 4,130m",
-    coverImage: "/images/portfolio/himalaya-alpine-ridge.jpg",
-    image: "/images/portfolio/himalaya-alpine-ridge.jpg",
+    coverImage: "/images/portfolio/himalaya-alpine-ridge.webp",
+    image: "/images/portfolio/himalaya-alpine-ridge.webp",
     aspectRatio: "wide",
     medium: "Medium Format · Ansel Adams Zone System V · B+W Optical Filter",
     summary:
@@ -198,7 +198,7 @@ export const masterPortfolioList: PortfolioItem[] = [
     ],
     gallery: [
       {
-        url: "/images/portfolio/himalaya-alpine-ridge.jpg",
+        url: "/images/portfolio/himalaya-alpine-ridge.webp",
         caption: "Amphitheater Ridge: Mist drifting through alpine valley floor at dawn.",
         aspectRatio: "wide",
         shotLocation: "Annapurna Base Camp, 4,130m, 05:50 AM",
@@ -240,7 +240,7 @@ export const masterPortfolioList: PortfolioItem[] = [
         shotLocation: "Modi Khola Gorge, 3,100m",
       },
       {
-        url: "/images/portfolio/darkroom-safelight-print.jpg",
+        url: "/images/portfolio/darkroom-safelight-print.webp",
         caption: "Zone System master print check: Examining subtle highlight gradations across the snowfield.",
         aspectRatio: "wide",
         shotLocation: "IIP Print Lab, Kathmandu",
@@ -266,8 +266,8 @@ export const masterPortfolioList: PortfolioItem[] = [
     courseSlug: "pro-level-advanced-photography-course",
     year: "2026",
     location: "Patan Durbar Courtyard, Lalitpur",
-    coverImage: "/images/portfolio/patan-copper-artisan.jpg",
-    image: "/images/portfolio/patan-copper-artisan.jpg",
+    coverImage: "/images/portfolio/patan-copper-artisan.webp",
+    image: "/images/portfolio/patan-copper-artisan.webp",
     aspectRatio: "portrait",
     medium: "85mm Prime · Diffused Courtyard Daylight · Silver Tones",
     summary:
@@ -297,7 +297,7 @@ export const masterPortfolioList: PortfolioItem[] = [
     ],
     gallery: [
       {
-        url: "/images/portfolio/patan-copper-artisan.jpg",
+        url: "/images/portfolio/patan-copper-artisan.webp",
         caption: "Master artisan tooling repoussé copper details with tempered steel chisels.",
         aspectRatio: "portrait",
         shotLocation: "Okubahal Workshop, Patan, 11:30 AM",
@@ -333,13 +333,13 @@ export const masterPortfolioList: PortfolioItem[] = [
         shotLocation: "Sundhara Courtyard Passageway",
       },
       {
-        url: "/images/about/fieldwork-mentoring-session.jpg",
+        url: "/images/about/fieldwork-mentoring-session.webp",
         caption: "On-site guidance: Mentor Additya Shrestha reviewing framing nuances with Aayushree.",
         aspectRatio: "landscape",
         shotLocation: "Patan Guild Historic Atelier",
       },
       {
-        url: "/images/portfolio/darkroom-safelight-print.jpg",
+        url: "/images/portfolio/darkroom-safelight-print.webp",
         caption: "Final portfolio print: Platinum-toned fiber paper evaluation on the exhibition light table.",
         aspectRatio: "wide",
         shotLocation: "IIP Master Lab, Kathmandu",
@@ -365,8 +365,8 @@ export const masterPortfolioList: PortfolioItem[] = [
     courseSlug: "foundation-course",
     year: "2026",
     location: "Taumadhi Square, Bhaktapur",
-    coverImage: "/images/portfolio/bhaktapur-temple-dawn.jpg",
-    image: "/images/portfolio/bhaktapur-temple-dawn.jpg",
+    coverImage: "/images/portfolio/bhaktapur-temple-dawn.webp",
+    image: "/images/portfolio/bhaktapur-temple-dawn.webp",
     aspectRatio: "portrait",
     medium: "50mm Prime · Morning Golden Hour · High-Contrast Monochrome",
     summary:
@@ -396,7 +396,7 @@ export const masterPortfolioList: PortfolioItem[] = [
     ],
     gallery: [
       {
-        url: "/images/portfolio/bhaktapur-temple-dawn.jpg",
+        url: "/images/portfolio/bhaktapur-temple-dawn.webp",
         caption: "Devotee in contemplation beside the Guardian Statues of Nyatapola.",
         aspectRatio: "portrait",
         shotLocation: "Taumadhi Square Plinth, 06:10 AM",
@@ -426,19 +426,19 @@ export const masterPortfolioList: PortfolioItem[] = [
         shotLocation: "Taumadhi Square South Staircase, 06:20 AM",
       },
       {
-        url: "/images/portfolio/asan-market-dawn.jpg",
+        url: "/images/portfolio/asan-market-dawn.webp",
         caption: "Architectural context: Devotees completing dawn pradakshina around the brick plinth.",
         aspectRatio: "landscape",
         shotLocation: "Taumadhi Central Perimeter",
       },
       {
-        url: "/images/portfolio/patan-copper-artisan.jpg",
+        url: "/images/portfolio/patan-copper-artisan.webp",
         caption: "Ritual gesture: Senior worshipper striking the bronze temple bell at first light.",
         aspectRatio: "portrait",
         shotLocation: "Nyatapola Eastern Portal",
       },
       {
-        url: "/images/portfolio/darkroom-safelight-print.jpg",
+        url: "/images/portfolio/darkroom-safelight-print.webp",
         caption: "Archival print inspection: Verifying high-contrast shadow rendering on warm fiber paper.",
         aspectRatio: "wide",
         shotLocation: "IIP Print Lab, Kathmandu",
@@ -464,8 +464,8 @@ export const masterPortfolioList: PortfolioItem[] = [
     courseSlug: "pro-level-advanced-photography-course",
     year: "2026",
     location: "IIP Darkroom, Kanti Path, Kathmandu",
-    coverImage: "/images/portfolio/darkroom-safelight-print.jpg",
-    image: "/images/portfolio/darkroom-safelight-print.jpg",
+    coverImage: "/images/portfolio/darkroom-safelight-print.webp",
+    image: "/images/portfolio/darkroom-safelight-print.webp",
     aspectRatio: "wide",
     medium: "Silver Halide Enlarging · Fiber-Base Baryta · Red Safelight",
     summary:
@@ -495,7 +495,7 @@ export const masterPortfolioList: PortfolioItem[] = [
     ],
     gallery: [
       {
-        url: "/images/portfolio/darkroom-safelight-print.jpg",
+        url: "/images/portfolio/darkroom-safelight-print.webp",
         caption: "Master enlarger head and chemical development tray under safelight glow.",
         aspectRatio: "wide",
         shotLocation: "IIP Main Darkroom Suite, Kanti Path",
@@ -525,19 +525,19 @@ export const masterPortfolioList: PortfolioItem[] = [
         shotLocation: "Central Light Table, IIP Archive",
       },
       {
-        url: "/images/about/studio-critique-session.jpg",
+        url: "/images/about/studio-critique-session.webp",
         caption: "Master print critique: Faculty panel analyzing tonal fidelity and paper gradation.",
         aspectRatio: "landscape",
         shotLocation: "Senior Critique Atelier",
       },
       {
-        url: "/images/about/studio-lighting-setup.jpg",
+        url: "/images/about/studio-lighting-setup.webp",
         caption: "Chemical calibration: Preparing fresh metol-hydroquinone developer stock solutions.",
         aspectRatio: "landscape",
         shotLocation: "Chemical Mixing Lab, IIP Nepal",
       },
       {
-        url: "/images/portfolio/asan-market-dawn.jpg",
+        url: "/images/portfolio/asan-market-dawn.webp",
         caption: "Finished exhibition specimen: Hand-pulled silver gelatin baryta print fully dried.",
         aspectRatio: "wide",
         shotLocation: "Archival Preservation Rack",
@@ -563,8 +563,8 @@ export const masterPortfolioList: PortfolioItem[] = [
     courseSlug: "mobile-photography-course",
     year: "2026",
     location: "New Road & Sundhara, Kathmandu",
-    coverImage: "/images/portfolio/kathmandu-monsoon-rain.jpg",
-    image: "/images/portfolio/kathmandu-monsoon-rain.jpg",
+    coverImage: "/images/portfolio/kathmandu-monsoon-rain.webp",
+    image: "/images/portfolio/kathmandu-monsoon-rain.webp",
     aspectRatio: "landscape",
     medium: "Smartphone Computational RAW · Pro Mode · Ambient Reflections",
     summary:
@@ -594,7 +594,7 @@ export const masterPortfolioList: PortfolioItem[] = [
     ],
     gallery: [
       {
-        url: "/images/portfolio/kathmandu-monsoon-rain.jpg",
+        url: "/images/portfolio/kathmandu-monsoon-rain.webp",
         caption: "Commuters braving heavy afternoon monsoon rain near New Road Gate.",
         aspectRatio: "landscape",
         shotLocation: "New Road Gate, Kathmandu, 04:30 PM",
@@ -618,7 +618,7 @@ export const masterPortfolioList: PortfolioItem[] = [
         shotLocation: "Annapurna Temple Shelter, 05:45 PM",
       },
       {
-        url: "/images/portfolio/asan-market-dawn.jpg",
+        url: "/images/portfolio/asan-market-dawn.webp",
         caption: "Commuter rhythm: Vibrant umbrellas navigating waterlogged gallis of Asan.",
         aspectRatio: "landscape",
         shotLocation: "Asan Crossroads, 05:15 PM",
@@ -630,13 +630,13 @@ export const masterPortfolioList: PortfolioItem[] = [
         shotLocation: "Khichapokhari Junction",
       },
       {
-        url: "/images/portfolio/bhaktapur-temple-dawn.jpg",
+        url: "/images/portfolio/bhaktapur-temple-dawn.webp",
         caption: "Atmospheric clearance: Distant sky opening up after two hours of continuous rain.",
         aspectRatio: "landscape",
         shotLocation: "Tundikhel Peripheral Walkway",
       },
       {
-        url: "/images/portfolio/darkroom-safelight-print.jpg",
+        url: "/images/portfolio/darkroom-safelight-print.webp",
         caption: "Digital darkroom master proof: Verifying black-point clipping on archival luster paper.",
         aspectRatio: "wide",
         shotLocation: "IIP Digital Lab, Kathmandu",

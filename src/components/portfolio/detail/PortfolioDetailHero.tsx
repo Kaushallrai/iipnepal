@@ -47,18 +47,18 @@ export default function PortfolioDetailHero({
   }, []);
 
   const handlePrev = useCallback(() => {
-    if (internalLightboxIndex === null || !item.gallery?.length) return;
-    setInternalLightboxIndex((prev) =>
-      prev === 0 ? item.gallery.length - 1 : (prev as number) - 1
-    );
-  }, [internalLightboxIndex, item.gallery?.length]);
+    setInternalLightboxIndex((prev) => {
+      if (prev === null || !item.gallery?.length) return null;
+      return prev === 0 ? item.gallery.length - 1 : prev - 1;
+    });
+  }, [item.gallery]);
 
   const handleNext = useCallback(() => {
-    if (internalLightboxIndex === null || !item.gallery?.length) return;
-    setInternalLightboxIndex((prev) =>
-      prev === item.gallery.length - 1 ? 0 : (prev as number) + 1
-    );
-  }, [internalLightboxIndex, item.gallery?.length]);
+    setInternalLightboxIndex((prev) => {
+      if (prev === null || !item.gallery?.length) return null;
+      return prev === item.gallery.length - 1 ? 0 : prev + 1;
+    });
+  }, [item.gallery]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

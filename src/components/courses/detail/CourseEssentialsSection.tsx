@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Camera, Clock, CheckCircle2, Laptop, Building2 } from "lucide-react";
+import { Camera, Clock } from "lucide-react";
 import type { CourseItem } from "@/data/courses";
 
 export interface CourseEssentialsSectionProps {

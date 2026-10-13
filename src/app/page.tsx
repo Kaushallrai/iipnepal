@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "IIP Nepal",
     images: [
       {
-        url: "/images/hero-reveal.webp",
+        url: "/images/hero-photographer.webp",
         width: 1600,
         height: 900,
         alt: "IIP Nepal Indian Institute of Photography",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     title: "IIP Nepal — Indian Institute of Photography Kathmandu",
     description:
       "Kathmandu's premier photography academy. Mentor-led courses, darkroom chemistry, and studio lighting labs.",
-    images: ["/images/hero-reveal.webp"],
+    images: ["/images/hero-photographer.webp"],
   },
 };
 

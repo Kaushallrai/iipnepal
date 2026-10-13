@@ -25,7 +25,7 @@ export default function PortfolioDetailStory({ item }: PortfolioDetailStoryProps
       caption: "Filtering down 200 RAW frames to the top 20 exhibition negatives.",
     },
     {
-      url: "/images/portfolio/darkroom-safelight-print.jpg",
+      url: "/images/portfolio/darkroom-safelight-print.webp",
       label: "Darkroom Chemistry",
       caption: "Balancing highlight exposures and test strips under amber safelight.",
     },

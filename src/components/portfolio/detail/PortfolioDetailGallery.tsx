@@ -43,9 +43,9 @@ export default function PortfolioDetailGallery({
     item.gallery[1]?.url || "/images/portfolio-artisan.webp",
     item.gallery[2]?.url || "/images/portfolio-street.webp",
     item.gallery[3]?.url || "/images/portfolio-himalayas.webp",
-    "/images/portfolio/bhaktapur-temple-dawn.jpg",
-    "/images/portfolio/patan-copper-artisan.jpg",
-    "/images/portfolio/asan-market-dawn.jpg",
+    "/images/portfolio/bhaktapur-temple-dawn.webp",
+    "/images/portfolio/patan-copper-artisan.webp",
+    "/images/portfolio/asan-market-dawn.webp",
   ];
 
   const photoList = fallbackGallery.slice(0, 8).map((url, idx) => ({

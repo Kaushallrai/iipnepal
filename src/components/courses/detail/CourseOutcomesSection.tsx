@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ShieldCheck, Sparkles, ArrowRight } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import type { CourseItem } from "@/data/courses";
 
 export interface CourseOutcomesSectionProps {

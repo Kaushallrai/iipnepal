@@ -3,7 +3,7 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Camera, GraduationCap, Award } from "lucide-react";
+import { History, Users, BookOpen } from "lucide-react";
 import LineReveal from "@/components/animations/LineReveal";
 import { whatWeDoData, type WhatWeDoStat } from "@/data/home/what-we-do";
 
@@ -118,38 +118,38 @@ export default function WhatWeDo({
                   return (
                     <div
                       key={idx}
-                      className={`flex flex-col items-start text-left gap-3 sm:gap-3.5 ${layoutClass}`}
+                      className={`flex flex-col items-center text-center gap-3 sm:gap-3.5 ${layoutClass}`}
                     >
-                      {/* Top: Icon + Number with Smooth Motion Animation */}
-                      <div className="flex items-center gap-3 sm:gap-3.5">
+                      {/* Top: Icon + Number aligned in the middle */}
+                      <div className="flex items-center justify-center gap-3 sm:gap-3.5 w-full">
                         <div
                           ref={(el) => {
                             statIconsRef.current[idx] = el;
                           }}
-                          className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 shrink-0 flex items-center justify-center text-black"
+                          className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 shrink-0 flex items-center justify-center text-black/85"
                         >
-                          {stat.icon === "camera" && (
-                            <Camera className="w-full h-full text-black" strokeWidth={1.5} />
+                          {(stat.icon === "history" || stat.icon === "calendar" || stat.icon === "camera" || stat.icon === "aperture") && (
+                            <History className="w-full h-full" strokeWidth={1.2} />
                           )}
-                          {(stat.icon === "alumni" || stat.icon === "audience") && (
-                            <GraduationCap className="w-full h-full text-black" strokeWidth={1.5} />
+                          {(stat.icon === "users" || stat.icon === "alumni" || stat.icon === "audience" || stat.icon === "focus") && (
+                            <Users className="w-full h-full" strokeWidth={1.2} />
                           )}
-                          {(stat.icon === "practical" || stat.icon === "prism" || stat.icon === "globe") && (
-                            <Award className="w-full h-full text-black" strokeWidth={1.5} />
+                          {(stat.icon === "book" || stat.icon === "practical" || stat.icon === "prism" || stat.icon === "globe" || stat.icon === "film" || stat.icon === "layers") && (
+                            <BookOpen className="w-full h-full" strokeWidth={1.2} />
                           )}
                         </div>
                         <LineReveal
                           as="span"
                           lines={[stat.value]}
-                          className="font-sans font-light text-3xl sm:text-4xl md:text-5xl leading-none tracking-[-0.035em] text-black"
+                          className="font-sans font-light text-3xl sm:text-4xl md:text-5xl leading-none tracking-[-0.035em] text-black whitespace-nowrap"
                         />
                       </div>
 
-                      {/* Bottom: Caption Label with Line Reveal */}
+                      {/* Bottom: Caption Label aligned in the middle with the description */}
                       <LineReveal
                         as="p"
                         lines={[stat.label]}
-                        className="text-xs sm:text-[13px] md:text-sm text-[#666666] leading-snug font-normal max-w-[32ch]"
+                        className="text-xs sm:text-[13px] md:text-sm text-[#666666] leading-relaxed font-light max-w-[32ch] text-center mx-auto"
                       />
                     </div>
                   );

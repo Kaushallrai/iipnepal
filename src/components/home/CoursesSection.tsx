@@ -318,8 +318,8 @@ export default function CoursesSection({
               </Link>
             </div>
 
-            {/* Circular Arrow Nav Buttons (Active on Desktop, Mobile & Tablet) */}
-            <div className="flex items-center gap-2.5 shrink-0">
+            {/* Circular Arrow Nav Buttons (Mobile & Tablet Peek Carousel Only) */}
+            <div className="flex lg:hidden items-center gap-2.5 shrink-0">
               <button
                 type="button"
                 onClick={handlePrevCourse}

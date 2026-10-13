@@ -1,7 +1,21 @@
 export interface WhatWeDoStat {
   value: string;
   label: string;
-  icon: "camera" | "alumni" | "practical" | "globe" | "audience" | "prism";
+  icon:
+    | "history"
+    | "users"
+    | "book"
+    | "camera"
+    | "alumni"
+    | "practical"
+    | "globe"
+    | "audience"
+    | "prism"
+    | "aperture"
+    | "focus"
+    | "film"
+    | "calendar"
+    | "layers";
   delay?: number;
 }
 
@@ -21,19 +35,19 @@ export const whatWeDoData: WhatWeDoData = {
     {
       value: "14+",
       label: "Years of photographic training heritage in Kathmandu.",
-      icon: "camera",
+      icon: "history",
       delay: 0,
     },
     {
       value: "500+",
       label: "Alumni practicing in documentary, studio, and commercial media.",
-      icon: "alumni",
+      icon: "users",
       delay: 0.15,
     },
     {
       value: "5",
       label: "Dedicated programmes from smartphone craft to commercial production.",
-      icon: "practical",
+      icon: "book",
       delay: 0.3,
     },
   ],

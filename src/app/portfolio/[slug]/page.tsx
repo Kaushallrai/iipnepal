@@ -8,9 +8,7 @@ import {
   getPreviousPortfolioItem,
   getRelatedPortfolioItems,
 } from "@/data/portfolio";
-import PortfolioDetailHero from "@/components/portfolio/detail/PortfolioDetailHero";
-import PortfolioDetailGallery from "@/components/portfolio/detail/PortfolioDetailGallery";
-import PortfolioDetailStory from "@/components/portfolio/detail/PortfolioDetailStory";
+import PortfolioDetailBento from "@/components/portfolio/detail/PortfolioDetailBento";
 import PortfolioCourseBanner from "@/components/portfolio/detail/PortfolioCourseBanner";
 import PortfolioDetailNav from "@/components/portfolio/detail/PortfolioDetailNav";
 import Footer from "@/components/layout/Footer";
@@ -78,14 +76,8 @@ export default async function PortfolioDetailPage({ params }: PageProps): Promis
         fontFamily: "'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       }}
     >
-      {/* 1. EDITORIAL HERO & PROGRAM SPECIFICATIONS */}
-      <PortfolioDetailHero item={item} />
-
-      {/* 2. EXHIBITION GALLERY & FULLSCREEN LIGHTBOX */}
-      <PortfolioDetailGallery item={item} />
-
-      {/* 3. CURATORIAL BRIEF & TECHNICAL FOOTPRINT */}
-      <PortfolioDetailStory item={item} />
+      {/* 1. EDITORIAL BENTO GRID — 4 Multi-Picture Plates + Camera Specs, Student Statement, Mentor Critique & Fieldwork */}
+      <PortfolioDetailBento item={item} />
 
       {/* 4. ACADEMIC PROVENANCE & COURSE BRIDGE */}
       <PortfolioCourseBanner item={item} />

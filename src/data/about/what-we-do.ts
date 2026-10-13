@@ -29,21 +29,21 @@ export const aboutWhatWeDoData: AboutWhatWeDoData = {
   pillars: [
     {
       number: "[ 01 ]",
-      title: "Learn Camera Technique",
+      title: "Manual Camera Optics",
       description:
-        "Master exposure mechanics, lens optics, and manual camera controls across 5 focused tracks—moving past automatic settings into deliberate, creative authority.",
+        "Master exposure mechanics, aperture control, and prime lenses across 5 certificate tracks. Move beyond auto mode into deliberate creative command.",
     },
     {
       number: "[ 02 ]",
-      title: "Practise Through Guided Assignments",
+      title: "Guided Field Assignments",
       description:
-        "Step into Kathmandu's morning courtyards, heritage plazas, and studio strobe labs to apply technical lessons through rigorous, real-world assignments.",
+        "Shoot in Kathmandu's historic gallis, morning courtyards, and studio lighting labs through structured, real-world weekly briefs.",
     },
     {
       number: "[ 03 ]",
-      title: "Receive 1-on-1 Mentor Feedback",
+      title: "1-on-1 Mentor Reviews",
       description:
-        "Rigorous personal review with faculty on every shoot. Analyze proof sheets, dissect lighting decisions, and refine work toward an exhibition-grade portfolio.",
+        "Direct review with faculty on every shoot. Dissect contact sheets, frame geometry, and lighting toward an exhibition-grade portfolio.",
     },
   ],
 };

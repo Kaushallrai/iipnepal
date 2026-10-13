@@ -16,7 +16,7 @@ export const aboutHeroData: AboutHeroData = {
     "in Kathmandu.",
   ],
   subheading:
-    "Established in 2011 in partnership with White Hat Events and directed by alumnus Additya Shrestha, IIP Nepal serves as the regional centre of the Indian Institute of Photography. Backed by 14+ years of institutional heritage, we deliver disciplined camera craft, analog darkroom chemistry, and studio lighting mentorship at Jyoti Bhawan, Kanti Path.",
+    "Kathmandu's dedicated photography academy since 2011. Regional centre of the Indian Institute of Photography, mentoring students in camera optics, darkroom craft, and studio lighting at Jyoti Bhawan, Kanti Path.",
   parentUrl: "https://www.indianinstituteofphotography.com",
   ctaText: "Admissions Consultation",
   ctaHref: "/contact",

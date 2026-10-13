@@ -50,18 +50,7 @@ export default function AboutCta(): React.JSX.Element {
           </Link>
         </div>
 
-        {/* Clean Architectural Contact Bar (Zero Clipart Icons) */}
-        <div className="w-full max-w-3xl pt-6 sm:pt-8 border-t border-white/15 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 lg:gap-12 text-[11px] sm:text-xs font-mono tracking-[0.14em] uppercase text-[#888888]">
-          <a href={`tel:${aboutCtaData.phone}`} className="hover:text-[#ffd001] transition-colors no-underline py-1 touch-manipulation">
-            Phone: {aboutCtaData.phoneDisplay}
-          </a>
-          <a href={`mailto:${aboutCtaData.email}`} className="hover:text-[#ffd001] transition-colors no-underline py-1 touch-manipulation">
-            Email: {aboutCtaData.email}
-          </a>
-          <Link href="/contact" className="hover:text-[#ffd001] transition-colors no-underline py-1 touch-manipulation">
-            Location: {aboutCtaData.addressShort}
-          </Link>
-        </div>
+
       </div>
     </section>
   );

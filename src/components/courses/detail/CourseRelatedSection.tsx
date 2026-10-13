@@ -27,35 +27,31 @@ export default function CourseRelatedSection({
         
         {/* Header */}
         <div className="flex flex-col items-start mb-10 sm:mb-12">
-          <div className="flex items-center gap-2 mb-3 select-none">
-            <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
-            <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-semibold">
-              08 // ACADEMIC PROGRESSION
-            </span>
-          </div>
           <h2 className="font-sans font-light text-3xl sm:text-4xl md:text-5xl text-black tracking-[-0.03em] leading-tight">
             Next Steps in Your Craft.
           </h2>
         </div>
 
-        {/* 2 Large Cards (One Pastel, One Bone White) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-16 sm:mb-20">
+        {/* 2 Identical, Equal-Sized Course Progression Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-16 sm:mb-20 items-stretch">
           
-          {/* Card 1: Pastel Card */}
+          {/* Card 1 */}
           {prevTrack && (
-            <Link
-              href={`/courses/${prevTrack.slug}`}
-              className="group flex flex-col justify-between bg-[#fbf9f0] border border-[#e8e6d9] hover:border-black transition-all p-6 sm:p-8 no-underline text-inherit"
-            >
+            <article className="group flex flex-col justify-between bg-[#fffef7] border border-[#e8e6d9] hover:border-black transition-all p-6 sm:p-8 h-full">
               <div>
                 <div className="flex items-center justify-between font-mono text-xs uppercase tracking-[0.16em] text-[#777777] mb-4">
                   <span className="font-semibold text-black">
-                    COURSE {prevTrack.number} // {prevTrack.level.toUpperCase()}
+                    COURSE [{prevTrack.number}] // {prevTrack.level.toUpperCase()}
                   </span>
-                  <span>ALTERNATIVE TRACK</span>
+                  <span className="bg-[#f2efe4] text-black px-2 py-0.5 rounded-full text-[10.5px]">
+                    ALTERNATIVE
+                  </span>
                 </div>
 
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-black border border-[#e2e0d2] mb-5">
+                <Link
+                  href={`/courses/${prevTrack.slug}`}
+                  className="relative block aspect-[16/10] w-full overflow-hidden bg-black border border-[#e2e0d2] mb-5"
+                >
                   <Image
                     src={prevTrack.coverImage}
                     alt={prevTrack.title}
@@ -63,43 +59,53 @@ export default function CourseRelatedSection({
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-center grayscale contrast-105 group-hover:scale-104 transition-transform duration-500"
                   />
-                </div>
+                  <div className="absolute top-2.5 left-2.5 bg-black/85 text-white font-mono text-[9.5px] uppercase tracking-wider px-2.5 py-1">
+                    {prevTrack.deliveryMode}
+                  </div>
+                </Link>
 
-                <h3 className="font-sans font-light text-2xl text-black mb-2 group-hover:text-black">
-                  {prevTrack.title}
+                <h3 className="font-sans font-light text-2xl text-black mb-2 line-clamp-2 min-h-[3.2rem]">
+                  <Link href={`/courses/${prevTrack.slug}`} className="hover:opacity-75 transition-opacity">
+                    {prevTrack.title}
+                  </Link>
                 </h3>
                 <p className="font-sans text-sm text-[#666666] leading-relaxed line-clamp-2 mb-4">
                   {prevTrack.keyOutcome}
                 </p>
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-[#e8e6d9] font-mono text-xs uppercase tracking-wider">
-                <span className="text-[#666666]">
-                  {prevTrack.duration} • {prevTrack.deliveryMode}
+              <div className="flex items-center justify-between pt-4 border-t border-[#e8e6d9] font-mono text-xs uppercase tracking-wider mt-auto">
+                <span className="font-medium text-black">
+                  {prevTrack.duration} • {prevTrack.payableFee}
                 </span>
-                <span className="inline-flex items-center gap-1 font-semibold text-black group-hover:text-[#ca8a04]">
+                <Link
+                  href={`/courses/${prevTrack.slug}`}
+                  className="inline-flex items-center gap-1 font-semibold text-black group-hover:text-[#ca8a04]"
+                >
                   <span>View course</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
-                </span>
+                </Link>
               </div>
-            </Link>
+            </article>
           )}
 
-          {/* Card 2: Bone White Card */}
+          {/* Card 2 */}
           {nextTrack && (
-            <Link
-              href={`/courses/${nextTrack.slug}`}
-              className="group flex flex-col justify-between bg-[#fffef7] border border-[#e8e6d9] hover:border-black transition-all p-6 sm:p-8 no-underline text-inherit"
-            >
+            <article className="group flex flex-col justify-between bg-[#fffef7] border border-[#e8e6d9] hover:border-black transition-all p-6 sm:p-8 h-full">
               <div>
                 <div className="flex items-center justify-between font-mono text-xs uppercase tracking-[0.16em] text-[#777777] mb-4">
                   <span className="font-semibold text-black">
-                    COURSE {nextTrack.number} // {nextTrack.level.toUpperCase()}
+                    COURSE [{nextTrack.number}] // {nextTrack.level.toUpperCase()}
                   </span>
-                  <span>ADVANCED PROGRESSION</span>
+                  <span className="bg-[#f2efe4] text-black px-2 py-0.5 rounded-full text-[10.5px]">
+                    PROGRESSION
+                  </span>
                 </div>
 
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-black border border-[#e2e0d2] mb-5">
+                <Link
+                  href={`/courses/${nextTrack.slug}`}
+                  className="relative block aspect-[16/10] w-full overflow-hidden bg-black border border-[#e2e0d2] mb-5"
+                >
                   <Image
                     src={nextTrack.coverImage}
                     alt={nextTrack.title}
@@ -107,26 +113,34 @@ export default function CourseRelatedSection({
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-center grayscale contrast-105 group-hover:scale-104 transition-transform duration-500"
                   />
-                </div>
+                  <div className="absolute top-2.5 left-2.5 bg-black/85 text-white font-mono text-[9.5px] uppercase tracking-wider px-2.5 py-1">
+                    {nextTrack.deliveryMode}
+                  </div>
+                </Link>
 
-                <h3 className="font-sans font-light text-2xl text-black mb-2 group-hover:text-black">
-                  {nextTrack.title}
+                <h3 className="font-sans font-light text-2xl text-black mb-2 line-clamp-2 min-h-[3.2rem]">
+                  <Link href={`/courses/${nextTrack.slug}`} className="hover:opacity-75 transition-opacity">
+                    {nextTrack.title}
+                  </Link>
                 </h3>
                 <p className="font-sans text-sm text-[#666666] leading-relaxed line-clamp-2 mb-4">
                   {nextTrack.keyOutcome}
                 </p>
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-[#e8e6d9] font-mono text-xs uppercase tracking-wider">
-                <span className="text-[#666666]">
-                  {nextTrack.duration} • {nextTrack.deliveryMode}
+              <div className="flex items-center justify-between pt-4 border-t border-[#e8e6d9] font-mono text-xs uppercase tracking-wider mt-auto">
+                <span className="font-medium text-black">
+                  {nextTrack.duration} • {nextTrack.payableFee}
                 </span>
-                <span className="inline-flex items-center gap-1 font-semibold text-black group-hover:text-[#ca8a04]">
+                <Link
+                  href={`/courses/${nextTrack.slug}`}
+                  className="inline-flex items-center gap-1 font-semibold text-black group-hover:text-[#ca8a04]"
+                >
                   <span>View course</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
-                </span>
+                </Link>
               </div>
-            </Link>
+            </article>
           )}
 
         </div>

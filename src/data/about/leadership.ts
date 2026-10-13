@@ -22,5 +22,5 @@ export const aboutLeadershipData: AboutLeadershipData = {
   directorBadge: "Kathmandu Studio Director",
   directorName: "Additya Shrestha · IIP Alumnus & Regional Head",
   narrative:
-    "As an alumnus of the Indian Institute of Photography, Additya Shrestha returned to Nepal to build an institution where visual craft is treated with the rigor of classical arts and the demands of modern commercial production.",
+    "Directed by IIP alumnus Additya Shrestha. We bridge classical darkroom discipline with modern commercial studio technique, welcoming dedicated students from any background.",
 };

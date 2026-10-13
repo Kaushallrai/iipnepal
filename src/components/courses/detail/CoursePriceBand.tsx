@@ -21,8 +21,8 @@ export default function CoursePriceBand({ course }: CoursePriceBandProps): React
   return (
     <section className="w-full py-8 sm:py-10 md:py-12 bg-[#fffef7]">
       <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
-        {/* Navy Ink Card: Single Dark Field on the Entire Page */}
-        <div className="w-full bg-[#0c1322] text-[#fffef7] p-8 sm:p-10 md:p-12 lg:p-14 border border-white/10 shadow-[0_24px_64px_-16px_rgba(0,0,0,0.4)]">
+        {/* Obsidian Neutral Dark Card — True Brand Palette (Zero Blue) */}
+        <div className="w-full bg-[#0a0a0a] text-[#fffef7] p-8 sm:p-10 md:p-12 lg:p-14 border border-white/15 shadow-[0_24px_64px_-16px_rgba(0,0,0,0.7)]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* 4 Core Facts: 7 Columns */}

@@ -27,12 +27,6 @@ export default function CourseTuitionFaqSection({
         
         {/* Section Header */}
         <div className="flex flex-col items-start mb-10 sm:mb-14">
-          <div className="flex items-center gap-2 mb-3 select-none">
-            <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
-            <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-semibold">
-              07 // DETAILS & ADMISSIONS FAQ
-            </span>
-          </div>
           <h2 className="font-sans font-light text-3xl sm:text-4xl md:text-5xl text-black tracking-[-0.03em] leading-tight">
             Key Logistics & Answers.
           </h2>

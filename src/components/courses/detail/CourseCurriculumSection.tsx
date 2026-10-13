@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, CheckCircle2 } from "lucide-react";
 import type { CourseItem } from "@/data/courses";
 
 export interface CourseCurriculumSectionProps {
@@ -29,7 +29,6 @@ export default function CourseCurriculumSection({
   const rawPhase3 = course.courseStructure.slice(chunk1 + chunk2);
 
   const cleanModuleTitle = (raw: string): string => {
-    // Strip redundant long prefixes like "Module 01: Comprehensive "
     return raw
       .replace(/^Module\s+\d+:\s*/i, "")
       .replace(/^Assignment\s+\d+:\s*/i, "")
@@ -51,8 +50,8 @@ export default function CourseCurriculumSection({
     {
       id: "phase-2",
       phaseNumber: "02",
-      title: "Light Direction & Strobe Control",
-      description: "Managing contrast, natural directional light, artificial flash, and creative framing.",
+      title: "Light & Direction Control",
+      description: "Managing contrast, natural directional light, strobe flash, and framing balance.",
       modules: rawPhase2.map((item, idx) => ({
         number: `0${chunk1 + idx + 1}`,
         title: cleanModuleTitle(item),
@@ -62,7 +61,7 @@ export default function CourseCurriculumSection({
     {
       id: "phase-3",
       phaseNumber: "03",
-      title: "Field Projects & Portfolio Review",
+      title: "Fieldwork & Portfolio Review",
       description: "Real-world assignments, Lightroom post-processing, and 1-on-1 graduation critique.",
       modules: rawPhase3.map((item, idx) => ({
         number: idx + chunk1 + chunk2 + 1 < 10 ? `0${idx + chunk1 + chunk2 + 1}` : `${idx + chunk1 + chunk2 + 1}`,
@@ -90,30 +89,24 @@ export default function CourseCurriculumSection({
   };
 
   return (
-    <section id="curriculum" className="w-full py-16 sm:py-20 md:py-24 border-b border-[#e2e0d2] bg-[#fffef7]">
+    <section id="curriculum" className="w-full py-14 sm:py-16 md:py-20 border-b border-[#e2e0d2] bg-[#fffef7]">
       <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
         
-        {/* Eyebrow & Title (User requested preserving eyebrow numbers) */}
-        <div className="flex flex-col items-start mb-10 sm:mb-14">
-          <div className="flex items-center gap-2 mb-3 select-none">
-            <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
-            <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#888888] font-semibold">
-              05 // SYLLABUS & MODULES
-            </span>
-          </div>
+        {/* Section Header */}
+        <div className="flex flex-col items-start mb-8 sm:mb-10">
           <h2 className="font-sans font-light text-3xl sm:text-4xl md:text-5xl text-black tracking-[-0.03em] leading-tight">
-            Comprehensive Curriculum.
+            Curriculum & Weekly Modules.
           </h2>
           <p className="font-sans text-sm sm:text-base text-[#666666] mt-2 max-w-xl">
-            Divided into 3 progressive phases to take you from initial camera physics to gallery-grade execution.
+            Structured in 3 progressive phases to transition you from technical controls to finished photographic prints.
           </p>
         </div>
 
         {/* ============================================================ */}
-        {/* DESKTOP & TABLET VIEW (md and up): PHASE TABS + 2-COL MODULES */}
+        {/* DESKTOP & TABLET VIEW (md and up): PHASE TABS + MODULE CARDS */}
         {/* ============================================================ */}
-        <div className="hidden md:flex flex-col gap-10">
-          {/* Phase Tab Buttons */}
+        <div className="hidden md:flex flex-col gap-8">
+          {/* Phase Tab Selectors */}
           <div className="flex items-center gap-4 border-b border-[#e2e0d2] pb-px">
             {phases.map((phase, idx) => {
               const isActive = activeTab === idx;
@@ -122,13 +115,13 @@ export default function CourseCurriculumSection({
                   key={phase.id}
                   type="button"
                   onClick={() => setActiveTab(idx)}
-                  className={`font-mono text-xs uppercase tracking-[0.16em] pb-4 px-2 relative transition-all cursor-pointer ${
+                  className={`font-mono text-xs uppercase tracking-[0.16em] pb-4 px-3 relative transition-all cursor-pointer ${
                     isActive
                       ? "text-black font-semibold"
                       : "text-[#777777] hover:text-black font-medium"
                   }`}
                 >
-                  <span className="mr-2 text-[#999999]">PHASE {phase.phaseNumber}</span>
+                  <span className="mr-2 text-[#ca8a04]">PHASE {phase.phaseNumber}</span>
                   <span>{phase.title}</span>
                   {isActive && (
                     <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-black" />
@@ -138,26 +131,31 @@ export default function CourseCurriculumSection({
             })}
           </div>
 
-          {/* Active Phase Content: Description + 2-Column Module Grid */}
-          <div className="flex flex-col gap-8 bg-[#fdfcf7] border border-[#e8e6d9] p-8 sm:p-10">
-            <div className="max-w-2xl border-b border-[#e8e6d9] pb-6">
-              <span className="font-mono text-xs uppercase tracking-widest text-[#888888] block mb-1">
-                Phase {phases[activeTab].phaseNumber} Focus
+          {/* Active Phase Content: Focus Summary + 2-Column Module Cards */}
+          <div className="flex flex-col gap-6 bg-[#fbf9f0] border border-[#e8e6d9] p-6 sm:p-8 lg:p-10">
+            <div className="max-w-2xl border-b border-[#e8e6d9] pb-4 flex items-baseline justify-between gap-4">
+              <div>
+                <span className="font-mono text-xs uppercase tracking-widest text-[#888888] block mb-1">
+                  Phase {phases[activeTab].phaseNumber} Core Objectives
+                </span>
+                <p className="font-sans text-sm sm:text-base text-[#333333] leading-relaxed">
+                  {phases[activeTab].description}
+                </p>
+              </div>
+              <span className="font-mono text-xs text-[#ca8a04] shrink-0 font-medium">
+                {phases[activeTab].modules.length} Modules
               </span>
-              <p className="font-sans text-base text-[#444444] leading-relaxed">
-                {phases[activeTab].description}
-              </p>
             </div>
 
-            {/* 2-Column Modules List */}
-            <div className="grid grid-cols-2 gap-x-12 gap-y-6">
+            {/* 2-Column Modules Grid */}
+            <div className="grid grid-cols-2 gap-x-10 gap-y-4">
               {phases[activeTab].modules.map((mod) => (
-                <div key={mod.number} className="flex items-start gap-4 pb-4 border-b border-[#f0eee3]">
-                  <span className="font-mono text-xs text-[#888888] font-semibold pt-0.5">
+                <div key={mod.number} className="flex items-start gap-3.5 pb-3.5 border-b border-[#eae8dc]">
+                  <span className="font-mono text-xs text-black font-semibold pt-0.5 bg-[#f2efe4] px-2 py-0.5 rounded-sm">
                     {mod.number}
                   </span>
-                  <div className="flex flex-col gap-1">
-                    <h4 className="font-sans font-normal text-base text-black">
+                  <div className="flex flex-col gap-0.5">
+                    <h4 className="font-sans font-normal text-sm sm:text-base text-black">
                       {mod.title}
                     </h4>
                     <span className="font-sans text-xs text-[#777777]">
@@ -171,13 +169,13 @@ export default function CourseCurriculumSection({
         </div>
 
         {/* ============================================================ */}
-        {/* MOBILE VIEW (< md): ACCORDION                                */}
+        {/* MOBILE VIEW (< md): CLEAN PHASE ACCORDIONS                  */}
         {/* ============================================================ */}
         <div className="md:hidden flex flex-col divide-y divide-[#e2e0d2] border-y border-[#e2e0d2]">
           {phases.map((phase, idx) => {
             const isOpen = Boolean(openPhasesMobile[idx]);
             return (
-              <div key={phase.id} className="py-5">
+              <div key={phase.id} className="py-4">
                 <button
                   type="button"
                   onClick={() => toggleMobilePhase(idx)}
@@ -185,10 +183,10 @@ export default function CourseCurriculumSection({
                   aria-expanded={isOpen}
                 >
                   <div className="flex flex-col pr-4">
-                    <span className="font-mono text-[11px] uppercase tracking-wider text-[#888888]">
+                    <span className="font-mono text-[11px] uppercase tracking-wider text-[#ca8a04]">
                       Phase {phase.phaseNumber}
                     </span>
-                    <span className="font-sans font-light text-lg text-black">
+                    <span className="font-sans font-light text-base sm:text-lg text-black">
                       {phase.title}
                     </span>
                   </div>
@@ -200,14 +198,14 @@ export default function CourseCurriculumSection({
                 </button>
 
                 {isOpen && (
-                  <div className="pt-4 flex flex-col gap-4">
-                    <p className="font-sans text-xs text-[#666666] leading-relaxed pb-3 border-b border-[#ece9dc]">
+                  <div className="pt-3 flex flex-col gap-3">
+                    <p className="font-sans text-xs text-[#666666] leading-relaxed pb-2.5 border-b border-[#ece9dc]">
                       {phase.description}
                     </p>
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-2.5">
                       {phase.modules.map((mod) => (
-                        <div key={mod.number} className="flex items-start gap-3 text-xs">
-                          <span className="font-mono text-[#888888] font-medium shrink-0 pt-0.5">
+                        <div key={mod.number} className="flex items-start gap-2.5 text-xs pb-2 border-b border-[#f2efe4] last:border-none">
+                          <span className="font-mono text-black font-semibold shrink-0 pt-0.5 bg-[#f2efe4] px-1.5 py-0.5 rounded-xs text-[10px]">
                             {mod.number}
                           </span>
                           <span className="font-sans text-black leading-snug">

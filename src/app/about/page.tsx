@@ -2,15 +2,17 @@ import type { Metadata } from "next";
 import React from "react";
 import AboutHero from "@/components/about/AboutHero";
 import AboutWhatWeDo from "@/components/about/AboutWhatWeDo";
-import AboutLeadership from "@/components/about/AboutLeadership";
 import AboutStudioGallery from "@/components/about/AboutStudioGallery";
+import AboutLeadership from "@/components/about/AboutLeadership";
+import AboutHowItWorks from "@/components/about/AboutHowItWorks";
+import AboutProspectus from "@/components/about/AboutProspectus";
 import AboutCta from "@/components/about/AboutCta";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "About Us | IIP Nepal — Indian Institute of Photography",
   description:
-    "Learn about IIP Nepal, the photography academy in Kathmandu and official regional partner of the Indian Institute of Photography, led by Additya Shrestha. Practical camera technique, guided assignments, and 1-on-1 mentorship at Jyoti Bhawan.",
+    "Learn about IIP Nepal, Kathmandu's photography academy and regional partner of the Indian Institute of Photography, led by Additya Shrestha at Jyoti Bhawan, Kanti Path.",
   openGraph: {
     title: "About Us | IIP Nepal — Indian Institute of Photography",
     description:
@@ -31,19 +33,25 @@ export default function AboutPage(): React.JSX.Element {
       {/* 1. OUR STORY: PHOTOGRAPHY EDUCATION IN KATHMANDU */}
       <AboutHero />
 
-      {/* 2. HOW WE TEACH: 3 VISUAL BLOCKS & DISCIPLINES */}
+      {/* 2. HOW WE TEACH: 3 EDUCATIONAL PILLARS */}
       <AboutWhatWeDo />
 
-      {/* 3. MEET THE MENTOR: ADDITYA SHRESTHA */}
-      <AboutLeadership />
-
-      {/* 4. LEARNING ENVIRONMENT: AUTHENTIC STUDIOS, LIGHTING LABS & FIELDWORK */}
+      {/* 3. LEARNING ENVIRONMENT: AUTHENTIC STUDIOS, LIGHTING LABS & FIELDWORK */}
       <AboutStudioGallery />
 
-      {/* 5. SEE THE WORK & EXPLORE COURSES: ENROLLMENT CTA */}
+      {/* 4. MEET THE MENTOR: ADDITYA SHRESTHA */}
+      <AboutLeadership />
+
+      {/* 5. ADMISSIONS JOURNEY: 3 SIMPLE STEPS TO JOIN */}
+      <AboutHowItWorks />
+
+      {/* 6. SYLLABI & ACADEMIC AFFILIATION: OFFICIAL COURSE BREAKDOWNS */}
+      <AboutProspectus />
+
+      {/* 7. ADMISSIONS & ENROLLMENT ACTION */}
       <AboutCta />
 
-      {/* 6. ARCHITECTURAL DARK FOOTER */}
+      {/* 8. ARCHITECTURAL DARK FOOTER */}
       <Footer />
     </main>
   );

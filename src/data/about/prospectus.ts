@@ -16,43 +16,43 @@ export interface AboutProspectusData {
 }
 
 export const aboutProspectusData: AboutProspectusData = {
-  eyebrow: "Course Syllabi & Academic Affiliation",
+  eyebrow: "Curriculum & Academic Affiliation",
   headingLines: [
-    "Official course syllabi and",
-    "IIP academic affiliation.",
+    "Course syllabi and institutional",
+    "academic affiliation.",
   ],
   subheading:
-    "Review comprehensive Kathmandu curriculum breakdowns and schedules, or access the Indian Institute of Photography academic prospectus for degree programs.",
+    "Review curriculum breakdowns for Kathmandu certificate tracks, or access the Indian Institute of Photography degree syllabus.",
   items: [
     {
       id: "kathmandu-syllabi",
       code: "SYLLABI",
-      title: "Kathmandu Photography Course Syllabi",
+      title: "Kathmandu Course Syllabi",
       level: "5 Certificate Tracks",
       description:
-        "Complete curriculum outlines, equipment prerequisites, weekly workloads, and studio shoot schedules for all 5 programs.",
+        "Complete curriculum outlines, camera prerequisites, and studio schedules across all 5 certificate tracks.",
       pdfUrl: "/courses",
-      actionLabel: "View Course Syllabi",
+      actionLabel: "View Course Tracks",
     },
     {
       id: "admissions-dossier",
-      code: "ADMISSIONS",
-      title: "Admissions Consultation & Studio Visit",
-      level: "Kathmandu Centre",
+      code: "CAMPUS DESK",
+      title: "Studio Tour & Consultation",
+      level: "Jyoti Bhawan, Kanti Path",
       description:
-        "Speak directly with faculty regarding gear advice, rolling monthly intakes, or schedule a tour of our studio facilities at Jyoti Bhawan.",
+        "Schedule a tour of our lighting lab and darkroom at Jyoti Bhawan. Meet mentors for gear advice and schedule options.",
       pdfUrl: "/contact",
-      actionLabel: "Contact Admissions Desk",
+      actionLabel: "Admissions Consultation",
     },
     {
       id: "iip-degree-affiliation",
-      code: "INTERNATIONAL AF.",
-      title: "Parent Institute Academic Prospectus",
-      level: "International Degree Programs (IIP India)",
+      code: "AFFILIATION",
+      title: "Parent Institute Prospectus",
+      level: "IIP India Academic Prospectus",
       description:
-        "Official curriculum guide for multi-year BFA and MFA university degree programs conducted through parent institute Indian Institute of Photography. Local Nepal students take practical certificate tracks at our Kathmandu centre.",
+        "Academic curriculum overview and degree affiliation guide through parent institute Indian Institute of Photography.",
       pdfUrl: "https://www.iipacademy.edu.in/images/IIPCCA%20PROSPECTUS.pdf",
-      actionLabel: "Parent Institute Prospectus",
+      actionLabel: "Parent Prospectus",
     },
   ],
 };

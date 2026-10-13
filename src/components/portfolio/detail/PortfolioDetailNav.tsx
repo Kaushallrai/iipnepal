@@ -30,7 +30,7 @@ export default function PortfolioDetailNav({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-8 flex flex-col gap-3">
               <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#888888] font-semibold">
-                06 // PHOTOGRAPHER PROFILE
+                FELLOWSHIP PROFILE
               </span>
               <h3 className="font-sans font-light text-2xl sm:text-3xl text-black">
                 {currentItem.photographer}

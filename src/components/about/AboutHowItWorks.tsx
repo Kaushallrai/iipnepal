@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import LineReveal from "@/components/animations/LineReveal";
-import ScrollReveal from "@/components/animations/ScrollReveal";
 import { aboutAdmissionsData, type AdmissionsStep } from "@/data/about/admissions";
 
 export type { AdmissionsStep };
@@ -13,12 +12,12 @@ export const ADMISSIONS_STEPS: AdmissionsStep[] = aboutAdmissionsData.steps;
 
 export default function AboutHowItWorks(): React.JSX.Element {
   return (
-    <section className="section_about-how w-full bg-[#fffef7] text-black py-16 sm:py-20 md:py-24 lg:py-28 border-b border-[#e2e0d2]">
+    <section className="section_about-how w-full bg-[#fffef7] text-black py-20 sm:py-24 md:py-28 lg:py-32 border-b border-[#e2e0d2]">
       <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
         {/* ================================================================= */}
         {/* EDITORIAL HEADER                                                  */}
         {/* ================================================================= */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 sm:mb-12 pb-6 sm:pb-8 border-b border-[#e2e0d2]">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 sm:mb-12 lg:mb-14 pb-6 sm:pb-8 border-b border-[#e2e0d2]">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-3 sm:mb-4 select-none">
               <span className="w-2 h-2 rounded-full bg-[#ffd001] shadow-[0_0_8px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
@@ -43,42 +42,37 @@ export default function AboutHowItWorks(): React.JSX.Element {
         </div>
 
         {/* ================================================================= */}
-        {/* PROCESS ROWS (CREATIVE GIANTS PLAYBOOK STYLE)                     */}
+        {/* PROCESS ROWS (EDITORIAL ARCHITECTURAL PLAYBOOK)                   */}
         {/* ================================================================= */}
-        <ScrollReveal variant="stagger-children" stagger={0.06} start="top 85%">
-          <div className="divide-y divide-[#e2e0d2]">
-            {ADMISSIONS_STEPS.map((step) => (
-              <div
-                key={step.number}
-                className="scroll-item py-5 sm:py-6 md:py-8 grid grid-cols-1 md:grid-cols-12 gap-2 sm:gap-3 md:gap-8 items-start group hover:bg-[#faf9f3] transition-colors px-2 sm:px-3 -mx-2 sm:-mx-3"
-              >
-                {/* Step Number + Title Group on mobile, split on desktop */}
-                <div className="flex items-baseline gap-3 md:col-span-2 md:block">
-                  <span className="font-mono text-sm sm:text-base md:font-sans md:font-light md:text-3xl lg:text-4xl text-[#ca8a04] md:text-black/40 md:group-hover:text-black transition-colors shrink-0">
-                    {step.number}
-                  </span>
-                  <h3 className="md:hidden font-sans font-normal text-base sm:text-lg text-black tracking-tight">
-                    {step.title}
-                  </h3>
-                </div>
-
-                {/* Desktop / Tablet Title */}
-                <div className="hidden md:block md:col-span-4 lg:col-span-4">
-                  <h3 className="font-sans font-normal text-base lg:text-xl text-black tracking-[-0.02em]">
-                    {step.title}
-                  </h3>
-                </div>
-
-                {/* Description */}
-                <div className="md:col-span-6 lg:col-span-6 pl-7 sm:pl-8 md:pl-0">
-                  <p className="font-sans text-[13px] sm:text-sm md:text-[15px] text-[#555555] leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+        <div className="divide-y divide-[#e2e0d2]">
+          {ADMISSIONS_STEPS.map((step) => (
+            <div
+              key={step.number}
+              className="py-6 sm:py-7 md:py-8 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 items-start group hover:bg-[#faf9f3] transition-colors px-3 sm:px-4 -mx-3 sm:-mx-4"
+            >
+              {/* Step Number */}
+              <div className="md:col-span-2 flex items-center gap-2.5 md:block">
+                <span className="font-mono text-xs sm:text-sm font-bold tracking-[0.16em] text-[#ca8a04]">
+                  [ {step.number} ]
+                </span>
               </div>
-            ))}
-          </div>
-        </ScrollReveal>
+
+              {/* Step Title */}
+              <div className="md:col-span-4">
+                <h3 className="font-sans font-normal text-base sm:text-lg lg:text-xl text-black tracking-[-0.02em]">
+                  {step.title}
+                </h3>
+              </div>
+
+              {/* Step Description */}
+              <div className="md:col-span-6">
+                <p className="font-sans text-[13px] sm:text-sm text-[#555555] leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

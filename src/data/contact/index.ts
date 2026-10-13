@@ -2,7 +2,7 @@ export interface ContactChannel {
   label: string;
   value: string;
   href: string;
-  isExternal?: boolean;
+  caption?: string;
 }
 
 export interface ContactPageData {
@@ -12,11 +12,12 @@ export interface ContactPageData {
   };
   eyebrow: string;
   headingLines: string[];
+  subheading: string;
   channels: {
     phone: ContactChannel;
     whatsapp: ContactChannel;
     email: ContactChannel;
-    location: ContactChannel;
+    hours: ContactChannel;
   };
   map: {
     locationName: string;
@@ -25,7 +26,7 @@ export interface ContactPageData {
   };
   form: {
     title: string;
-    studioBadge: string;
+    subtitle: string;
     courseOptions: {
       id: string;
       number: string;
@@ -38,47 +39,50 @@ export interface ContactPageData {
 
 export const contactData: ContactPageData = {
   meta: {
-    title: "Contact & Admissions | IIP Nepal — Indian Institute of Photography",
+    title: "Contact | IIP Nepal — Indian Institute of Photography",
     description:
-      "Contact IIP Nepal in Kathmandu. Reach our admissions director, schedule a studio visit at Jyoti Bhawan, Kanti Path, or submit a photography course enquiry.",
+      "Reach out to IIP Nepal in Kathmandu. Admissions consultations, studio visits at Jyoti Bhawan, Kanti Path, or submit an inquiry for photography programs.",
   },
-  eyebrow: "Get in touch",
+  eyebrow: "Contact // Kathmandu",
   headingLines: [
-    "Contact us directly or submit a form enquiry",
-    "and a member of the team will be in touch.",
+    "Get in touch.",
   ],
+  subheading:
+    "Have questions about our programs or admissions? Reach out directly or send us an enquiry.",
   channels: {
     phone: {
-      label: "Phone Number",
+      label: "Phone",
       value: "+977 9802364760",
       href: "tel:+9779802364760",
+      caption: "Admissions Desk",
     },
     whatsapp: {
-      label: "WhatsApp Admissions",
-      value: "+977 9802364760",
+      label: "WhatsApp",
+      value: "Direct Chat",
       href: "https://wa.me/9779802364760?text=Hello%20IIP%20Nepal%2C%20I%20would%20like%20to%20inquire%20about%20photography%20courses.",
-      isExternal: true,
+      caption: "Fast Response",
     },
     email: {
-      label: "Email Address",
+      label: "Email",
       value: "info@iipnepal.com",
       href: "mailto:info@iipnepal.com",
+      caption: "Inquiries & Portfolios",
     },
-    location: {
-      label: "Studio Location",
-      value: "Jyoti Bhawan, Kanti Path, Kathmandu, Bagmati 44600",
+    hours: {
+      label: "Studio Hours",
+      value: "10:00 – 17:00",
       href: "https://maps.app.goo.gl/792XAZpWFHjY1zWt6",
-      isExternal: true,
+      caption: "Sunday – Friday",
     },
   },
   map: {
-    locationName: "IIP NEPAL · JYOTI BHAWAN",
+    locationName: "IIP Nepal · Jyoti Bhawan",
     address: "Jyoti Bhawan, Kanti Path, Kathmandu",
     mapsUrl: "https://maps.app.goo.gl/792XAZpWFHjY1zWt6",
   },
   form: {
     title: "Admissions Enquiry",
-    studioBadge: "Kathmandu Studio",
+    subtitle: "Fill in the details below and our team will get back to you within 24 hours.",
     courseOptions: [
       {
         id: "mobile-photography-course",

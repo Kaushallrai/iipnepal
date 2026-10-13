@@ -3,8 +3,13 @@ import { notFound } from "next/navigation";
 import React from "react";
 import { getAllCourses, getCourseBySlug, getRelatedCourses } from "@/data/courses";
 import CourseDetailHero from "@/components/courses/detail/CourseDetailHero";
-import CourseAccordionDossier from "@/components/courses/detail/CourseAccordionDossier";
+import CourseOutcomesSection from "@/components/courses/detail/CourseOutcomesSection";
+import CourseCurriculumSection from "@/components/courses/detail/CourseCurriculumSection";
+import CourseHowItWorksSection from "@/components/courses/detail/CourseHowItWorksSection";
+import CourseEssentialsSection from "@/components/courses/detail/CourseEssentialsSection";
+import CourseTuitionSection from "@/components/courses/detail/CourseTuitionSection";
 import CourseStudentWorkSection from "@/components/courses/detail/CourseStudentWorkSection";
+import CourseFaqSection from "@/components/courses/detail/CourseFaqSection";
 import CourseRelatedSection from "@/components/courses/detail/CourseRelatedSection";
 import Footer from "@/components/layout/Footer";
 
@@ -33,7 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${course.title} | IIP Nepal — Indian Institute of Photography`,
+    title: `${course.title} | IIP Nepal - Indian Institute of Photography`,
     description: `${course.description} Duration: ${course.duration}. Mentored by working photographers in Kathmandu at IIP Nepal.`,
     openGraph: {
       title: `${course.title} | IIP Nepal`,
@@ -69,16 +74,31 @@ export default async function CourseDetailPage({ params }: PageProps): Promise<R
         fontFamily: "'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       }}
     >
-      {/* 1. HERO — Title, key program specifications, direct tuition & enrollment CTA, image on top & specs below */}
+      {/* 1. HERO — Side-by-side title, key specs, tuition & enrollment CTA with photographic frame */}
       <CourseDetailHero course={course} />
 
-      {/* 2. COURSE DOSSIER ACCORDION — Concise, zero-redundancy 5-drawer accordion for syllabus, outcomes, gear, tuition & FAQ */}
-      <CourseAccordionDossier course={course} />
+      {/* 2. PRACTICAL COMPETENCIES — Skills breakdown, institutional advantage & certification */}
+      <CourseOutcomesSection course={course} />
 
-      {/* 3. STUDENT WORK — Visual proof from field workshops */}
+      {/* 3. SYLLABUS ARCHITECTURE — Open 3-phase progressive roadmap (no accordions) */}
+      <CourseCurriculumSection course={course} />
+
+      {/* 4. METHODOLOGY & PEDAGOGY — Mentorship cycle & critique sample preview */}
+      <CourseHowItWorksSection course={course} />
+
+      {/* 5. GEAR & READINESS — Equipment specifications & prerequisites */}
+      <CourseEssentialsSection course={course} />
+
+      {/* 6. TUITION & SETTLEMENT — Navy Ink featured pricing card, payment methods & guarantee */}
+      <CourseTuitionSection course={course} />
+
+      {/* 7. STUDENT FIELDWORK — Selected student work gallery */}
       <CourseStudentWorkSection />
 
-      {/* 4. PROGRESSION TRACKS — Recommended pathway courses */}
+      {/* 8. COMMON INQUIRIES — Focused FAQ accordion */}
+      <CourseFaqSection course={course} />
+
+      {/* 9. PROGRESSION PATHWAYS — Follow-on tracks */}
       <CourseRelatedSection
         relatedCourses={relatedCourses}
         currentCourseSlug={course.slug}

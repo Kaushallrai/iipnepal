@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ArrowLeft, ArrowRight } from "lucide-react";
 import type { PortfolioItem } from "@/data/portfolio";
@@ -17,17 +16,16 @@ export default function PortfolioDetailNav({
   currentItem,
   nextItem,
   prevItem,
-  relatedItems,
 }: PortfolioDetailNavProps): React.JSX.Element {
   return (
-    <section className="w-full py-16 sm:py-20 md:py-24 bg-[#fffef7] border-b border-[#e2e0d2]">
-      <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex flex-col gap-14 sm:gap-18">
+    <section className="w-full py-16 sm:py-20 bg-[#fffef7] border-b border-[#e2e0d2]">
+      <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex flex-col gap-12 sm:gap-16">
         
         {/* ============================================================ */}
-        {/* 6. PHOTOGRAPHER BLOCK: Bio Card & Fellowship Profile          */}
+        {/* PHOTOGRAPHER BLOCK: Fellowship Profile (Open Editorial, No Cards) */}
         {/* ============================================================ */}
-        <div className="bg-[#fbf9f0] border border-[#e8e6d9] p-8 sm:p-10 lg:p-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="pb-4">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
             <div className="lg:col-span-8 flex flex-col gap-3">
               <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#888888] font-semibold">
                 FELLOWSHIP PROFILE
@@ -39,12 +37,12 @@ export default function PortfolioDetailNav({
                 {currentItem.photographerBio ||
                   `${currentItem.photographer} is an alumnus of IIP Nepal specializing in documentary and street photography across Nepal.`}
               </p>
-              <div className="font-mono text-xs text-[#777777] uppercase tracking-wider pt-2">
+              <div className="font-mono text-xs text-[#777777] uppercase tracking-wider pt-1">
                 Class of {currentItem.year} • {currentItem.location}
               </div>
             </div>
 
-            <div className="lg:col-span-4 flex lg:justify-end items-center">
+            <div className="lg:col-span-4 flex lg:justify-end items-center pt-2 lg:pt-0">
               <Link
                 href="/portfolio"
                 className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] py-3 px-6 rounded-full border border-black bg-black text-[#fffef7] hover:bg-[#ffd001] hover:text-black transition-colors"
@@ -59,7 +57,7 @@ export default function PortfolioDetailNav({
         {/* ============================================================ */}
         {/* ARCHIVAL TRAVERSAL: Previous & Next Project Navigation       */}
         {/* ============================================================ */}
-        <div className="border-t border-[#e2e0d2] pt-10 sm:pt-14">
+        <div className="border-t border-[#e2e0d2] pt-8 sm:pt-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-between">
             {/* Previous Project Link */}
             {prevItem ? (

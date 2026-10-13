@@ -9,6 +9,7 @@ import {
   getRelatedPortfolioItems,
 } from "@/data/portfolio";
 import PortfolioDetailBento from "@/components/portfolio/detail/PortfolioDetailBento";
+import PortfolioProjectDetails from "@/components/portfolio/detail/PortfolioProjectDetails";
 import PortfolioCourseBanner from "@/components/portfolio/detail/PortfolioCourseBanner";
 import PortfolioDetailNav from "@/components/portfolio/detail/PortfolioDetailNav";
 import Footer from "@/components/layout/Footer";
@@ -76,10 +77,13 @@ export default async function PortfolioDetailPage({ params }: PageProps): Promis
         fontFamily: "'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       }}
     >
-      {/* 1. EDITORIAL BENTO GRID — 4 Multi-Picture Plates + Camera Specs, Student Statement, Mentor Critique & Fieldwork */}
+      {/* 1. EXHIBITION PHOTO BENTO GRID (8 Plates, Pure Images, Minimal Short Captions) */}
       <PortfolioDetailBento item={item} />
 
-      {/* 4. ACADEMIC PROVENANCE & COURSE BRIDGE */}
+      {/* 2. DEDICATED PROJECT DETAILS & CURATORIAL RECORD (Under the Bento Grid) */}
+      <PortfolioProjectDetails item={item} />
+
+      {/* 3. ACADEMIC PROVENANCE & COURSE BRIDGE */}
       <PortfolioCourseBanner item={item} />
 
       {/* 5. ARCHIVAL TRAVERSAL & MORE EXHIBITIONS */}

@@ -50,7 +50,7 @@ export default function PortfolioDetailGallery({
 
   const photoList = fallbackGallery.slice(0, 8).map((url, idx) => ({
     url,
-    caption: item.gallery[idx % item.gallery.length]?.caption || `Exhibition Frame 0${idx + 1} — ${item.title}`,
+    caption: item.gallery[idx % item.gallery.length]?.caption || `Exhibition Frame 0${idx + 1} // ${item.title}`,
     aspect: idx % 3 === 0 ? "wide" : idx % 2 === 0 ? "portrait" : "standard",
   }));
 

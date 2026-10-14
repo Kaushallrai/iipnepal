@@ -5,8 +5,6 @@ import { getAllCourses, getCourseBySlug, getRelatedCourses } from "@/data/course
 import CourseDetailHero from "@/components/courses/detail/CourseDetailHero";
 import CourseOutcomesSection from "@/components/courses/detail/CourseOutcomesSection";
 import CourseCurriculumSection from "@/components/courses/detail/CourseCurriculumSection";
-import CourseHowItWorksSection from "@/components/courses/detail/CourseHowItWorksSection";
-import CourseEssentialsSection from "@/components/courses/detail/CourseEssentialsSection";
 import CourseTuitionSection from "@/components/courses/detail/CourseTuitionSection";
 import CourseStudentWorkSection from "@/components/courses/detail/CourseStudentWorkSection";
 import CourseFaqSection from "@/components/courses/detail/CourseFaqSection";
@@ -83,22 +81,16 @@ export default async function CourseDetailPage({ params }: PageProps): Promise<R
       {/* 3. SYLLABUS ARCHITECTURE — Open 3-phase progressive roadmap (no accordions) */}
       <CourseCurriculumSection course={course} />
 
-      {/* 4. METHODOLOGY & PEDAGOGY — Mentorship cycle & critique sample preview */}
-      <CourseHowItWorksSection course={course} />
-
-      {/* 5. GEAR & READINESS — Equipment specifications & prerequisites */}
-      <CourseEssentialsSection course={course} />
-
-      {/* 6. TUITION & SETTLEMENT — Navy Ink featured pricing card, payment methods & guarantee */}
+      {/* 4. TUITION & SETTLEMENT — Navy Ink featured pricing card, payment methods & guarantee */}
       <CourseTuitionSection course={course} />
 
-      {/* 7. STUDENT FIELDWORK — Selected student work gallery */}
+      {/* 5. STUDENT FIELDWORK — Selected student work gallery */}
       <CourseStudentWorkSection />
 
-      {/* 8. COMMON INQUIRIES — Focused FAQ accordion */}
+      {/* 6. COMMON INQUIRIES — Focused FAQ accordion */}
       <CourseFaqSection course={course} />
 
-      {/* 9. PROGRESSION PATHWAYS — Follow-on tracks */}
+      {/* 7. PROGRESSION PATHWAYS — Follow-on tracks */}
       <CourseRelatedSection
         relatedCourses={relatedCourses}
         currentCourseSlug={course.slug}

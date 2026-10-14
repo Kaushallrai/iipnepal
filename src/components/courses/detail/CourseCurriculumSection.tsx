@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import { Plus, Minus } from "lucide-react";
 import type { CourseItem } from "@/data/courses";
 
 export interface CourseCurriculumSectionProps {
@@ -53,6 +54,16 @@ export default function CourseCurriculumSection({
     },
   ];
 
+  // Accordion state for mobile/small tablet: all phases closed by default
+  const [openPhases, setOpenPhases] = useState<Record<number, boolean>>({});
+
+  const togglePhase = (idx: number) => {
+    setOpenPhases((prev) => ({
+      ...prev,
+      [idx]: !prev[idx],
+    }));
+  };
+
   return (
     <section id="syllabus" className="w-full py-16 sm:py-20 md:py-24 bg-[#fffef7]">
       <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
@@ -67,48 +78,86 @@ export default function CourseCurriculumSection({
           </span>
         </div>
 
-        {/* 3-Column Clean Architectural Ledger with Vertical Dividers */}
-        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#e2e0d2] py-4">
-          {phases.map((phase, idx) => (
-            <div
-              key={phase.number}
-              className={`flex flex-col ${
-                idx === 0
-                  ? "md:pr-8 lg:pr-12"
-                  : idx === 1
-                  ? "py-8 md:py-0 md:px-8 lg:px-12"
-                  : "pt-8 md:pt-0 md:pl-8 lg:pl-12"
-              }`}
-            >
-              {/* Phase Header */}
-              <div className="flex items-center justify-between pb-3 border-b border-[#e2e0d2] mb-4">
-                <span className="font-mono text-xs uppercase tracking-[0.16em] text-[#ca8a04] font-semibold">
-                  Phase {phase.number}
-                </span>
-                <span className="font-mono text-[11px] text-[#888888]">
-                  {phase.modules.length} Lessons
-                </span>
-              </div>
+        {/* Responsive Layout: Collapsible Accordion on Mobile/Small Tablet, 3-Column Ledger on Desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#e2e0d2] py-2 md:py-4">
+          {phases.map((phase, idx) => {
+            const isOpen = !!openPhases[idx];
+            return (
+              <div
+                key={phase.number}
+                className={`flex flex-col ${
+                  idx === 0
+                    ? "pb-5 md:pb-0 md:pr-8 lg:pr-12"
+                    : idx === 1
+                    ? "py-5 md:py-0 md:px-8 lg:px-12"
+                    : "pt-5 md:pt-0 md:pl-8 lg:pl-12"
+                }`}
+              >
+                {/* Mobile/Small Tablet Accordion Trigger (< md) */}
+                <button
+                  type="button"
+                  onClick={() => togglePhase(idx)}
+                  className="w-full flex items-center justify-between text-left py-1 md:hidden group cursor-pointer focus:outline-none"
+                  aria-expanded={isOpen}
+                  aria-label={`Toggle Phase ${phase.number}: ${phase.title}`}
+                >
+                  <div className="flex flex-col gap-1 pr-4">
+                    <div className="flex items-center gap-2.5">
+                      <span className="font-mono text-xs uppercase tracking-[0.16em] text-[#ca8a04] font-semibold">
+                        Phase {phase.number}
+                      </span>
+                      <span className="font-mono text-[11px] text-[#888888]">
+                        • {phase.modules.length} Lessons
+                      </span>
+                    </div>
+                    <h3 className="font-sans font-light text-lg sm:text-xl text-black tracking-[-0.02em] group-hover:text-[#ca8a04] transition-colors">
+                      {phase.title}
+                    </h3>
+                  </div>
 
-              <h3 className="font-sans font-light text-xl sm:text-2xl text-black tracking-[-0.02em] mb-4">
-                {phase.title}
-              </h3>
+                  <div className="w-8 h-8 rounded-full border border-[#d8d6c8] flex items-center justify-center shrink-0 group-hover:border-black transition-colors">
+                    {isOpen ? (
+                      <Minus className="w-4 h-4 text-black" />
+                    ) : (
+                      <Plus className="w-4 h-4 text-black" />
+                    )}
+                  </div>
+                </button>
 
-              {/* Module List — Scannable Typographic Ledger */}
-              <div className="flex flex-col divide-y divide-[#eae8dc]">
-                {phase.modules.map((mod) => (
-                  <div key={mod.number} className="py-3 flex items-start gap-3">
-                    <span className="font-mono text-xs text-[#ca8a04] font-semibold shrink-0 pt-0.5">
-                      {mod.number}
+                {/* Desktop/Tablet Static Phase Header (>= md) */}
+                <div className="hidden md:flex flex-col mb-4">
+                  <div className="flex items-center justify-between pb-3 border-b border-[#e2e0d2] mb-4">
+                    <span className="font-mono text-xs uppercase tracking-[0.16em] text-[#ca8a04] font-semibold">
+                      Phase {phase.number}
                     </span>
-                    <span className="font-sans text-xs sm:text-sm text-black leading-snug">
-                      {mod.title}
+                    <span className="font-mono text-[11px] text-[#888888]">
+                      {phase.modules.length} Lessons
                     </span>
                   </div>
-                ))}
+
+                  <h3 className="font-sans font-light text-xl sm:text-2xl text-black tracking-[-0.02em]">
+                    {phase.title}
+                  </h3>
+                </div>
+
+                {/* Module List — Collapsible on mobile/small tablet, permanently open on desktop (md:) */}
+                <div className={`${isOpen ? "block pt-4 md:pt-0" : "hidden"} md:block`}>
+                  <div className="flex flex-col divide-y divide-[#eae8dc]">
+                    {phase.modules.map((mod) => (
+                      <div key={mod.number} className="py-3 flex items-start gap-3">
+                        <span className="font-mono text-xs text-[#ca8a04] font-semibold shrink-0 pt-0.5">
+                          {mod.number}
+                        </span>
+                        <span className="font-sans text-xs sm:text-sm text-black leading-snug">
+                          {mod.title}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>

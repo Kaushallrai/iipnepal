@@ -29,12 +29,12 @@ export default function CourseStudentWorkSection(): React.JSX.Element {
           </Link>
         </div>
 
-        {/* Snap Row of 4 Square Photos Linked to Stories */}
-        <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 sm:gap-8 scrollbar-none pb-4 -mx-6 px-6 sm:-mx-8 sm:px-8 md:-mx-12 md:px-12 lg:-mx-0 lg:px-0 lg:grid lg:grid-cols-4">
+        {/* Responsive Grid of 4 Square Photos with Side Padding */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-8">
           {featuredWorks.map((work) => (
             <div
               key={work.id}
-              className="w-[78vw] sm:w-[320px] lg:w-auto shrink-0 snap-start flex flex-col group"
+              className="w-full flex flex-col group"
             >
               <Link
                 href={`/portfolio/${work.slug}`}
@@ -45,7 +45,7 @@ export default function CourseStudentWorkSection(): React.JSX.Element {
                   src={work.image || work.coverImage}
                   alt={`${work.title} by ${work.photographer}`}
                   fill
-                  sizes="(max-width: 640px) 78vw, (max-width: 1024px) 320px, 25vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover object-center grayscale contrast-110 group-hover:scale-104 group-hover:grayscale-0 transition-all duration-500"
                 />
               </Link>

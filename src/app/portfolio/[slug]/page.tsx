@@ -12,6 +12,7 @@ import PortfolioDetailBento from "@/components/portfolio/detail/PortfolioDetailB
 import PortfolioProjectDetails from "@/components/portfolio/detail/PortfolioProjectDetails";
 import PortfolioCourseBanner from "@/components/portfolio/detail/PortfolioCourseBanner";
 import PortfolioDetailNav from "@/components/portfolio/detail/PortfolioDetailNav";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 import Footer from "@/components/layout/Footer";
 
 interface PageProps {
@@ -81,18 +82,24 @@ export default async function PortfolioDetailPage({ params }: PageProps): Promis
       <PortfolioDetailBento item={item} />
 
       {/* 2. DEDICATED PROJECT DETAILS & CURATORIAL RECORD (Under the Bento Grid) */}
-      <PortfolioProjectDetails item={item} />
+      <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <PortfolioProjectDetails item={item} />
+      </ScrollReveal>
 
       {/* 3. ACADEMIC PROVENANCE & COURSE BRIDGE */}
-      <PortfolioCourseBanner item={item} />
+      <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <PortfolioCourseBanner item={item} />
+      </ScrollReveal>
 
       {/* 5. ARCHIVAL TRAVERSAL & MORE EXHIBITIONS */}
-      <PortfolioDetailNav
-        currentItem={item}
-        nextItem={nextItem}
-        prevItem={prevItem}
-        relatedItems={relatedItems}
-      />
+      <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <PortfolioDetailNav
+          currentItem={item}
+          nextItem={nextItem}
+          prevItem={prevItem}
+          relatedItems={relatedItems}
+        />
+      </ScrollReveal>
 
       {/* 6. ARCHITECTURAL FOOTER */}
       <Footer />

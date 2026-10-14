@@ -7,6 +7,7 @@ import AboutLeadership from "@/components/about/AboutLeadership";
 import AboutHowItWorks from "@/components/about/AboutHowItWorks";
 import AboutProspectus from "@/components/about/AboutProspectus";
 import AboutCta from "@/components/about/AboutCta";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
@@ -34,22 +35,34 @@ export default function AboutPage(): React.JSX.Element {
       <AboutHero />
 
       {/* 2. HOW WE TEACH: 3 EDUCATIONAL PILLARS */}
-      <AboutWhatWeDo />
+      <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <AboutWhatWeDo />
+      </ScrollReveal>
 
       {/* 3. LEARNING ENVIRONMENT: AUTHENTIC STUDIOS, LIGHTING LABS & FIELDWORK */}
-      <AboutStudioGallery />
+      <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <AboutStudioGallery />
+      </ScrollReveal>
 
       {/* 4. MEET THE MENTOR: ADDITYA SHRESTHA */}
-      <AboutLeadership />
+      <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <AboutLeadership />
+      </ScrollReveal>
 
       {/* 5. ADMISSIONS JOURNEY: 3 SIMPLE STEPS TO JOIN */}
-      <AboutHowItWorks />
+      <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <AboutHowItWorks />
+      </ScrollReveal>
 
       {/* 6. SYLLABI & ACADEMIC AFFILIATION: OFFICIAL COURSE BREAKDOWNS */}
-      <AboutProspectus />
+      <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <AboutProspectus />
+      </ScrollReveal>
 
       {/* 7. ADMISSIONS & ENROLLMENT ACTION */}
-      <AboutCta />
+      <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <AboutCta />
+      </ScrollReveal>
 
       {/* 8. ARCHITECTURAL DARK FOOTER */}
       <Footer />

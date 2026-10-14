@@ -9,6 +9,7 @@ import CourseTuitionSection from "@/components/courses/detail/CourseTuitionSecti
 import CourseStudentWorkSection from "@/components/courses/detail/CourseStudentWorkSection";
 import CourseFaqSection from "@/components/courses/detail/CourseFaqSection";
 import CourseRelatedSection from "@/components/courses/detail/CourseRelatedSection";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 import Footer from "@/components/layout/Footer";
 
 interface PageProps {
@@ -76,26 +77,38 @@ export default async function CourseDetailPage({ params }: PageProps): Promise<R
       <CourseDetailHero course={course} />
 
       {/* 2. PRACTICAL COMPETENCIES — Skills breakdown, institutional advantage & certification */}
-      <CourseOutcomesSection course={course} />
+      <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <CourseOutcomesSection course={course} />
+      </ScrollReveal>
 
       {/* 3. SYLLABUS ARCHITECTURE — Open 3-phase progressive roadmap (no accordions) */}
-      <CourseCurriculumSection course={course} />
+      <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <CourseCurriculumSection course={course} />
+      </ScrollReveal>
 
       {/* 4. TUITION & SETTLEMENT — Navy Ink featured pricing card, payment methods & guarantee */}
-      <CourseTuitionSection course={course} />
+      <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <CourseTuitionSection course={course} />
+      </ScrollReveal>
 
       {/* 5. STUDENT FIELDWORK — Selected student work gallery */}
-      <CourseStudentWorkSection />
+      <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <CourseStudentWorkSection />
+      </ScrollReveal>
 
       {/* 6. COMMON INQUIRIES — Focused FAQ accordion */}
-      <CourseFaqSection course={course} />
+      <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <CourseFaqSection course={course} />
+      </ScrollReveal>
 
       {/* 7. PROGRESSION PATHWAYS — Follow-on tracks */}
-      <CourseRelatedSection
-        relatedCourses={relatedCourses}
-        currentCourseSlug={course.slug}
-        currentCourseTitle={course.title}
-      />
+      <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <CourseRelatedSection
+          relatedCourses={relatedCourses}
+          currentCourseSlug={course.slug}
+          currentCourseTitle={course.title}
+        />
+      </ScrollReveal>
 
       {/* ARCHITECTURAL FOOTER */}
       <Footer />

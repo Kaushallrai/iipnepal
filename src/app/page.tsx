@@ -9,6 +9,7 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import BrandSection from "@/components/home/BrandSection";
 import NewsSection from "@/components/home/NewsSection";
 import ContactSection from "@/components/home/ContactSection";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 import Footer from "@/components/layout/Footer";
 import { heroData } from "@/data/home/hero";
 
@@ -82,17 +83,23 @@ export default function Home(): React.JSX.Element {
 
       {/* 6.5. Brand Marquee Section (Creative Giants Edge-to-Edge Monochrome Logos Strip) */}
       <div className="relative z-20 bg-[#fffef7] overflow-hidden">
-        <BrandSection />
+        <ScrollReveal variant="fade-up" distance={20} duration={0.8} className="w-full">
+          <BrandSection />
+        </ScrollReveal>
       </div>
 
       {/* 7. News & Perspectives Section (Creative Giants Light Canvas Editorial News Slider) */}
       <div className="relative z-20 bg-[#fffef7]">
-        <NewsSection />
+        <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+          <NewsSection />
+        </ScrollReveal>
       </div>
 
       {/* 7.5. Contact & Admissions Section (Creative Giants Light Canvas Form) */}
       <div className="relative z-20 bg-[#fffef7]">
-        <ContactSection />
+        <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+          <ContactSection />
+        </ScrollReveal>
       </div>
 
       {/* 8. Footer Section (Creative Giants Architectural Dark Stage) */}

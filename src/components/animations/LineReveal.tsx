@@ -81,7 +81,16 @@ export function LineReveal({
       );
     }, container);
 
-    return () => ctx.revert();
+    const handleIntroFinished = () => {
+      ScrollTrigger.refresh();
+    };
+
+    window.addEventListener("pageIntroFinished", handleIntroFinished);
+
+    return () => {
+      window.removeEventListener("pageIntroFinished", handleIntroFinished);
+      ctx.revert();
+    };
   }, [delay, duration, stagger, once]);
 
   return (

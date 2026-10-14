@@ -3,6 +3,7 @@ import React from "react";
 import { getAllCourses } from "@/data/courses";
 import CoursesCatalog from "@/components/courses/CoursesCatalog";
 import CoursesCta from "@/components/courses/CoursesCta";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
@@ -32,7 +33,9 @@ export default function CoursesPage(): React.JSX.Element {
       <CoursesCatalog initialCourses={courses} />
 
       {/* 2. FULL-SPACE ADMISSIONS CTA */}
-      <CoursesCta />
+      <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <CoursesCta />
+      </ScrollReveal>
 
       {/* 3. SITE FOOTER */}
       <Footer />

@@ -115,6 +115,10 @@ export function PageTransitionProvider({
   useEffect(() => {
     if (isInitialMountRef.current) {
       isInitialMountRef.current = false;
+      // If landing directly on any subpage or returning to home, complete transition immediately so Lenis & ScrollTrigger activate
+      if (pathname !== "/" || hasPlayedHomeIntro) {
+        completeTransition();
+      }
       return;
     }
 

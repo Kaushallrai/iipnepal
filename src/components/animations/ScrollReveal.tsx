@@ -21,6 +21,14 @@ export interface ScrollRevealProps {
   once?: boolean;
 }
 
+let refreshTimer: ReturnType<typeof setTimeout> | null = null;
+function debouncedScrollTriggerRefresh() {
+  if (refreshTimer) clearTimeout(refreshTimer);
+  refreshTimer = setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 100);
+}
+
 /**
  * Creative Giants GSAP ScrollTrigger Entrance Animation
  * Fully synchronized with Lenis smooth-scroll.
@@ -30,10 +38,10 @@ export default function ScrollReveal({
   className,
   variant = "fade-up",
   delay = 0,
-  duration = 0.9,
-  distance = 32,
+  duration = 0.85,
+  distance = 28,
   stagger = 0.08,
-  start = "top 88%",
+  start = "top 90%",
   once = true,
 }: ScrollRevealProps): React.JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -50,49 +58,31 @@ export default function ScrollReveal({
       return;
     }
 
+    const scrollTriggerConfig = {
+      trigger: container,
+      start,
+      toggleActions: "play none none none",
+      once,
+    };
+
     const ctx = gsap.context(() => {
       if (variant === "stagger-children") {
         const targets = container.querySelectorAll(".scroll-item");
-        if (targets.length > 0) {
-          gsap.fromTo(
-            targets,
-            { opacity: 0, y: distance },
-            {
-              opacity: 1,
-              y: 0,
-              duration,
-              delay,
-              stagger,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: container,
-                start,
-                toggleActions: "play none none none",
-                once,
-              },
-            }
-          );
-        } else {
-          // If no .scroll-item found, animate the container's direct children
-          gsap.fromTo(
-            container.children,
-            { opacity: 0, y: distance },
-            {
-              opacity: 1,
-              y: 0,
-              duration,
-              delay,
-              stagger,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: container,
-                start,
-                toggleActions: "play none none none",
-                once,
-              },
-            }
-          );
-        }
+        const animTargets = targets.length > 0 ? targets : container.children;
+        gsap.fromTo(
+          animTargets,
+          { opacity: 0, y: distance },
+          {
+            opacity: 1,
+            y: 0,
+            duration,
+            delay,
+            stagger,
+            ease: "power2.out",
+            clearProps: "transform",
+            scrollTrigger: scrollTriggerConfig,
+          }
+        );
       } else if (variant === "fade-up") {
         gsap.fromTo(
           container,
@@ -103,12 +93,8 @@ export default function ScrollReveal({
             duration,
             delay,
             ease: "power2.out",
-            scrollTrigger: {
-              trigger: container,
-              start,
-              toggleActions: "play none none none",
-              once,
-            },
+            clearProps: "transform",
+            scrollTrigger: scrollTriggerConfig,
           }
         );
       } else if (variant === "scale-up") {
@@ -122,12 +108,8 @@ export default function ScrollReveal({
             duration,
             delay,
             ease: "power2.out",
-            scrollTrigger: {
-              trigger: container,
-              start,
-              toggleActions: "play none none none",
-              once,
-            },
+            clearProps: "transform",
+            scrollTrigger: scrollTriggerConfig,
           }
         );
       } else {
@@ -140,18 +122,25 @@ export default function ScrollReveal({
             duration,
             delay,
             ease: "power2.out",
-            scrollTrigger: {
-              trigger: container,
-              start,
-              toggleActions: "play none none none",
-              once,
-            },
+            clearProps: "transform",
+            scrollTrigger: scrollTriggerConfig,
           }
         );
       }
     }, container);
 
-    return () => ctx.revert();
+    debouncedScrollTriggerRefresh();
+
+    const handleIntroFinished = () => {
+      debouncedScrollTriggerRefresh();
+    };
+
+    window.addEventListener("pageIntroFinished", handleIntroFinished);
+
+    return () => {
+      window.removeEventListener("pageIntroFinished", handleIntroFinished);
+      ctx.revert();
+    };
   }, [variant, delay, duration, distance, stagger, start, once]);
 
   return (

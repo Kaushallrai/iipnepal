@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import ContactMap from "@/components/contact/ContactMap";
 import ContactForm from "@/components/contact/ContactForm";
 import LineReveal from "@/components/animations/LineReveal";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 import { Phone, Mail, Clock, ArrowUpRight } from "lucide-react";
 import { contactData } from "@/data/contact";
 
@@ -62,7 +63,7 @@ export default function ContactPage(): React.JSX.Element {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-20 items-start">
             
             {/* LEFT COLUMN: Map + Direct Contact Channels */}
-            <div className="order-2 lg:order-1 lg:col-span-5 w-full flex flex-col space-y-6 sm:space-y-7">
+            <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="order-2 lg:order-1 lg:col-span-5 w-full flex flex-col space-y-6 sm:space-y-7">
               {/* Map View */}
               <ContactMap
                 locationName={map.locationName}
@@ -153,10 +154,10 @@ export default function ContactPage(): React.JSX.Element {
                 </div>
 
               </div>
-            </div>
+            </ScrollReveal>
 
             {/* RIGHT COLUMN: Minimal Borderless Admissions Form */}
-            <div className="order-1 lg:order-2 lg:col-span-7 w-full flex flex-col">
+            <ScrollReveal variant="fade-up" distance={24} duration={0.8} delay={0.1} className="order-1 lg:order-2 lg:col-span-7 w-full flex flex-col">
               <div className="mb-6 sm:mb-8">
                 <h2 className="font-sans font-light text-2xl sm:text-3xl text-black tracking-[-0.03em]">
                   {form.title}
@@ -168,7 +169,7 @@ export default function ContactPage(): React.JSX.Element {
 
               {/* BORDERLESS FORM: Direct on canvas with zero card border */}
               <ContactForm />
-            </div>
+            </ScrollReveal>
 
           </div>
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import React, { Suspense } from "react";
 import { getAllCourses } from "@/data/courses";
 import EnrollmentPageContent from "@/components/enroll/EnrollmentPageContent";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 import Footer from "@/components/layout/Footer";
 import { enrollData } from "@/data/enroll";
 
@@ -71,7 +72,9 @@ export default function EnrollPage(): React.JSX.Element {
       }}
     >
       <Suspense fallback={<EnrollmentFallback />}>
-        <EnrollmentPageContent courses={courses} />
+        <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+          <EnrollmentPageContent courses={courses} />
+        </ScrollReveal>
       </Suspense>
 
       {/* Persistent Full-Bleed Site Footer */}

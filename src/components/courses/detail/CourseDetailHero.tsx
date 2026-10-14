@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ArrowDown, Phone } from "lucide-react";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 import type { CourseItem } from "@/data/courses";
 
 export interface CourseDetailHeroProps {
@@ -57,7 +58,7 @@ export default function CourseDetailHero({ course }: CourseDetailHeroProps): Rea
         <div className="pt-8 sm:pt-10 border-t border-[#e2e0d2] grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-start">
           
           {/* LEFT: Photographic Frame */}
-          <div className="lg:col-span-5 flex flex-col group">
+          <ScrollReveal variant="fade-up" distance={20} duration={0.8} className="lg:col-span-5 flex flex-col group">
             <div className="relative w-full aspect-[4/3] overflow-hidden bg-black border border-[#e2e0d2]">
               <Image
                 src={course.coverImage}
@@ -79,10 +80,10 @@ export default function CourseDetailHero({ course }: CourseDetailHeroProps): Rea
               <span>Kathmandu Studio Track</span>
               <span className="text-black font-medium">{course.assignmentsCount}</span>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* RIGHT: Open Editorial Specifications Ledger & Tuition (Pure typography, ZERO cards) */}
-          <div className="lg:col-span-7 flex flex-col justify-between">
+          <ScrollReveal variant="fade-up" distance={20} duration={0.8} delay={0.1} className="lg:col-span-7 flex flex-col justify-between">
             
             {/* 4 Open Editorial Specification Rows (Utilizes space evenly, hairline dividers only, NO CARDS) */}
             <div className="border-t border-[#e2e0d2] divide-y divide-[#e2e0d2]">
@@ -207,7 +208,7 @@ export default function CourseDetailHero({ course }: CourseDetailHeroProps): Rea
 
             </div>
 
-          </div>
+          </ScrollReveal>
 
         </div>
 

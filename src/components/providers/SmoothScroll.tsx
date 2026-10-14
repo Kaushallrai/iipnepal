@@ -33,6 +33,7 @@ export default function SmoothScroll({
 
     lenisRef.current = lenis;
     (window as unknown as { lenis: Lenis | null }).lenis = lenis;
+    (window as unknown as { ScrollTrigger: typeof ScrollTrigger }).ScrollTrigger = ScrollTrigger;
 
     // Synchronize Lenis scroll position with GSAP ScrollTrigger
     lenis.on("scroll", ScrollTrigger.update);
@@ -50,9 +51,23 @@ export default function SmoothScroll({
     };
 
     document.addEventListener("pageIntroFinished", handleIntroFinished);
+    window.addEventListener("pageIntroFinished", handleIntroFinished);
+
+    // Initial mount refresh once web fonts and image layouts have initialized
+    const initialRefreshTimer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 250);
+
+    const handleResize = () => {
+      ScrollTrigger.refresh();
+    };
+    window.addEventListener("resize", handleResize);
 
     return () => {
+      clearTimeout(initialRefreshTimer);
+      window.removeEventListener("resize", handleResize);
       document.removeEventListener("pageIntroFinished", handleIntroFinished);
+      window.removeEventListener("pageIntroFinished", handleIntroFinished);
       gsap.ticker.remove(updateTicker);
       lenis.destroy();
       lenisRef.current = null;

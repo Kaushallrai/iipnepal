@@ -10,6 +10,7 @@ import {
   ChevronRight,
   MapPin,
 } from "lucide-react";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 import type { PortfolioItem } from "@/data/portfolio";
 
 export interface PortfolioDetailBentoProps {
@@ -237,73 +238,20 @@ export default function PortfolioDetailBento({ item }: PortfolioDetailBentoProps
             </div>
 
             {/* ROW 2: Balanced Duo (Plates 4, 5: 6 cols each) with 100% flush alignment, ZERO empty space */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 items-start">
-              
-              {/* Plate 4: 6 cols */}
-              <div className="flex flex-col group">
-                <div
-                  onClick={() => openLightbox(3)}
-                  className="relative w-full aspect-[16/10] bg-neutral-900 overflow-hidden cursor-pointer"
-                >
-                  <Image
-                    src={plates[3].url}
-                    alt={plates[3].caption}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-center grayscale contrast-105 group-hover:scale-[1.02] transition-transform duration-500 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-black/80 text-white flex items-center gap-1 shadow-xs">
-                      <Maximize2 className="w-3 h-3" />
-                      <span>Enlarge</span>
-                    </span>
-                  </div>
-                </div>
-                <p className="mt-2 text-xs sm:text-sm text-[#555555] leading-snug">
-                  {plates[3].caption}
-                </p>
-              </div>
-
-              {/* Plate 5: 6 cols */}
-              <div className="flex flex-col group">
-                <div
-                  onClick={() => openLightbox(4)}
-                  className="relative w-full aspect-[16/10] bg-neutral-900 overflow-hidden cursor-pointer"
-                >
-                  <Image
-                    src={plates[4].url}
-                    alt={plates[4].caption}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-center grayscale contrast-105 group-hover:scale-[1.02] transition-transform duration-500 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-black/80 text-white flex items-center gap-1 shadow-xs">
-                      <Maximize2 className="w-3 h-3" />
-                      <span>Enlarge</span>
-                    </span>
-                  </div>
-                </div>
-                <p className="mt-2 text-xs sm:text-sm text-[#555555] leading-snug">
-                  {plates[4].caption}
-                </p>
-              </div>
-
-            </div>
-
-            {/* ROW 3: Balanced Triptych (Plates 6, 7, 8: 4 cols each) with 100% flush alignment, ZERO empty space */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 items-start">
-              {[5, 6, 7].map((idx) => (
-                <div key={idx} className="flex flex-col group">
+            <ScrollReveal variant="fade-up" distance={20} duration={0.8} className="w-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 items-start">
+                
+                {/* Plate 4: 6 cols */}
+                <div className="flex flex-col group">
                   <div
-                    onClick={() => openLightbox(idx)}
-                    className="relative w-full aspect-[4/3] bg-neutral-900 overflow-hidden cursor-pointer"
+                    onClick={() => openLightbox(3)}
+                    className="relative w-full aspect-[16/10] bg-neutral-900 overflow-hidden cursor-pointer"
                   >
                     <Image
-                      src={plates[idx].url}
-                      alt={plates[idx].caption}
+                      src={plates[3].url}
+                      alt={plates[3].caption}
                       fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover object-center grayscale contrast-105 group-hover:scale-[1.02] transition-transform duration-500 ease-out"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
@@ -314,11 +262,68 @@ export default function PortfolioDetailBento({ item }: PortfolioDetailBentoProps
                     </div>
                   </div>
                   <p className="mt-2 text-xs sm:text-sm text-[#555555] leading-snug">
-                    {plates[idx].caption}
+                    {plates[3].caption}
                   </p>
                 </div>
-              ))}
-            </div>
+
+                {/* Plate 5: 6 cols */}
+                <div className="flex flex-col group">
+                  <div
+                    onClick={() => openLightbox(4)}
+                    className="relative w-full aspect-[16/10] bg-neutral-900 overflow-hidden cursor-pointer"
+                  >
+                    <Image
+                      src={plates[4].url}
+                      alt={plates[4].caption}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover object-center grayscale contrast-105 group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-black/80 text-white flex items-center gap-1 shadow-xs">
+                        <Maximize2 className="w-3 h-3" />
+                        <span>Enlarge</span>
+                      </span>
+                    </div>
+                  </div>
+                  <p className="mt-2 text-xs sm:text-sm text-[#555555] leading-snug">
+                    {plates[4].caption}
+                  </p>
+                </div>
+
+              </div>
+            </ScrollReveal>
+
+            {/* ROW 3: Balanced Triptych (Plates 6, 7, 8: 4 cols each) with 100% flush alignment, ZERO empty space */}
+            <ScrollReveal variant="fade-up" distance={20} duration={0.8} className="w-full">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 items-start">
+                {[5, 6, 7].map((idx) => (
+                  <div key={idx} className="flex flex-col group">
+                    <div
+                      onClick={() => openLightbox(idx)}
+                      className="relative w-full aspect-[4/3] bg-neutral-900 overflow-hidden cursor-pointer"
+                    >
+                      <Image
+                        src={plates[idx].url}
+                        alt={plates[idx].caption}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover object-center grayscale contrast-105 group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                        <span className="opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[10px] uppercase tracking-wider px-3 py-1 rounded-full bg-black/80 text-white flex items-center gap-1 shadow-xs">
+                          <Maximize2 className="w-3 h-3" />
+                          <span>Enlarge</span>
+                        </span>
+                      </div>
+                    </div>
+                    <p className="mt-2 text-xs sm:text-sm text-[#555555] leading-snug">
+                      {plates[idx].caption}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
 
           </div>
 

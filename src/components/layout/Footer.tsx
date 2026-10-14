@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 import { siteConfig, footerData, type NavLinkItem } from "@/data/site";
 
 const FOOTER_NAV_LINKS: NavLinkItem[] = footerData.links;
@@ -16,9 +17,10 @@ export default function Footer(): React.JSX.Element {
       }}
       aria-label="Site Footer"
     >
-      {/* Top 3-Column Architectural Row directly structured like Creative Giants */}
-      {/* Notice: Relative container with ambient fadeaway overlay at the bottom */}
-      <div className="footer_top-row relative w-full max-w-[120rem] mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_1px_1.2fr_1px_1.1fr]">
+      <ScrollReveal variant="fade-up" distance={20} duration={0.8} className="w-full">
+        {/* Top 3-Column Architectural Row directly structured like Creative Giants */}
+        {/* Notice: Relative container with ambient fadeaway overlay at the bottom */}
+        <div className="footer_top-row relative w-full max-w-[120rem] mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_1px_1.2fr_1px_1.1fr]">
         {/* COLUMN 1: Brand Identity & Contact Details */}
         <div className="footer_info-wrap is-first flex flex-col justify-between gap-8 sm:gap-10 p-6 sm:p-8 lg:p-10">
           {/* Header & Bio Lockup */}
@@ -338,6 +340,7 @@ export default function Footer(): React.JSX.Element {
         {/* Ambient Backdrop Blur Layer like Creative Giants */}
         <div className="footer_background-blur absolute inset-0 z-[1] backdrop-blur-[6px] pointer-events-none" />
       </div>
+      </ScrollReveal>
     </footer>
   );
 }

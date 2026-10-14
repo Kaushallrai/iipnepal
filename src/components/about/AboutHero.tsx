@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import LineReveal from "@/components/animations/LineReveal";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 import { aboutHeroData } from "@/data/about/hero";
 
 export interface AboutHeroProps {
@@ -46,7 +47,7 @@ export default function AboutHero({
           </div>
 
           {/* Right Column: Narrative + Action */}
-          <div className="lg:col-span-5 flex flex-col justify-between pt-1 sm:pt-2 lg:pt-8">
+          <ScrollReveal variant="fade-up" distance={20} duration={0.8} delay={0.1} className="lg:col-span-5 flex flex-col justify-between pt-1 sm:pt-2 lg:pt-8">
             <p className="font-sans text-base sm:text-lg lg:text-xl text-[#555555] font-normal leading-[1.6] tracking-[-0.015em] mb-6 sm:mb-8">
               {subheading}
             </p>
@@ -68,49 +69,51 @@ export default function AboutHero({
                 <ArrowUpRight className="w-3 h-3 text-[#888888]" />
               </Link>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
 
         {/* ================================================================= */}
         {/* ARCHITECTURAL METRICS: 3 BALANCED PILLARS                         */}
         {/* ================================================================= */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 pt-8 sm:pt-10 border-t border-[#e2e0d2]">
-          <div className="flex flex-col gap-1 sm:gap-1.5">
-            <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-[#888888]">
-              Heritage
-            </span>
-            <div className="font-sans font-light text-2xl sm:text-3xl md:text-[28px] lg:text-4xl text-black tracking-[-0.03em] whitespace-nowrap">
-              14+ Years
+        <ScrollReveal variant="fade-up" distance={20} duration={0.8} className="w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 pt-8 sm:pt-10 border-t border-[#e2e0d2]">
+            <div className="flex flex-col gap-1 sm:gap-1.5">
+              <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-[#888888]">
+                Heritage
+              </span>
+              <div className="font-sans font-light text-2xl sm:text-3xl md:text-[28px] lg:text-4xl text-black tracking-[-0.03em] whitespace-nowrap">
+                14+ Years
+              </div>
+              <p className="font-sans text-xs text-[#666666] leading-relaxed">
+                Regional photographic education partner in Kathmandu since 2011.
+              </p>
             </div>
-            <p className="font-sans text-xs text-[#666666] leading-relaxed">
-              Regional photographic education partner in Kathmandu since 2011.
-            </p>
-          </div>
 
-          <div className="flex flex-col gap-1 sm:gap-1.5">
-            <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-[#888888]">
-              Community
-            </span>
-            <div className="font-sans font-light text-2xl sm:text-3xl md:text-[28px] lg:text-4xl text-black tracking-[-0.03em] whitespace-nowrap">
-              500+ Alumni
+            <div className="flex flex-col gap-1 sm:gap-1.5">
+              <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-[#888888]">
+                Community
+              </span>
+              <div className="font-sans font-light text-2xl sm:text-3xl md:text-[28px] lg:text-4xl text-black tracking-[-0.03em] whitespace-nowrap">
+                500+ Alumni
+              </div>
+              <p className="font-sans text-xs text-[#666666] leading-relaxed">
+                Practicing across documentary, studio, and commercial media.
+              </p>
             </div>
-            <p className="font-sans text-xs text-[#666666] leading-relaxed">
-              Practicing across documentary, studio, and commercial media.
-            </p>
-          </div>
 
-          <div className="flex flex-col gap-1 sm:gap-1.5">
-            <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-[#888888]">
-              Campus
-            </span>
-            <div className="font-sans font-light text-2xl sm:text-3xl md:text-[28px] lg:text-4xl text-black tracking-[-0.03em] whitespace-nowrap">
-              Jyoti Bhawan
+            <div className="flex flex-col gap-1 sm:gap-1.5">
+              <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-[#888888]">
+                Campus
+              </span>
+              <div className="font-sans font-light text-2xl sm:text-3xl md:text-[28px] lg:text-4xl text-black tracking-[-0.03em] whitespace-nowrap">
+                Jyoti Bhawan
+              </div>
+              <p className="font-sans text-xs text-[#666666] leading-relaxed">
+                Lighting lab, critique suites, and studios at Kanti Path.
+              </p>
             </div>
-            <p className="font-sans text-xs text-[#666666] leading-relaxed">
-              Lighting lab, critique suites, and studios at Kanti Path.
-            </p>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

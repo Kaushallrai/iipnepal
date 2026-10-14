@@ -1,15 +1,7 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import {
-  Camera,
-  Award,
-  CheckCircle2,
-  BookOpen,
-  ArrowUpRight,
-  Compass,
-} from "lucide-react";
+import { Camera, Award } from "lucide-react";
 import type { PortfolioItem } from "@/data/portfolio";
 
 export interface PortfolioProjectDetailsProps {
@@ -87,37 +79,9 @@ export default function PortfolioProjectDetails({
               </p>
             </div>
 
-            {/* Fieldwork Protocol & Methodology: Open Editorial List (No Cards) */}
-            {item.fieldNotes && item.fieldNotes.length > 0 && (
-              <div className="pt-8 border-t border-[#e2e0d2] flex flex-col gap-4">
-                <div className="flex items-center gap-2">
-                  <Compass className="w-4 h-4 text-[#888888]" />
-                  <span className="font-mono text-xs uppercase tracking-[0.18em] text-[#888888] font-semibold">
-                    Fieldwork Protocol &amp; Methodology
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 pt-1">
-                  {item.fieldNotes.map((note, nIdx) => (
-                    <div
-                      key={nIdx}
-                      className="flex items-start gap-3 py-2.5 border-b border-[#e8e6d9]"
-                    >
-                      <span className="font-mono text-xs text-[#ca8a04] font-bold shrink-0 mt-0.5">
-                        0{nIdx + 1}.
-                      </span>
-                      <span className="font-sans text-xs sm:text-sm text-[#444444] leading-relaxed">
-                        {note}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
           </div>
 
-          {/* Right Column (5 cols): Technical Rig Ledger & Academic Provenance (No Cards) */}
+          {/* Right Column (5 cols): Technical Rig Ledger (No Cards) */}
           <div className="lg:col-span-5 flex flex-col gap-10">
             
             {/* Technical Specifications Ledger: Open Architectural Table */}
@@ -159,57 +123,6 @@ export default function PortfolioProjectDetails({
                   </dd>
                 </div>
               </dl>
-            </div>
-
-            {/* Academic Track & Competencies: Open Editorial Block (No Cards) */}
-            <div className="flex flex-col gap-5 pt-6 border-t border-[#e2e0d2]">
-              <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-black font-semibold pb-3 border-b border-[#e2e0d2]">
-                <BookOpen className="w-4 h-4 text-[#ca8a04]" />
-                <span>Academic Track Provenance</span>
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-[#888888]">
-                  Completed Course
-                </span>
-                <span className="font-sans font-light text-base sm:text-lg text-black leading-snug">
-                  {item.course}
-                </span>
-              </div>
-
-              {/* Mastered Skills Badges */}
-              {item.outcomes?.skills && item.outcomes.skills.length > 0 && (
-                <div className="pt-3 border-t border-[#eceae0] flex flex-col gap-2.5">
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-[#888888]">
-                    Mastered Core Competencies
-                  </span>
-                  <div className="flex flex-wrap gap-2">
-                    {item.outcomes.skills.map((skill, sIdx) => (
-                      <span
-                        key={sIdx}
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#f2efe4] text-black font-mono text-[11px] uppercase tracking-wider border border-[#e2e0d2]"
-                      >
-                        <CheckCircle2 className="w-3 h-3 text-[#ca8a04]" />
-                        <span>{skill}</span>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Course Link CTA */}
-              {item.relatedCourseSlug && (
-                <div className="pt-3">
-                  <Link
-                    href={`/courses/${item.relatedCourseSlug}`}
-                    className="inline-flex items-center justify-between w-full p-3 rounded-full bg-black text-[#fffef7] hover:bg-[#ffd001] hover:text-black font-mono text-xs uppercase tracking-[0.16em] font-semibold transition-colors px-6"
-                  >
-                    <span>Explore Academic Track</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              )}
-
             </div>
 
           </div>

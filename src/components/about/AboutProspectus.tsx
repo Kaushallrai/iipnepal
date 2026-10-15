@@ -44,12 +44,9 @@ export default function AboutProspectus(): React.JSX.Element {
               className="flex flex-col justify-between p-6 sm:p-7 lg:p-8 bg-white border border-[#e2e0d2] hover:border-black transition-colors duration-200"
             >
               <div>
-                <div className="flex items-center justify-between pb-2.5 mb-3.5 border-b border-[#f0eee4]">
+                <div className="flex items-center pb-2.5 mb-3.5 border-b border-[#f0eee4]">
                   <span className="font-mono text-xs font-bold tracking-[0.18em] text-[#ca8a04]">
                     {item.code}
-                  </span>
-                  <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.14em] text-[#888888]">
-                    {item.level}
                   </span>
                 </div>
 

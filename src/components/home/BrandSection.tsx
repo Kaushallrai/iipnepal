@@ -14,17 +14,8 @@ export default function BrandSection(): React.JSX.Element {
     <section
       id="brands"
       aria-label="Industry Camera Systems & Creative Tools"
-      className="section_brand-marquee relative w-full bg-[#fffef7] text-black overflow-hidden py-14 sm:py-16 md:py-20 select-none"
+      className="section_brand-marquee relative w-full bg-[#fffef7] text-black overflow-hidden py-10 sm:py-12 md:py-14 select-none"
     >
-      <div className="w-full max-w-[105rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 mb-6 sm:mb-8 text-center sm:text-left">
-        <div className="flex items-center justify-center sm:justify-start gap-2 select-none">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#ffd001] shadow-[0_0_6px_rgba(255,208,1,0.6)] shrink-0 inline-block" />
-          <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-[#888888] font-medium">
-            {brandsData.eyebrow}
-          </span>
-        </div>
-      </div>
-
       {/* 
         Full-Bleed Marquee Wrapper matching Creative Giants:
         Strictly ZERO padding on left and right edges so it runs edge-to-edge across the screen

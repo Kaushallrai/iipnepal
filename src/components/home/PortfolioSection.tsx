@@ -502,10 +502,11 @@ export default function PortfolioSection({
               lines={[heading]}
               className="font-sans font-light text-2xl sm:text-3xl leading-tight text-white tracking-[-0.03em]"
             />
+            {/* Subheading with masked line reveal - hidden on mobile to eliminate clutter */}
             <LineReveal
               as="p"
               lines={[subheading]}
-              className="font-sans font-normal text-xs sm:text-[13px] text-white/60 leading-relaxed"
+              className="hidden sm:block font-sans font-normal text-xs sm:text-[13px] text-white/60 leading-relaxed"
             />
           </div>
 
@@ -635,8 +636,8 @@ export default function PortfolioSection({
                       {item.title}
                     </h3>
 
-                    {/* Concise Narrative */}
-                    <p className="font-sans font-light text-xs sm:text-[13px] text-white/70 leading-relaxed line-clamp-2">
+                    {/* Concise Narrative - hidden on mobile to eliminate clutter */}
+                    <p className="hidden sm:block font-sans font-light text-xs sm:text-[13px] text-white/70 leading-relaxed line-clamp-2">
                       {item.description}
                     </p>
 

@@ -5,6 +5,7 @@ import ContactMap from "@/components/contact/ContactMap";
 import ContactForm from "@/components/contact/ContactForm";
 import LineReveal from "@/components/animations/LineReveal";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import AboutCta from "@/components/about/AboutCta";
 import { Phone, Mail, Clock, ArrowUpRight } from "lucide-react";
 import { contactData } from "@/data/contact";
 
@@ -175,6 +176,11 @@ export default function ContactPage(): React.JSX.Element {
 
         </div>
       </div>
+
+      {/* ADMISSIONS & ENROLLMENT ACTION CTA */}
+      <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <AboutCta />
+      </ScrollReveal>
 
       {/* ARCHITECTURAL FOOTER */}
       <Footer />

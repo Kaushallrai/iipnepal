@@ -55,13 +55,13 @@ export default function CoursesHero({
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 sm:gap-2.5 text-black hover:text-[#ca8a04] transition-colors duration-200 no-underline cursor-pointer select-none min-h-[44px] py-1 max-w-full"
-              aria-label="Download Complete Course Syllabus (PDF)"
+              aria-label="Download Course PDF"
             >
               <span className="w-6 h-6 rounded-full bg-[#f4f2e9] group-hover:bg-[#ffd001] flex items-center justify-center transition-colors shrink-0">
                 <Download className="w-3 h-3 text-black transition-transform group-hover:translate-y-0.5" />
               </span>
               <span className="font-mono text-[11px] sm:text-xs md:text-[12.5px] uppercase tracking-[0.1em] sm:tracking-[0.14em] font-medium border-b border-black/25 group-hover:border-[#ca8a04] pb-0.5 whitespace-nowrap">
-                Download <span className="hidden sm:inline">Complete </span>Syllabus (PDF)
+                Download Course PDF
               </span>
               <ArrowUpRight className="w-3.5 h-3.5 text-[#888888] group-hover:text-[#ca8a04] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
             </a>

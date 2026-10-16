@@ -9,6 +9,7 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import BrandSection from "@/components/home/BrandSection";
 import NewsSection from "@/components/home/NewsSection";
 import ContactSection from "@/components/home/ContactSection";
+import AboutCta from "@/components/about/AboutCta";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import Footer from "@/components/layout/Footer";
 import { heroData } from "@/data/home/hero";
@@ -92,6 +93,13 @@ export default function Home(): React.JSX.Element {
       <div className="relative z-20 bg-[#fffef7]">
         <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
           <NewsSection />
+        </ScrollReveal>
+      </div>
+
+      {/* 7.4. Admissions CTA Section (Dark Canvas Stage) */}
+      <div data-theme="dark" className="relative z-20 bg-black">
+        <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+          <AboutCta />
         </ScrollReveal>
       </div>
 

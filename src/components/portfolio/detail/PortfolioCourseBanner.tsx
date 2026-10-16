@@ -40,11 +40,11 @@ export default function PortfolioCourseBanner({ item }: PortfolioCourseBannerPro
             </p>
 
             <div className="font-mono text-xs text-[#777777] uppercase tracking-wider flex items-center gap-3 flex-wrap">
-              <span className="text-black font-semibold">{course.level} Track</span>
+              <span className="text-black font-semibold whitespace-nowrap">{course.level} Track</span>
               <span>•</span>
-              <span>{course.duration}</span>
+              <span className="whitespace-nowrap">{course.duration}</span>
               <span>•</span>
-              <span className="text-[#ca8a04] font-semibold">{course.payableFee}</span>
+              <span className="text-[#ca8a04] font-semibold whitespace-nowrap">{course.payableFee}</span>
             </div>
           </div>
 

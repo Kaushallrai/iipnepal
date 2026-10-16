@@ -35,17 +35,17 @@ export default function CourseTuitionSection({
               <span className="font-mono text-[10px] uppercase tracking-widest text-white/50 block mb-1">
                 Total Tuition Fee
               </span>
-              <div className="flex items-baseline gap-3">
-                <span className="font-sans font-light text-4xl sm:text-5xl lg:text-6xl text-white tabular-nums leading-none">
+              <div className="flex items-baseline gap-2.5 sm:gap-3 whitespace-nowrap flex-nowrap">
+                <span className="font-sans font-light text-3xl sm:text-5xl lg:text-6xl text-white tabular-nums leading-none whitespace-nowrap">
                   {course.payableFee}
                 </span>
                 {course.totalFee !== course.payableFee && (
-                  <span className="font-mono text-base sm:text-lg text-white/40 line-through tabular-nums">
+                  <span className="font-mono text-sm sm:text-base lg:text-lg text-white/40 line-through tabular-nums whitespace-nowrap">
                     {course.totalFee}
                   </span>
                 )}
                 {course.discount && (
-                  <span className="font-mono text-xs font-bold text-black bg-[#ffd001] px-2 py-0.5 rounded-full uppercase tracking-wider">
+                  <span className="font-mono text-[10px] sm:text-xs font-bold text-black bg-[#ffd001] px-2 py-0.5 rounded-full uppercase tracking-wider whitespace-nowrap">
                     {course.discount}
                   </span>
                 )}

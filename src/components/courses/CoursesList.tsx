@@ -75,12 +75,12 @@ export default function CoursesList({
                     <td className="py-5 px-6 font-mono text-xs uppercase tracking-wider text-[#666666]">
                       {course.level}
                     </td>
-                    <td className="py-5 px-6">
-                      <div className="font-sans font-medium text-base text-black tabular-nums">
+                    <td className="py-5 px-6 whitespace-nowrap">
+                      <div className="font-sans font-medium text-base text-black tabular-nums whitespace-nowrap">
                         {course.payableFee}
                       </div>
                       {course.totalFee !== course.payableFee && (
-                        <div className="font-mono text-[11px] text-[#999999] line-through tabular-nums">
+                        <div className="font-mono text-[11px] text-[#999999] line-through tabular-nums whitespace-nowrap">
                           {course.totalFee}
                         </div>
                       )}
@@ -203,16 +203,16 @@ export default function CoursesList({
                   {/* Card Bottom: Tuition & Direct Action Pills */}
                   <div className="pt-3.5 border-t border-[#f0eee3] flex items-center justify-between gap-3 mt-auto">
                     {/* Pricing */}
-                    <div className="flex flex-col">
-                      <span className="font-mono text-[10px] uppercase tracking-wider text-[#888888]">
+                    <div className="flex flex-col min-w-0 shrink-0">
+                      <span className="font-mono text-[10px] uppercase tracking-wider text-[#888888] whitespace-nowrap">
                         Tuition
                       </span>
-                      <div className="flex items-baseline gap-2">
-                        <span className="font-sans font-medium text-lg sm:text-xl text-black tabular-nums">
+                      <div className="flex items-baseline gap-2 whitespace-nowrap flex-nowrap">
+                        <span className="font-sans font-medium text-lg sm:text-xl text-black tabular-nums whitespace-nowrap">
                           {course.payableFee}
                         </span>
                         {course.totalFee !== course.payableFee && (
-                          <span className="font-mono text-xs text-[#999999] line-through tabular-nums">
+                          <span className="font-mono text-xs text-[#999999] line-through tabular-nums whitespace-nowrap">
                             {course.totalFee}
                           </span>
                         )}

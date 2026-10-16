@@ -159,17 +159,17 @@ export default function CourseDetailHero({ course }: CourseDetailHeroProps): Rea
                 <span className="font-mono text-[11px] uppercase tracking-widest text-[#888888] font-medium">
                   Full Program Tuition
                 </span>
-                <div className="flex items-baseline gap-3 whitespace-nowrap">
-                  <span className="font-sans font-light text-3xl sm:text-4xl text-black tabular-nums">
+                <div className="flex items-baseline gap-2.5 sm:gap-3 whitespace-nowrap flex-nowrap">
+                  <span className="font-sans font-light text-2xl sm:text-3xl md:text-4xl text-black tabular-nums whitespace-nowrap">
                     {course.payableFee}
                   </span>
                   {course.totalFee !== course.payableFee && (
-                    <span className="font-mono text-sm text-[#999999] line-through tabular-nums">
+                    <span className="font-mono text-xs sm:text-sm text-[#999999] line-through tabular-nums whitespace-nowrap">
                       {course.totalFee}
                     </span>
                   )}
                   {course.discount && (
-                    <span className="font-mono text-[11px] font-bold text-black bg-[#ffd001] px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                    <span className="font-mono text-[10px] sm:text-[11px] font-bold text-black bg-[#ffd001] px-2 sm:px-2.5 py-0.5 rounded-full uppercase tracking-wider whitespace-nowrap">
                       {course.discount}
                     </span>
                   )}

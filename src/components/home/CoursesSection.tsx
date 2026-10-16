@@ -453,14 +453,14 @@ export default function CoursesSection({
 
                           {/* Chin Action & Pricing Row */}
                           <div className="w-full flex items-end justify-between pt-2 border-t border-black/10 gap-2">
-                            <div className="flex flex-col text-left gap-0.5">
+                            <div className="flex flex-col text-left gap-0.5 min-w-0 shrink-0">
                               {course.discount && course.totalFee !== course.payableFee && (
-                                <div className="flex items-center gap-1 font-mono text-[11px] text-[#888888] leading-none">
-                                  <span className="line-through">{course.totalFee}</span>
-                                  <span className="text-[#dc2626] font-mono">({course.discount})</span>
+                                <div className="flex items-center gap-1 font-mono text-[11px] text-[#888888] leading-none whitespace-nowrap">
+                                  <span className="line-through whitespace-nowrap">{course.totalFee}</span>
+                                  <span className="text-[#dc2626] font-mono whitespace-nowrap">({course.discount})</span>
                                 </div>
                               )}
-                              <div className="font-mono font-semibold text-[15px] sm:text-base text-black leading-none">
+                              <div className="font-mono font-semibold text-[15px] sm:text-base text-black leading-none whitespace-nowrap">
                                 {course.payableFee}
                               </div>
                             </div>
@@ -602,16 +602,16 @@ export default function CoursesSection({
                   </div>
 
                   <div className="w-full flex items-end justify-between pt-2.5 border-t border-black/10 gap-3">
-                    <div className="flex flex-col text-left gap-1.5">
+                    <div className="flex flex-col text-left gap-1.5 min-w-0 shrink-0">
                       {courses[activeIndex]?.discount &&
                         courses[activeIndex]?.totalFee !== courses[activeIndex]?.payableFee && (
-                          <div className="flex items-center gap-1.5 font-mono text-xs text-[#888888] leading-none mb-0.5">
-                            <span className="line-through">{courses[activeIndex]?.totalFee}</span>
-                            <span className="text-[#dc2626] font-mono">({courses[activeIndex]?.discount})</span>
+                          <div className="flex items-center gap-1.5 font-mono text-xs text-[#888888] leading-none mb-0.5 whitespace-nowrap">
+                            <span className="line-through whitespace-nowrap">{courses[activeIndex]?.totalFee}</span>
+                            <span className="text-[#dc2626] font-mono whitespace-nowrap">({courses[activeIndex]?.discount})</span>
                           </div>
                         )}
 
-                      <div className="font-mono font-semibold text-base text-black leading-none">
+                      <div className="font-mono font-semibold text-base text-black leading-none whitespace-nowrap">
                         {courses[activeIndex]?.payableFee}
                       </div>
                     </div>

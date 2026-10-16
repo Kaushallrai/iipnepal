@@ -76,8 +76,8 @@ export default function CourseRelatedSection({
                   </p>
                 </div>
 
-                <div className="flex items-center justify-between pt-2 border-t border-[#e2e0d2] font-mono text-xs">
-                  <span className="font-medium text-black text-xs">
+                <div className="flex items-center justify-between pt-2 border-t border-[#e2e0d2] font-mono text-xs gap-2">
+                  <span className="font-medium text-black text-xs whitespace-nowrap shrink-0">
                     {prevTrack.duration} • {prevTrack.payableFee}
                   </span>
                   <Link
@@ -129,8 +129,8 @@ export default function CourseRelatedSection({
                   </p>
                 </div>
 
-                <div className="flex items-center justify-between pt-2 border-t border-[#e2e0d2] font-mono text-xs">
-                  <span className="font-medium text-black text-xs">
+                <div className="flex items-center justify-between pt-2 border-t border-[#e2e0d2] font-mono text-xs gap-2">
+                  <span className="font-medium text-black text-xs whitespace-nowrap shrink-0">
                     {nextTrack.duration} • {nextTrack.payableFee}
                   </span>
                   <Link

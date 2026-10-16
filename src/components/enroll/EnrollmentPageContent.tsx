@@ -321,22 +321,22 @@ export default function EnrollmentPageContent({
                 </div>
 
                 {/* Tuition Fee Breakdown */}
-                <div className="pt-3 pb-3 border-t border-b border-[#e2e0d2] flex items-baseline justify-between">
-                  <span className="font-mono text-xs uppercase tracking-wider text-[#666666]">
+                <div className="pt-3 pb-3 border-t border-b border-[#e2e0d2] flex items-baseline justify-between gap-2">
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#666666] whitespace-nowrap">
                     Payable Tuition
                   </span>
                   
-                  <div className="flex items-baseline gap-2.5">
+                  <div className="flex items-baseline gap-2 sm:gap-2.5 whitespace-nowrap flex-nowrap shrink-0">
                     {currentCourse.discount && (
-                      <span className="font-mono text-xs text-[#888888] line-through tabular-nums">
+                      <span className="font-mono text-xs text-[#888888] line-through tabular-nums whitespace-nowrap">
                         {currentCourse.totalFee}
                       </span>
                     )}
-                    <span className="font-mono text-xl sm:text-2xl font-normal text-black tabular-nums">
+                    <span className="font-mono text-lg sm:text-2xl font-normal text-black tabular-nums whitespace-nowrap">
                       {currentCourse.payableFee}
                     </span>
                     {currentCourse.discount && (
-                      <span className="font-mono text-[10px] uppercase tracking-wider bg-[#ffd001] text-black px-1.5 py-0.5 font-semibold">
+                      <span className="font-mono text-[10px] uppercase tracking-wider bg-[#ffd001] text-black px-1.5 py-0.5 font-semibold whitespace-nowrap">
                         {currentCourse.discount}
                       </span>
                     )}

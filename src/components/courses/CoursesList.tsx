@@ -120,7 +120,7 @@ export default function CoursesList({
                 className="w-full flex"
               >
                 <article
-                  className="w-full h-full bg-[#fffef7] border border-[#e8e6d9] hover:border-black transition-all duration-300 p-5 sm:p-6 flex flex-col justify-between group shadow-none"
+                  className="relative w-full h-full bg-[#fffef7] border border-[#e8e6d9] hover:border-black transition-all duration-300 p-5 sm:p-6 flex flex-col justify-between group shadow-none cursor-pointer"
                   aria-label={`Course: ${course.title}`}
                 >
                   {/* Top Bar: Course Number & Level Badge */}
@@ -134,10 +134,8 @@ export default function CoursesList({
                   </div>
 
                   {/* Photo: Exact Uniform Aspect Ratio 16/10 across all cards */}
-                  <Link
-                    href={`/courses/${course.slug}`}
+                  <div
                     className="relative block w-full aspect-[16/10] overflow-hidden bg-black mb-4 border border-[#e2e0d2]"
-                    tabIndex={-1}
                     aria-hidden="true"
                   >
                     <Image
@@ -166,16 +164,17 @@ export default function CoursesList({
                         {course.discount}
                       </div>
                     )}
-                  </Link>
+                  </div>
 
                   {/* Flexible Middle Content */}
                   <div className="flex-1 flex flex-col justify-start">
-                    {/* Title */}
+                    {/* Title with Stretched Link covering the entire card */}
                     <h2 className="font-sans font-light text-xl sm:text-[22px] leading-snug text-black mb-2 line-clamp-2 min-h-[3.2rem]">
                       <Link
                         href={`/courses/${course.slug}`}
                         className="hover:opacity-75 transition-opacity no-underline text-inherit"
                       >
+                        <span className="absolute inset-0 z-0" aria-hidden="true" />
                         {course.title}
                       </Link>
                     </h2>
@@ -219,11 +218,11 @@ export default function CoursesList({
                       </div>
                     </div>
 
-                    {/* Actions */}
-                    <div className="flex items-center gap-2 shrink-0">
+                    {/* Actions: View is hidden on mobile, whole card navigates to course */}
+                    <div className="relative z-10 flex items-center gap-2 shrink-0">
                       <Link
                         href={`/courses/${course.slug}`}
-                        className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.14em] px-3.5 py-2 rounded-full border border-black/20 hover:border-black bg-transparent text-black hover:bg-black hover:text-[#fffef7] transition-all font-medium text-center whitespace-nowrap min-h-[44px]"
+                        className="hidden sm:inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.14em] px-3.5 py-2 rounded-full border border-black/20 hover:border-black bg-transparent text-black hover:bg-black hover:text-[#fffef7] transition-all font-medium text-center whitespace-nowrap min-h-[44px]"
                       >
                         <span>View</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />

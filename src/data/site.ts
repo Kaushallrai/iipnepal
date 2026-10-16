@@ -1,6 +1,8 @@
 export interface SiteContactInfo {
   phone: string;
   phoneDisplay: string;
+  whatsapp: string;
+  whatsappDisplay: string;
   email: string;
   address: string;
   addressShort: string;
@@ -38,6 +40,7 @@ export const siteConfig = {
     addressShort: "Jyoti Bhawan, Kanti Path, Kathmandu",
     mapsUrl: "https://maps.app.goo.gl/792XAZpWFHjY1zWt6",
   } as SiteContactInfo,
+  prospectusPdf: "https://www.iipacademy.edu.in/images/IIPCCA%20PROSPECTUS.pdf",
   socials: [
     {
       platform: "Instagram",

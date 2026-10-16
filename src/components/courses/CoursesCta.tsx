@@ -2,9 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowUpRight, Phone, MapPin } from "lucide-react";
+import { ArrowUpRight, Phone, MapPin, Download } from "lucide-react";
 import LineReveal from "@/components/animations/LineReveal";
 import { coursesPageData } from "@/data/courses/page";
+import { siteConfig } from "@/data/site";
 
 export default function CoursesCta(): React.JSX.Element {
   const { cta } = coursesPageData;
@@ -63,12 +64,16 @@ export default function CoursesCta(): React.JSX.Element {
               <ArrowUpRight className="w-4 h-4" />
             </Link>
 
-            <Link
-              href={cta.contactHref}
-              className="inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-normal tracking-[0.16em] uppercase bg-transparent text-[#fffef7] border border-white/20 px-9 py-4 rounded-full hover:border-[#ffd001] hover:text-[#ffd001] transition-all text-center leading-none whitespace-nowrap min-h-[44px]"
+            <a
+              href={siteConfig.prospectusPdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm font-normal tracking-[0.16em] uppercase bg-transparent text-[#fffef7] border border-white/20 px-9 py-4 rounded-full hover:border-[#ffd001] hover:text-[#ffd001] transition-all text-center leading-none whitespace-nowrap min-h-[44px] no-underline"
+              aria-label="Download Course PDF"
             >
-              <span>{cta.contactText}</span>
-            </Link>
+              <span>Download Course PDF</span>
+              <Download className="w-4 h-4" />
+            </a>
           </div>
 
         </div>

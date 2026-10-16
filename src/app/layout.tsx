@@ -8,6 +8,7 @@ import AuthModal from "@/components/auth/AuthModal";
 import { PageTransitionProvider } from "@/components/providers/PageTransitionContext";
 import PageTransition from "@/components/animations/PageTransition";
 import PageReveal from "@/components/animations/PageReveal";
+import FloatingWhatsAppButton from "@/components/ui/FloatingWhatsAppButton";
 
 const switzer = Inter({
   variable: "--font-switzer",
@@ -85,6 +86,7 @@ export default function RootLayout({
               <Navbar />
               <PageReveal>{children}</PageReveal>
               <AuthModal />
+              <FloatingWhatsAppButton />
             </SmoothScroll>
           </PageTransitionProvider>
         </AuthModalProvider>

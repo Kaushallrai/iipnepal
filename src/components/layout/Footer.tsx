@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { Download } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { siteConfig, footerData, type NavLinkItem } from "@/data/site";
 
@@ -251,6 +252,20 @@ export default function Footer(): React.JSX.Element {
             <p className="text-size-small text-color-secondary font-light text-[13.5px] sm:text-[14px] leading-[1.62] text-[#888888] tracking-[-0.018em]">
               {footerData.discoveryCta.description}
             </p>
+
+            {/* Direct Course PDF Download Button */}
+            <div className="pt-2">
+              <a
+                href={siteConfig.prospectusPdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full border border-white/20 hover:border-[#ffd001] bg-white/5 hover:bg-[#ffd001] text-[#fffef7] hover:text-black font-mono text-xs uppercase tracking-[0.14em] font-medium transition-all duration-300 no-underline whitespace-nowrap min-h-[44px] w-full sm:w-auto text-center"
+                aria-label="Download Course PDF"
+              >
+                <Download className="w-3.5 h-3.5 shrink-0" />
+                <span>Download Course PDF</span>
+              </a>
+            </div>
           </div>
 
           {/* Copyright & Legal Attribution: NO static underline */}
@@ -273,6 +288,15 @@ export default function Footer(): React.JSX.Element {
                 <span>{siteConfig.legal.privacyLabel}</span>
                 <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 group-hover:origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.625,0.05,0,1)] pointer-events-none" />
               </Link>
+              <a
+                href={siteConfig.prospectusPdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline-link group relative inline-flex items-center font-normal text-[12px] sm:text-[13px] uppercase tracking-[-0.018em] text-[#888888] hover:text-[#fffef7] transition-colors duration-300 no-underline"
+              >
+                <span>Course PDF</span>
+                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 group-hover:origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.625,0.05,0,1)] pointer-events-none" />
+              </a>
               {/* Hidden for now:
               <Link
                 href={siteConfig.legal.faqUrl}

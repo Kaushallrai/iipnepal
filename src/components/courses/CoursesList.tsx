@@ -218,11 +218,11 @@ export default function CoursesList({
                       </div>
                     </div>
 
-                    {/* Actions: View is hidden on mobile, whole card navigates to course */}
+                    {/* Actions: View is hidden on mobile & tablet, whole card navigates to course */}
                     <div className="relative z-10 flex items-center gap-2 shrink-0">
                       <Link
                         href={`/courses/${course.slug}`}
-                        className="hidden sm:inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.14em] px-3.5 py-2 rounded-full border border-black/20 hover:border-black bg-transparent text-black hover:bg-black hover:text-[#fffef7] transition-all font-medium text-center whitespace-nowrap min-h-[44px]"
+                        className="hidden lg:inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.14em] px-3.5 py-2 rounded-full border border-black/20 hover:border-black bg-transparent text-black hover:bg-black hover:text-[#fffef7] transition-all font-medium text-center whitespace-nowrap min-h-[44px]"
                       >
                         <span>View</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />

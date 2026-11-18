@@ -3,6 +3,7 @@ export interface TimelineStep {
   phase: string;
   title: string;
   description: string;
+  href: string;
 }
 
 export interface HowItWorksData {
@@ -24,6 +25,7 @@ export const howItWorksData: HowItWorksData = {
       title: "Choose Your Course",
       description:
         "Select a programme that fits your camera experience, schedule, and creative photographic goals.",
+      href: "/courses",
     },
     {
       number: "02",
@@ -31,6 +33,7 @@ export const howItWorksData: HowItWorksData = {
       title: "Learn & Practise",
       description:
         "Study core optical theory, examine real-world examples, and complete practical field shooting briefs.",
+      href: "/404",
     },
     {
       number: "03",
@@ -38,6 +41,7 @@ export const howItWorksData: HowItWorksData = {
       title: "Receive Feedback",
       description:
         "Submit your project work for individual mentor review, personalized critique, and improvement guidance.",
+      href: "/404",
     },
     {
       number: "04",
@@ -45,6 +49,7 @@ export const howItWorksData: HowItWorksData = {
       title: "Graduate With Certificate",
       description:
         "Finalize your coursework and portfolio to receive your verified IIP Course Certificate.",
+      href: "/404",
     },
   ],
 };

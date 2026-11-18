@@ -57,14 +57,14 @@ export default function Home(): React.JSX.Element {
         ctaText={heroData.ctaText}
       />
 
-      {/* 2. What We Do Section */}
-      <div className="relative z-20 bg-[#fffef7]">
-        <WhatWeDo />
+      {/* 3. Courses Section (Darkroom Black Stage for Polaroid Gallery) */}
+      <div data-theme="dark" className="relative z-20 bg-[#0a0a0a] ">
+        <CoursesSection />
       </div>
 
-      {/* 3. Courses Section (Darkroom Black Stage for Polaroid Gallery) */}
-      <div data-theme="dark" className="relative z-20 bg-[#0a0a0a]">
-        <CoursesSection />
+      {/* 2. What We Do Section */}
+      <div className="relative z-20 bg-[#fffef7] border-b border-black/10">
+        <WhatWeDo />
       </div>
 
       {/* 4. How It Works Section (Bone White Canvas, Single Screen Height, Alternating Timeline) */}
@@ -84,28 +84,48 @@ export default function Home(): React.JSX.Element {
 
       {/* 6.5. Brand Marquee Section (Creative Giants Edge-to-Edge Monochrome Logos Strip) */}
       <div className="relative z-20 bg-[#fffef7] overflow-hidden">
-        <ScrollReveal variant="fade-up" distance={20} duration={0.8} className="w-full">
+        <ScrollReveal
+          variant="fade-up"
+          distance={20}
+          duration={0.8}
+          className="w-full"
+        >
           <BrandSection />
         </ScrollReveal>
       </div>
 
       {/* 7. News & Perspectives Section (Creative Giants Light Canvas Editorial News Slider) */}
       <div className="relative z-20 bg-[#fffef7]">
-        <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <ScrollReveal
+          variant="fade-up"
+          distance={24}
+          duration={0.8}
+          className="w-full"
+        >
           <NewsSection />
         </ScrollReveal>
       </div>
 
       {/* 7.4. Admissions CTA Section (Dark Canvas Stage) */}
       <div data-theme="dark" className="relative z-20 bg-black">
-        <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <ScrollReveal
+          variant="fade-up"
+          distance={24}
+          duration={0.8}
+          className="w-full"
+        >
           <AboutCta />
         </ScrollReveal>
       </div>
 
       {/* 7.5. Contact & Admissions Section (Creative Giants Light Canvas Form) */}
       <div className="relative z-20 bg-[#fffef7]">
-        <ScrollReveal variant="fade-up" distance={24} duration={0.8} className="w-full">
+        <ScrollReveal
+          variant="fade-up"
+          distance={24}
+          duration={0.8}
+          className="w-full"
+        >
           <ContactSection />
         </ScrollReveal>
       </div>

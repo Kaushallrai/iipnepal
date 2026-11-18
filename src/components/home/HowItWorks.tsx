@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useRef, useEffect } from "react";
+import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowUpRight } from "lucide-react";
 import LineReveal from "@/components/animations/LineReveal";
 import { howItWorksData, type TimelineStep } from "@/data/home/how-it-works";
 
@@ -311,32 +313,9 @@ export default function HowItWorks({
                         ref={(el) => {
                           stepBlocksRef.current[idx] = el;
                         }}
-                        className="w-full max-w-xl xl:max-w-[580px] flex flex-col text-left lg:text-right items-start lg:items-end select-none group"
+                        className="w-full max-w-xl xl:max-w-[580px]"
                       >
-                        {/* Step Phase & Number - Clean single line: Circle Node -> Hairline -> [ 01 ] -> Phase */}
-                        <div className="flex items-center gap-2 mb-1 justify-start lg:justify-end whitespace-nowrap overflow-visible">
-                          <span className="step-line-inner font-mono text-xs sm:text-[13px] font-bold tracking-[0.16em] text-[#ca8a04] shrink-0 lg:order-2">
-                            [ {step.number} ]
-                          </span>
-                          <span className="text-black/30 text-xs shrink-0 lg:order-1">•</span>
-                          <span className="step-line-inner font-mono text-[11px] sm:text-[12px] tracking-[0.14em] uppercase text-black/60 font-medium shrink-0 lg:order-0">
-                            {step.phase}
-                          </span>
-                        </div>
-
-                        {/* Title with Masked Line Container */}
-                        <div className="overflow-hidden mb-1 sm:mb-1.5">
-                          <h3 className="step-line-inner font-sans font-medium text-base sm:text-lg lg:text-[18.5px] xl:text-[19.5px] leading-snug text-black tracking-[-0.025em] group-hover:text-black transition-colors">
-                            {step.title}
-                          </h3>
-                        </div>
-
-                        {/* Rich, informative description */}
-                        <div className="overflow-hidden">
-                          <p className="step-line-inner font-sans font-normal text-[13px] sm:text-[13.5px] lg:text-[14px] xl:text-[14.5px] text-black/80 leading-relaxed max-w-xl xl:max-w-[560px]">
-                            {step.description}
-                          </p>
-                        </div>
+                        <StepCard step={step} alignRightOnDesktop />
                       </div>
                     )}
                   </div>
@@ -354,32 +333,9 @@ export default function HowItWorks({
                         ref={(el) => {
                           stepBlocksRef.current[idx] = el;
                         }}
-                        className="w-full max-w-xl xl:max-w-[580px] flex flex-col text-left items-start select-none group"
+                        className="w-full max-w-xl xl:max-w-[580px]"
                       >
-                        {/* Step Phase & Number - Clean single line: Circle Node -> Hairline -> [ 02 ] -> Phase */}
-                        <div className="flex items-center gap-2 mb-1 justify-start whitespace-nowrap overflow-visible">
-                          <span className="step-line-inner font-mono text-xs sm:text-[13px] font-bold tracking-[0.16em] text-[#ca8a04] shrink-0">
-                            [ {step.number} ]
-                          </span>
-                          <span className="text-black/30 text-xs shrink-0">•</span>
-                          <span className="step-line-inner font-mono text-[11px] sm:text-[12px] tracking-[0.14em] uppercase text-black/60 font-medium shrink-0">
-                            {step.phase}
-                          </span>
-                        </div>
-
-                        {/* Title with Masked Line Container */}
-                        <div className="overflow-hidden mb-1 sm:mb-1.5">
-                          <h3 className="step-line-inner font-sans font-medium text-base sm:text-lg lg:text-[18.5px] xl:text-[19.5px] leading-snug text-black tracking-[-0.025em] group-hover:text-black transition-colors">
-                            {step.title}
-                          </h3>
-                        </div>
-
-                        {/* Rich, informative description */}
-                        <div className="overflow-hidden">
-                          <p className="step-line-inner font-sans font-normal text-[13px] sm:text-[13.5px] lg:text-[14px] xl:text-[14.5px] text-black/80 leading-relaxed max-w-xl xl:max-w-[560px]">
-                            {step.description}
-                          </p>
-                        </div>
+                        <StepCard step={step} alignRightOnDesktop={false} />
                       </div>
                     )}
                   </div>
@@ -390,5 +346,76 @@ export default function HowItWorks({
         </div>
       </div>
     </section>
+  );
+}
+
+interface StepCardProps {
+  step: TimelineStep;
+  alignRightOnDesktop: boolean;
+}
+
+/** Clickable timeline step card linking to its target route. */
+function StepCard({ step, alignRightOnDesktop }: StepCardProps): React.JSX.Element {
+  return (
+    <Link
+      href={step.href}
+      className={`w-full min-h-[44px] flex flex-col select-none group rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black ${
+        alignRightOnDesktop
+          ? "text-left lg:text-right items-start lg:items-end"
+          : "text-left items-start"
+      }`}
+    >
+      {/* Step Phase & Number - Clean single line: Circle Node -> Hairline -> [ 01 ] -> Phase */}
+      <div
+        className={`flex items-center gap-2 mb-1 justify-start whitespace-nowrap overflow-visible ${
+          alignRightOnDesktop ? "lg:justify-end" : ""
+        }`}
+      >
+        <span
+          className={`step-line-inner font-mono text-xs sm:text-[13px] font-bold tracking-[0.16em] text-[#ca8a04] shrink-0 ${
+            alignRightOnDesktop ? "lg:order-2" : ""
+          }`}
+        >
+          [ {step.number} ]
+        </span>
+        <span
+          className={`text-black/30 text-xs shrink-0 ${
+            alignRightOnDesktop ? "lg:order-1" : ""
+          }`}
+        >
+          •
+        </span>
+        <span
+          className={`step-line-inner font-mono text-[11px] sm:text-[12px] tracking-[0.14em] uppercase text-black/60 font-medium shrink-0 ${
+            alignRightOnDesktop ? "lg:order-0" : ""
+          }`}
+        >
+          {step.phase}
+        </span>
+      </div>
+
+      {/* Title with Masked Line Container & Subtle Redirect Indicator */}
+      <div className="overflow-hidden mb-1 sm:mb-1.5">
+        <h3
+          className={`step-line-inner inline-flex items-center gap-1.5 font-sans font-medium text-base sm:text-lg lg:text-[18.5px] xl:text-[19.5px] leading-snug text-black tracking-[-0.025em] group-hover:text-[#ca8a04] transition-colors ${
+            alignRightOnDesktop ? "lg:flex-row-reverse" : ""
+          }`}
+        >
+          <span>{step.title}</span>
+          <ArrowUpRight
+            className="w-4 h-4 shrink-0 text-black/45 group-hover:text-[#ca8a04] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-150"
+            strokeWidth={1.75}
+            aria-hidden="true"
+          />
+        </h3>
+      </div>
+
+      {/* Rich, informative description */}
+      <div className="overflow-hidden">
+        <p className="step-line-inner font-sans font-normal text-[13px] sm:text-[13.5px] lg:text-[14px] xl:text-[14.5px] text-black/80 leading-relaxed max-w-xl xl:max-w-[560px]">
+          {step.description}
+        </p>
+      </div>
+    </Link>
   );
 }
